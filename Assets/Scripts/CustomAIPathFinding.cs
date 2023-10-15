@@ -111,6 +111,14 @@ public class CustomAIPathFinding : MonoBehaviour
         {
             enemy.Movement(0, Mathf.RoundToInt(dir.y));
         }
+        else if (enemy.GetCanMove(Mathf.RoundToInt(-dir.x), 0))
+        {
+            enemy.Movement(Mathf.RoundToInt(-dir.x), 0);
+        }
+        else if (enemy.GetCanMove(0, Mathf.RoundToInt(-dir.y)))
+        {
+            enemy.Movement(0, Mathf.RoundToInt(-dir.y));
+        }
         else
         {
             Debug.Log("No hay camino");

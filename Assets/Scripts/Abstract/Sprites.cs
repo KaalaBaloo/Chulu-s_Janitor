@@ -13,6 +13,7 @@ public abstract class Sprites : MonoBehaviour
 
     protected GameObject _gameController;
     protected GridController _gridController;
+    protected int _characterMovements = 1;
 
     //GRID BASE
     // 0 --> Libre

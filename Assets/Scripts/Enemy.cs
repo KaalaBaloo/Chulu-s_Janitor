@@ -61,7 +61,7 @@ public class Enemy : Sprites
     public void Movement(int x, int y)
     {
         _gridController.SetGrid(0, _tileNumX, _tileNumY);
-        StartCoroutine(PositionCoroutine(_rb, new Vector2(x, y)));
+        StartCoroutine(PositionCoroutine(_rb, new Vector2(x * _characterMovements, y * _characterMovements)));
         _tileNumX += x;
         _tileNumY += y;
         _gridController.SetGrid(3, _tileNumX, _tileNumY);      

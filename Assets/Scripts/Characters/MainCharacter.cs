@@ -6,8 +6,6 @@ using UnityEngine;
 public class MainCharacter : Sprites 
 { 
     Rigidbody2D _rb;
-    Collider2D _coll;
-    int _characterMovements = 1;
     bool _destroyDirt = false;
     [SerializeField] int _lives = 1;
 
@@ -15,7 +13,6 @@ public class MainCharacter : Sprites
     {
         base.Awake();
         _rb = GetComponent<Rigidbody2D>();
-        _coll = GetComponent<Collider2D>();
     }
 
     void Start()
@@ -41,43 +38,31 @@ public class MainCharacter : Sprites
     {
         if (Input.GetKeyDown(KeyCode.W) && _gridController.CanMove(_tileNumX, _tileNumY + 1))
         {
-            _coll.isTrigger = true;
             _gridController.SetGrid(0, _tileNumX, _tileNumY);
-            _rb.MovePosition(new Vector2(transform.position.x, transform.position.y + movValue * _characterMovements)); //Up
+            StartCoroutine(PositionCoroutine(_rb, new Vector2(0, movValue * _characterMovements))); //Up
             _tileNumY += 1;
             _gridController.SetGrid(1, _tileNumX, _tileNumY);
-            _gridController.ChangeTurn();
-            _coll.isTrigger = false;
         }
         if (Input.GetKeyDown(KeyCode.A) && _gridController.CanMove(_tileNumX - 1, _tileNumY))
         {
-            _coll.isTrigger = true;
             _gridController.SetGrid(0, _tileNumX, _tileNumY);
-            _rb.position += new Vector2(-movValue * _characterMovements, 0); //Left
+            StartCoroutine(PositionCoroutine(_rb, new Vector2(-movValue * _characterMovements, 0))); //Left
             _tileNumX -= 1;
             _gridController.SetGrid(1, _tileNumX, _tileNumY);
-            _gridController.ChangeTurn();
-            _coll.isTrigger = false;
         }
         if (Input.GetKeyDown(KeyCode.S) && _gridController.CanMove(_tileNumX, _tileNumY - 1))  
         {
-            _coll.isTrigger = true;
             _gridController.SetGrid(0, _tileNumX, _tileNumY);
-            _rb.position += new Vector2(0, -movValue * _characterMovements); //Down
+            StartCoroutine(PositionCoroutine(_rb, new Vector2(0, -movValue * _characterMovements))); //Down
             _tileNumY -= 1;
             _gridController.SetGrid(1, _tileNumX, _tileNumY);
-            _gridController.ChangeTurn();
-            _coll.isTrigger = false;
         }
         if (Input.GetKeyDown(KeyCode.D) && _gridController.CanMove(_tileNumX + 1, _tileNumY))
         {
-            _coll.isTrigger = true;
             _gridController.SetGrid(0, _tileNumX, _tileNumY);
-            _rb.position += new Vector2(movValue * _characterMovements, 0); //Right
+            StartCoroutine(PositionCoroutine(_rb, new Vector2(movValue * _characterMovements, 0))); //Right
             _tileNumX += 1;
             _gridController.SetGrid(1, _tileNumX, _tileNumY);
-            _gridController.ChangeTurn();
-            _coll.isTrigger = false;
         }
     }
 
@@ -97,7 +82,6 @@ public class MainCharacter : Sprites
     {
         if (_destroyDirt && collision.CompareTag("Dirt"))
         {
-            Debug.Log("Yas");
             _destroyDirt = false;
             Destroy(collision.gameObject);
             _gridController.ChangeTurn();
