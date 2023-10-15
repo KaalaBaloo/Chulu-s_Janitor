@@ -35,7 +35,6 @@ public class CustomAIPathFinding : MonoBehaviour
     //Código modificado de: https://arongranberg.com/astar/documentation/4_2_3_5eb80478/old/custom_movement_script.php
     public void SearchPath()
     {
-        seeker.StartPath(transform.position, targetPosition.position, OnPathComplete);
         if (path == null)
         {
             // We have no path to follow yet, so don't do anything
@@ -80,9 +79,10 @@ public class CustomAIPathFinding : MonoBehaviour
     //Elige una dirección aleatoria del Vector3 dirección -->  dir.X o dir.Y
     private void RandomDirection(Vector3 dir)
     {
+        seeker.StartPath(transform.position, targetPosition.position, OnPathComplete);
         if (enemy.GetCanMove(Mathf.RoundToInt(dir.x), 0) && enemy.GetCanMove(0, Mathf.RoundToInt(dir.y)))
         {
-            int rnd = Random.Range(0, 2);
+            Debug.Log("1");
             if (Mathf.RoundToInt(dir.x) == 0)
             {
                 enemy.Movement(0, Mathf.RoundToInt(dir.y));
@@ -93,6 +93,7 @@ public class CustomAIPathFinding : MonoBehaviour
             }
             else
             {
+                int rnd = Random.Range(0, 2);
                 if (rnd == 0)
                 {
                     enemy.Movement(Mathf.RoundToInt(dir.x), 0);
@@ -105,18 +106,22 @@ public class CustomAIPathFinding : MonoBehaviour
         }
         else if (enemy.GetCanMove(Mathf.RoundToInt(dir.x), 0))
         {
+            Debug.Log("2");
             enemy.Movement(Mathf.RoundToInt(dir.x), 0);
         }
         else if (enemy.GetCanMove(0, Mathf.RoundToInt(dir.y)))
         {
+            Debug.Log("3");
             enemy.Movement(0, Mathf.RoundToInt(dir.y));
         }
         else if (enemy.GetCanMove(Mathf.RoundToInt(-dir.x), 0))
         {
+            Debug.Log("4");
             enemy.Movement(Mathf.RoundToInt(-dir.x), 0);
         }
         else if (enemy.GetCanMove(0, Mathf.RoundToInt(-dir.y)))
         {
+            Debug.Log("5");
             enemy.Movement(0, Mathf.RoundToInt(-dir.y));
         }
         else

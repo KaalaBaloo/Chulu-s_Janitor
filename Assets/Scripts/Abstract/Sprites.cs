@@ -27,7 +27,7 @@ public abstract class Sprites : MonoBehaviour
         _gridController = _gameController.GetComponent<GridController>();
     }
 
-    protected IEnumerator PositionCoroutine(Rigidbody2D rb, Vector2 position)
+    virtual protected IEnumerator PositionCoroutine(Rigidbody2D rb, Vector2 position)
     {
         Vector2 endingposition = new Vector2 (Mathf.RoundToInt(rb.position.x + position.x), Mathf.RoundToInt(rb.position.y + position.y));
         Debug.Log("Posicion final: " + endingposition);

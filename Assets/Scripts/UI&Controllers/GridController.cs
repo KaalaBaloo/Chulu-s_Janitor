@@ -95,6 +95,7 @@ public class GridController : MonoBehaviour
         }
         else
         {
+            Debug.Log(_gridBase[num_x, num_y]);
             return false;
         }
     }

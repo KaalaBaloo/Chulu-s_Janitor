@@ -64,7 +64,6 @@ public class Enemy : Sprites
         StartCoroutine(PositionCoroutine(_rb, new Vector2(x * _characterMovements, y * _characterMovements)));
         _tileNumX += x;
         _tileNumY += y;
-        _gridController.SetGrid(3, _tileNumX, _tileNumY);      
     }
 
     public bool GetCanMove(int x, int y)
@@ -75,5 +74,48 @@ public class Enemy : Sprites
     public void SetChangeTurn()
     {
         _gridController.ChangeTurn();
+    }
+
+    override protected IEnumerator PositionCoroutine(Rigidbody2D rb, Vector2 position)
+    {
+        Vector2 endingposition = new Vector2(Mathf.RoundToInt(rb.position.x + position.x), Mathf.RoundToInt(rb.position.y + position.y));
+        Debug.Log("Posicion final: " + endingposition);
+        if (transform.position.x > endingposition.x)
+        {
+            while (transform.position.x > endingposition.x)
+            {
+                rb.velocity = (endingposition - rb.position).normalized * _speed;
+                yield return null;
+            }
+        }
+        else if (transform.position.x < endingposition.x)
+        {
+            while (transform.position.x < endingposition.x)
+            {
+                rb.velocity = (endingposition - rb.position).normalized * _speed;
+                yield return null;
+            }
+        }
+        else if (transform.position.y > endingposition.y)
+        {
+            while (transform.position.y > endingposition.y)
+            {
+                rb.velocity = (endingposition - rb.position).normalized * _speed;
+                yield return null;
+            }
+        }
+        else
+        {
+            while (transform.position.y < endingposition.y)
+            {
+                rb.velocity = (endingposition - rb.position).normalized * _speed;
+                yield return null;
+            }
+        }
+        rb.velocity = Vector2.zero;
+        transform.position = endingposition;
+        _gridController.ChangeTurn();
+        _gridController.SetGrid(3, _tileNumX, _tileNumY);
+        yield return 0;
     }
 }
