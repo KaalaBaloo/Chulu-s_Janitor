@@ -10,14 +10,17 @@ public class GridController : MonoBehaviour
     [SerializeField] int _tilesY = 3;
     [SerializeField] GameObject _border;
     AstarPath pathfinding;
-    [SerializeField] bool _playerTurn = true;
+    [SerializeField] int _playerTurn = 2;
+    //0 --> Enemigo
+    //1 --> Player
+    //2 --> Cargando
 
     int[,] _gridBase;
     int[,] _gridToClean;
 
     //GRID BASE
     // 0 --> Libre
-    // 1 --> Personaje
+    // 1 --> Player
     // 2 --> Bloqueo
     // 3 --> Enemigo
 
@@ -38,22 +41,27 @@ public class GridController : MonoBehaviour
 
     }
 
+    private void Start()
+    {
+        StartCoroutine(LoadingScreen());
+    }
+
     //Inicializa las grids de control general y la de control de "basura" que hay que limpiar
     private void InitializeGrids()
     {
-        for (int y = 0; y < _tilesY; y++)
+        for (int x = 0; x < _tilesX; x++)
         {
-            for (int x = 0; x < _tilesX; x++)
+            for (int y = 0; y < _tilesY; y++)
             {
-                _gridBase[y, x] = 0;
+                _gridBase[x, y] = 0;
             }
         }
 
-        for (int y = 0; y < _tilesY; y++)
+        for (int x = 0; x < _tilesX; x++)
         {
-            for (int x = 0; x < _tilesX; x++)
+            for (int y = 0; y < _tilesY; y++)
             {
-                _gridToClean[y, x] = 0;
+                _gridToClean[x, y] = 0;
             }
         }
     }
@@ -61,13 +69,13 @@ public class GridController : MonoBehaviour
     //Genera los bordes del tablero/grid
     private void SetBordersGrid()
     {
-        for (int y = 0; y < _tilesY; y++)
+        for (int x = 0; x < _tilesX; x++)
         {
-            for (int x = 0; x < _tilesX; x++)
+            for (int y = 0; y < _tilesY; y++)
             {
-                if (y == 0 || y == _tilesY - 1 || x == 0 || x == _tilesX - 1)
+                if (x == 0 || x == _tilesX - 1 || y == 0 || y == _tilesY - 1)
                 {
-                    _gridBase[y, x] = 2;
+                    _gridBase[x, y] = 2;
                     Instantiate(_border, new Vector3(x, y, 0), Quaternion.identity);
                 }
             }
@@ -77,19 +85,20 @@ public class GridController : MonoBehaviour
     //Cambia algún dato de la grid de control general
     public void SetGrid(int sprite, int num_x, int num_y)
     {
-        _gridBase[num_y, num_x] = sprite;
+        _gridBase[num_x, num_y] = sprite;
+        Debug.Log(sprite +  " = " + _gridBase[num_x, num_y]);
     }
 
     //Cambia algún dato de la grid de control de "basura" que hay que limpiar
     public void SetDirtOnGrid(int dirt, int num_x, int num_y)
     {
-        _gridToClean[num_y, num_x] = dirt;
+        _gridToClean[num_x, num_y] = dirt;
     }
 
     //Devuelve si es posible posicionarse en la celda elegida
     public bool CanMove(int num_x, int num_y)
     {
-        if (_gridBase[num_y, num_x] == 0)
+        if (_gridBase[num_x, num_y] == 0)
         {
             return true;
         }
@@ -103,7 +112,7 @@ public class GridController : MonoBehaviour
     //Devuelve si hay algo que limpiar en la celda elegida
     public bool CanClean(int num_x, int num_y)
     {
-        if (_gridToClean[num_y, num_x] == 1)
+        if (_gridToClean[num_x, num_y] == 1)
         {
             return true;
         }
@@ -131,18 +140,48 @@ public class GridController : MonoBehaviour
     }
 
     //Devuelve el booleano de quién es el turno
-    public bool GetTurn()
+    public int GetTurn()
     {
         return _playerTurn;
     }
 
     //Cambia el turno
-    public void ChangeTurn()
+    public void ChangeTurn(int n)
     {
-        if (_playerTurn)
-            _playerTurn = false;
-        else
-            _playerTurn = true;
+        _playerTurn = n;
+    }
+
+    protected IEnumerator LoadingScreen()
+    {
+        float seconds = 0;
+
+        while (seconds < 2)
+        {
+            seconds += Time.deltaTime;
+            yield return null;
+        }
+        _playerTurn = 1;
+        yield return 0;
+    }
+
+    public bool GetPlayerVertical(int x)
+    {
+        for (int i = 0; i < _tilesY; i++)
+        {
+            if (_gridBase[x, i] == 1)
+                return true;
+        }
+        return false;
+    }
+
+    public bool GetPlayerHorizontal(int y)
+    {
+        for (int i = 0; i < _tilesX; i++)
+        {
+            if (_gridBase[i, y] == 1)
+                return true;
+        }
+        return false;
     }
 
 }
