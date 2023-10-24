@@ -17,16 +17,17 @@ public class MainCharacter : Sprites
 
     void Start()
     {
-        _gridController.SetGrid(_spriteNumber, _tileNumX, _tileNumY);
         _spriteNumber = 1;
         _tileNumX = Mathf.RoundToInt(transform.position.x);
         _tileNumY = Mathf.RoundToInt(transform.position.y);
+        _gridController.SetGrid(_spriteNumber, _tileNumX, _tileNumY);
     }
 
     void Update()
     {
-        if (_gridController.GetTurn())
+        if (_gridController.GetTurn() == 1)
         {
+            Debug.Log("click");
             Movement(_gridController.GetMovValue());
             Clean();
         }
@@ -38,31 +39,35 @@ public class MainCharacter : Sprites
     {
         if (Input.GetKeyDown(KeyCode.W) && _gridController.CanMove(_tileNumX, _tileNumY + 1))
         {
+            _gridController.ChangeTurn(2);
             _gridController.SetGrid(0, _tileNumX, _tileNumY);
-            StartCoroutine(PositionCoroutine(_rb, new Vector2(0, movValue * _characterMovements))); //Up
             _tileNumY += 1;
-            _gridController.SetGrid(1, _tileNumX, _tileNumY);
+            _gridController.SetGrid(_spriteNumber, _tileNumX, _tileNumY);
+            StartCoroutine(PositionCoroutine(_rb, new Vector2(0, movValue * _characterMovements))); //Up
         }
         if (Input.GetKeyDown(KeyCode.A) && _gridController.CanMove(_tileNumX - 1, _tileNumY))
         {
+            _gridController.ChangeTurn(2);
             _gridController.SetGrid(0, _tileNumX, _tileNumY);
-            StartCoroutine(PositionCoroutine(_rb, new Vector2(-movValue * _characterMovements, 0))); //Left
             _tileNumX -= 1;
-            _gridController.SetGrid(1, _tileNumX, _tileNumY);
+            _gridController.SetGrid(_spriteNumber, _tileNumX, _tileNumY);
+            StartCoroutine(PositionCoroutine(_rb, new Vector2(-movValue * _characterMovements, 0))); //Left
         }
         if (Input.GetKeyDown(KeyCode.S) && _gridController.CanMove(_tileNumX, _tileNumY - 1))  
         {
+            _gridController.ChangeTurn(2);
             _gridController.SetGrid(0, _tileNumX, _tileNumY);
-            StartCoroutine(PositionCoroutine(_rb, new Vector2(0, -movValue * _characterMovements))); //Down
             _tileNumY -= 1;
-            _gridController.SetGrid(1, _tileNumX, _tileNumY);
+            _gridController.SetGrid(_spriteNumber, _tileNumX, _tileNumY);
+            StartCoroutine(PositionCoroutine(_rb, new Vector2(0, -movValue * _characterMovements))); //Down
         }
         if (Input.GetKeyDown(KeyCode.D) && _gridController.CanMove(_tileNumX + 1, _tileNumY))
         {
+            _gridController.ChangeTurn(2);
             _gridController.SetGrid(0, _tileNumX, _tileNumY);
-            StartCoroutine(PositionCoroutine(_rb, new Vector2(movValue * _characterMovements, 0))); //Right
             _tileNumX += 1;
-            _gridController.SetGrid(1, _tileNumX, _tileNumY);
+            _gridController.SetGrid(_spriteNumber, _tileNumX, _tileNumY);
+            StartCoroutine(PositionCoroutine(_rb, new Vector2(movValue * _characterMovements, 0))); //Right
         }
     }
 
@@ -71,6 +76,7 @@ public class MainCharacter : Sprites
     {
         if (Input.GetKeyDown(KeyCode.Space) && _gridController.CanClean(_tileNumX, _tileNumY))
         {
+            _gridController.ChangeTurn(2);
             _gridController.SetDirtOnGrid(0, _tileNumX, _tileNumY);
             _gridController.DirtCleaned();
             _destroyDirt = true;
@@ -84,7 +90,7 @@ public class MainCharacter : Sprites
         {
             _destroyDirt = false;
             Destroy(collision.gameObject);
-            _gridController.ChangeTurn();
+            _gridController.ChangeTurn(0);
         }
     }
 
@@ -114,5 +120,47 @@ public class MainCharacter : Sprites
         {
             Destroy(gameObject);
         }
+    }
+
+    override protected IEnumerator PositionCoroutine(Rigidbody2D rb, Vector2 position)
+    {
+        Vector2 endingposition = new Vector2(Mathf.RoundToInt(rb.position.x + position.x), Mathf.RoundToInt(rb.position.y + position.y));
+        if (transform.position.x > endingposition.x)
+        {
+            while (transform.position.x > endingposition.x)
+            {
+                rb.velocity = (endingposition - rb.position).normalized * _speed;
+                yield return null;
+            }
+        }
+        else if (transform.position.x < endingposition.x)
+        {
+            while (transform.position.x < endingposition.x)
+            {
+                rb.velocity = (endingposition - rb.position).normalized * _speed;
+                yield return null;
+            }
+        }
+        else if (transform.position.y > endingposition.y)
+        {
+            while (transform.position.y > endingposition.y)
+            {
+                rb.velocity = (endingposition - rb.position).normalized * _speed;
+                yield return null;
+            }
+        }
+        else
+        {
+            while (transform.position.y < endingposition.y)
+            {
+                rb.velocity = (endingposition - rb.position).normalized * _speed;
+                yield return null;
+            }
+        }
+        rb.velocity = Vector2.zero;
+        transform.position = endingposition;
+        _gridController.SetGrid(_spriteNumber, _tileNumX, _tileNumY);
+        _gridController.ChangeTurn(0);
+        yield return 0;
     }
 }

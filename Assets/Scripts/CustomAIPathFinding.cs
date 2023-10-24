@@ -13,6 +13,7 @@ public class CustomAIPathFinding : MonoBehaviour
     private int currentWaypoint = 0;
     public bool reachedEndOfPath;
     Vector3 _dir;
+    Vector2 _dirBinario;
     public void Start()
     {
         seeker = GetComponent<Seeker>();
@@ -71,18 +72,44 @@ public class CustomAIPathFinding : MonoBehaviour
                 break;
             }
         }
-        _dir = (path.vectorPath[currentWaypoint] - transform.position).normalized;
-        Debug.Log("Direccion: " + Mathf.RoundToInt(_dir.x) + "," + Mathf.RoundToInt(_dir.y));
-        RandomDirection(_dir);
+        _dir = (path.vectorPath[currentWaypoint] - transform.position);
+        Debug.Log("position: " + transform.position);
+        Debug.Log("waypoint: " + path.vectorPath[currentWaypoint]);
+        Debug.Log("_dir: " + _dir);
+        if (_dir.x > 0)
+        {
+            _dirBinario.x = 1;
+        }
+        else if (_dir.x == 0)
+        {
+            _dirBinario.x = 0;
+        }
+        else
+        {
+            _dirBinario.x = -1;
+        }
+        if (_dir.y > 0)
+        {
+            _dirBinario.y = 1;
+        }
+        else if (_dir.y == 0)
+        {
+            _dirBinario.y = 0;
+        }
+        else
+        {
+            _dirBinario.y = -1;
+        }
+        Debug.Log("_dirBinario: " + _dirBinario);
+        RandomDirection(_dirBinario);
     }
 
     //Elige una dirección aleatoria del Vector3 dirección -->  dir.X o dir.Y
-    private void RandomDirection(Vector3 dir)
+    private void RandomDirection(Vector2 dir)
     {
         seeker.StartPath(transform.position, targetPosition.position, OnPathComplete);
         if (enemy.GetCanMove(Mathf.RoundToInt(dir.x), 0) && enemy.GetCanMove(0, Mathf.RoundToInt(dir.y)))
         {
-            Debug.Log("1");
             if (Mathf.RoundToInt(dir.x) == 0)
             {
                 enemy.Movement(0, Mathf.RoundToInt(dir.y));
@@ -106,22 +133,18 @@ public class CustomAIPathFinding : MonoBehaviour
         }
         else if (enemy.GetCanMove(Mathf.RoundToInt(dir.x), 0))
         {
-            Debug.Log("2");
             enemy.Movement(Mathf.RoundToInt(dir.x), 0);
         }
         else if (enemy.GetCanMove(0, Mathf.RoundToInt(dir.y)))
         {
-            Debug.Log("3");
             enemy.Movement(0, Mathf.RoundToInt(dir.y));
         }
         else if (enemy.GetCanMove(Mathf.RoundToInt(-dir.x), 0))
         {
-            Debug.Log("4");
             enemy.Movement(Mathf.RoundToInt(-dir.x), 0);
         }
         else if (enemy.GetCanMove(0, Mathf.RoundToInt(-dir.y)))
         {
-            Debug.Log("5");
             enemy.Movement(0, Mathf.RoundToInt(-dir.y));
         }
         else

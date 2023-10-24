@@ -27,45 +27,5 @@ public abstract class Sprites : MonoBehaviour
         _gridController = _gameController.GetComponent<GridController>();
     }
 
-    virtual protected IEnumerator PositionCoroutine(Rigidbody2D rb, Vector2 position)
-    {
-        Vector2 endingposition = new Vector2 (Mathf.RoundToInt(rb.position.x + position.x), Mathf.RoundToInt(rb.position.y + position.y));
-        Debug.Log("Posicion final: " + endingposition);
-        if (transform.position.x > endingposition.x)
-        {
-            while (transform.position.x > endingposition.x)
-            {
-                rb.velocity = (endingposition - rb.position).normalized * _speed;
-                yield return null;
-            }
-        }
-        else if (transform.position.x < endingposition.x)
-        {
-            while (transform.position.x < endingposition.x)
-            {
-                rb.velocity = (endingposition - rb.position).normalized * _speed;
-                yield return null;
-            }
-        }
-        else if (transform.position.y > endingposition.y)
-        {
-            while (transform.position.y > endingposition.y)
-            {
-                rb.velocity = (endingposition - rb.position).normalized * _speed;
-                yield return null;
-            }
-        }
-        else
-        {
-            while (transform.position.y < endingposition.y)
-            {
-                rb.velocity = (endingposition - rb.position).normalized * _speed;
-                yield return null;
-            }
-        }
-        rb.velocity = Vector2.zero;
-        transform.position = endingposition;
-        _gridController.ChangeTurn();
-        yield return 0;
-    }
+    virtual protected IEnumerator PositionCoroutine(Rigidbody2D rb, Vector2 position) { yield return 0; }
 }
