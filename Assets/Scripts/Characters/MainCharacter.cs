@@ -8,6 +8,7 @@ public class MainCharacter : Sprites
     Rigidbody2D _rb;
     bool _destroyDirt = false;
     [SerializeField] int _lives = 1;
+    int _movValue = 0;
 
     protected override void Awake()
     {
@@ -21,53 +22,49 @@ public class MainCharacter : Sprites
         _tileNumX = Mathf.RoundToInt(transform.position.x);
         _tileNumY = Mathf.RoundToInt(transform.position.y);
         _gridController.SetGrid(_spriteNumber, _tileNumX, _tileNumY);
+        _movValue = _gridController.GetMovValue();
     }
 
     void Update()
     {
         if (_gridController.GetTurn() == 1)
         {
-            Debug.Log("click");
-            Movement(_gridController.GetMovValue());
+            Movement();
             Clean();
         }
         GameOver();
     }
 
     //Calcula si es posible moverse a la celda elegida y, de serlo, mueve al personaje y cambia los datos de la grid y el turno
-    private void Movement(int movValue)
+    private void Movement()
     {
         if (Input.GetKeyDown(KeyCode.W) && _gridController.CanMove(_tileNumX, _tileNumY + 1))
         {
             _gridController.ChangeTurn(2);
             _gridController.SetGrid(0, _tileNumX, _tileNumY);
             _tileNumY += 1;
-            _gridController.SetGrid(_spriteNumber, _tileNumX, _tileNumY);
-            StartCoroutine(PositionCoroutine(_rb, new Vector2(0, movValue * _characterMovements))); //Up
+            StartCoroutine(PositionCoroutine(_rb, new Vector2(0, _movValue * _characterMovements))); //Up
         }
         if (Input.GetKeyDown(KeyCode.A) && _gridController.CanMove(_tileNumX - 1, _tileNumY))
         {
             _gridController.ChangeTurn(2);
             _gridController.SetGrid(0, _tileNumX, _tileNumY);
             _tileNumX -= 1;
-            _gridController.SetGrid(_spriteNumber, _tileNumX, _tileNumY);
-            StartCoroutine(PositionCoroutine(_rb, new Vector2(-movValue * _characterMovements, 0))); //Left
+            StartCoroutine(PositionCoroutine(_rb, new Vector2(-_movValue * _characterMovements, 0))); //Left
         }
         if (Input.GetKeyDown(KeyCode.S) && _gridController.CanMove(_tileNumX, _tileNumY - 1))  
         {
             _gridController.ChangeTurn(2);
             _gridController.SetGrid(0, _tileNumX, _tileNumY);
             _tileNumY -= 1;
-            _gridController.SetGrid(_spriteNumber, _tileNumX, _tileNumY);
-            StartCoroutine(PositionCoroutine(_rb, new Vector2(0, -movValue * _characterMovements))); //Down
+            StartCoroutine(PositionCoroutine(_rb, new Vector2(0, -_movValue * _characterMovements))); //Down
         }
         if (Input.GetKeyDown(KeyCode.D) && _gridController.CanMove(_tileNumX + 1, _tileNumY))
         {
             _gridController.ChangeTurn(2);
             _gridController.SetGrid(0, _tileNumX, _tileNumY);
             _tileNumX += 1;
-            _gridController.SetGrid(_spriteNumber, _tileNumX, _tileNumY);
-            StartCoroutine(PositionCoroutine(_rb, new Vector2(movValue * _characterMovements, 0))); //Right
+            StartCoroutine(PositionCoroutine(_rb, new Vector2(_movValue * _characterMovements, 0))); //Right
         }
     }
 
@@ -163,4 +160,55 @@ public class MainCharacter : Sprites
         _gridController.ChangeTurn(0);
         yield return 0;
     }
+
+
+    public void Push(int x, int y)
+    {
+        _gridController.SetGrid(0, _tileNumX, _tileNumY);
+        _tileNumX += x;
+        _tileNumY += y;
+        StartCoroutine(PushCoroutine(_rb, new Vector2(_movValue * _characterMovements * x, _movValue * _characterMovements * y)));
+    }
+
+    protected IEnumerator PushCoroutine(Rigidbody2D rb, Vector2 position)
+    {
+        Vector2 endingposition = new Vector2(Mathf.RoundToInt(rb.position.x + position.x), Mathf.RoundToInt(rb.position.y + position.y));
+        if (transform.position.x > endingposition.x)
+        {
+            while (transform.position.x > endingposition.x)
+            {
+                rb.velocity = (endingposition - rb.position).normalized * _speed;
+                yield return null;
+            }
+        }
+        else if (transform.position.x < endingposition.x)
+        {
+            while (transform.position.x < endingposition.x)
+            {
+                rb.velocity = (endingposition - rb.position).normalized * _speed;
+                yield return null;
+            }
+        }
+        else if (transform.position.y > endingposition.y)
+        {
+            while (transform.position.y > endingposition.y)
+            {
+                rb.velocity = (endingposition - rb.position).normalized * _speed;
+                yield return null;
+            }
+        }
+        else
+        {
+            while (transform.position.y < endingposition.y)
+            {
+                rb.velocity = (endingposition - rb.position).normalized * _speed;
+                yield return null;
+            }
+        }
+        rb.velocity = Vector2.zero;
+        transform.position = endingposition;
+        _gridController.SetGrid(_spriteNumber, _tileNumX, _tileNumY);
+        yield return 0;
+    }
+
 }

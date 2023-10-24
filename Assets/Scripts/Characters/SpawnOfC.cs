@@ -7,11 +7,7 @@ using UnityEngine.TextCore.Text;
 public class SpawnOfC : Enemy
 {
     private void Update()
-    {
-        if (_gridController.GetTurn() == 1 && _moving)
-        {
-            _moving = false;
-        }
+    {      
 
         MovementCondition();
 
@@ -19,6 +15,11 @@ public class SpawnOfC : Enemy
 
     void MovementCondition()
     {
+        if (_gridController.GetTurn() == 1 && _moving)
+        {
+            _moving = false;
+        }
+
         if (_gridController.GetTurn() == 0 && _character != null && !_moving)
         {
             _moving = true;
@@ -34,6 +35,7 @@ public class SpawnOfC : Enemy
             }
             else if (_gridController.GetPlayerVertical(_tileNumX) || _gridController.GetPlayerHorizontal(_tileNumY))
             {
+                Debug.Log("In sight");
                 _gridController.ChangeTurn(2);
                 SimpleMovement();
             }

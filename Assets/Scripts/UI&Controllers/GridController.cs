@@ -86,7 +86,6 @@ public class GridController : MonoBehaviour
     public void SetGrid(int sprite, int num_x, int num_y)
     {
         _gridBase[num_x, num_y] = sprite;
-        Debug.Log(sprite +  " = " + _gridBase[num_x, num_y]);
     }
 
     //Cambia algún dato de la grid de control de "basura" que hay que limpiar

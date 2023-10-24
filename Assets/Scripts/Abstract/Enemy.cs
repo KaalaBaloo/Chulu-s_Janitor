@@ -39,25 +39,23 @@ public class Enemy : Sprites
         if (_gridController.GetTurn() == 0 && _character != null && !_moving)
         {
             _moving = true;
-            if (_gridController.GetPlayerVertical(_tileNumX) || _gridController.GetPlayerHorizontal(_tileNumY))
+
+            if (_customAIPathFinding.GetReachEndPath()
+            && ((Mathf.Abs(Mathf.RoundToInt(transform.position.x - _character.transform.position.x)) == _gridController.GetMovValue()
+                    && Mathf.RoundToInt(transform.position.y) == Mathf.RoundToInt(_character.transform.position.y))
+        ||
+                    (Mathf.Abs(Mathf.RoundToInt(transform.position.y - _character.transform.position.y)) == _gridController.GetMovValue())
+                    && Mathf.RoundToInt(transform.position.x) == Mathf.RoundToInt(_character.transform.position.x)))
             {
-                Debug.Log("In sight");
-                if (_customAIPathFinding.GetReachEndPath()
-                && ((Mathf.Abs(Mathf.RoundToInt(transform.position.x - _character.transform.position.x)) == _gridController.GetMovValue()
-                        && Mathf.RoundToInt(transform.position.y) == Mathf.RoundToInt(_character.transform.position.y))
-            ||
-                        (Mathf.Abs(Mathf.RoundToInt(transform.position.y - _character.transform.position.y)) == _gridController.GetMovValue())
-                        && Mathf.RoundToInt(transform.position.x) == Mathf.RoundToInt(_character.transform.position.x)))
-                {
-                    Debug.Log("damage");
-                    _character.SubstractLife(_damage);
-                    _rb.position = new Vector2(_character.transform.position.x, _character.transform.position.y);
-                }
-                else
-                {
-                    _customAIPathFinding.SearchPath();
-                }
+                Debug.Log("damage");
+                _character.SubstractLife(_damage);
+                _rb.position = new Vector2(_character.transform.position.x, _character.transform.position.y);
             }
+            else
+            {
+                _customAIPathFinding.SearchPath();
+            }
+
         }
     }
 
