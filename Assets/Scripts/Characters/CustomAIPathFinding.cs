@@ -24,7 +24,6 @@ public class CustomAIPathFinding : MonoBehaviour
     }
     public void OnPathComplete(Path p)
     {
-        Debug.Log("A path was calculated. Did it fail with an error? " + p.error);
         if (!p.error)
         {
             path = p;
@@ -73,9 +72,6 @@ public class CustomAIPathFinding : MonoBehaviour
             }
         }
         _dir = (path.vectorPath[currentWaypoint] - transform.position);
-        Debug.Log("position: " + transform.position);
-        Debug.Log("waypoint: " + path.vectorPath[currentWaypoint]);
-        Debug.Log("_dir: " + _dir);
         if (_dir.x > 0)
         {
             _dirBinario.x = 1;
@@ -100,7 +96,6 @@ public class CustomAIPathFinding : MonoBehaviour
         {
             _dirBinario.y = -1;
         }
-        Debug.Log("_dirBinario: " + _dirBinario);
         RandomDirection(_dirBinario);
     }
 
@@ -149,7 +144,6 @@ public class CustomAIPathFinding : MonoBehaviour
         }
         else
         {
-            Debug.Log("No hay camino");
             enemy.SetChangeTurn();
         }
     }

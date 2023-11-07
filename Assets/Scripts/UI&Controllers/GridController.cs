@@ -1,19 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GridController : MonoBehaviour
 {
-    [SerializeField] int _dirtToClean = 3;
+    [SerializeField] int _dirtToClean = 0;
     [SerializeField] int _movValue = 2;
     [SerializeField] int _tilesX = 3;
     [SerializeField] int _tilesY = 3;
     [SerializeField] GameObject _border;
+    [SerializeField] GameObject _BloodLeft;
+    TMP_Text _textBloodLeft;
+    [SerializeField] int _charactersTurn = 0; 
+    //0 --> Player
+    //1 --> Enemies
+    //2 --> Waiting
+
     AstarPath pathfinding;
-    [SerializeField] int _playerTurn = 2;
-    //0 --> Enemigo
-    //1 --> Player
-    //2 --> Cargando
+    [SerializeField] int _enemies = 0;
+    [SerializeField] int _enemiesCount = 1;
+    bool _loadingScreen = false;
+    float _time = 0;
 
     int[,] _gridBase;
     int[,] _gridToClean;
@@ -38,12 +47,36 @@ public class GridController : MonoBehaviour
        InitializeGrids();
        SetBordersGrid();
        pathfinding.Scan();
+       _charactersTurn = 2;
 
     }
 
     private void Start()
     {
-        StartCoroutine(LoadingScreen());
+        _loadingScreen = true;
+        _textBloodLeft = _BloodLeft.GetComponent<TMP_Text>();
+        _textBloodLeft.text = _dirtToClean.ToString();
+    }
+
+    private void Update()
+    {
+        if (_loadingScreen)
+        {
+            _time += Time.deltaTime;
+            LoadingScreen(2);
+        }
+
+        if (_dirtToClean <= 0)
+        {
+            Debug.Log("Win");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+        if (_enemies == _enemiesCount)
+        {
+            _enemiesCount = 0;
+            _charactersTurn = 0;
+        }
     }
 
     //Inicializa las grids de control general y la de control de "basura" que hay que limpiar
@@ -103,7 +136,7 @@ public class GridController : MonoBehaviour
         }
         else
         {
-            Debug.Log(_gridBase[num_x, num_y]);
+            //Debug.Log(_gridBase[num_x, num_y]);
             return false;
         }
     }
@@ -133,34 +166,39 @@ public class GridController : MonoBehaviour
     public void DirtCleaned()
     {
         if (_dirtToClean > 0)
+        {
             _dirtToClean -= 1;
+            UpdateBlood();
+        }
         else
             Debug.Log("Error, suciedad = 0");
+    }
+
+    public void AddDirt()
+    {
+        _dirtToClean++;
     }
 
     //Devuelve el booleano de quién es el turno
     public int GetTurn()
     {
-        return _playerTurn;
+        return _charactersTurn;
     }
 
     //Cambia el turno
-    public void ChangeTurn(int n)
+    public void ChangeTurn(int turn)
     {
-        _playerTurn = n;
+        _charactersTurn = turn;
     }
 
-    protected IEnumerator LoadingScreen()
+    void LoadingScreen(int seconds)
     {
-        float seconds = 0;
-
-        while (seconds < 2)
+        if (_time >= seconds)
         {
-            seconds += Time.deltaTime;
-            yield return null;
-        }
-        _playerTurn = 1;
-        yield return 0;
+            _loadingScreen = false;
+            Debug.Log("Finished Loading");
+            _charactersTurn = 0;
+        } 
     }
 
     public bool GetPlayerVertical(int x)
@@ -183,4 +221,36 @@ public class GridController : MonoBehaviour
         return false;
     }
 
+    public bool GetPlayerNear(int x, int y)
+    {
+        if (_gridBase[x-1, y-1] == 1 || _gridBase[x+1, y+1] == 1 || _gridBase[x-1, y+1] == 1 || _gridBase[x+1, y-1] == 1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+
+    public void CreateEnemy()
+    {
+        _enemies++;
+    }
+
+    public void EnemyMoved()
+    {
+        _enemiesCount++;
+    }
+
+    public int GetEnemyMoved()
+    {
+        return _enemiesCount;
+    }
+
+    public void UpdateBlood()
+    {
+        _textBloodLeft.text = _dirtToClean.ToString();
+    }
 }

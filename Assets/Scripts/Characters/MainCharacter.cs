@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainCharacter : Sprites 
 { 
@@ -27,12 +28,11 @@ public class MainCharacter : Sprites
 
     void Update()
     {
-        if (_gridController.GetTurn() == 1)
+        if (_gridController.GetTurn() == 0)
         {
             Movement();
             Clean();
         }
-        GameOver();
     }
 
     //Calcula si es posible moverse a la celda elegida y, de serlo, mueve al personaje y cambia los datos de la grid y el turno
@@ -71,12 +71,16 @@ public class MainCharacter : Sprites
     //Calcula si es posible limpiar la celda sobre la que está y, de serlo, manda la señal de eliminar sprite y cambia los datos de la grid y el turno
     private void Clean()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && _gridController.CanClean(_tileNumX, _tileNumY))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             _gridController.ChangeTurn(2);
-            _gridController.SetDirtOnGrid(0, _tileNumX, _tileNumY);
-            _gridController.DirtCleaned();
-            _destroyDirt = true;
+            if (_gridController.CanClean(_tileNumX, _tileNumY))
+            {
+                _gridController.SetDirtOnGrid(0, _tileNumX, _tileNumY);
+                _gridController.DirtCleaned();
+                _destroyDirt = true;
+            }
+            _gridController.ChangeTurn(1);
         }
     }
 
@@ -86,8 +90,7 @@ public class MainCharacter : Sprites
         if (_destroyDirt && collision.CompareTag("Dirt"))
         {
             _destroyDirt = false;
-            Destroy(collision.gameObject);
-            _gridController.ChangeTurn(0);
+            Destroy(collision.gameObject); 
         }
     }
 
@@ -111,12 +114,9 @@ public class MainCharacter : Sprites
         _lives -= damage;
     }
 
-    private void GameOver()
+    public void GameOver()
     {
-        if (_lives <= 0)
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
     }
 
     override protected IEnumerator PositionCoroutine(Rigidbody2D rb, Vector2 position)
@@ -157,7 +157,7 @@ public class MainCharacter : Sprites
         rb.velocity = Vector2.zero;
         transform.position = endingposition;
         _gridController.SetGrid(_spriteNumber, _tileNumX, _tileNumY);
-        _gridController.ChangeTurn(0);
+        _gridController.ChangeTurn(1);
         yield return 0;
     }
 
@@ -210,5 +210,4 @@ public class MainCharacter : Sprites
         _gridController.SetGrid(_spriteNumber, _tileNumX, _tileNumY);
         yield return 0;
     }
-
 }

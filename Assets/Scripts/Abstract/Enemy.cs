@@ -3,13 +3,15 @@ using Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Enemy : Sprites
 {
     protected Rigidbody2D _rb;
     protected MainCharacter _character;
     protected CustomAIPathFinding _customAIPathFinding;
-   [SerializeField] protected int _damage = 1;
+    [SerializeField] protected int _damage = 1;
+    [SerializeField] protected int _enemyNumber = 0;
 
     protected bool _moving = false;
 
@@ -28,15 +30,16 @@ public class Enemy : Sprites
         _tileNumY = Mathf.RoundToInt(transform.position.y);
         _gridController.SetGrid(_spriteNumber, _tileNumX, _tileNumY);
         transform.position = new Vector2(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y));
+        _gridController .CreateEnemy();
     }
 
     protected void MovePathFinding()
     {
-        if (_gridController.GetTurn() == 1 && _moving)
+        if (_gridController.GetTurn() == 0 && _moving)
         {
             _moving = false;
         }
-        if (_gridController.GetTurn() == 0 && _character != null && !_moving)
+        if (_gridController.GetTurn() == 1 && _character != null && !_moving && _gridController.GetEnemyMoved() == _enemyNumber)
         {
             _moving = true;
 
@@ -47,9 +50,9 @@ public class Enemy : Sprites
                     (Mathf.Abs(Mathf.RoundToInt(transform.position.y - _character.transform.position.y)) == _gridController.GetMovValue())
                     && Mathf.RoundToInt(transform.position.x) == Mathf.RoundToInt(_character.transform.position.x)))
             {
-                Debug.Log("damage");
                 _character.SubstractLife(_damage);
-                _rb.position = new Vector2(_character.transform.position.x, _character.transform.position.y);
+                StartCoroutine(AttackCoroutine(_rb, new Vector2(Mathf.RoundToInt(_character.transform.position.x) * _characterMovements,
+                     Mathf.RoundToInt(_character.transform.position.y) * _characterMovements)));
             }
             else
             {
@@ -75,7 +78,7 @@ public class Enemy : Sprites
 
     public void SetChangeTurn()
     {
-        _gridController.ChangeTurn(1);
+        _gridController.EnemyMoved();
     }
 
     override protected IEnumerator PositionCoroutine(Rigidbody2D rb, Vector2 position)
@@ -119,4 +122,47 @@ public class Enemy : Sprites
         SetChangeTurn();
         yield return 0;
     }
+
+    protected IEnumerator AttackCoroutine(Rigidbody2D rb, Vector2 position)
+    {
+        if (transform.position.x > position.x)
+        {
+            while (transform.position.x > position.x)
+            {
+                rb.velocity = (position - rb.position).normalized * _speed;
+                yield return null;
+            }
+        }
+        else if (transform.position.x < position.x)
+        {
+            while (transform.position.x < position.x)
+            {
+                rb.velocity = (position - rb.position).normalized * _speed;
+                yield return null;
+            }
+        }
+        else if (transform.position.y > position.y)
+        {
+            while (transform.position.y > position.y)
+            {
+                rb.velocity = (position - rb.position).normalized * _speed;
+                yield return null;
+            }
+        }
+        else
+        {
+            while (transform.position.y < position.y)
+            {
+                rb.velocity = (position - rb.position).normalized * _speed;
+                yield return null;
+            }
+        }
+        rb.velocity = Vector2.zero;
+        transform.position = position;
+        _character.GameOver();
+        Debug.Log("GameOver");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        yield return 0;
+    }
+
 }

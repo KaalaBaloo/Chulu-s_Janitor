@@ -14,11 +14,11 @@ public class aMigo : Enemy
 
     void PushPathFinding()
     {
-        if (_gridController.GetTurn() == 1 && _moving)
+        if (_gridController.GetTurn() == 0 && _moving)
         {
             _moving = false;
         }
-        if (_gridController.GetTurn() == 0 && _character != null && !_moving)
+        if (_gridController.GetTurn() == 1 && _character != null && !_moving && _gridController.GetEnemyMoved() == _enemyNumber)
         {
             _moving = true;
 
@@ -29,7 +29,6 @@ public class aMigo : Enemy
                     (Mathf.Abs(Mathf.RoundToInt(transform.position.y - _character.transform.position.y)) == _gridController.GetMovValue())
                     && Mathf.RoundToInt(transform.position.x) == Mathf.RoundToInt(_character.transform.position.x)))
             {
-                Debug.Log("push");
                 if (_character.transform.position.x > transform.position.x && _gridController.CanMove(2 + _tileNumX, _tileNumY))
                 {
                     _character.Push(1, 0);
