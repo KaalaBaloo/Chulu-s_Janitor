@@ -25,6 +25,8 @@ public abstract class Sprites : MonoBehaviour
     {
         _gameController = GameObject.FindWithTag("GameController");
         _gridController = _gameController.GetComponent<GridController>();
+        _tileNumX = Mathf.RoundToInt(transform.position.x);
+        _tileNumY = Mathf.RoundToInt(transform.position.y);
     }
 
     virtual protected IEnumerator PositionCoroutine(Rigidbody2D rb, Vector2 position) { yield return 0; }

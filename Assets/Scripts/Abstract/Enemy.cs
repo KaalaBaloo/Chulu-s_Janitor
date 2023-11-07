@@ -26,8 +26,6 @@ public class Enemy : Sprites
     void Start()
     {
         _spriteNumber = 3;
-        _tileNumX = Mathf.RoundToInt(transform.position.x);
-        _tileNumY = Mathf.RoundToInt(transform.position.y);
         _gridController.SetGrid(_spriteNumber, _tileNumX, _tileNumY);
         transform.position = new Vector2(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y));
         _gridController .CreateEnemy();

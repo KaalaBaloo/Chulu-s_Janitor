@@ -25,7 +25,7 @@ public class GridController : MonoBehaviour
     float _time = 0;
 
     int[,] _gridBase;
-    int[,] _gridToClean;
+    int[,] _gridInteractive;
 
     //GRID BASE
     // 0 --> Libre
@@ -33,15 +33,17 @@ public class GridController : MonoBehaviour
     // 2 --> Bloqueo
     // 3 --> Enemigo
 
-    //GRID SUCIEDAD
-    // 0 --> Limpio
+    //GRID INTERACTUABLES
+    // 0 --> Nada
     // 1 --> Suciedad
+    // 2 --> Pinchos
+    // 3 --> TP
 
 
     private void Awake()
     {
         _gridBase = new int[_tilesY, _tilesX];
-        _gridToClean = new int[_tilesY, _tilesX];
+        _gridInteractive = new int[_tilesY, _tilesX];
         pathfinding = GetComponent<AstarPath>();
 
        InitializeGrids();
@@ -94,7 +96,7 @@ public class GridController : MonoBehaviour
         {
             for (int y = 0; y < _tilesY; y++)
             {
-                _gridToClean[x, y] = 0;
+                _gridInteractive[x, y] = 0;
             }
         }
     }
@@ -122,9 +124,9 @@ public class GridController : MonoBehaviour
     }
 
     //Cambia algún dato de la grid de control de "basura" que hay que limpiar
-    public void SetDirtOnGrid(int dirt, int num_x, int num_y)
+    public void SetInteractive(int interactive, int num_x, int num_y)
     {
-        _gridToClean[num_x, num_y] = dirt;
+        _gridInteractive[num_x, num_y] = interactive;
     }
 
     //Devuelve si es posible posicionarse en la celda elegida
@@ -141,10 +143,16 @@ public class GridController : MonoBehaviour
         }
     }
 
+    //Devuelve que hay interactuable en la celda elegida
+    public int GetGridTile(int num_x, int num_y)
+    {
+        return _gridBase[num_x, num_y];
+    }
+
     //Devuelve si hay algo que limpiar en la celda elegida
     public bool CanClean(int num_x, int num_y)
     {
-        if (_gridToClean[num_x, num_y] == 1)
+        if (_gridInteractive[num_x, num_y] == 1)
         {
             return true;
         }

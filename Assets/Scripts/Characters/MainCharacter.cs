@@ -20,8 +20,6 @@ public class MainCharacter : Sprites
     void Start()
     {
         _spriteNumber = 1;
-        _tileNumX = Mathf.RoundToInt(transform.position.x);
-        _tileNumY = Mathf.RoundToInt(transform.position.y);
         _gridController.SetGrid(_spriteNumber, _tileNumX, _tileNumY);
         _movValue = _gridController.GetMovValue();
     }
@@ -76,7 +74,7 @@ public class MainCharacter : Sprites
             _gridController.ChangeTurn(2);
             if (_gridController.CanClean(_tileNumX, _tileNumY))
             {
-                _gridController.SetDirtOnGrid(0, _tileNumX, _tileNumY);
+                _gridController.SetInteractive(0, _tileNumX, _tileNumY);
                 _gridController.DirtCleaned();
                 _destroyDirt = true;
             }
