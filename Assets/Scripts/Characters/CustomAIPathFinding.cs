@@ -152,4 +152,70 @@ public class CustomAIPathFinding : MonoBehaviour
     {
         return reachedEndOfPath;
     }
+
+    public Vector2 SearchPosition()
+    {
+        if (path == null)
+        {
+            // We have no path to follow yet, so don't do anything
+            return new Vector2 (0,0);
+        }
+        // Check in a loop if we are close enough to the current waypoint to switch to the next one.
+        // We do this in a loop because many waypoints might be close to each other and we may reach
+        // several of them in the same frame.
+        reachedEndOfPath = false;
+        // The distance to the next waypoint in the path
+        int distanceToWaypoint;
+        while (true)
+        {
+            // If you want maximum performance you can check the squared distance instead to get rid of a
+            // square root calculation. But that is outside the scope of this tutorial.
+            distanceToWaypoint = Mathf.RoundToInt(Vector3.Distance(transform.position, path.vectorPath[currentWaypoint]));
+            if (distanceToWaypoint < nextWaypointDistance)
+            {
+                // Check if there is another waypoint or if we have reached the end of the path
+                if (currentWaypoint + 1 < Mathf.RoundToInt(path.vectorPath.Count))
+                {
+                    currentWaypoint++;
+                }
+                else
+                {
+                    // Set a status variable to indicate that the agent has reached the end of the path.
+                    // You can use this to trigger some special code if your game requires that.
+                    reachedEndOfPath = true;
+                    break;
+                }
+            }
+            else
+            {
+                break;
+            }
+        }
+        _dir = (path.vectorPath[currentWaypoint] - transform.position);
+        if (_dir.x > 0)
+        {
+            _dirBinario.x = 2;
+        }
+        else if (_dir.x == 0)
+        {
+            _dirBinario.x = 0;
+        }
+        else
+        {
+            _dirBinario.x = -2;
+        }
+        if (_dir.y > 0)
+        {
+            _dirBinario.y = 2;
+        }
+        else if (_dir.y == 0)
+        {
+            _dirBinario.y = 0;
+        }
+        else
+        {
+            _dirBinario.y = -2;
+        }
+        return _dirBinario;
+    }
 }
