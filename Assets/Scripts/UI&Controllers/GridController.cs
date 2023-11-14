@@ -132,21 +132,35 @@ public class GridController : MonoBehaviour
     //Devuelve si es posible posicionarse en la celda elegida
     public bool CanMove(int num_x, int num_y)
     {
-        if (_gridBase[num_x, num_y] == 0)
-        {
-            return true;
+        try {
+            if (_gridBase[num_x, num_y] == 0)
+            {
+                return true;
+            }
+            else
+            {
+                //Debug.Log(_gridBase[num_x, num_y]);
+                return false;
+            }
         }
-        else
+        catch
         {
-            //Debug.Log(_gridBase[num_x, num_y]);
             return false;
         }
+        
     }
 
     //Devuelve que hay interactuable en la celda elegida
     public int GetGridTile(int num_x, int num_y)
     {
-        return _gridBase[num_x, num_y];
+        try
+        {
+            return _gridBase[num_x, num_y];
+        }
+        catch
+        {
+            return 2;
+        }
     }
 
     //Devuelve si hay algo que limpiar en la celda elegida

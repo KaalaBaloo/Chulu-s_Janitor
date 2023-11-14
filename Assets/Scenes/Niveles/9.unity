@@ -570,7 +570,7 @@ MonoBehaviour:
   _speed: 3.5
   _damage: 1
   _enemyNumber: 1
-  _marca: {fileID: 0}
+  _marca: {fileID: 1263886741}
   _cargando: 1
 --- !u!114 &1149201616
 MonoBehaviour:
@@ -702,7 +702,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0, g: 0.122285366, b: 1, a: 1}
   m_FlipX: 0
