@@ -43,8 +43,8 @@ public class GridController : MonoBehaviour
 
     private void Awake()
     {
-        _gridBase = new int[_tilesY, _tilesX];
-        _gridInteractive = new int[_tilesY, _tilesX];
+        _gridBase = new int[_tilesX, _tilesY];
+        _gridInteractive = new int[_tilesX, _tilesY];
         pathfinding = GetComponent<AstarPath>();
 
        InitializeGrids();
