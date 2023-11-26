@@ -14,12 +14,10 @@ public class DeepOnes : Enemy
     {
         if (_cargando)
         {
-            Debug.Log("Cargando");
             SelectPosition();
         }
         else
         {
-            Debug.Log("!Cargando");
             Jump();
         }
     }
@@ -148,8 +146,7 @@ public class DeepOnes : Enemy
         if (_gridController.GetGridTile(_tileNumX, _tileNumY) == 1)
         {
             _character.GameOver();
-            Debug.Log("GameOver");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            _gridController.Restart();
         }
         else
         {

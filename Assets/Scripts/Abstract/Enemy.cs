@@ -28,7 +28,7 @@ public class Enemy : Sprites
         _spriteNumber = 3;
         _gridController.SetGrid(_spriteNumber, _tileNumX, _tileNumY);
         transform.position = new Vector2(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y));
-        _gridController .CreateEnemy();
+        _gridController.CreateEnemy();
     }
 
     protected void MovePathFinding()
@@ -158,8 +158,7 @@ public class Enemy : Sprites
         rb.velocity = Vector2.zero;
         transform.position = position;
         _character.GameOver();
-        Debug.Log("GameOver");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        _gridController.Restart();
         yield return 0;
     }
 

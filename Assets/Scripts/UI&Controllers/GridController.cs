@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.TextCore.Text;
 
 public class GridController : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class GridController : MonoBehaviour
     [SerializeField] GameObject _border;
     [SerializeField] GameObject _BloodLeft;
     TMP_Text _textBloodLeft;
-    [SerializeField] int _charactersTurn = 0; 
+    [SerializeField] int _turn = 2; 
     //0 --> Player
     //1 --> Enemies
     //2 --> Waiting
@@ -49,7 +50,7 @@ public class GridController : MonoBehaviour
        InitializeGrids();
        SetBordersGrid();
        pathfinding.Scan();
-       _charactersTurn = 2;
+       _turn = 2;
 
     }
 
@@ -65,7 +66,7 @@ public class GridController : MonoBehaviour
         if (_loadingScreen)
         {
             _time += Time.deltaTime;
-            LoadingScreen(2);
+            LoadingScreen(1);
         }
 
         if (_dirtToClean <= 0)
@@ -74,10 +75,10 @@ public class GridController : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
-        if (_enemies == _enemiesCount)
+        if (_enemies == _enemiesCount && _turn == 1)
         {
             _enemiesCount = 0;
-            _charactersTurn = 0;
+            _turn = 0;
         }
     }
 
@@ -204,13 +205,13 @@ public class GridController : MonoBehaviour
     //Devuelve el booleano de quién es el turno
     public int GetTurn()
     {
-        return _charactersTurn;
+        return _turn;
     }
 
     //Cambia el turno
     public void ChangeTurn(int turn)
     {
-        _charactersTurn = turn;
+        _turn = turn;
     }
 
     void LoadingScreen(int seconds)
@@ -219,7 +220,7 @@ public class GridController : MonoBehaviour
         {
             _loadingScreen = false;
             Debug.Log("Finished Loading");
-            _charactersTurn = 0;
+            _turn = 0;
         } 
     }
 
@@ -242,6 +243,101 @@ public class GridController : MonoBehaviour
         }
         return false;
     }
+
+    public bool GetPlayerVerticalNoObstacle(int x, int y)
+    {
+        for (int i = y; i < _tilesY - 1; i++)
+        {
+            if (_gridBase[x, i] == 1)
+                return true;
+            if (_gridBase[x, i] == 2)
+                return false;
+        }
+        for (int i = y; i > 0; i--)
+        {
+            if (_gridBase[x, i] == 1)
+                return true;
+            if (_gridBase[x, i] == 2)
+                return false;
+        }
+        return false;
+    }
+
+    public bool GetPlayerHorizontalNoObstacle(int x, int y)
+    {
+        for (int i = x; i < _tilesX - 1; i++)
+        {
+            if (_gridBase[i, y] == 1)
+            {
+                return true;
+            }
+            if (_gridBase[i, y] == 2)
+            {
+                return false;
+            } 
+        }
+        for (int i = x; i > 0; i--)
+        {
+            if (_gridBase[i, y] == 1)
+            {
+                return true;
+            }
+            if (_gridBase[i, y] == 2)
+            {
+                return false;
+            }
+        }
+        return false;
+    }
+
+    public int[] GetNumberPlayerVerticalNoObstacle(int x, int y)
+    {
+        int[] vert = {0,0};
+        bool obst = false;
+        for (int i = y; i < _tilesY - 1 && !obst; i++)
+        {
+            if (_gridBase[x, i] == 2)
+                obst = true;
+            vert[0]++;
+        }
+        obst = false;
+        for (int i = y; i > 0 && !obst; i--)
+        {
+            if (_gridBase[x, i] == 2)
+                obst = true;
+            vert[1]++;
+        }
+        return vert;
+    }
+
+    /*
+    public int[] GetNumberPlayerHorizontalNoObstacle(int x, int y)
+    {
+        int[] horz = { 0, 0 };
+        for (int i = x; i < _tilesX - 1; i++)
+        {
+            if (_gridBase[i, y] == 1)
+            {
+                return true;
+            }
+            if (_gridBase[i, y] == 2)
+            {
+                return false;
+            }
+        }
+        for (int i = x; i > 0; i--)
+        {
+            if (_gridBase[i, y] == 1)
+            {
+                return true;
+            }
+            if (_gridBase[i, y] == 2)
+            {
+                return false;
+            }
+        }
+        return false;
+    }*/
 
     public bool GetPlayerNear(int x, int y)
     {
@@ -275,4 +371,13 @@ public class GridController : MonoBehaviour
     {
         _textBloodLeft.text = _dirtToClean.ToString();
     }
+
+    public void Restart()
+    {
+        _textBloodLeft = _BloodLeft.GetComponent<TMP_Text>();
+        _textBloodLeft.text = _dirtToClean.ToString();
+        Debug.Log("GameOver");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
 }

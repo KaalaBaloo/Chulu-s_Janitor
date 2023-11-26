@@ -10,11 +10,14 @@ public class MainCharacter : Sprites
     bool _destroyDirt = false;
     [SerializeField] int _lives = 1;
     int _movValue = 0;
+    [SerializeField] GameObject _sprite;
+    Animator _animator;
 
     protected override void Awake()
     {
         base.Awake();
         _rb = GetComponent<Rigidbody2D>();
+        _animator = _sprite.GetComponent<Animator>();
     }
 
     void Start()
@@ -69,16 +72,10 @@ public class MainCharacter : Sprites
     //Calcula si es posible limpiar la celda sobre la que está y, de serlo, manda la señal de eliminar sprite y cambia los datos de la grid y el turno
     private void Clean()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && _gridController.GetTurn() == 0)
         {
             _gridController.ChangeTurn(2);
-            if (_gridController.CanClean(_tileNumX, _tileNumY))
-            {
-                _gridController.SetInteractive(0, _tileNumX, _tileNumY);
-                _gridController.DirtCleaned();
-                _destroyDirt = true;
-            }
-            _gridController.ChangeTurn(1);
+            StartCoroutine(CleanCoroutine());
         }
     }
 
@@ -208,4 +205,24 @@ public class MainCharacter : Sprites
         _gridController.SetGrid(_spriteNumber, _tileNumX, _tileNumY);
         yield return 0;
     }
+
+    protected IEnumerator CleanCoroutine()
+    {
+        float t = 0;
+        _animator.SetTrigger("Clean");
+        while (t < 1)
+        {
+            t += Time.deltaTime;
+            yield return null;
+        }
+        if (_gridController.CanClean(_tileNumX, _tileNumY))
+        {
+            _gridController.SetInteractive(0, _tileNumX, _tileNumY);
+            _gridController.DirtCleaned();
+            _destroyDirt = true;
+        }
+        _gridController.ChangeTurn(1);
+        yield return 0;
+    }
+
 }

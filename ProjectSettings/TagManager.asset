@@ -8,6 +8,7 @@ TagManager:
   - MainCharacter
   - Dirt
   - Enemy
+  - Ray
   layers:
   - Default
   - TransparentFX
