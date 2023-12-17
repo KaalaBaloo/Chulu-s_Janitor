@@ -52,6 +52,7 @@ public class Spikes : Sprites
         if (_gridController.GetGridTile(_tileNumX, _tileNumY) == 1 && _up)
         {
             _character.GameOver();
+            _gridController.Restart();
             Debug.Log("GameOver");
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }

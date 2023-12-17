@@ -24,8 +24,6 @@ public class DeepOnes : Enemy
 
     void SelectPosition()
     {
-        Vector2 posMarca;
-
         if (_gridController.GetTurn() == 0 && _moving)
         {
             _moving = false;
@@ -33,42 +31,59 @@ public class DeepOnes : Enemy
         if (_gridController.GetTurn() == 1 && _character != null && !_moving && _gridController.GetEnemyMoved() == _enemyNumber)
         {
             _moving = true;
-            posMarca = _customAIPathFinding.SearchPosition();
-            if (posMarca.x > 0 && _gridController.GetGridTile(Mathf.RoundToInt(transform.position.x + posMarca.x), Mathf.RoundToInt(transform.position.y)) != 3 &&
-                _gridController.GetGridTile(Mathf.RoundToInt(transform.position.x + posMarca.x), Mathf.RoundToInt(transform.position.y)) != 2)
+            if (_character.transform.position.x > transform.position.x && CanJump(2, 0))
             {
-                _marca.transform.position = new Vector3 (transform.position.x + posMarca.x, transform.position.y, 0);
-                _xMarca = Mathf.RoundToInt(posMarca.x);
+                _marca.transform.position = new Vector3(transform.position.x + 2, transform.position.y, 0);
+                _marca.GetComponent<Renderer>().enabled = true;
+                _xMarca = 2;
                 _cargando = false;
             }
-            else if (posMarca.y > 0 && _gridController.GetGridTile(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y + posMarca.y)) != 3 &&
-                _gridController.GetGridTile(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y + posMarca.y)) != 2)
+            else if (_character.transform.position.x < transform.position.x && CanJump(-2, 0))
             {
-                _marca.transform.position = new Vector3(transform.position.x, transform.position.y + posMarca.y, 0);
-                _yMarca = Mathf.RoundToInt(posMarca.y);
+                _marca.transform.position = new Vector3(transform.position.x - 2, transform.position.y, 0);
+                _marca.GetComponent<Renderer>().enabled = true;
+                _xMarca = -2;
+                _cargando = false;
+            }
+            else if (_character.transform.position.y > transform.position.y && CanJump(0, 2))
+            {
+                _marca.transform.position = new Vector3(transform.position.x, transform.position.y + 2, 0);
+                _marca.GetComponent<Renderer>().enabled = true;
+                _yMarca = 2;
+                _cargando = false;
+            }
+            else if (_character.transform.position.y < transform.position.y && CanJump(0, -2))
+            {
+                _marca.transform.position = new Vector3(transform.position.x, transform.position.y - 2, 0);
+                _marca.GetComponent<Renderer>().enabled = true;
+                _yMarca = -2;
                 _cargando = false;
             }
             else if (CanJump(2,0))
             {
                 _marca.transform.position = new Vector3(transform.position.x + 2, transform.position.y, 0);
+                _marca.GetComponent<Renderer>().enabled = true;
                 _xMarca = 2;
                 _cargando = false;
             }
             else if (CanJump(-2, 0))
             {
                 _marca.transform.position = new Vector3(transform.position.x - 2, transform.position.y, 0);
+                _marca.GetComponent<Renderer>().enabled = true;
                 _xMarca = -2;
                 _cargando = false;
             }
             else if (CanJump(0, 2))
             {
                 _marca.transform.position = new Vector3(transform.position.x, transform.position.y + 2, 0);
+                _marca.GetComponent<Renderer>().enabled = true;
                 _yMarca = 2;
                 _cargando = false;
             }
             else if (CanJump(0, -2))
             {
                 _marca.transform.position = new Vector3(transform.position.x, transform.position.y - 2, 0);
+                _marca.GetComponent<Renderer>().enabled = true;
                 _yMarca = -2;
                 _cargando = false;
             }
@@ -108,6 +123,7 @@ public class DeepOnes : Enemy
 
     override protected IEnumerator PositionCoroutine(Rigidbody2D rb, Vector2 endingposition)
     {
+        _marca.GetComponent<Renderer>().enabled = false;
         _marca.transform.position = transform.position;
         if (transform.position.x > endingposition.x)
         {
