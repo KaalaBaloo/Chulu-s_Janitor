@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Xml;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -39,18 +37,22 @@ public class MainCharacter : Sprites
     {
         if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))&& _gridController.CanMove(_tileNumX, _tileNumY + 1))
         {
+            _gridController.ChangeTurn(2);
             StartCoroutine(PositionCoroutine(_rb, new Vector2(0, 1))); //Up
         }
-        if ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) && _gridController.CanMove(_tileNumX - 1, _tileNumY))
+        else if ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) && _gridController.CanMove(_tileNumX - 1, _tileNumY))
         {
+            _gridController.ChangeTurn(2);
             StartCoroutine(PositionCoroutine(_rb, new Vector2(-1 , 0))); //Left
         }
-        if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && _gridController.CanMove(_tileNumX, _tileNumY - 1))  
+        else if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && _gridController.CanMove(_tileNumX, _tileNumY - 1))  
         {
+            _gridController.ChangeTurn(2);
             StartCoroutine(PositionCoroutine(_rb, new Vector2(0, -1))); //Down
         }
-        if ((Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) && _gridController.CanMove(_tileNumX + 1, _tileNumY))
+        else if ((Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) && _gridController.CanMove(_tileNumX + 1, _tileNumY))
         {
+            _gridController.ChangeTurn(2);
             StartCoroutine(PositionCoroutine(_rb, new Vector2(1, 0))); //Right
         }
     }
@@ -102,7 +104,6 @@ public class MainCharacter : Sprites
 
     override protected IEnumerator PositionCoroutine(Rigidbody2D rb, Vector2 position)
     {
-        _gridController.ChangeTurn(2);
         _gridController.SetGrid(0, _tileNumX, _tileNumY);
         _tileNumX += Mathf.RoundToInt(position.x);
         _tileNumY += Mathf.RoundToInt(position.y);
