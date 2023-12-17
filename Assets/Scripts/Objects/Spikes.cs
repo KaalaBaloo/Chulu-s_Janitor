@@ -10,6 +10,8 @@ public class Spikes : Sprites
     bool _playerTurn = true;
     MainCharacter _character;
     SpriteRenderer _renderer;
+    [SerializeField] GameObject _sprite;
+    Animator _animator;
 
     private void Start()
     {
@@ -17,6 +19,7 @@ public class Spikes : Sprites
         _spriteNumber = 2;
         _gridController.SetInteractive(_spriteNumber, _tileNumX, _tileNumY);
         _character = GameObject.FindWithTag("MainCharacter").GetComponent<MainCharacter>();
+        _animator = _sprite.GetComponent<Animator>();
     }
 
     private void Update()
@@ -34,11 +37,13 @@ public class Spikes : Sprites
             {
                 _up = true;
                 _renderer.color = Color.red;
+                _animator.SetTrigger("Up");
             }
             else
             {
                 _up = false;
                 _renderer.color = Color.white;
+                _animator.SetTrigger("Down");
             }
         }
         else if (_gridController.GetTurn() == 0 && !_playerTurn)
