@@ -406,7 +406,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dirtToClean: 0
-  _movValue: 1
   _tilesX: 12
   _tilesY: 8
   _border: {fileID: 1586780029606412139, guid: a7b87a32eedf439479550fbf62f43855, type: 3}
@@ -1748,6 +1747,54 @@ PrefabInstance:
     - target: {fileID: 7768489068499340824, guid: 4dff7c300fbd095439c38ac8efe542b9, type: 3}
       propertyPath: m_Name
       value: SpawnCthulhu
+      objectReference: {fileID: 0}
+    - target: {fileID: 8893186985789397269, guid: 4dff7c300fbd095439c38ac8efe542b9, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 297370447, guid: ad1f3848aadc7cc4aa65891d0e6bf609, type: 3}
+    - target: {fileID: 8893186985789397269, guid: 4dff7c300fbd095439c38ac8efe542b9, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8893186985977365981, guid: 4dff7c300fbd095439c38ac8efe542b9, type: 3}
+      propertyPath: m_Size.x
+      value: 3.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 8893186985977365981, guid: 4dff7c300fbd095439c38ac8efe542b9, type: 3}
+      propertyPath: m_Size.y
+      value: 8.87095
+      objectReference: {fileID: 0}
+    - target: {fileID: 8893186985977365981, guid: 4dff7c300fbd095439c38ac8efe542b9, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 560051545, guid: ad1f3848aadc7cc4aa65891d0e6bf609, type: 3}
+    - target: {fileID: 8893186985977365981, guid: 4dff7c300fbd095439c38ac8efe542b9, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8893186986181940227, guid: 4dff7c300fbd095439c38ac8efe542b9, type: 3}
+      propertyPath: m_Size.x
+      value: 3.8499997
+      objectReference: {fileID: 0}
+    - target: {fileID: 8893186986181940227, guid: 4dff7c300fbd095439c38ac8efe542b9, type: 3}
+      propertyPath: m_Size.y
+      value: 8.860949
+      objectReference: {fileID: 0}
+    - target: {fileID: 8893186986181940227, guid: 4dff7c300fbd095439c38ac8efe542b9, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 279144262, guid: ad1f3848aadc7cc4aa65891d0e6bf609, type: 3}
+    - target: {fileID: 8893186986181940227, guid: 4dff7c300fbd095439c38ac8efe542b9, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8893186986647575219, guid: 4dff7c300fbd095439c38ac8efe542b9, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1471947090, guid: ad1f3848aadc7cc4aa65891d0e6bf609, type: 3}
+    - target: {fileID: 8893186986647575219, guid: 4dff7c300fbd095439c38ac8efe542b9, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4dff7c300fbd095439c38ac8efe542b9, type: 3}
