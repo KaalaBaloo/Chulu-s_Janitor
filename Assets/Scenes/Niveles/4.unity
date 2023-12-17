@@ -406,7 +406,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dirtToClean: 0
-  _movValue: 1
   _tilesX: 12
   _tilesY: 8
   _border: {fileID: 1586780029606412139, guid: a7b87a32eedf439479550fbf62f43855, type: 3}

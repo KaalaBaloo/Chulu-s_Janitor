@@ -8,7 +8,6 @@ using UnityEngine.TextCore.Text;
 public class GridController : MonoBehaviour
 {
     [SerializeField] int _dirtToClean = 0;
-    [SerializeField] int _movValue = 2;
     [SerializeField] int _tilesX = 3;
     [SerializeField] int _tilesY = 3;
     [SerializeField] GameObject _border;
@@ -19,7 +18,6 @@ public class GridController : MonoBehaviour
     //1 --> Enemies
     //2 --> Waiting
 
-    AstarPath pathfinding;
     [SerializeField] int _enemies = 0;
     [SerializeField] int _enemiesCount = 1;
     bool _loadingScreen = false;
@@ -45,11 +43,9 @@ public class GridController : MonoBehaviour
     {
         _gridBase = new int[_tilesX, _tilesY];
         _gridInteractive = new int[_tilesX, _tilesY];
-        pathfinding = GetComponent<AstarPath>();
 
-       InitializeGrids();
+        InitializeGrids();
        SetBordersGrid();
-       pathfinding.Scan();
        _turn = 2;
 
     }
@@ -63,16 +59,19 @@ public class GridController : MonoBehaviour
 
     private void Update()
     {
+
+
         if (_loadingScreen)
         {
             _time += Time.deltaTime;
             LoadingScreen(1);
+            _textBloodLeft = _BloodLeft.GetComponent<TMP_Text>();
+            _textBloodLeft.text = _dirtToClean.ToString();
         }
-
         if (_dirtToClean <= 0)
         {
             Debug.Log("Win");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            SceneManager.LoadScene("Main");
         }
 
         if (_enemies == _enemiesCount && _turn == 1)
@@ -139,8 +138,7 @@ public class GridController : MonoBehaviour
                 return true;
             }
             else
-            {
-                //Debug.Log(_gridBase[num_x, num_y]);
+            { 
                 return false;
             }
         }
@@ -176,10 +174,6 @@ public class GridController : MonoBehaviour
             return false;
         }
     }
-
-    //Devuelve el número de movimiento de una celda
-    public int GetMovValue()
-    { return _movValue;  }
 
     //Devuelve el número de "basura" que queda por limpiar
     public int GetDirtToClean()
@@ -290,55 +284,6 @@ public class GridController : MonoBehaviour
         return false;
     }
 
-    public int[] GetNumberPlayerVerticalNoObstacle(int x, int y)
-    {
-        int[] vert = {0,0};
-        bool obst = false;
-        for (int i = y; i < _tilesY - 1 && !obst; i++)
-        {
-            if (_gridBase[x, i] == 2)
-                obst = true;
-            vert[0]++;
-        }
-        obst = false;
-        for (int i = y; i > 0 && !obst; i--)
-        {
-            if (_gridBase[x, i] == 2)
-                obst = true;
-            vert[1]++;
-        }
-        return vert;
-    }
-
-    /*
-    public int[] GetNumberPlayerHorizontalNoObstacle(int x, int y)
-    {
-        int[] horz = { 0, 0 };
-        for (int i = x; i < _tilesX - 1; i++)
-        {
-            if (_gridBase[i, y] == 1)
-            {
-                return true;
-            }
-            if (_gridBase[i, y] == 2)
-            {
-                return false;
-            }
-        }
-        for (int i = x; i > 0; i--)
-        {
-            if (_gridBase[i, y] == 1)
-            {
-                return true;
-            }
-            if (_gridBase[i, y] == 2)
-            {
-                return false;
-            }
-        }
-        return false;
-    }*/
-
     public bool GetPlayerNear(int x, int y)
     {
         if (_gridBase[x-1, y-1] == 1 || _gridBase[x+1, y+1] == 1 || _gridBase[x-1, y+1] == 1 || _gridBase[x+1, y-1] == 1)
@@ -374,8 +319,6 @@ public class GridController : MonoBehaviour
 
     public void Restart()
     {
-        _textBloodLeft = _BloodLeft.GetComponent<TMP_Text>();
-        _textBloodLeft.text = _dirtToClean.ToString();
         Debug.Log("GameOver");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
