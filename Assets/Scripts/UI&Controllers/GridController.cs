@@ -37,6 +37,7 @@ public class GridController : MonoBehaviour
     // 2 --> Pinchos
     // 3 --> TP
     // 4 --> Mancha grande
+    // 5 --> Cubo
 
 
     private void Awake()
@@ -171,6 +172,10 @@ public class GridController : MonoBehaviour
         else if (_gridInteractive[num_x, num_y] == 4)
         {
             return 2;
+        }
+        else if (_gridInteractive[num_x, num_y] == 5)
+        {
+            return 3;
         }
         else
         {

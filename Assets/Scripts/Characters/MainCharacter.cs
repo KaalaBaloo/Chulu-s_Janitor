@@ -9,6 +9,7 @@ public class MainCharacter : Sprites
     Rigidbody2D _rb;
     bool _destroyDirt = false;
     [SerializeField] int _lives = 1;
+    [SerializeField] int _suciedad = 0;
     [SerializeField] GameObject _sprite;
     [SerializeField] GameObject _sangre;
     Animator _animator;
@@ -217,18 +218,24 @@ public class MainCharacter : Sprites
             t += Time.deltaTime;
             yield return null;
         }
-        if (_gridController.CanClean(_tileNumX, _tileNumY) == 1)
+        if (_gridController.CanClean(_tileNumX, _tileNumY) == 1 && _suciedad < 3)
         {
             _gridController.SetInteractive(0, _tileNumX, _tileNumY);
             _gridController.DirtCleaned();
             _destroyDirt = true;
+            _suciedad++;
         }
-        else if (_gridController.CanClean(_tileNumX, _tileNumY) == 2)
+        else if (_gridController.CanClean(_tileNumX, _tileNumY) == 2 && _suciedad < 3)
         {
             _gridController.SetInteractive(1, _tileNumX, _tileNumY);
             _gridController.DirtCleaned();
             Instantiate(_sangre, transform.position, Quaternion.identity);
             _destroyDirt = true;
+            _suciedad++;
+        }
+        else if (_gridController.CanClean(_tileNumX, _tileNumY) == 3)
+        {
+            _suciedad = 0;
         }
         _gridController.ChangeTurn(1);
         yield return 0;
