@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
 public class GridController : MonoBehaviour
@@ -35,6 +36,7 @@ public class GridController : MonoBehaviour
     // 1 --> Suciedad
     // 2 --> Pinchos
     // 3 --> TP
+    // 4 --> Mancha grande
 
 
     private void Awake()
@@ -46,12 +48,12 @@ public class GridController : MonoBehaviour
        SetBordersGrid();
        _turn = 2;
 
+        _textBloodLeft = _BloodLeft.GetComponent<TMP_Text>();
     }
 
     private void Start()
     {
         _loadingScreen = true;
-        _textBloodLeft = _BloodLeft.GetComponent<TMP_Text>();
         _textBloodLeft.text = _dirtToClean.ToString();
     }
 
@@ -63,7 +65,6 @@ public class GridController : MonoBehaviour
         {
             _time += Time.deltaTime;
             LoadingScreen(1);
-            _textBloodLeft = _BloodLeft.GetComponent<TMP_Text>();
             _textBloodLeft.text = _dirtToClean.ToString();
         }
         if (_dirtToClean <= 0)
@@ -161,21 +162,21 @@ public class GridController : MonoBehaviour
     }
 
     //Devuelve si hay algo que limpiar en la celda elegida
-    public bool CanClean(int num_x, int num_y)
+    public int CanClean(int num_x, int num_y)
     {
         if (_gridInteractive[num_x, num_y] == 1)
         {
-            return true;
+            return 1;
+        }
+        else if (_gridInteractive[num_x, num_y] == 4)
+        {
+            return 2;
         }
         else
         {
-            return false;
+            return 0;
         }
     }
-
-    //Devuelve el número de "basura" que queda por limpiar
-    public int GetDirtToClean()
-    { return _dirtToClean; }
 
     //Resta 1 a la "basura" restante
     public void DirtCleaned()
@@ -192,6 +193,7 @@ public class GridController : MonoBehaviour
     public void AddDirt()
     {
         _dirtToClean++;
+        UpdateBlood();
     }
 
     //Devuelve el booleano de quién es el turno

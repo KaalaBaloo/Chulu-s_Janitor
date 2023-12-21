@@ -1,6 +1,8 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.TextCore.Text;
 
 public class MainCharacter : Sprites 
 { 
@@ -8,6 +10,7 @@ public class MainCharacter : Sprites
     bool _destroyDirt = false;
     [SerializeField] int _lives = 1;
     [SerializeField] GameObject _sprite;
+    [SerializeField] GameObject _sangre;
     Animator _animator;
 
     protected override void Awake()
@@ -28,8 +31,8 @@ public class MainCharacter : Sprites
         if (_gridController.GetTurn() == 0)
         {
             Movement();
-            Clean();
         }
+        Control();
     }
 
     //Calcula si es posible moverse a la celda elegida y, de serlo, mueve al personaje y cambia los datos de la grid y el turno
@@ -55,15 +58,24 @@ public class MainCharacter : Sprites
             _gridController.ChangeTurn(2);
             StartCoroutine(PositionCoroutine(_rb, new Vector2(1, 0))); //Right
         }
-    }
-
-    //Calcula si es posible limpiar la celda sobre la que está y, de serlo, manda la señal de eliminar sprite y cambia los datos de la grid y el turno
-    private void Clean()
-    {
-        if (Input.GetKeyDown(KeyCode.Space) && _gridController.GetTurn() == 0)
+        else if (Input.GetKeyDown(KeyCode.Space) && _gridController.GetTurn() == 0)
         {
             _gridController.ChangeTurn(2);
             StartCoroutine(CleanCoroutine());
+        }
+    }
+
+    //Salir / Reiniciar
+    private void Control()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("Main");
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            _gridController.Restart();
         }
     }
 
@@ -205,10 +217,17 @@ public class MainCharacter : Sprites
             t += Time.deltaTime;
             yield return null;
         }
-        if (_gridController.CanClean(_tileNumX, _tileNumY))
+        if (_gridController.CanClean(_tileNumX, _tileNumY) == 1)
         {
             _gridController.SetInteractive(0, _tileNumX, _tileNumY);
             _gridController.DirtCleaned();
+            _destroyDirt = true;
+        }
+        else if (_gridController.CanClean(_tileNumX, _tileNumY) == 2)
+        {
+            _gridController.SetInteractive(1, _tileNumX, _tileNumY);
+            _gridController.DirtCleaned();
+            Instantiate(_sangre, transform.position, Quaternion.identity);
             _destroyDirt = true;
         }
         _gridController.ChangeTurn(1);
