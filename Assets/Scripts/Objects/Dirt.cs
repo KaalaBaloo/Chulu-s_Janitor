@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Dirt : Sprites
 {
-
     private void Start()
     {
         _spriteNumber = 0;

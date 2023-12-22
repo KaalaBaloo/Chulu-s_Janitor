@@ -8,6 +8,5 @@ public class Bucket : Sprites
     {
         _spriteNumber = 0;
         _gridController.SetInteractive(5, _tileNumX, _tileNumY);
-        _gridController.AddDirt();
     }
 }

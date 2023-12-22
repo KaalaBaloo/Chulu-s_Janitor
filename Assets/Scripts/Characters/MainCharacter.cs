@@ -12,6 +12,11 @@ public class MainCharacter : Sprites
     [SerializeField] int _suciedad = 0;
     [SerializeField] GameObject _sprite;
     [SerializeField] GameObject _sangre;
+    [SerializeField] GameObject _pentUpRight;
+    [SerializeField] GameObject _pentUpLeft;
+    [SerializeField] GameObject _pentDownRight;
+    [SerializeField] GameObject _pentDownLeft;
+    [SerializeField] GameObject _pentDown;
     Animator _animator;
 
     protected override void Awake()
@@ -236,6 +241,32 @@ public class MainCharacter : Sprites
         else if (_gridController.CanClean(_tileNumX, _tileNumY) == 3)
         {
             _suciedad = 0;
+        }
+        else if (_gridController.CanClean(_tileNumX, _tileNumY) == 4)
+        {
+            _gridController.SetInteractive(0, _tileNumX, _tileNumY);
+            _gridController.DirtCleaned();
+            if (_tileNumX == 3 & _tileNumY == 5)
+            {
+                Instantiate(_pentUpLeft, new Vector3(5.5f, 3.5f, 0), Quaternion.identity);
+            }
+            else if (_tileNumX == 6 & _tileNumY == 6)
+            {
+                Instantiate(_pentUpRight, new Vector3(5.5f, 3.5f, 0), Quaternion.identity);
+            }
+            else if (_tileNumX == 4 & _tileNumY == 2)
+            {
+                Instantiate(_pentDownLeft, new Vector3(5.5f, 3.5f, 0), Quaternion.identity);
+            }
+            else if (_tileNumX == 8 & _tileNumY == 4)
+            {
+                Instantiate(_pentDownRight, new Vector3(5.5f, 3.5f, 0), Quaternion.identity);
+            }
+            else
+            {
+                Instantiate(_pentDown, new Vector3(5.5f, 3.5f, 0), Quaternion.identity);
+            }
+            _destroyDirt = true;
         }
         _gridController.ChangeTurn(1);
         yield return 0;

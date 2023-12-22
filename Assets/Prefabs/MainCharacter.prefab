@@ -867,8 +867,14 @@ MonoBehaviour:
   _tileNumY: 0
   _speed: 3.5
   _lives: 1
+  _suciedad: 0
   _sprite: {fileID: 3882904568438216602}
   _sangre: {fileID: 2791594519369781208, guid: 013749883ed1f4543b0f69dd7296e778, type: 3}
+  _pentUpRight: {fileID: 4129117043014420997, guid: 06fc78c9914e13c4caa0876136a904e9, type: 3}
+  _pentUpLeft: {fileID: 6695162686335598672, guid: 621b3f57bc654f6498758053bb4afdf2, type: 3}
+  _pentDownRight: {fileID: 5432220246135516436, guid: 851644d55b625bd46ac470aa2824b0c2, type: 3}
+  _pentDownLeft: {fileID: 4666509906857839395, guid: 1e2af8d6b0112a742bf5d685e120b7e1, type: 3}
+  _pentDown: {fileID: 7054664483217181434, guid: 8a04de8852481ea4ca75ca7acd184866, type: 3}
 --- !u!1 &5569643932670520377
 GameObject:
   m_ObjectHideFlags: 0

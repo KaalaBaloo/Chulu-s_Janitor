@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEditor.SearchService;
 
 public class GridController : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class GridController : MonoBehaviour
     [SerializeField] int _tilesY = 3;
     [SerializeField] GameObject _border;
     [SerializeField] GameObject _BloodLeft;
+    [SerializeField] GameObject _fadeBlack;
     TMP_Text _textBloodLeft;
     [SerializeField] int _turn = 2; 
     //0 --> Player
@@ -19,6 +21,7 @@ public class GridController : MonoBehaviour
 
     [SerializeField] int _enemies = 0;
     [SerializeField] int _enemiesCount = 1;
+    [SerializeField] bool _ritualOn = false;
     bool _loadingScreen = false;
     float _time = 0;
 
@@ -38,6 +41,7 @@ public class GridController : MonoBehaviour
     // 3 --> TP
     // 4 --> Mancha grande
     // 5 --> Cubo
+    // 6 --> Sangre Ritual Boss
 
 
     private void Awake()
@@ -54,31 +58,53 @@ public class GridController : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine(FadefromBlack());
         _loadingScreen = true;
         _textBloodLeft.text = _dirtToClean.ToString();
     }
 
     private void Update()
     {
-
-
         if (_loadingScreen)
         {
             _time += Time.deltaTime;
             LoadingScreen(1);
             _textBloodLeft.text = _dirtToClean.ToString();
         }
-        if (_dirtToClean <= 0)
+        if (_dirtToClean <= 0 && SceneManager.GetActiveScene().name != "20")
         {
             Debug.Log("Win");
-            SceneManager.LoadScene("Main");
+            StartCoroutine(FadetoBlack("Main"));
         }
-
+        else if (_dirtToClean <= 0 && SceneManager.GetActiveScene().name == "20")
+        {
+            Debug.Log("Win");
+            StartCoroutine(RitualAnimation());
+        }
         if (_enemies == _enemiesCount && _turn == 1)
         {
             _enemiesCount = 0;
             _turn = 0;
         }
+    }
+
+    protected IEnumerator RitualAnimation()
+    {
+        float t = 0;
+        while (t < 5) 
+        {
+            if (t > 1)
+                _ritualOn = true;
+            t += Time.deltaTime;
+            yield return null;
+        }
+        StartCoroutine(FadetoBlack("20_Battle"));
+        yield return null;
+    }
+
+    public bool GetRitual()
+    {
+        return _ritualOn;
     }
 
     //Inicializa las grids de control general y la de control de "basura" que hay que limpiar
@@ -176,6 +202,10 @@ public class GridController : MonoBehaviour
         else if (_gridInteractive[num_x, num_y] == 5)
         {
             return 3;
+        }
+        else if (_gridInteractive[num_x, num_y] == 6)
+        {
+            return 4;
         }
         else
         {
@@ -326,6 +356,38 @@ public class GridController : MonoBehaviour
     {
         Debug.Log("GameOver");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+
+    protected IEnumerator FadetoBlack(string scene, int fadeSpeed = 5)
+    {
+        Color color = _fadeBlack.GetComponent<SpriteRenderer>().color;
+        float fadeAmount;
+
+        while (_fadeBlack.GetComponent<SpriteRenderer>().color.a < 1)
+        {
+            fadeAmount = color.a + (fadeSpeed * Time.deltaTime);
+            color = new Color(color.r, color.g, color.b, fadeAmount);
+            _fadeBlack.GetComponent<SpriteRenderer>().color = color;
+            yield return null;
+        }
+
+        SceneManager.LoadScene(scene);
+        yield return null;
+    }
+
+    protected IEnumerator FadefromBlack(int fadeSpeed = 8)
+    {
+        Color color = _fadeBlack.GetComponent<SpriteRenderer>().color;
+        float fadeAmount;
+
+        while (_fadeBlack.GetComponent<SpriteRenderer>().color.a > 0)
+        {
+            fadeAmount = color.a - (fadeSpeed * Time.deltaTime);
+            color = new Color(color.r, color.g, color.b, fadeAmount);
+            _fadeBlack.GetComponent<SpriteRenderer>().color = color;
+            yield return null;
+        }
     }
 
 }
