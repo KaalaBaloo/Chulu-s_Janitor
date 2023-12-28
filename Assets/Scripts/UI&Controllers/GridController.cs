@@ -3,7 +3,6 @@ using TMPro;
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
-using UnityEditor.SearchService;
 
 public class GridController : MonoBehaviour
 {
@@ -12,8 +11,8 @@ public class GridController : MonoBehaviour
     [SerializeField] int _tilesY = 3;
     [SerializeField] GameObject _border;
     [SerializeField] GameObject _BloodLeft;
-    [SerializeField] GameObject _fadeBlack;
     TMP_Text _textBloodLeft;
+    [SerializeField] GameObject _fadeBlack;
     [SerializeField] int _turn = 2; 
     //0 --> Player
     //1 --> Enemies
@@ -63,7 +62,7 @@ public class GridController : MonoBehaviour
         _textBloodLeft.text = _dirtToClean.ToString();
     }
 
-    private void Update()
+    void Update()
     {
         if (_loadingScreen)
         {

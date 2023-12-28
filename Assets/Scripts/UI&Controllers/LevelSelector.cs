@@ -5,85 +5,128 @@ using System.Collections.Generic;
 
 public class LevelSelector : MonoBehaviour
 {
+    [SerializeField] GameObject _fadeBlack;
+
+    private void Start()
+    {
+        StartCoroutine(FadefromBlack());
+    }
+
+    public void Levels()
+    {
+        StartCoroutine(FadetoBlack("SelectorNiveles"));
+    }
+
     public void Level1()
     {
-        SceneManager.LoadScene("1");
+        StartCoroutine(FadetoBlack("1"));
     }
     public void Level2()
     {
-        SceneManager.LoadScene("2");
+        StartCoroutine(FadetoBlack("2"));
     }
     public void Level3()
     {
-        SceneManager.LoadScene("3");
+        StartCoroutine(FadetoBlack("3"));
     }
     public void Level4()
     {
-        SceneManager.LoadScene("4");
+        StartCoroutine(FadetoBlack("4"));
     }
     public void Level5()
     {
-        SceneManager.LoadScene("5");
+        StartCoroutine(FadetoBlack("5"));
     }
     public void Level6()
     {
-        SceneManager.LoadScene("6");
+        StartCoroutine(FadetoBlack("6"));
     }
     public void Level7()
     {
-        SceneManager.LoadScene("7"); 
+        StartCoroutine(FadetoBlack("7")); 
     }
     public void Level8()
     {
-        SceneManager.LoadScene("8");
+        StartCoroutine(FadetoBlack("8"));
     }
     public void Level9()
     {
-        SceneManager.LoadScene("9");
+        StartCoroutine(FadetoBlack("9"));
     }
     public void Level10()
     {
-        SceneManager.LoadScene("10");
+        StartCoroutine(FadetoBlack("10"));
     }
     public void Level11()
     {
-        SceneManager.LoadScene("11");
+        StartCoroutine(FadetoBlack("11"));
     }
     public void Level12()
     {
-        SceneManager.LoadScene("12");
+        StartCoroutine(FadetoBlack("12"));
     }
     public void Level13()
     {
-        SceneManager.LoadScene("13");
+        StartCoroutine(FadetoBlack("13"));
     }
     public void Level14()
     {
-        SceneManager.LoadScene("14");
+        StartCoroutine(FadetoBlack("14"));
     }
     public void Level15()
     {
-        SceneManager.LoadScene("15");
+        StartCoroutine(FadetoBlack("15"));
     }
     public void Level16()
     {
-        SceneManager.LoadScene("16");
+        StartCoroutine(FadetoBlack("16"));
     }
     public void Level17()
     {
-        SceneManager.LoadScene("17");
+        StartCoroutine(FadetoBlack("17"));
     }
     public void Level18()
     {
-        SceneManager.LoadScene("18");
+        StartCoroutine(FadetoBlack("18"));
     }
     public void Level19()
     {
-        SceneManager.LoadScene("19");
+        StartCoroutine(FadetoBlack("19"));
     }
     public void Level20()
     {
-        SceneManager.LoadScene("20");
+        StartCoroutine(FadetoBlack("20"));
+    }
+
+    protected IEnumerator FadetoBlack(string scene, int fadeSpeed = 8)
+    {
+        Color color = _fadeBlack.GetComponent<SpriteRenderer>().color;
+        float fadeAmount;
+
+        while (_fadeBlack.GetComponent<SpriteRenderer>().color.a < 1)
+        {
+            fadeAmount = color.a + (fadeSpeed * Time.deltaTime);
+            color = new Color(color.r, color.g, color.b, fadeAmount);
+            _fadeBlack.GetComponent<SpriteRenderer>().color = color;
+            yield return null;
+        }
+
+        SceneManager.LoadScene(scene);
+        yield return null;
+    }
+
+    protected IEnumerator FadefromBlack(int fadeSpeed = 8)
+    {
+        Color color = _fadeBlack.GetComponent<SpriteRenderer>().color;
+        float fadeAmount;
+
+        while (_fadeBlack.GetComponent<SpriteRenderer>().color.a > 0)
+        {
+            fadeAmount = color.a - (fadeSpeed * Time.deltaTime);
+            color = new Color(color.r, color.g, color.b, fadeAmount);
+            _fadeBlack.GetComponent<SpriteRenderer>().color = color;
+            yield return null;
+        }
     }
 
 }
