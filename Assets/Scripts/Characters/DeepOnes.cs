@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class DeepOnes : Enemy
 {
     [SerializeField] GameObject _marca;
+    [SerializeField] GameObject _VFX;
     [SerializeField] bool _cargando = true;
     int _xMarca = 0;
     int _yMarca = 0;
@@ -158,6 +159,7 @@ public class DeepOnes : Enemy
             }
         }
         rb.velocity = Vector2.zero;
+        Instantiate(_VFX, transform.position, Quaternion.identity);
         transform.position = endingposition;
         if (_gridController.GetGridTile(_tileNumX, _tileNumY) == 1)
         {

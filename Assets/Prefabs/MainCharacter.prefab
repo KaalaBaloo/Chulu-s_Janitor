@@ -875,6 +875,10 @@ MonoBehaviour:
   _pentDownRight: {fileID: 5432220246135516436, guid: 851644d55b625bd46ac470aa2824b0c2, type: 3}
   _pentDownLeft: {fileID: 4666509906857839395, guid: 1e2af8d6b0112a742bf5d685e120b7e1, type: 3}
   _pentDown: {fileID: 7054664483217181434, guid: 8a04de8852481ea4ca75ca7acd184866, type: 3}
+  _VFXClean: {fileID: 100000, guid: f2dba9e16cd347f44a395b8204544ee5, type: 3}
+  _VFXDirty: {fileID: 100000, guid: bc98890f6028f444eaa7789bde5e2eeb, type: 3}
+  _VFXNone: {fileID: 100000, guid: 7d6835d9db898fa4bbfda5d62c496786, type: 3}
+  _VFXWash: {fileID: 100000, guid: 18204b98237ccb540808f2cd2d78c2c8, type: 3}
 --- !u!1 &5569643932670520377
 GameObject:
   m_ObjectHideFlags: 0

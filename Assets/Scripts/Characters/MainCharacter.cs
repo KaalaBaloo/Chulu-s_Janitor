@@ -19,6 +19,11 @@ public class MainCharacter : Sprites
     [SerializeField] GameObject _pentDown;
     Animator _animator;
 
+    [SerializeField] GameObject _VFXClean;
+    [SerializeField] GameObject _VFXDirty;
+    [SerializeField] GameObject _VFXNone;
+    [SerializeField] GameObject _VFXWash;
+
     protected override void Awake()
     {
         base.Awake();
@@ -226,6 +231,7 @@ public class MainCharacter : Sprites
         if (_gridController.CanClean(_tileNumX, _tileNumY) == 1 && _suciedad < 3)
         {
             _gridController.SetInteractive(0, _tileNumX, _tileNumY);
+            Instantiate(_VFXClean, transform.position, Quaternion.identity);
             _gridController.DirtCleaned();
             _destroyDirt = true;
             _suciedad++;
@@ -233,6 +239,7 @@ public class MainCharacter : Sprites
         else if (_gridController.CanClean(_tileNumX, _tileNumY) == 2 && _suciedad < 3)
         {
             _gridController.SetInteractive(1, _tileNumX, _tileNumY);
+            Instantiate(_VFXClean, transform.position, Quaternion.identity);
             _gridController.DirtCleaned();
             Instantiate(_sangre, transform.position, Quaternion.identity);
             _destroyDirt = true;
@@ -240,11 +247,13 @@ public class MainCharacter : Sprites
         }
         else if (_gridController.CanClean(_tileNumX, _tileNumY) == 3)
         {
+            Instantiate(_VFXWash, transform.position, Quaternion.identity);
             _suciedad = 0;
         }
         else if (_gridController.CanClean(_tileNumX, _tileNumY) == 4)
         {
             _gridController.SetInteractive(0, _tileNumX, _tileNumY);
+            Instantiate(_VFXClean, transform.position, Quaternion.identity);
             _gridController.DirtCleaned();
             if (_tileNumX == 3 & _tileNumY == 5)
             {
@@ -267,6 +276,17 @@ public class MainCharacter : Sprites
                 Instantiate(_pentDown, new Vector3(5.5f, 3.5f, 0), Quaternion.identity);
             }
             _destroyDirt = true;
+        }
+        else
+        {
+            if (_suciedad < 3)
+            {
+                Instantiate(_VFXNone, transform.position, Quaternion.identity);
+            }
+            else
+            {
+                Instantiate(_VFXDirty, transform.position, Quaternion.identity);
+            }
         }
         _gridController.ChangeTurn(1);
         yield return 0;

@@ -60,6 +60,7 @@ public class GridController : MonoBehaviour
         StartCoroutine(FadefromBlack());
         _loadingScreen = true;
         _textBloodLeft.text = _dirtToClean.ToString();
+        Cursor.visible = false;
     }
 
     void Update()
