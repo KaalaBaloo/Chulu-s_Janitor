@@ -250,7 +250,7 @@ public class MainCharacter : Sprites
             Instantiate(_VFXWash, transform.position, Quaternion.identity);
             _suciedad = 0;
         }
-        else if (_gridController.CanClean(_tileNumX, _tileNumY) == 4)
+        else if (_gridController.CanClean(_tileNumX, _tileNumY) == 4 && _suciedad < 3)
         {
             _gridController.SetInteractive(0, _tileNumX, _tileNumY);
             Instantiate(_VFXClean, transform.position, Quaternion.identity);
@@ -276,6 +276,7 @@ public class MainCharacter : Sprites
                 Instantiate(_pentDown, new Vector3(5.5f, 3.5f, 0), Quaternion.identity);
             }
             _destroyDirt = true;
+            _suciedad++;
         }
         else
         {

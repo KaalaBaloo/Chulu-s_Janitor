@@ -9,6 +9,7 @@ TagManager:
   - Dirt
   - Enemy
   - Ray
+  - Music
   layers:
   - Default
   - TransparentFX
