@@ -282,13 +282,13 @@ public abstract class Enemy : Sprites
                 {
                     StartCoroutine(PositionCoroutine(_rb, new Vector2(0, 1)));
                 }
-                else if (_gridController.CanMove(_tileNumX + 1, _tileNumY))
-                {
-                    StartCoroutine(PositionCoroutine(_rb, new Vector2(1, 0)));
-                }
                 else if (character.y < transform.position.y && _gridController.CanMove(_tileNumX, _tileNumY - 1))
                 {
                     StartCoroutine(PositionCoroutine(_rb, new Vector2(0, -1)));
+                }
+                else if (_gridController.CanMove(_tileNumX + 1, _tileNumY))
+                {
+                    StartCoroutine(PositionCoroutine(_rb, new Vector2(1, 0)));
                 }
                 else if (_gridController.CanMove(_tileNumX - 1, _tileNumY))
                 {
@@ -312,14 +312,14 @@ public abstract class Enemy : Sprites
                 if (character.y > transform.position.y && _gridController.CanMove(_tileNumX, _tileNumY + 1))
                 {
                     StartCoroutine(PositionCoroutine(_rb, new Vector2(0, 1)));
+                }             
+                else if (character.y < transform.position.y && _gridController.CanMove(_tileNumX, _tileNumY - 1))
+                {
+                    StartCoroutine(PositionCoroutine(_rb, new Vector2(0, -1)));
                 }
                 else if (_gridController.CanMove(_tileNumX - 1, _tileNumY))
                 {
                     StartCoroutine(PositionCoroutine(_rb, new Vector2(-1, 0)));
-                }
-                else if (character.y < transform.position.y && _gridController.CanMove(_tileNumX, _tileNumY - 1))
-                {
-                    StartCoroutine(PositionCoroutine(_rb, new Vector2(0, -1)));
                 }
                 else if (_gridController.CanMove(_tileNumX + 1, _tileNumY))
                 {
