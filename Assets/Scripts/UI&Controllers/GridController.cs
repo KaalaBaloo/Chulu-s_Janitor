@@ -21,6 +21,7 @@ public class GridController : MonoBehaviour
     [SerializeField] int _enemies = 0;
     [SerializeField] int _enemiesCount = 1;
     [SerializeField] bool _ritualOn = false;
+    [SerializeField] bool _endOn = false;
     bool _loadingScreen = false;
     float _time = 0;
 
@@ -71,7 +72,7 @@ public class GridController : MonoBehaviour
             LoadingScreen(1);
             _textBloodLeft.text = _dirtToClean.ToString();
         }
-        if (_dirtToClean <= 0 && SceneManager.GetActiveScene().name != "20")
+        if (_dirtToClean <= 0 && SceneManager.GetActiveScene().name != "20" && SceneManager.GetActiveScene().name != "20_Battle")
         {
             Debug.Log("Win");
             StartCoroutine(FadetoBlack("Main"));
@@ -80,6 +81,11 @@ public class GridController : MonoBehaviour
         {
             Debug.Log("Win");
             StartCoroutine(RitualAnimation());
+        }
+        else if (_dirtToClean <= 0 && SceneManager.GetActiveScene().name == "20_Battle")
+        {
+            Debug.Log("Win");
+            StartCoroutine(EndAnimation());
         }
         if (_enemies == _enemiesCount && _turn == 1)
         {
@@ -102,9 +108,80 @@ public class GridController : MonoBehaviour
         yield return null;
     }
 
+    protected IEnumerator EndAnimation()
+    {
+        Transform _camara = GameObject.FindWithTag("MainCamera").transform;
+        Transform _ui = GameObject.FindWithTag("UI").transform;
+        float t = 0;
+        bool drch = true, up = true;
+        while (t < 8)
+        {
+            if (t > 1)
+                _endOn = true;
+            if (t > 2 && t < 5)
+            {
+                if (drch)
+                {
+                    _camara.position += new Vector3(0.1f, 0, 0) * Time.deltaTime;
+                    _ui.position += new Vector3(0.1f, 0, 0) * Time.deltaTime;
+                }
+                else
+                {
+                    _camara.position += new Vector3(-0.1f, 0, 0) * Time.deltaTime;
+                    _ui.position += new Vector3(-0.1f, 0, 0) * Time.deltaTime;
+                }
+                if (_camara.position.x > 7.5)
+                {
+                    drch = false;
+                }
+                if (_camara.position.x < 3.5)
+                {
+                    drch = true;
+                }
+                if (up)
+                {
+                    _camara.position += new Vector3(0, 0.1f, 0) * Time.deltaTime;
+                    _ui.position += new Vector3(0, 0.1f, 0) * Time.deltaTime;
+                }
+                else
+                {
+                    _camara.position += new Vector3(0, -0.1f, 0) * Time.deltaTime;
+                    _ui.position += new Vector3(0, -0.1f, 0) * Time.deltaTime;
+                }
+                if (_camara.position.y > 4.5f)
+                {
+                    up = false;
+                }
+                if (_camara.position.y < 2.5f)
+                {
+                    up = true;
+                }
+            }
+            else
+            {
+                _camara.position = new Vector3(5.5f, 3.5f, -10);
+                _ui.position = new Vector3(5.5f, 3.5f, 0);
+            }
+            t += Time.deltaTime;
+            yield return null;
+        }
+        StartCoroutine(FadetoBlack("End"));
+        yield return null;
+    }
+
+    public int GetDirt()
+    {
+        return _dirtToClean;
+    }
+
     public bool GetRitual()
     {
         return _ritualOn;
+    }
+
+    public bool GetEnd()
+    {
+        return _endOn;
     }
 
     //Inicializa las grids de control general y la de control de "basura" que hay que limpiar

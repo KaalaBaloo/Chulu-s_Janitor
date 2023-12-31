@@ -151,7 +151,7 @@ MonoBehaviour:
   _spriteNumber: 0
   _tileNumX: 0
   _tileNumY: 0
-  _speed: 3.9
+  _speed: 5.5
   _blockedView: 0
   _damage: 1
   _enemyNumber: 0

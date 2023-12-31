@@ -865,7 +865,7 @@ MonoBehaviour:
   _spriteNumber: 0
   _tileNumX: 0
   _tileNumY: 0
-  _speed: 3.5
+  _speed: 5.5
   _lives: 1
   _suciedad: 0
   _sprite: {fileID: 3882904568438216602}

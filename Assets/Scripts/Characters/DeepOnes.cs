@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine.TextCore.Text;
 
 public class DeepOnes : Enemy
 {
@@ -32,66 +33,133 @@ public class DeepOnes : Enemy
         if (_gridController.GetTurn() == 1 && _character != null && !_moving && _gridController.GetEnemyMoved() == _enemyNumber)
         {
             _moving = true;
-            if (_character.transform.position.x > transform.position.x && CanJump(2, 0))
+
+            if (Mathf.Abs(_character.transform.position.x - transform.position.x) > Mathf.Abs(_character.transform.position.y - transform.position.y))
             {
-                _marca.transform.position = new Vector3(transform.position.x + 2, transform.position.y, 0);
-                _marca.GetComponent<Renderer>().enabled = true;
-                _xMarca = 2;
-                _cargando = false;
-            }
-            else if (_character.transform.position.x < transform.position.x && CanJump(-2, 0))
-            {
-                _marca.transform.position = new Vector3(transform.position.x - 2, transform.position.y, 0);
-                _marca.GetComponent<Renderer>().enabled = true;
-                _xMarca = -2;
-                _cargando = false;
-            }
-            else if (_character.transform.position.y > transform.position.y && CanJump(0, 2))
-            {
-                _marca.transform.position = new Vector3(transform.position.x, transform.position.y + 2, 0);
-                _marca.GetComponent<Renderer>().enabled = true;
-                _yMarca = 2;
-                _cargando = false;
-            }
-            else if (_character.transform.position.y < transform.position.y && CanJump(0, -2))
-            {
-                _marca.transform.position = new Vector3(transform.position.x, transform.position.y - 2, 0);
-                _marca.GetComponent<Renderer>().enabled = true;
-                _yMarca = -2;
-                _cargando = false;
-            }
-            else if (CanJump(2,0))
-            {
-                _marca.transform.position = new Vector3(transform.position.x + 2, transform.position.y, 0);
-                _marca.GetComponent<Renderer>().enabled = true;
-                _xMarca = 2;
-                _cargando = false;
-            }
-            else if (CanJump(-2, 0))
-            {
-                _marca.transform.position = new Vector3(transform.position.x - 2, transform.position.y, 0);
-                _marca.GetComponent<Renderer>().enabled = true;
-                _xMarca = -2;
-                _cargando = false;
-            }
-            else if (CanJump(0, 2))
-            {
-                _marca.transform.position = new Vector3(transform.position.x, transform.position.y + 2, 0);
-                _marca.GetComponent<Renderer>().enabled = true;
-                _yMarca = 2;
-                _cargando = false;
-            }
-            else if (CanJump(0, -2))
-            {
-                _marca.transform.position = new Vector3(transform.position.x, transform.position.y - 2, 0);
-                _marca.GetComponent<Renderer>().enabled = true;
-                _yMarca = -2;
-                _cargando = false;
+                if (_character.transform.position.x > transform.position.x && CanJump(2, 0))
+                {
+                    _marca.transform.position = new Vector3(transform.position.x + 2, transform.position.y, 0);
+                    _marca.GetComponent<Renderer>().enabled = true;
+                    _xMarca = 2;
+                    _cargando = false;
+                }
+                else if (_character.transform.position.x < transform.position.x && CanJump(-2, 0))
+                {
+                    _marca.transform.position = new Vector3(transform.position.x - 2, transform.position.y, 0);
+                    _marca.GetComponent<Renderer>().enabled = true;
+                    _xMarca = -2;
+                    _cargando = false;
+                }
+                else if (_character.transform.position.y > transform.position.y && CanJump(0, 2))
+                {
+                    _marca.transform.position = new Vector3(transform.position.x, transform.position.y + 2, 0);
+                    _marca.GetComponent<Renderer>().enabled = true;
+                    _yMarca = 2;
+                    _cargando = false;
+                }
+                else if (_character.transform.position.y < transform.position.y && CanJump(0, -2))
+                {
+                    _marca.transform.position = new Vector3(transform.position.x, transform.position.y - 2, 0);
+                    _marca.GetComponent<Renderer>().enabled = true;
+                    _yMarca = -2;
+                    _cargando = false;
+                }
+                else if (CanJump(2, 0))
+                {
+                    _marca.transform.position = new Vector3(transform.position.x + 2, transform.position.y, 0);
+                    _marca.GetComponent<Renderer>().enabled = true;
+                    _xMarca = 2;
+                    _cargando = false;
+                }
+                else if (CanJump(-2, 0))
+                {
+                    _marca.transform.position = new Vector3(transform.position.x - 2, transform.position.y, 0);
+                    _marca.GetComponent<Renderer>().enabled = true;
+                    _xMarca = -2;
+                    _cargando = false;
+                }
+                else if (CanJump(0, 2))
+                {
+                    _marca.transform.position = new Vector3(transform.position.x, transform.position.y + 2, 0);
+                    _marca.GetComponent<Renderer>().enabled = true;
+                    _yMarca = 2;
+                    _cargando = false;
+                }
+                else if (CanJump(0, -2))
+                {
+                    _marca.transform.position = new Vector3(transform.position.x, transform.position.y - 2, 0);
+                    _marca.GetComponent<Renderer>().enabled = true;
+                    _yMarca = -2;
+                    _cargando = false;
+                }
+                else
+                {
+                    Debug.Log("Error, no es posible mover la marca");
+                }
             }
             else
             {
-                Debug.Log("Error, no es posible mover la marca");
-            }
+                if (_character.transform.position.y > transform.position.y && CanJump(0, 2))
+                {
+                    _marca.transform.position = new Vector3(transform.position.x, transform.position.y + 2, 0);
+                    _marca.GetComponent<Renderer>().enabled = true;
+                    _yMarca = 2;
+                    _cargando = false;
+                }
+                else if (_character.transform.position.y < transform.position.y && CanJump(0, -2))
+                {
+                    _marca.transform.position = new Vector3(transform.position.x, transform.position.y - 2, 0);
+                    _marca.GetComponent<Renderer>().enabled = true;
+                    _yMarca = -2;
+                    _cargando = false;
+                }
+                else if (_character.transform.position.x > transform.position.x && CanJump(2, 0))
+                {
+                    _marca.transform.position = new Vector3(transform.position.x + 2, transform.position.y, 0);
+                    _marca.GetComponent<Renderer>().enabled = true;
+                    _xMarca = 2;
+                    _cargando = false;
+                }
+                else if (_character.transform.position.x < transform.position.x && CanJump(-2, 0))
+                {
+                    _marca.transform.position = new Vector3(transform.position.x - 2, transform.position.y, 0);
+                    _marca.GetComponent<Renderer>().enabled = true;
+                    _xMarca = -2;
+                    _cargando = false;
+                }
+                else if (CanJump(0, 2))
+                {
+                    _marca.transform.position = new Vector3(transform.position.x, transform.position.y + 2, 0);
+                    _marca.GetComponent<Renderer>().enabled = true;
+                    _yMarca = 2;
+                    _cargando = false;
+                }
+                else if (CanJump(0, -2))
+                {
+                    _marca.transform.position = new Vector3(transform.position.x, transform.position.y - 2, 0);
+                    _marca.GetComponent<Renderer>().enabled = true;
+                    _yMarca = -2;
+                    _cargando = false;
+                }
+                else if (CanJump(2, 0))
+                {
+                    _marca.transform.position = new Vector3(transform.position.x + 2, transform.position.y, 0);
+                    _marca.GetComponent<Renderer>().enabled = true;
+                    _xMarca = 2;
+                    _cargando = false;
+                }
+                else if (CanJump(-2, 0))
+                {
+                    _marca.transform.position = new Vector3(transform.position.x - 2, transform.position.y, 0);
+                    _marca.GetComponent<Renderer>().enabled = true;
+                    _xMarca = -2;
+                    _cargando = false;
+                }
+                else
+                {
+                    Debug.Log("Error, no es posible mover la marca");
+                }
+            } 
             SetChangeTurn();
         }
     }

@@ -7,11 +7,27 @@ using UnityEngine.UIElements;
 public class Boss_1 : Enemy
 {
     [SerializeField] int _random = 0;
+    bool _endStart = false;
+    float t = 0;
+
+    [SerializeField] GameObject _VFXTP;
+    [SerializeField] GameObject _VFXDying;
+    [SerializeField] GameObject _VFXDead;
+    [SerializeField] GameObject _spriteChulu;
 
     private void Update()
     {
+        if (_gridController.GetDirt() != 0)
+        {
+            MovePathFinding();
+        }
 
-        MovePathFinding();
+        if (_gridController.GetEnd() && !_endStart)
+        {
+            _endStart = true;
+            Instantiate(_VFXDying, transform.position, Quaternion.identity);
+            StartCoroutine(EndCoroutine());
+        }
 
     }
 
@@ -87,8 +103,23 @@ public class Boss_1 : Enemy
         _tileNumY = Mathf.RoundToInt(y);
         transform.position = new Vector3(x,y,0);
         _gridController.SetGrid(_spriteNumber, _tileNumX, _tileNumY);
+        Instantiate(_VFXTP, transform.position, Quaternion.identity);
         SetChangeTurn();
         yield return 0;
     }
+
+    virtual protected IEnumerator EndCoroutine()
+    {
+        while (t < 2)
+        {
+            t += Time.deltaTime;
+            yield return null;
+        }
+        Instantiate(_VFXDead, transform.position, Quaternion.identity);
+        Instantiate(_spriteChulu, transform.position, Quaternion.identity);
+        Destroy(this.gameObject);
+        yield return 0;
+    }
+
 
 }

@@ -12,7 +12,7 @@ public class MirrorOfC : Enemy
     [SerializeField] GameObject _downRay;
     [SerializeField] LayerMask mascara;
 
-    void Start()
+    protected override void Start()
     {
         _spriteNumber = 3;
         _gridController.SetGrid(_spriteNumber, _tileNumX, _tileNumY);

@@ -223,7 +223,7 @@ public class MainCharacter : Sprites
     {
         float t = 0;
         _animator.SetTrigger("Clean");
-        while (t < 1)
+        while (t < 0.7)
         {
             t += Time.deltaTime;
             yield return null;
