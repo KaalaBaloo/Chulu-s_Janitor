@@ -39,7 +39,7 @@ public class MirrorOfC : Enemy
             if (!_cargando)
             {
                 _moving = true;
-                PathFinding(_character.transform.position);
+                PathFinding(_characterLastTurn);
                 _cargando = true;
             }
             else if (_cargando)
@@ -47,6 +47,7 @@ public class MirrorOfC : Enemy
                 _cargando = false;
                 SetChangeTurn();
             }
+            _characterLastTurn = _character.transform.position;
         }
     }
 
