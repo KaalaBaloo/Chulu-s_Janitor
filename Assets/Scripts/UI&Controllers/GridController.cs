@@ -268,6 +268,25 @@ public class GridController : MonoBehaviour
         }
         
     }
+    public bool EnemyCanMove(int num_x, int num_y)
+    {
+        try
+        {
+            if (_gridInteractive[num_x, num_y] == 2)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        catch
+        {
+            return false;
+        }
+
+    }
 
     //Devuelve que hay interactuable en la celda elegida
     public int GetGridTile(int num_x, int num_y)
