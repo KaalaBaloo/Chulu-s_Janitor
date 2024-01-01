@@ -24,11 +24,16 @@ public class MainCharacter : Sprites
     [SerializeField] GameObject _VFXNone;
     [SerializeField] GameObject _VFXWash;
 
+    AudioSource _audio;
+    [SerializeField] AudioClip _limpiar;
+    [SerializeField] AudioClip _enjuagar;
+
     protected override void Awake()
     {
         base.Awake();
         _rb = GetComponent<Rigidbody2D>();
         _animator = _sprite.GetComponent<Animator>();
+        _audio = GetComponent<AudioSource>();
     }
 
     void Start()
@@ -86,7 +91,7 @@ public class MainCharacter : Sprites
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            _gridController.Restart();
+            _gridController.GameOver();
         }
     }
 
@@ -223,36 +228,39 @@ public class MainCharacter : Sprites
     {
         float t = 0;
         _animator.SetTrigger("Clean");
-        while (t < 0.7)
-        {
-            t += Time.deltaTime;
-            yield return null;
-        }
-        if (_gridController.CanClean(_tileNumX, _tileNumY) == 1 && _suciedad < 3)
+        if (_gridController.CanClean(_tileNumX, _tileNumY) == 1 && _suciedad < 3) // Suciedad Normal
         {
             _gridController.SetInteractive(0, _tileNumX, _tileNumY);
+            _audio.clip = _limpiar;
+            _audio.Play();
             Instantiate(_VFXClean, transform.position, Quaternion.identity);
             _gridController.DirtCleaned();
             _destroyDirt = true;
             _suciedad++;
         }
-        else if (_gridController.CanClean(_tileNumX, _tileNumY) == 2 && _suciedad < 3)
+        else if (_gridController.CanClean(_tileNumX, _tileNumY) == 2 && _suciedad < 3) // Mancha grande
         {
             _gridController.SetInteractive(1, _tileNumX, _tileNumY);
+            _audio.clip = _limpiar;
+            _audio.Play();
             Instantiate(_VFXClean, transform.position, Quaternion.identity);
             _gridController.DirtCleaned();
             Instantiate(_sangre, transform.position, Quaternion.identity);
             _destroyDirt = true;
             _suciedad++;
         }
-        else if (_gridController.CanClean(_tileNumX, _tileNumY) == 3)
+        else if (_gridController.CanClean(_tileNumX, _tileNumY) == 3) // Cubo
         {
+            _audio.clip = _enjuagar;
+            _audio.Play();
             Instantiate(_VFXWash, transform.position, Quaternion.identity);
             _suciedad = 0;
         }
-        else if (_gridController.CanClean(_tileNumX, _tileNumY) == 4 && _suciedad < 3)
+        else if (_gridController.CanClean(_tileNumX, _tileNumY) == 4 && _suciedad < 3) // Sangre ritual
         {
             _gridController.SetInteractive(0, _tileNumX, _tileNumY);
+            _audio.clip = _limpiar;
+            _audio.Play();
             Instantiate(_VFXClean, transform.position, Quaternion.identity);
             _gridController.DirtCleaned();
             if (_tileNumX == 3 & _tileNumY == 5)
@@ -280,14 +288,23 @@ public class MainCharacter : Sprites
         }
         else
         {
-            if (_suciedad < 3)
+            if (_suciedad < 3) // Nada
             {
+                _audio.clip = _limpiar;
+                _audio.Play();
                 Instantiate(_VFXNone, transform.position, Quaternion.identity);
             }
-            else
+            else // Fregona sucia
             {
+                _audio.clip = _limpiar;
+                _audio.Play();
                 Instantiate(_VFXDirty, transform.position, Quaternion.identity);
             }
+        }
+        while (t < 0.5)
+        {
+            t += Time.deltaTime;
+            yield return null;
         }
         _gridController.ChangeTurn(1);
         yield return 0;

@@ -181,9 +181,30 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Developed by: Grusel Games\n\n\nAndrea Salas: Art Director & Concept Artist\n\n\nDaniel
-    Gonzalez: 2D Animator & Artist\n\n\nCarlos D\xEDaz: 2D Artist & Graphic Designer\n\n\nMyriam
-    Collada: Programmer & Level Designer\n\n\nClaudia Chaparro: 2D Artist"
+  m_text: 'Developed by: Grusel Games
+
+
+
+    Andrea Salas: Art Director & Concept
+    Artist
+
+
+
+    Daniel Gonzalez: 2D Animator & Artist
+
+
+
+    Carlos Diaz: 2D Artist
+    & Graphic Designer
+
+
+
+    Myriam Collada: Programmer & Level Designer
+
+
+
+    Claudia
+    Chaparro: 2D Artist'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6290e49b70970f14aa221df3c91f2d2a, type: 2}
   m_sharedMaterial: {fileID: -6851626215054244074, guid: 6290e49b70970f14aa221df3c91f2d2a, type: 2}

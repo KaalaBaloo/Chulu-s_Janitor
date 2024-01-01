@@ -59,10 +59,11 @@ public class MirrorOfC : Enemy
 
     protected override void Attack()
     {
-        if ((_gridController.GetPlayerVerticalNoObstacle(_tileNumX, _tileNumY) || _gridController.GetPlayerHorizontalNoObstacle(_tileNumX, _tileNumY)))
+        if ((_gridController.GetPlayerVerticalNoObstacle(_tileNumX, _tileNumY) || _gridController.GetPlayerHorizontalNoObstacle(_tileNumX, _tileNumY)) && !GridController.GAMEOVER)
         {
+            GridController.GAMEOVER = true;
             _character.GameOver();
-            _gridController.Restart();
+            _gridController.GameOver();
         }
     }
 

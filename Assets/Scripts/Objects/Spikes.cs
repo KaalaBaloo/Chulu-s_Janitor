@@ -55,12 +55,11 @@ public class Spikes : Sprites
 
     void Damage()
     {
-        if (_gridController.GetGridTile(_tileNumX, _tileNumY) == 1 && _up)
+        if (_gridController.GetGridTile(_tileNumX, _tileNumY) == 1 && _up && !GridController.GAMEOVER)
         {
+            GridController.GAMEOVER = true;
             _character.GameOver();
-            _gridController.Restart();
-            Debug.Log("GameOver");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            _gridController.GameOver();
         }
     }
 }

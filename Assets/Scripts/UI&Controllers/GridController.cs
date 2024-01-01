@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class GridController : MonoBehaviour
 {
+    static public bool GAMEOVER = false;
+
     [SerializeField] int _dirtToClean = 0;
     [SerializeField] int _tilesX = 3;
     [SerializeField] int _tilesY = 3;
@@ -24,6 +26,10 @@ public class GridController : MonoBehaviour
     [SerializeField] bool _endOn = false;
     bool _loadingScreen = false;
     float _time = 0;
+
+    AudioSource _audio;
+    [SerializeField] AudioClip _win;
+    [SerializeField] AudioClip _gameOver;
 
     int[,] _gridBase;
     int[,] _gridInteractive;
@@ -59,9 +65,11 @@ public class GridController : MonoBehaviour
     private void Start()
     {
         StartCoroutine(FadefromBlack());
+        GAMEOVER = false;
         _loadingScreen = true;
         _textBloodLeft.text = _dirtToClean.ToString();
         Cursor.visible = false;
+        _audio = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -72,19 +80,28 @@ public class GridController : MonoBehaviour
             LoadingScreen(1);
             _textBloodLeft.text = _dirtToClean.ToString();
         }
-        if (_dirtToClean <= 0 && SceneManager.GetActiveScene().name != "20" && SceneManager.GetActiveScene().name != "20_Battle")
+        if (_dirtToClean <= 0 && SceneManager.GetActiveScene().name != "20" && SceneManager.GetActiveScene().name != "20_Battle" && !GAMEOVER)
         {
+            GAMEOVER = true;
             Debug.Log("Win");
-            StartCoroutine(FadetoBlack("Main"));
+            _audio.clip = _win;
+            _audio.Play();
+            StartCoroutine(ChangeScene("Main"));
         }
-        else if (_dirtToClean <= 0 && SceneManager.GetActiveScene().name == "20")
+        else if (_dirtToClean <= 0 && SceneManager.GetActiveScene().name == "20" && !GAMEOVER)
         {
+            GAMEOVER = true;
             Debug.Log("Win");
+            _audio.clip = _win;
+            _audio.Play();
             StartCoroutine(RitualAnimation());
         }
-        else if (_dirtToClean <= 0 && SceneManager.GetActiveScene().name == "20_Battle")
+        else if (_dirtToClean <= 0 && SceneManager.GetActiveScene().name == "20_Battle" && !GAMEOVER)
         {
+            GAMEOVER = true;
             Debug.Log("Win");
+            _audio.clip = _win;
+            _audio.Play();
             StartCoroutine(EndAnimation());
         }
         if (_enemies == _enemiesCount && _turn == 1)
@@ -97,7 +114,7 @@ public class GridController : MonoBehaviour
     protected IEnumerator RitualAnimation()
     {
         float t = 0;
-        while (t < 5) 
+        while (t < 10) 
         {
             if (t > 1)
                 _ritualOn = true;
@@ -429,12 +446,25 @@ public class GridController : MonoBehaviour
         _textBloodLeft.text = _dirtToClean.ToString();
     }
 
-    public void Restart()
+    public void GameOver()
     {
         Debug.Log("GameOver");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        _audio.clip = _gameOver;
+        _audio.Play();
+        StartCoroutine(ChangeScene(SceneManager.GetActiveScene().name));
     }
 
+    protected IEnumerator ChangeScene(string scene)
+    {
+        float t = 0;
+        while (t < 1)
+        {
+            t += Time.deltaTime;
+            yield return null;
+        }
+        StartCoroutine(FadetoBlack(scene));
+        yield return null;
+    }
 
     protected IEnumerator FadetoBlack(string scene, int fadeSpeed = 5)
     {

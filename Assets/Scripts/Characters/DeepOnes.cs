@@ -11,6 +11,17 @@ public class DeepOnes : Enemy
     [SerializeField] bool _cargando = true;
     int _xMarca = 0;
     int _yMarca = 0;
+    AudioSource _audio;
+
+    protected override void Start()
+    {
+        _spriteNumber = 3;
+        _gridController.SetGrid(_spriteNumber, _tileNumX, _tileNumY);
+        transform.position = new Vector2(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y));
+        _gridController.CreateEnemy();
+        _characterLastTurn = _character.transform.position;
+        _audio = GetComponent<AudioSource>();
+    }
 
     private void Update()
     {
@@ -176,6 +187,7 @@ public class DeepOnes : Enemy
             {
                 _moving = true;
                 _gridController.SetGrid(0, _tileNumX, _tileNumY);
+                _audio.Play();
                 StartCoroutine(PositionCoroutine(_rb, _marca.transform.position));
                 _tileNumX += _xMarca;
                 _tileNumY += _yMarca;
@@ -229,10 +241,11 @@ public class DeepOnes : Enemy
         rb.velocity = Vector2.zero;
         Instantiate(_VFX, transform.position, Quaternion.identity);
         transform.position = endingposition;
-        if (_gridController.GetGridTile(_tileNumX, _tileNumY) == 1)
+        if (_gridController.GetGridTile(_tileNumX, _tileNumY) == 1 && !GridController.GAMEOVER)
         {
+            GridController.GAMEOVER = true;
             _character.GameOver();
-            _gridController.Restart();
+            _gridController.GameOver();
         }
         else
         {

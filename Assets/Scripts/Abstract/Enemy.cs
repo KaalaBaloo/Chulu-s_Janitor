@@ -168,7 +168,7 @@ public abstract class Enemy : Sprites
         rb.velocity = Vector2.zero;
         transform.position = position;
         _character.GameOver();
-        _gridController.Restart();
+        _gridController.GameOver();
         yield return 0;
     }
 

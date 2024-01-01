@@ -15,6 +15,28 @@ public class Boss_1 : Enemy
     [SerializeField] GameObject _VFXDead;
     [SerializeField] GameObject _spriteChulu;
 
+    AudioSource _audio;
+    AudioSource _audioExt1;
+    AudioSource _audioExt2;
+    AudioSource _audioExt3;
+    [SerializeField] GameObject _ext1;
+    [SerializeField] GameObject _ext2;
+    [SerializeField] GameObject _ext3;
+    [SerializeField] AudioClip _tp;
+
+    protected override void Start()
+    {
+        _spriteNumber = 3;
+        _gridController.SetGrid(_spriteNumber, _tileNumX, _tileNumY);
+        transform.position = new Vector2(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y));
+        _gridController.CreateEnemy();
+        _characterLastTurn = _character.transform.position;
+        _audio = GetComponent<AudioSource>();
+        _audioExt1 = _ext1.GetComponent<AudioSource>();
+        _audioExt2 = _ext2.GetComponent<AudioSource>();
+        _audioExt3 = _ext3.GetComponent<AudioSource>();
+    }
+
     private void Update()
     {
         if (_gridController.GetDirt() != 0)
@@ -24,8 +46,10 @@ public class Boss_1 : Enemy
 
         if (_gridController.GetEnd() && !_endStart)
         {
+            _audioExt1.Play();
             _endStart = true;
             Instantiate(_VFXDying, transform.position, Quaternion.identity);
+            _audioExt2.Play();
             StartCoroutine(EndCoroutine());
         }
 
@@ -101,6 +125,8 @@ public class Boss_1 : Enemy
         _gridController.SetGrid(0, _tileNumX, _tileNumY);
         _tileNumX = Mathf.RoundToInt(x);
         _tileNumY = Mathf.RoundToInt(y);
+        _audio.clip = _tp;
+        _audio.Play();
         transform.position = new Vector3(x,y,0);
         _gridController.SetGrid(_spriteNumber, _tileNumX, _tileNumY);
         Instantiate(_VFXTP, transform.position, Quaternion.identity);
@@ -110,13 +136,14 @@ public class Boss_1 : Enemy
 
     virtual protected IEnumerator EndCoroutine()
     {
-        while (t < 2)
+        while (t < 3)
         {
             t += Time.deltaTime;
             yield return null;
         }
         Instantiate(_VFXDead, transform.position, Quaternion.identity);
         Instantiate(_spriteChulu, transform.position, Quaternion.identity);
+        _audioExt3.Play(46100);
         Destroy(this.gameObject);
         yield return 0;
     }

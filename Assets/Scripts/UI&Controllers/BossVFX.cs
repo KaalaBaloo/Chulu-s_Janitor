@@ -13,8 +13,15 @@ public class BossVFX : Sprites
     [SerializeField] GameObject _VFX6;
     [SerializeField] GameObject _Boss;
 
+    AudioSource _audio;
+
     float t = 0;
     bool effects = false;
+
+    private void Start()
+    {
+        _audio = GetComponent<AudioSource>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -22,6 +29,7 @@ public class BossVFX : Sprites
         if (_gridController.GetRitual() && !effects)
         {
             effects = true;
+            _audio.Play();
             Instantiate(_VFX1, new Vector3(6, 4, 0), Quaternion.identity);
             Instantiate(_VFX2, new Vector3(6, 4, 0), Quaternion.identity);
             Instantiate(_VFX3, new Vector3(6, 4, 0), Quaternion.identity);

@@ -8,10 +8,12 @@ public class CursorSettings : MonoBehaviour
     public Texture2D cursorTexture;
     public CursorMode cursorMode = CursorMode.Auto;
     public Vector2 hotSpot = Vector2.zero;
+    AudioSource _audio;
 
     private void Start()
     {
         Cursor.visible = true;
+        _audio = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -19,6 +21,7 @@ public class CursorSettings : MonoBehaviour
         if (Input.GetKey(KeyCode.Mouse0))
         {
             Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+            _audio.Play();
         }
         else
         {
