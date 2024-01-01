@@ -10,7 +10,10 @@ public class SpawnOfC : Enemy
 
     private void Update()
     {
-        MovePathFinding();
+        if(!GridController.GAMEOVER)
+        {
+            MovePathFinding();
+        }
         if (!_seen && !_patrol && _gridController.GetTurn() == 0)
         {
             _seen = true;

@@ -24,8 +24,11 @@ public class MirrorOfC : Enemy
 
     private void Update()
     {
-        Attack();
-        MovePathFinding();
+        if (!GridController.GAMEOVER)
+        {
+            Attack();
+            MovePathFinding();
+        }
     }
 
     override protected void MovePathFinding()

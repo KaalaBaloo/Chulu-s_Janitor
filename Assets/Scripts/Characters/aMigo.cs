@@ -8,7 +8,8 @@ public class aMigo : Enemy
 
     private void Update()
     {
-        MovePathFinding();
+        if (!GridController.GAMEOVER)
+            MovePathFinding();
 
     }
 

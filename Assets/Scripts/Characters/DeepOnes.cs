@@ -28,13 +28,16 @@ public class DeepOnes : Enemy
 
     private void Update()
     {
-        if (_cargando)
+        if (!GridController.GAMEOVER)
         {
-            SelectPosition();
-        }
-        else
-        {
-            Jump();
+            if (_cargando)
+            {
+                SelectPosition();
+            }
+            else
+            {
+                Jump();
+            }
         }
     }
 
