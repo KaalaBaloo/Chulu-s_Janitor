@@ -79,11 +79,11 @@ public abstract class Enemy : Sprites
 
     public bool GetCanMove(int x, int y)
     {
-        if (!_gridController.CanMove(_tileNumX + x, _tileNumY + y))
+        if (!_gridController.CanMove(x, y))
         {
             return false;
         }
-        else if (!_gridController.EnemyCanMove(_tileNumX + x, _tileNumY + y))
+        else if (!_gridController.EnemyCanMove(x, y))
         {
             return false;
         }
