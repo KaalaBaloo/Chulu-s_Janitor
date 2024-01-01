@@ -8,6 +8,8 @@ public class DeepOnes : Enemy
 {
     [SerializeField] GameObject _marca;
     [SerializeField] GameObject _VFX;
+    [SerializeField] GameObject _sprite;
+    Animator _animator;
     [SerializeField] bool _cargando = true;
     int _xMarca = 0;
     int _yMarca = 0;
@@ -21,6 +23,7 @@ public class DeepOnes : Enemy
         _gridController.CreateEnemy();
         _characterLastTurn = _character.transform.position;
         _audio = GetComponent<AudioSource>();
+        _animator = _sprite.GetComponent<Animator>();
     }
 
     private void Update()
@@ -188,6 +191,7 @@ public class DeepOnes : Enemy
                 _moving = true;
                 _gridController.SetGrid(0, _tileNumX, _tileNumY);
                 _audio.Play();
+                _animator.SetTrigger("jump");
                 StartCoroutine(PositionCoroutine(_rb, _marca.transform.position));
                 _tileNumX += _xMarca;
                 _tileNumY += _yMarca;
