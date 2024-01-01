@@ -202,6 +202,10 @@ public abstract class Enemy : Sprites
                 {
                     StartCoroutine(PositionCoroutine(_rb, new Vector2(0, -1)));
                 }
+                else if (GetCanMove(_tileNumX, _tileNumY + 1))
+                {
+                    StartCoroutine(PositionCoroutine(_rb, new Vector2(0, 1)));
+                }
                 else if (GetCanMove(_tileNumX - 1, _tileNumY))
                 {
                     StartCoroutine(PositionCoroutine(_rb, new Vector2(-1, 0)));
