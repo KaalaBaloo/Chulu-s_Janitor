@@ -388,46 +388,38 @@ public class GridController : MonoBehaviour
 
     public bool GetPlayerVerticalNoObstacle(int x, int y)
     {
-        for (int i = y; i < _tilesY - 1; i++)
+        for (int i = y; i < _tilesY; i++)
         {
             if (_gridBase[x, i] == 1)
                 return true;
             if (_gridBase[x, i] == 2)
-                return false;
+                break;
         }
         for (int i = y; i > 0; i--)
         {
             if (_gridBase[x, i] == 1)
                 return true;
             if (_gridBase[x, i] == 2)
-                return false;
+                break;
         }
         return false;
     }
 
     public bool GetPlayerHorizontalNoObstacle(int x, int y)
     {
-        for (int i = x; i < _tilesX - 1; i++)
+        for (int i = x; i < _tilesX; i++)
         {
             if (_gridBase[i, y] == 1)
-            {
                 return true;
-            }
             if (_gridBase[i, y] == 2)
-            {
-                return false;
-            } 
+                break;
         }
         for (int i = x; i > 0; i--)
         {
             if (_gridBase[i, y] == 1)
-            {
                 return true;
-            }
             if (_gridBase[i, y] == 2)
-            {
-                return false;
-            }
+                break;
         }
         return false;
     }

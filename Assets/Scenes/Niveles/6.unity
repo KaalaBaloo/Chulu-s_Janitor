@@ -1859,6 +1859,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: aMiGo
       objectReference: {fileID: 0}
+    - target: {fileID: 7835362830297279141, guid: 2db32cd25c1edf24d8a7494f1eb01fdb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2db32cd25c1edf24d8a7494f1eb01fdb, type: 3}
 --- !u!1 &1123546890
