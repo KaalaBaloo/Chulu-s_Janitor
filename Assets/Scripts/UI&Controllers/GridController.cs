@@ -86,7 +86,7 @@ public class GridController : MonoBehaviour
             Debug.Log("Win");
             _audio.clip = _win;
             _audio.Play();
-            StartCoroutine(ChangeScene("Main"));
+            StartCoroutine(ChangeScene("SelectorNiveles"));
         }
         else if (_dirtToClean <= 0 && SceneManager.GetActiveScene().name == "20" && !GAMEOVER)
         {
