@@ -1941,6 +1941,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5710658416568428392, guid: a36da73f64f09bd499270be22c77bc04, type: 3}
+      propertyPath: _enemyNumber
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5710658416568428393, guid: a36da73f64f09bd499270be22c77bc04, type: 3}
       propertyPath: m_Name
       value: DeepOne
