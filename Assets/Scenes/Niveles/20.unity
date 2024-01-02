@@ -737,7 +737,7 @@ MonoBehaviour:
   _VFX4: {fileID: 283066247550035252, guid: 148e463b5cd7cc24796a62aa5599b4cd, type: 3}
   _VFX5: {fileID: 5963143673394496044, guid: 267adc13dfde8b54da9b8c2c90d050cf, type: 3}
   _VFX6: {fileID: 7902630635689703211, guid: 89c044d7ea151d5408cc4853e8c94356, type: 3}
-  _Boss: {fileID: 3300979034516439781, guid: 9cf51f7c93a7899409b33e731ebf9d91, type: 3}
+  _Boss: {fileID: 758056383998421520, guid: 5662574e821f0554bbdb6ec0cef47945, type: 3}
 --- !u!82 &543021205
 AudioSource:
   m_ObjectHideFlags: 0
