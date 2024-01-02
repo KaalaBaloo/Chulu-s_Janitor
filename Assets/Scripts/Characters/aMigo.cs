@@ -18,6 +18,7 @@ public class aMigo : Enemy
         if (_gridController.GetTurn() == 0 && _moving)
         {
             _moving = false;
+            _characterLastTurn = _character.transform.position;
         }
         if (_gridController.GetTurn() == 1 && _character != null && !_moving && _gridController.GetEnemyMoved() == _enemyNumber)
         {
@@ -44,7 +45,6 @@ public class aMigo : Enemy
                     PathFinding(_characterLastTurn);
                 }
             }
-            _characterLastTurn = _character.transform.position;
         }
     }
 
@@ -141,14 +141,14 @@ public class aMigo : Enemy
             else if (GetCanMove(_tileNumX - 1, _tileNumY) && GetCanMove(_tileNumX - 1, _tileNumY - 1))
             {
                 Debug.Log("1");
-                _character.Push(1, 0);
-                StartCoroutine(PositionCoroutine(_rb, new Vector2(1, 0)));
+                _character.Push(-1, 0);
+                StartCoroutine(PositionCoroutine(_rb, new Vector2(-1, 0)));
             }
             else if (GetCanMove(_tileNumX + 1, _tileNumY) && GetCanMove(_tileNumX + 1, _tileNumY - 1))
             {
                 Debug.Log("2");
-                _character.Push(-1, 0);
-                StartCoroutine(PositionCoroutine(_rb, new Vector2(-1, 0)));
+                _character.Push(1, 0);
+                StartCoroutine(PositionCoroutine(_rb, new Vector2(1, 0)));
             }
             else
             {
@@ -161,16 +161,16 @@ public class aMigo : Enemy
             if (GetCanMove(_tileNumX, _tileNumY - 1))
             {
                 Debug.Log("4");
-                _character.Push(0, 1);
-                StartCoroutine(PositionCoroutine(_rb, new Vector2(0, 1)));
+                _character.Push(0, -1);
+                StartCoroutine(PositionCoroutine(_rb, new Vector2(0, -1)));
             }
-            else if (GetCanMove(_tileNumX - 1, _tileNumY) && GetCanMove(_tileNumX - 1, _tileNumY + 1))
+            else if (GetCanMove(_tileNumX + 1, _tileNumY) && GetCanMove(_tileNumX + 1, _tileNumY + 1))
             {
                 Debug.Log("1");
                 _character.Push(1, 0);
                 StartCoroutine(PositionCoroutine(_rb, new Vector2(1, 0)));
             }
-            else if (GetCanMove(_tileNumX + 1, _tileNumY) && GetCanMove(_tileNumX + 1, _tileNumY + 1))
+            else if (GetCanMove(_tileNumX - 1, _tileNumY) && GetCanMove(_tileNumX - 1, _tileNumY + 1))
             {
                 Debug.Log("2");
                 _character.Push(-1, 0);

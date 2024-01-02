@@ -186,7 +186,10 @@ public abstract class Enemy : Sprites
 
     protected void PathFinding(Vector3 character)
     {
-        if (Mathf.Abs(character.x - transform.position.x) > Mathf.Abs(character.y - transform.position.y))
+        Debug.Log(Mathf.Abs(character.x - transform.position.x));
+        Debug.Log(Mathf.Abs(character.y - transform.position.y));
+        Debug.Log("____");
+        if (Mathf.Abs(character.x - transform.position.x) >= Mathf.Abs(character.y - transform.position.y))
         {
             if (character.x > transform.position.x)
             {
