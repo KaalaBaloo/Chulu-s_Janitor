@@ -53,56 +53,56 @@ public class DeepOnes : Enemy
 
             if (Mathf.Abs(_character.transform.position.x - transform.position.x) > Mathf.Abs(_character.transform.position.y - transform.position.y))
             {
-                if (_character.transform.position.x > transform.position.x && CanJump(2, 0))
+                if (_character.transform.position.x > transform.position.x && GetCanMove(_tileNumX + 2, _tileNumY))
                 {
                     _marca.transform.position = new Vector3(transform.position.x + 2, transform.position.y, 0);
                     _marca.GetComponent<Renderer>().enabled = true;
                     _xMarca = 2;
                     _cargando = false;
                 }
-                else if (_character.transform.position.x < transform.position.x && CanJump(-2, 0))
+                else if (_character.transform.position.x < transform.position.x && GetCanMove(_tileNumX - 2, _tileNumY))
                 {
                     _marca.transform.position = new Vector3(transform.position.x - 2, transform.position.y, 0);
                     _marca.GetComponent<Renderer>().enabled = true;
                     _xMarca = -2;
                     _cargando = false;
                 }
-                else if (_character.transform.position.y > transform.position.y && CanJump(0, 2))
+                else if (_character.transform.position.y > transform.position.y && GetCanMove(_tileNumX, _tileNumY + 2))
                 {
                     _marca.transform.position = new Vector3(transform.position.x, transform.position.y + 2, 0);
                     _marca.GetComponent<Renderer>().enabled = true;
                     _yMarca = 2;
                     _cargando = false;
                 }
-                else if (_character.transform.position.y < transform.position.y && CanJump(0, -2))
+                else if (_character.transform.position.y < transform.position.y && GetCanMove(_tileNumX, _tileNumY - 2))
                 {
                     _marca.transform.position = new Vector3(transform.position.x, transform.position.y - 2, 0);
                     _marca.GetComponent<Renderer>().enabled = true;
                     _yMarca = -2;
                     _cargando = false;
                 }
-                else if (CanJump(2, 0))
+                else if (GetCanMove(_tileNumX + 2, _tileNumY))
                 {
                     _marca.transform.position = new Vector3(transform.position.x + 2, transform.position.y, 0);
                     _marca.GetComponent<Renderer>().enabled = true;
                     _xMarca = 2;
                     _cargando = false;
                 }
-                else if (CanJump(-2, 0))
+                else if (GetCanMove(_tileNumX - 2, _tileNumY))
                 {
                     _marca.transform.position = new Vector3(transform.position.x - 2, transform.position.y, 0);
                     _marca.GetComponent<Renderer>().enabled = true;
                     _xMarca = -2;
                     _cargando = false;
                 }
-                else if (CanJump(0, 2))
+                else if (GetCanMove(_tileNumX, _tileNumY + 2))
                 {
                     _marca.transform.position = new Vector3(transform.position.x, transform.position.y + 2, 0);
                     _marca.GetComponent<Renderer>().enabled = true;
                     _yMarca = 2;
                     _cargando = false;
                 }
-                else if (CanJump(0, -2))
+                else if (GetCanMove(_tileNumX, _tileNumY - 2))
                 {
                     _marca.transform.position = new Vector3(transform.position.x, transform.position.y - 2, 0);
                     _marca.GetComponent<Renderer>().enabled = true;
@@ -116,56 +116,56 @@ public class DeepOnes : Enemy
             }
             else
             {
-                if (_character.transform.position.y > transform.position.y && CanJump(0, 2))
+                if (_character.transform.position.y > transform.position.y && GetCanMove(_tileNumX, _tileNumY + 2))
                 {
                     _marca.transform.position = new Vector3(transform.position.x, transform.position.y + 2, 0);
                     _marca.GetComponent<Renderer>().enabled = true;
                     _yMarca = 2;
                     _cargando = false;
                 }
-                else if (_character.transform.position.y < transform.position.y && CanJump(0, -2))
+                else if (_character.transform.position.y < transform.position.y && GetCanMove(_tileNumX, _tileNumY - 2))
                 {
                     _marca.transform.position = new Vector3(transform.position.x, transform.position.y - 2, 0);
                     _marca.GetComponent<Renderer>().enabled = true;
                     _yMarca = -2;
                     _cargando = false;
                 }
-                else if (_character.transform.position.x > transform.position.x && CanJump(2, 0))
+                else if (_character.transform.position.x > transform.position.x && GetCanMove(_tileNumX + 2, _tileNumY))
                 {
                     _marca.transform.position = new Vector3(transform.position.x + 2, transform.position.y, 0);
                     _marca.GetComponent<Renderer>().enabled = true;
                     _xMarca = 2;
                     _cargando = false;
                 }
-                else if (_character.transform.position.x < transform.position.x && CanJump(-2, 0))
+                else if (_character.transform.position.x < transform.position.x && GetCanMove(_tileNumX - 2, _tileNumY))
                 {
                     _marca.transform.position = new Vector3(transform.position.x - 2, transform.position.y, 0);
                     _marca.GetComponent<Renderer>().enabled = true;
                     _xMarca = -2;
                     _cargando = false;
                 }
-                else if (CanJump(0, 2))
+                else if (GetCanMove(_tileNumX, _tileNumY + 2))
                 {
                     _marca.transform.position = new Vector3(transform.position.x, transform.position.y + 2, 0);
                     _marca.GetComponent<Renderer>().enabled = true;
                     _yMarca = 2;
                     _cargando = false;
                 }
-                else if (CanJump(0, -2))
+                else if (GetCanMove(_tileNumX, _tileNumY + 2))
                 {
                     _marca.transform.position = new Vector3(transform.position.x, transform.position.y - 2, 0);
                     _marca.GetComponent<Renderer>().enabled = true;
                     _yMarca = -2;
                     _cargando = false;
                 }
-                else if (CanJump(2, 0))
+                else if (GetCanMove(_tileNumX + 2, _tileNumY))
                 {
                     _marca.transform.position = new Vector3(transform.position.x + 2, transform.position.y, 0);
                     _marca.GetComponent<Renderer>().enabled = true;
                     _xMarca = 2;
                     _cargando = false;
                 }
-                else if (CanJump(-2, 0))
+                else if (GetCanMove(_tileNumX - 2, _tileNumY))
                 {
                     _marca.transform.position = new Vector3(transform.position.x - 2, transform.position.y, 0);
                     _marca.GetComponent<Renderer>().enabled = true;
@@ -261,20 +261,6 @@ public class DeepOnes : Enemy
             SetChangeTurn();
         }
         yield return 0;
-    }
-
-
-    bool CanJump(int x, int y)
-    {
-        if (_gridController.GetGridTile(Mathf.RoundToInt(transform.position.x + x), Mathf.RoundToInt(transform.position.y + y)) != 3 &&
-                _gridController.GetGridTile(Mathf.RoundToInt(transform.position.x + x), Mathf.RoundToInt(transform.position.y + y)) != 2)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
     }
 
     void RestartMarca()
