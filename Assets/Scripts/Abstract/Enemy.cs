@@ -13,6 +13,7 @@ public abstract class Enemy : Sprites
     [SerializeField] protected int _enemyNumber = 0;
     protected bool _moving = false;
     protected bool _patrol = false;
+    protected bool _patrolDrch = false;
     int _patrolStage = 0;
     protected Vector3 _characterLastTurn;
 
@@ -54,12 +55,10 @@ public abstract class Enemy : Sprites
                 _moving = true;
                 if (_blockedView)
                 {
-                    Debug.Log("PFBV");
                     PathFindingBlockView(_character.transform.position);
                 }
                 else
                 {
-                    Debug.Log("PF");
                     PathFinding(_character.transform.position);
                 }
             }
@@ -224,6 +223,7 @@ public abstract class Enemy : Sprites
                 else
                 {
                     Debug.Log("Error in char.x > enemy.x");
+                    SetChangeTurn();
                 }
             }
             else if (character.x < transform.position.x)
@@ -255,6 +255,7 @@ public abstract class Enemy : Sprites
                 else
                 {
                     Debug.Log("Error in char.x < enemy.x");
+                    SetChangeTurn();
                 }
             }
             else if (character.x == transform.position.x)
@@ -286,11 +287,13 @@ public abstract class Enemy : Sprites
                 else
                 {
                     Debug.Log("Error in char.x == enemy.x");
+                    SetChangeTurn();
                 }
             }
             else
             {
                 Debug.Log("Error general PF");
+                SetChangeTurn();
             }
         }
         else
@@ -324,6 +327,7 @@ public abstract class Enemy : Sprites
                 else
                 {
                     Debug.Log("Error in char.x > enemy.x");
+                    SetChangeTurn();
                 }
             }
             else if (character.x < transform.position.x)
@@ -355,6 +359,7 @@ public abstract class Enemy : Sprites
                 else
                 {
                     Debug.Log("Error in char.x < enemy.x");
+                    SetChangeTurn();
                 }
             }
             else if (character.x == transform.position.x)
@@ -386,153 +391,156 @@ public abstract class Enemy : Sprites
                 else
                 {
                     Debug.Log("Error in char.x == enemy.x");
+                    SetChangeTurn();
                 }
             }
             else
             {
                 Debug.Log("Error general PF");
+                SetChangeTurn();
             }
         }
     }
 
     protected void PathFindingBlockView(Vector3 character)
     {
-            if (character.x > transform.position.x && _gridController.GetPlayerHorizontalNoObstacle(_tileNumX, _tileNumY))
+        if (character.x > transform.position.x && _gridController.GetPlayerHorizontalNoObstacle(_tileNumX, _tileNumY))
+        {
+            _patrol = false;
+            if (GetCanMove(_tileNumX + 1, _tileNumY))
             {
-                Debug.Log("1");
-                _patrol = false;
-                if (GetCanMove(_tileNumX + 1, _tileNumY))
-                {
-                    StartCoroutine(PositionCoroutine(_rb, new Vector2(1, 0)));
-                }
-                else if (character.y > transform.position.y && GetCanMove(_tileNumX, _tileNumY + 1) && _gridController.GetPlayerVerticalNoObstacle(_tileNumX, _tileNumY))
-                {
-                    StartCoroutine(PositionCoroutine(_rb, new Vector2(0, 1)));
-                }
-                else if (character.y < transform.position.y && GetCanMove(_tileNumX, _tileNumY - 1) && _gridController.GetPlayerVerticalNoObstacle(_tileNumX, _tileNumY))
-                {
-                    StartCoroutine(PositionCoroutine(_rb, new Vector2(0, -1)));
-                }
-                else if (GetCanMove(_tileNumX - 1, _tileNumY))
-                {
-                    StartCoroutine(PositionCoroutine(_rb, new Vector2(-1, 0)));
-                }
-                else if (GetCanMove(_tileNumX, _tileNumY + 1))
-                {
-                    StartCoroutine(PositionCoroutine(_rb, new Vector2(0, 1)));
-                }
-                else if (GetCanMove(_tileNumX, _tileNumY - 1))
-                {
-                    StartCoroutine(PositionCoroutine(_rb, new Vector2(0, -1)));
-                }
-                else
-                {
-                    Debug.Log("Error in char.x > enemy.x");
-                }
+                StartCoroutine(PositionCoroutine(_rb, new Vector2(1, 0)));
             }
-            else if (character.x < transform.position.x && _gridController.GetPlayerHorizontalNoObstacle(_tileNumX, _tileNumY))
+            else if (character.y > transform.position.y && GetCanMove(_tileNumX, _tileNumY + 1) && _gridController.GetPlayerVerticalNoObstacle(_tileNumX, _tileNumY))
             {
-                Debug.Log("2");
-                _patrol = false;
-                if (GetCanMove(_tileNumX - 1, _tileNumY))
-                {
-                    StartCoroutine(PositionCoroutine(_rb, new Vector2(-1, 0)));
-                }
-                else if (character.y > transform.position.y && GetCanMove(_tileNumX, _tileNumY + 1) && _gridController.GetPlayerVerticalNoObstacle(_tileNumX, _tileNumY))
-                {
-                    StartCoroutine(PositionCoroutine(_rb, new Vector2(0, 1)));
-                }
-                else if (character.y < transform.position.y && GetCanMove(_tileNumX, _tileNumY - 1) && _gridController.GetPlayerVerticalNoObstacle(_tileNumX, _tileNumY))
-                {
-                    StartCoroutine(PositionCoroutine(_rb, new Vector2(0, -1)));
-                }
-                else if (GetCanMove(_tileNumX + 1, _tileNumY))
-                {
-                    StartCoroutine(PositionCoroutine(_rb, new Vector2(1, 0)));
-                }
-                else if (GetCanMove(_tileNumX, _tileNumY + 1))
-                {
-                    StartCoroutine(PositionCoroutine(_rb, new Vector2(0, 1)));
-                }
-                else if (GetCanMove(_tileNumX, _tileNumY - 1))
-                {
-                    StartCoroutine(PositionCoroutine(_rb, new Vector2(0, -1)));
-                }
-                else
-                {
-                    Debug.Log("Error in char.x < enemy.x");
-                }
+                StartCoroutine(PositionCoroutine(_rb, new Vector2(0, 1)));
             }
-            else if (character.y > transform.position.y && _gridController.GetPlayerVerticalNoObstacle(_tileNumX, _tileNumY))
+            else if (character.y < transform.position.y && GetCanMove(_tileNumX, _tileNumY - 1) && _gridController.GetPlayerVerticalNoObstacle(_tileNumX, _tileNumY))
             {
-                Debug.Log("3");
-                _patrol = false;
-                if (character.y > transform.position.y && GetCanMove(_tileNumX, _tileNumY + 1) && _gridController.GetPlayerVerticalNoObstacle(_tileNumX, _tileNumY))
-                {
-                    StartCoroutine(PositionCoroutine(_rb, new Vector2(0, 1)));
-                }
-                else if (character.y < transform.position.y && GetCanMove(_tileNumX, _tileNumY - 1) && _gridController.GetPlayerVerticalNoObstacle(_tileNumX, _tileNumY))
-                {
-                    StartCoroutine(PositionCoroutine(_rb, new Vector2(0, -1)));
-                }
-                else if (GetCanMove(_tileNumX + 1, _tileNumY))
-                {
-                    StartCoroutine(PositionCoroutine(_rb, new Vector2(1, 0)));
-                }
-                else if (GetCanMove(_tileNumX - 1, _tileNumY))
-                {
-                    StartCoroutine(PositionCoroutine(_rb, new Vector2(-1, 0)));
-                }
-                else if (GetCanMove(_tileNumX, _tileNumY + 1))
-                {
-                    StartCoroutine(PositionCoroutine(_rb, new Vector2(0, 1)));
-                }
-                else if (GetCanMove(_tileNumX, _tileNumY - 1))
-                {
-                    StartCoroutine(PositionCoroutine(_rb, new Vector2(0, -1)));
-                }
-                else
-                {
-                    Debug.Log("Error in char.x > enemy.x");
-                }
+                StartCoroutine(PositionCoroutine(_rb, new Vector2(0, -1)));
             }
-            else if (character.y < transform.position.y && _gridController.GetPlayerVerticalNoObstacle(_tileNumX, _tileNumY))
+            else if (GetCanMove(_tileNumX - 1, _tileNumY))
             {
-                Debug.Log("4");
-                _patrol = false;
-                if (character.y > transform.position.y && GetCanMove(_tileNumX, _tileNumY + 1) && _gridController.GetPlayerVerticalNoObstacle(_tileNumX, _tileNumY))
-                {
-                    StartCoroutine(PositionCoroutine(_rb, new Vector2(0, 1)));
-                }
-                else if (character.y < transform.position.y && GetCanMove(_tileNumX, _tileNumY - 1) && _gridController.GetPlayerVerticalNoObstacle(_tileNumX, _tileNumY))
-                {
-                    StartCoroutine(PositionCoroutine(_rb, new Vector2(0, -1)));
-                }
-                else if (GetCanMove(_tileNumX - 1, _tileNumY))
-                {
-                    StartCoroutine(PositionCoroutine(_rb, new Vector2(-1, 0)));
-                }
-                else if (GetCanMove(_tileNumX + 1, _tileNumY))
-                {
-                    StartCoroutine(PositionCoroutine(_rb, new Vector2(1, 0)));
-                }
-                else if (GetCanMove(_tileNumX, _tileNumY + 1))
-                {
-                    StartCoroutine(PositionCoroutine(_rb, new Vector2(0, 1)));
-                }
-                else if (GetCanMove(_tileNumX, _tileNumY - 1))
-                {
-                    StartCoroutine(PositionCoroutine(_rb, new Vector2(0, -1)));
-                }
-                else
-                {
-                    Debug.Log("Error in char.x < enemy.x");
-                }
+                StartCoroutine(PositionCoroutine(_rb, new Vector2(-1, 0)));
+            }
+            else if (GetCanMove(_tileNumX, _tileNumY + 1))
+            {
+                StartCoroutine(PositionCoroutine(_rb, new Vector2(0, 1)));
+            }
+            else if (GetCanMove(_tileNumX, _tileNumY - 1))
+            {
+                StartCoroutine(PositionCoroutine(_rb, new Vector2(0, -1)));
             }
             else
             {
-                Debug.Log("5");
-                _patrol = true;
+                Debug.Log("Error in char.x > enemy.x");
+                SetChangeTurn();
+            }
+        }
+        else if (character.x < transform.position.x && _gridController.GetPlayerHorizontalNoObstacle(_tileNumX, _tileNumY))
+        {
+            _patrol = false;
+            if (GetCanMove(_tileNumX - 1, _tileNumY))
+            {
+                StartCoroutine(PositionCoroutine(_rb, new Vector2(-1, 0)));
+            }
+            else if (character.y > transform.position.y && GetCanMove(_tileNumX, _tileNumY + 1) && _gridController.GetPlayerVerticalNoObstacle(_tileNumX, _tileNumY))
+            {
+                StartCoroutine(PositionCoroutine(_rb, new Vector2(0, 1)));
+            }
+            else if (character.y < transform.position.y && GetCanMove(_tileNumX, _tileNumY - 1) && _gridController.GetPlayerVerticalNoObstacle(_tileNumX, _tileNumY))
+            {
+                StartCoroutine(PositionCoroutine(_rb, new Vector2(0, -1)));
+            }
+            else if (GetCanMove(_tileNumX + 1, _tileNumY))
+            {
+                StartCoroutine(PositionCoroutine(_rb, new Vector2(1, 0)));
+            }
+            else if (GetCanMove(_tileNumX, _tileNumY + 1))
+            {
+                StartCoroutine(PositionCoroutine(_rb, new Vector2(0, 1)));
+            }
+            else if (GetCanMove(_tileNumX, _tileNumY - 1))
+            {
+                StartCoroutine(PositionCoroutine(_rb, new Vector2(0, -1)));
+            }
+            else
+            {
+                Debug.Log("Error in char.x < enemy.x");
+                SetChangeTurn();
+            }
+        }
+        else if (character.y > transform.position.y && _gridController.GetPlayerVerticalNoObstacle(_tileNumX, _tileNumY))
+        {
+            _patrol = false;
+            if (character.y > transform.position.y && GetCanMove(_tileNumX, _tileNumY + 1) && _gridController.GetPlayerVerticalNoObstacle(_tileNumX, _tileNumY))
+            {
+                StartCoroutine(PositionCoroutine(_rb, new Vector2(0, 1)));
+            }
+            else if (character.y < transform.position.y && GetCanMove(_tileNumX, _tileNumY - 1) && _gridController.GetPlayerVerticalNoObstacle(_tileNumX, _tileNumY))
+            {
+                StartCoroutine(PositionCoroutine(_rb, new Vector2(0, -1)));
+            }
+            else if (GetCanMove(_tileNumX + 1, _tileNumY))
+            {
+                StartCoroutine(PositionCoroutine(_rb, new Vector2(1, 0)));
+            }
+            else if (GetCanMove(_tileNumX - 1, _tileNumY))
+            {
+                StartCoroutine(PositionCoroutine(_rb, new Vector2(-1, 0)));
+            }
+            else if (GetCanMove(_tileNumX, _tileNumY + 1))
+            {
+                StartCoroutine(PositionCoroutine(_rb, new Vector2(0, 1)));
+            }
+            else if (GetCanMove(_tileNumX, _tileNumY - 1))
+            {
+                StartCoroutine(PositionCoroutine(_rb, new Vector2(0, -1)));
+            }
+            else
+            {
+                Debug.Log("Error in char.x > enemy.x");
+                SetChangeTurn();
+            }
+        }
+        else if (character.y < transform.position.y && _gridController.GetPlayerVerticalNoObstacle(_tileNumX, _tileNumY))
+        {
+            _patrol = false;
+            if (character.y > transform.position.y && GetCanMove(_tileNumX, _tileNumY + 1) && _gridController.GetPlayerVerticalNoObstacle(_tileNumX, _tileNumY))
+            {
+                StartCoroutine(PositionCoroutine(_rb, new Vector2(0, 1)));
+            }
+            else if (character.y < transform.position.y && GetCanMove(_tileNumX, _tileNumY - 1) && _gridController.GetPlayerVerticalNoObstacle(_tileNumX, _tileNumY))
+            {
+                StartCoroutine(PositionCoroutine(_rb, new Vector2(0, -1)));
+            }
+            else if (GetCanMove(_tileNumX - 1, _tileNumY))
+            {
+                StartCoroutine(PositionCoroutine(_rb, new Vector2(-1, 0)));
+            }
+            else if (GetCanMove(_tileNumX + 1, _tileNumY))
+            {
+                StartCoroutine(PositionCoroutine(_rb, new Vector2(1, 0)));
+            }
+            else if (GetCanMove(_tileNumX, _tileNumY + 1))
+            {
+                StartCoroutine(PositionCoroutine(_rb, new Vector2(0, 1)));
+            }
+            else if (GetCanMove(_tileNumX, _tileNumY - 1))
+            {
+                StartCoroutine(PositionCoroutine(_rb, new Vector2(0, -1)));
+            }
+            else
+            {
+                Debug.Log("Error in char.x < enemy.x");
+                SetChangeTurn();
+            }
+        }
+        else
+        {
+            _patrol = true;
+            if (!_patrolDrch)
+            {
                 if (_patrolStage == 0 && GetCanMove(_tileNumX - 1, _tileNumY))
                 {
                     StartCoroutine(PositionCoroutine(_rb, new Vector2(-1, 0)));
@@ -555,7 +563,39 @@ public abstract class Enemy : Sprites
                 }
                 else if (_patrolStage == 0 && GetCanMove(_tileNumX, _tileNumY - 1))
                 {
+                    StartCoroutine(PositionCoroutine(_rb, new Vector2(0, -1)));
+                    _patrolStage = 3;
+                    _patrolDrch = true;
+                }
+                else if (_patrolStage == 3 && GetCanMove(_tileNumX - 1, _tileNumY))
+                {
+                    StartCoroutine(PositionCoroutine(_rb, new Vector2(-1, 0)));
+                    _patrolStage = 2;
+                    _patrolDrch = true;
+                }
+                else if (_patrolStage == 2 && GetCanMove(_tileNumX, _tileNumY + 1))
+                {
                     StartCoroutine(PositionCoroutine(_rb, new Vector2(0, 1)));
+                    _patrolStage = 1;
+                    _patrolDrch = true;
+                }
+                else if (_patrolStage == 1 && GetCanMove(_tileNumX + 1, _tileNumY))
+                {
+                    StartCoroutine(PositionCoroutine(_rb, new Vector2(1, 0)));
+                    _patrolStage = 0;
+                    _patrolDrch = true;
+                }
+                else
+                {
+                    Debug.Log("Error patrol");
+                    SetChangeTurn();
+                }
+            }
+            else
+            { 
+                if (_patrolStage == 0 && GetCanMove(_tileNumX, _tileNumY - 1))
+                {
+                    StartCoroutine(PositionCoroutine(_rb, new Vector2(0, -1)));
                     _patrolStage = 3;
                 }
                 else if (_patrolStage == 3 && GetCanMove(_tileNumX - 1, _tileNumY))
@@ -573,15 +613,41 @@ public abstract class Enemy : Sprites
                     StartCoroutine(PositionCoroutine(_rb, new Vector2(1, 0)));
                     _patrolStage = 0;
                 }
+                else if (_patrolStage == 0 && GetCanMove(_tileNumX - 1, _tileNumY))
+                {
+                    StartCoroutine(PositionCoroutine(_rb, new Vector2(-1, 0)));
+                    _patrolStage = 1;
+                    _patrolDrch = false;
+                }
+                else if (_patrolStage == 1 && GetCanMove(_tileNumX, _tileNumY - 1))
+                {
+                    StartCoroutine(PositionCoroutine(_rb, new Vector2(0, -1)));
+                    _patrolStage = 2;
+                    _patrolDrch = false;
+                }
+                else if (_patrolStage == 2 && GetCanMove(_tileNumX + 1, _tileNumY))
+                {
+                    StartCoroutine(PositionCoroutine(_rb, new Vector2(1, 0)));
+                    _patrolStage = 3;
+                    _patrolDrch = false;
+                }
+                else if (_patrolStage == 3 && GetCanMove(_tileNumX, _tileNumY + 1))
+                {
+                    StartCoroutine(PositionCoroutine(_rb, new Vector2(0, 1)));
+                    _patrolStage = 0;
+                    _patrolDrch = false;
+                }
                 else
                 {
                     Debug.Log("Error patrol");
+                    SetChangeTurn();
                 }
+            }
 
-                if (!_patrol)
-                {
-                    _patrolStage = 0;
-                }
-            }     
+            if (!_patrol)
+            {
+                _patrolStage = 0;
+            }
+        }
     }
 }
