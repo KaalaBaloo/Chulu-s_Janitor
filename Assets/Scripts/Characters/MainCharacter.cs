@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.TextCore.Text;
 
 public class MainCharacter : Sprites 
 { 
@@ -50,6 +49,12 @@ public class MainCharacter : Sprites
         }
         Control();
     }
+
+    public int GetSuciedad()
+    {
+        return _suciedad;
+    }
+
 
     //Calcula si es posible moverse a la celda elegida y, de serlo, mueve al personaje y cambia los datos de la grid y el turno
     private void Movement()

@@ -2,8 +2,6 @@ using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
-using UnityEditor.ShaderKeywordFilter;
-
 public abstract class Enemy : Sprites
 {
     protected Rigidbody2D _rb;

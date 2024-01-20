@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -24,7 +23,7 @@ public class Ending : MonoBehaviour
     {
         while (t < 25)
         {
-            _credits.transform.position += new Vector3(0, _creditsVel, 0);
+            _credits.transform.position += new Vector3(0, _creditsVel, 0) * Time.deltaTime;
             t += Time.deltaTime;
             yield return null;
             if(t > 20 && !_thanksActive)
