@@ -871,11 +871,11 @@ MonoBehaviour:
   _suciedad: 0
   _sprite: {fileID: 3882904568438216602}
   _sangre: {fileID: 2791594519369781208, guid: 013749883ed1f4543b0f69dd7296e778, type: 3}
-  _pentUpRight: {fileID: 4129117043014420997, guid: 06fc78c9914e13c4caa0876136a904e9, type: 3}
-  _pentUpLeft: {fileID: 6695162686335598672, guid: 621b3f57bc654f6498758053bb4afdf2, type: 3}
-  _pentDownRight: {fileID: 5432220246135516436, guid: 851644d55b625bd46ac470aa2824b0c2, type: 3}
-  _pentDownLeft: {fileID: 4666509906857839395, guid: 1e2af8d6b0112a742bf5d685e120b7e1, type: 3}
-  _pentDown: {fileID: 7054664483217181434, guid: 8a04de8852481ea4ca75ca7acd184866, type: 3}
+  _pentUpRight: {fileID: 8948953680038044847, guid: 9167f7298df0e19468eeccbc478141fa, type: 3}
+  _pentUpLeft: {fileID: 5945378738415689031, guid: c10c4b33c715eb04e82f7e645123b96a, type: 3}
+  _pentDownRight: {fileID: 1443272772664086464, guid: 45e590e414c491149b17743fd3fbeb8a, type: 3}
+  _pentDownLeft: {fileID: 3717209755994941445, guid: 97d2bad9dfc46484a8578be6dfdcd542, type: 3}
+  _pentDown: {fileID: 6359475231192969614, guid: d2c8a3959a76a5049a3df577e40d7c45, type: 3}
   _VFXClean: {fileID: 100000, guid: f2dba9e16cd347f44a395b8204544ee5, type: 3}
   _VFXDirty: {fileID: 100000, guid: bc98890f6028f444eaa7789bde5e2eeb, type: 3}
   _VFXNone: {fileID: 100000, guid: 7d6835d9db898fa4bbfda5d62c496786, type: 3}
