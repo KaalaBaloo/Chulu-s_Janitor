@@ -35,10 +35,11 @@ public class MirrorOfC : Enemy
     {
         if (_gridController.GetTurn() == 1 && _character != null && _gridController.GetEnemyMoved() == _enemyNumber)
         {
+            _gridController.ChangeTurn(2);
             if (!_cargando)
             {
-                PathFinding(_characterLastTurn);
                 _cargando = true;
+                PathFinding(_characterLastTurn);
             }
             else if (_cargando)
             {
