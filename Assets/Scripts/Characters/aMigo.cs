@@ -15,14 +15,13 @@ public class aMigo : Enemy
 
     protected override void MovePathFinding()
     {
-        if (_gridController.GetTurn() == 0 && _moving)
+        if (_gridController.GetTurn() == 0)
         {
-            _moving = false;
             _characterLastTurn = _character.transform.position;
         }
-        if (_gridController.GetTurn() == 1 && _character != null && !_moving && _gridController.GetEnemyMoved() == _enemyNumber)
+        if (_gridController.GetTurn() == 1 && _character != null && _gridController.GetEnemyMoved() == _enemyNumber)
         {
-            _moving = true;
+            _gridController.ChangeTurn(2);
             if (((Mathf.Abs(Mathf.RoundToInt(transform.position.x - _character.transform.position.x)) == 1
                         && Mathf.RoundToInt(transform.position.y) == Mathf.RoundToInt(_character.transform.position.y))
             ||
@@ -33,7 +32,6 @@ public class aMigo : Enemy
             }
             else
             {
-                _moving = true;
                 if (_blockedView)
                 {
                     Debug.Log("PFBV");

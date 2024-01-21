@@ -33,15 +33,10 @@ public class MirrorOfC : Enemy
 
     override protected void MovePathFinding()
     {
-        if (_gridController.GetTurn() == 0 && _moving)
-        {
-            _moving = false;
-        }
-        if (_gridController.GetTurn() == 1 && _character != null && !_moving && _gridController.GetEnemyMoved() == _enemyNumber)
+        if (_gridController.GetTurn() == 1 && _character != null && _gridController.GetEnemyMoved() == _enemyNumber)
         {
             if (!_cargando)
             {
-                _moving = true;
                 PathFinding(_characterLastTurn);
                 _cargando = true;
             }

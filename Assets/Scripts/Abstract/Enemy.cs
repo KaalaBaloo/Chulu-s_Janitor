@@ -9,7 +9,6 @@ public abstract class Enemy : Sprites
     [SerializeField] protected bool _blockedView = true;
     [SerializeField] protected int _damage = 1;
     [SerializeField] protected int _enemyNumber = 0;
-    protected bool _moving = false;
     protected bool _patrol = false;
     protected bool _patrolDrch = false;
     int _patrolStage = 0;
@@ -33,13 +32,9 @@ public abstract class Enemy : Sprites
 
     virtual protected void MovePathFinding()
     {
-        if (_gridController.GetTurn() == 0 && _moving)
+        if (_gridController.GetTurn() == 1 && _character != null && _gridController.GetEnemyMoved() == _enemyNumber)
         {
-            _moving = false;
-        }
-        if (_gridController.GetTurn() == 1 && _character != null && !_moving && _gridController.GetEnemyMoved() == _enemyNumber)
-        {
-            _moving = true;
+            _gridController.ChangeTurn(2);
             if (((Mathf.Abs(Mathf.RoundToInt(transform.position.x - _character.transform.position.x)) == 1
                         && Mathf.RoundToInt(transform.position.y) == Mathf.RoundToInt(_character.transform.position.y))
             ||
@@ -50,7 +45,6 @@ public abstract class Enemy : Sprites
             }
             else 
             {
-                _moving = true;
                 if (_blockedView)
                 {
                     PathFindingBlockView(_character.transform.position);

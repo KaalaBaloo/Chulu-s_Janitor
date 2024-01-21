@@ -445,6 +445,7 @@ public class GridController : MonoBehaviour
     public void EnemyMoved()
     {
         _enemiesCount++;
+        ChangeTurn(1);
     }
 
     public int GetEnemyMoved()

@@ -13,7 +13,10 @@ public class Spikes : Sprites
 
     protected override void Awake()
     {
-        base.Awake();
+        _gameController = GameObject.FindWithTag("GameController");
+        _gridController = _gameController.GetComponent<GridController>();
+        _tileNumX = Mathf.RoundToInt(transform.position.x);
+        _tileNumY = Mathf.RoundToInt(transform.position.y);
         _character = GameObject.FindWithTag("MainCharacter").GetComponent<MainCharacter>();
     }
 
@@ -34,18 +37,18 @@ public class Spikes : Sprites
     {
         if (_gridController.GetTurn() == 1 && _character != null && _playerTurn == 1)
         {
-            _playerTurn = 2;
             if (!_up)
             {
                 _up = true;
                 _animator.SetTrigger("Up");
+                _playerTurn = 0;
             }
             else
             {
                 _up = false;
                 _animator.SetTrigger("Down");
+                _playerTurn = 0;
             }
-            _playerTurn = 0;
         }
         else if (_gridController.GetTurn() == 0 && _playerTurn == 0)
         {

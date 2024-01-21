@@ -64,13 +64,9 @@ public class Boss_1 : Enemy
 
     override protected void MovePathFinding()
     {
-        if (_gridController.GetTurn() == 0 && _moving)
+        if (_gridController.GetTurn() == 1 && _character != null && _gridController.GetEnemyMoved() == _enemyNumber)
         {
-            _moving = false;
-        }
-        if (_gridController.GetTurn() == 1 && _character != null && !_moving && _gridController.GetEnemyMoved() == _enemyNumber)
-        {
-            _moving = true;
+            _gridController.ChangeTurn(2);
             if (((Mathf.Abs(Mathf.RoundToInt(transform.position.x - _character.transform.position.x)) == 1
                         && Mathf.RoundToInt(transform.position.y) == Mathf.RoundToInt(_character.transform.position.y))
             ||
@@ -81,7 +77,6 @@ public class Boss_1 : Enemy
             }
             else
             {
-                _moving = true;
                 _random = Random.Range(1, 5);
                 if (_random == 1)
                 {

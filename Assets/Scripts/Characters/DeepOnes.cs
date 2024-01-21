@@ -46,14 +46,9 @@ public class DeepOnes : Enemy
 
     void SelectPosition()
     {
-        if (_gridController.GetTurn() == 0 && _moving)
+        if (_gridController.GetTurn() == 1 && _character != null && _gridController.GetEnemyMoved() == _enemyNumber)
         {
-            _moving = false;
-        }
-        if (_gridController.GetTurn() == 1 && _character != null && !_moving && _gridController.GetEnemyMoved() == _enemyNumber)
-        {
-            _moving = true;
-
+            _gridController.ChangeTurn(2);
             if (Mathf.Abs(_character.transform.position.x - transform.position.x) >= Mathf.Abs(_character.transform.position.y - transform.position.y))
             {
                 if (_character.transform.position.x > transform.position.x && GetCanMove(_tileNumX + 2, _tileNumY))
@@ -194,15 +189,11 @@ public class DeepOnes : Enemy
 
     void Jump()
     {
-        if (_gridController.GetTurn() == 0 && _moving)
+        if (_gridController.GetTurn() == 1 && _character != null && _gridController.GetEnemyMoved() == _enemyNumber)
         {
-            _moving = false;
-        }
-        if (_gridController.GetTurn() == 1 && _character != null && !_moving && _gridController.GetEnemyMoved() == _enemyNumber)
-        {
+            _gridController.ChangeTurn(2);
             if (_gridController.GetGridTile(Mathf.RoundToInt(_marca.transform.position.x), Mathf.RoundToInt(_marca.transform.position.y)) != 3)
             {
-                _moving = true;
                 _gridController.SetGrid(0, _tileNumX, _tileNumY);
                 _audio.Play();
                 _animator.SetTrigger("jump");
