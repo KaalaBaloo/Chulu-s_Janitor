@@ -207,12 +207,11 @@ MonoBehaviour:
   _spriteNumber: 3
   _tileNumX: 0
   _tileNumY: 0
-  _speed: 5.5
+  _speed: 7.5
   _blockedView: 1
   _damage: 1
   _enemyNumber: 0
   _VFXSeen: {fileID: 100000, guid: 3156817f64ec68948ad6bb26569b9ef5, type: 3}
-  _VFXLost: {fileID: 3880123817815510630, guid: 3dce898cc6529af4989237f74222045a, type: 3}
 --- !u!1 &8893186985789397268
 GameObject:
   m_ObjectHideFlags: 0

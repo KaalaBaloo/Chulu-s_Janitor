@@ -183,39 +183,45 @@ public abstract class Enemy : Sprites
 
     protected void PathFinding(Vector3 character)
     {
-        Debug.Log(Mathf.Abs(character.x - transform.position.x));
-        Debug.Log(Mathf.Abs(character.y - transform.position.y));
         Debug.Log("____");
         if (Mathf.Abs(character.x - transform.position.x) >= Mathf.Abs(character.y - transform.position.y))
         {
             if (character.x > transform.position.x)
             {
+                Debug.Log("1");
                 if (GetCanMove(_tileNumX + 1, _tileNumY))
                 {
+                    Debug.Log("a");
                     StartCoroutine(PositionCoroutine(_rb, new Vector2(1, 0)));
                 }
                 else if (character.y > transform.position.y && GetCanMove(_tileNumX, _tileNumY + 1))
                 {
+                    Debug.Log("b");
                     StartCoroutine(PositionCoroutine(_rb, new Vector2(0, 1)));
                 }
                 else if (character.y < transform.position.y && GetCanMove(_tileNumX, _tileNumY - 1))
                 {
+                    Debug.Log("c");
                     StartCoroutine(PositionCoroutine(_rb, new Vector2(0, -1)));
                 }
                 else if (GetCanMove(_tileNumX, _tileNumY + 1))
                 {
+                    Debug.Log("d");
                     StartCoroutine(PositionCoroutine(_rb, new Vector2(0, 1)));
                 }
                 else if (GetCanMove(_tileNumX - 1, _tileNumY))
                 {
+                    Debug.Log("e");
                     StartCoroutine(PositionCoroutine(_rb, new Vector2(-1, 0)));
                 }
                 else if (GetCanMove(_tileNumX, _tileNumY + 1))
                 {
+                    Debug.Log("f");
                     StartCoroutine(PositionCoroutine(_rb, new Vector2(0, 1)));
                 }
                 else if (GetCanMove(_tileNumX, _tileNumY - 1))
                 {
+                    Debug.Log("g");
                     StartCoroutine(PositionCoroutine(_rb, new Vector2(0, -1)));
                 }
                 else
@@ -226,6 +232,7 @@ public abstract class Enemy : Sprites
             }
             else if (character.x < transform.position.x)
             {
+                Debug.Log("2");
                 if (GetCanMove(_tileNumX - 1, _tileNumY))
                 {
                     StartCoroutine(PositionCoroutine(_rb, new Vector2(-1, 0)));
@@ -258,6 +265,7 @@ public abstract class Enemy : Sprites
             }
             else if (character.x == transform.position.x)
             {
+                Debug.Log("3");
                 if (character.y > transform.position.y && GetCanMove(_tileNumX, _tileNumY + 1))
                 {
                     StartCoroutine(PositionCoroutine(_rb, new Vector2(0, 1)));
@@ -298,6 +306,7 @@ public abstract class Enemy : Sprites
         {
             if (character.x > transform.position.x)
             {
+                Debug.Log("4");
                 if (character.y > transform.position.y && GetCanMove(_tileNumX, _tileNumY + 1))
                 {
                     StartCoroutine(PositionCoroutine(_rb, new Vector2(0, 1)));
@@ -330,6 +339,7 @@ public abstract class Enemy : Sprites
             }
             else if (character.x < transform.position.x)
             {
+                Debug.Log("5");
                 if (character.y > transform.position.y && GetCanMove(_tileNumX, _tileNumY + 1))
                 {
                     StartCoroutine(PositionCoroutine(_rb, new Vector2(0, 1)));
@@ -362,6 +372,7 @@ public abstract class Enemy : Sprites
             }
             else if (character.x == transform.position.x)
             {
+                Debug.Log("6");
                 if (character.y > transform.position.y && GetCanMove(_tileNumX, _tileNumY + 1))
                 {
                     StartCoroutine(PositionCoroutine(_rb, new Vector2(0, 1)));

@@ -43,10 +43,7 @@ public class MainCharacter : Sprites
 
     void Update()
     {
-        if (_gridController.GetTurn() == 0)
-        {
-            Movement();
-        }
+        Movement();
         Control();
     }
 
@@ -59,27 +56,27 @@ public class MainCharacter : Sprites
     //Calcula si es posible moverse a la celda elegida y, de serlo, mueve al personaje y cambia los datos de la grid y el turno
     private void Movement()
     {
-        if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))&& _gridController.CanMove(_tileNumX, _tileNumY + 1))
+        if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))&& _gridController.CanMove(_tileNumX, _tileNumY + 1) && _gridController.GetTurn() == 0)
         {
             _gridController.ChangeTurn(2);
             StartCoroutine(PositionCoroutine(_rb, new Vector2(0, 1))); //Up
         }
-        else if ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) && _gridController.CanMove(_tileNumX - 1, _tileNumY))
+        if ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) && _gridController.CanMove(_tileNumX - 1, _tileNumY) && _gridController.GetTurn() == 0)
         {
             _gridController.ChangeTurn(2);
             StartCoroutine(PositionCoroutine(_rb, new Vector2(-1 , 0))); //Left
         }
-        else if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && _gridController.CanMove(_tileNumX, _tileNumY - 1))  
+        if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && _gridController.CanMove(_tileNumX, _tileNumY - 1) && _gridController.GetTurn() == 0)  
         {
             _gridController.ChangeTurn(2);
             StartCoroutine(PositionCoroutine(_rb, new Vector2(0, -1))); //Down
         }
-        else if ((Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) && _gridController.CanMove(_tileNumX + 1, _tileNumY))
+        if ((Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) && _gridController.CanMove(_tileNumX + 1, _tileNumY) && _gridController.GetTurn() == 0)
         {
             _gridController.ChangeTurn(2);
             StartCoroutine(PositionCoroutine(_rb, new Vector2(1, 0))); //Right
         }
-        else if (Input.GetKeyDown(KeyCode.Space) && _gridController.GetTurn() == 0)
+        if (Input.GetKeyDown(KeyCode.Space) && _gridController.GetTurn() == 0)
         {
             _gridController.ChangeTurn(2);
             StartCoroutine(CleanCoroutine());
