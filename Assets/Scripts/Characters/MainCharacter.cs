@@ -246,7 +246,6 @@ public class MainCharacter : Sprites
             _audio.clip = _limpiar;
             _audio.Play();
             Instantiate(_VFXClean, transform.position, Quaternion.identity);
-            _gridController.DirtCleaned();
             Instantiate(_sangre, transform.position, Quaternion.identity);
             _destroyDirt = true;
             _suciedad++;

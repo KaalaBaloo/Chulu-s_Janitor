@@ -870,7 +870,7 @@ MonoBehaviour:
   _lives: 1
   _suciedad: 0
   _sprite: {fileID: 3882904568438216602}
-  _sangre: {fileID: 2791594519369781208, guid: 013749883ed1f4543b0f69dd7296e778, type: 3}
+  _sangre: {fileID: 3575905093612906341, guid: b4d823fc3b2fb454f87adf4f3dae1432, type: 3}
   _pentUpRight: {fileID: 8948953680038044847, guid: 9167f7298df0e19468eeccbc478141fa, type: 3}
   _pentUpLeft: {fileID: 5945378738415689031, guid: c10c4b33c715eb04e82f7e645123b96a, type: 3}
   _pentDownRight: {fileID: 1443272772664086464, guid: 45e590e414c491149b17743fd3fbeb8a, type: 3}
