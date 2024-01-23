@@ -377,6 +377,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blood (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2791594519369781208, guid: 013749883ed1f4543b0f69dd7296e778, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2791594519369781209, guid: 013749883ed1f4543b0f69dd7296e778, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 013749883ed1f4543b0f69dd7296e778, type: 3}
 --- !u!4 &535909118 stripped
@@ -636,6 +644,14 @@ PrefabInstance:
     - target: {fileID: 2791594519369781208, guid: 013749883ed1f4543b0f69dd7296e778, type: 3}
       propertyPath: m_Name
       value: Blood (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2791594519369781208, guid: 013749883ed1f4543b0f69dd7296e778, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2791594519369781209, guid: 013749883ed1f4543b0f69dd7296e778, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 013749883ed1f4543b0f69dd7296e778, type: 3}
@@ -1289,7 +1305,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7768489068499340807, guid: 4dff7c300fbd095439c38ac8efe542b9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7768489068499340807, guid: 4dff7c300fbd095439c38ac8efe542b9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1346,11 +1362,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2791594519369781206, guid: 013749883ed1f4543b0f69dd7296e778, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2791594519369781206, guid: 013749883ed1f4543b0f69dd7296e778, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2791594519369781206, guid: 013749883ed1f4543b0f69dd7296e778, type: 3}
       propertyPath: m_LocalPosition.z

@@ -1325,11 +1325,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7591107785631066085, guid: d6380ceb6647360448e51aeb0659317a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.04201317
+      value: 0.018
       objectReference: {fileID: 0}
     - target: {fileID: 7591107785631066085, guid: d6380ceb6647360448e51aeb0659317a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.01927656
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7591107785631066085, guid: d6380ceb6647360448e51aeb0659317a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2898,6 +2898,10 @@ PrefabInstance:
     - target: {fileID: 7203008869510162532, guid: afd4154de3e29f547a44287330aa0e5e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7203008869510162535, guid: afd4154de3e29f547a44287330aa0e5e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: afd4154de3e29f547a44287330aa0e5e, type: 3}
@@ -4474,6 +4478,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blood
       objectReference: {fileID: 0}
+    - target: {fileID: 2791594519369781209, guid: 013749883ed1f4543b0f69dd7296e778, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 013749883ed1f4543b0f69dd7296e778, type: 3}
 --- !u!1001 &3882904567476842803
@@ -4558,7 +4566,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4217923813977306372, guid: 82bd06f3004175e44b444ee5abed188b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.04201317
+      value: 0.018
       objectReference: {fileID: 0}
     - target: {fileID: 4217923813977306372, guid: 82bd06f3004175e44b444ee5abed188b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4594,7 +4602,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4217923813977306373, guid: 82bd06f3004175e44b444ee5abed188b, type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82bd06f3004175e44b444ee5abed188b, type: 3}

@@ -80,7 +80,7 @@ public class GridController : MonoBehaviour
             LoadingScreen(1);
             _textBloodLeft.text = _dirtToClean.ToString();
         }
-        if (_dirtToClean <= 0 && SceneManager.GetActiveScene().name != "20" && SceneManager.GetActiveScene().name != "20_Battle" && !GAMEOVER && GetTurn() == 1)
+        if (_dirtToClean <= 0 && SceneManager.GetActiveScene().name != "20" && SceneManager.GetActiveScene().name != "20_Battle" && !GAMEOVER)
         {
             GAMEOVER = true;
             Debug.Log("Win");
@@ -88,7 +88,7 @@ public class GridController : MonoBehaviour
             _audio.Play();
             StartCoroutine(ChangeScene("SelectorNiveles"));
         }
-        else if (_dirtToClean <= 0 && SceneManager.GetActiveScene().name == "20" && !GAMEOVER && GetTurn() == 1)
+        else if (_dirtToClean <= 0 && SceneManager.GetActiveScene().name == "20" && !GAMEOVER)
         {
             GAMEOVER = true;
             Debug.Log("Win");
@@ -96,7 +96,7 @@ public class GridController : MonoBehaviour
             _audio.Play();
             StartCoroutine(RitualAnimation());
         }
-        else if (_dirtToClean <= 0 && SceneManager.GetActiveScene().name == "20_Battle" && !GAMEOVER && GetTurn() == 1)
+        else if (_dirtToClean <= 0 && SceneManager.GetActiveScene().name == "20_Battle" && !GAMEOVER)
         {
             GAMEOVER = true;
             Debug.Log("Win");
