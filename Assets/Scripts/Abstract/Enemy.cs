@@ -11,7 +11,8 @@ public abstract class Enemy : Sprites
     [SerializeField] protected int _enemyNumber = 0;
     protected bool _patrol = false;
     protected bool _patrolDrch = false;
-    int _patrolStage = 0;
+    protected int _patrolBlocked = 0;
+    [SerializeField] int _patrolStage = 0;
     protected Vector3 _characterLastTurn;
 
     protected override void Awake()
@@ -70,11 +71,7 @@ public abstract class Enemy : Sprites
 
     public bool GetCanMove(int x, int y)
     {
-        if (!_gridController.CanMove(x, y))
-        {
-            return false;
-        }
-        else if (!_gridController.EnemyCanMove(x, y))
+        if (!_gridController.EnemyCanMove(x, y))
         {
             return false;
         }
@@ -231,7 +228,7 @@ public abstract class Enemy : Sprites
                 {
                     StartCoroutine(PositionCoroutine(_rb, new Vector2(-1, 0)));
                 }
-                else if (character.y > transform.position.y && _gridController.CanMove(_tileNumX, _tileNumY + 1))
+                else if (character.y > transform.position.y && GetCanMove(_tileNumX, _tileNumY + 1))
                 {
                     StartCoroutine(PositionCoroutine(_rb, new Vector2(0, 1)));
                 }
@@ -539,7 +536,7 @@ public abstract class Enemy : Sprites
                 SetChangeTurn();
             }
         }
-        else
+        else //Modo Patrulla
         {
             _patrol = true;
             if (!_patrolDrch)
@@ -564,56 +561,82 @@ public abstract class Enemy : Sprites
                     StartCoroutine(PositionCoroutine(_rb, new Vector2(0, 1)));
                     _patrolStage = 0;
                 }
-                else if (_patrolStage == 0 && GetCanMove(_tileNumX, _tileNumY - 1))
+                else if (_patrolStage == 0 && GetCanMove(_tileNumX + 1, _tileNumY))
                 {
-                    StartCoroutine(PositionCoroutine(_rb, new Vector2(0, -1)));
+                    StartCoroutine(PositionCoroutine(_rb, new Vector2(1, 0)));
                     _patrolStage = 3;
                     _patrolDrch = true;
                 }
-                else if (_patrolStage == 3 && GetCanMove(_tileNumX - 1, _tileNumY))
+                else if (_patrolStage == 3 && GetCanMove(_tileNumX, _tileNumY - 1))
                 {
-                    StartCoroutine(PositionCoroutine(_rb, new Vector2(-1, 0)));
+                    StartCoroutine(PositionCoroutine(_rb, new Vector2(0, -1)));
                     _patrolStage = 2;
                     _patrolDrch = true;
                 }
-                else if (_patrolStage == 2 && GetCanMove(_tileNumX, _tileNumY + 1))
+                else if (_patrolStage == 2 && GetCanMove(_tileNumX - 1, _tileNumY))
                 {
-                    StartCoroutine(PositionCoroutine(_rb, new Vector2(0, 1)));
+                    StartCoroutine(PositionCoroutine(_rb, new Vector2(-1, 0)));
                     _patrolStage = 1;
                     _patrolDrch = true;
                 }
-                else if (_patrolStage == 1 && GetCanMove(_tileNumX + 1, _tileNumY))
+                else if (_patrolStage == 1 && GetCanMove(_tileNumX, _tileNumY + 1))
+                {
+                    StartCoroutine(PositionCoroutine(_rb, new Vector2(0, 1)));
+                    _patrolStage = 0;
+                    _patrolDrch = true;
+                }
+                else if (GetCanMove(_tileNumX - 1, _tileNumY) && _patrolBlocked == 0)
+                {
+                    StartCoroutine(PositionCoroutine(_rb, new Vector2(-1, 0)));
+                    _patrolStage = 0;
+                    _patrolBlocked = 1;
+                }
+                else if (GetCanMove(_tileNumX + 1, _tileNumY) && _patrolBlocked == 1)
                 {
                     StartCoroutine(PositionCoroutine(_rb, new Vector2(1, 0)));
                     _patrolStage = 0;
-                    _patrolDrch = true;
+                    _patrolBlocked = 0;
+                }
+                else if (GetCanMove(_tileNumX, _tileNumY - 1) && _patrolBlocked == 0)
+                {
+                    StartCoroutine(PositionCoroutine(_rb, new Vector2(0, -1)));
+                    _patrolStage = 0;
+                    _patrolBlocked = 1;
+                }
+                else if (GetCanMove(_tileNumX, _tileNumY + 1) && _patrolBlocked == 1)
+                {
+                    StartCoroutine(PositionCoroutine(_rb, new Vector2(0, 1)));
+                    _patrolStage = 0;
+                    _patrolBlocked = 0;
                 }
                 else
                 {
                     Debug.Log("Error patrol");
+                    _patrolStage = 0;
+                    _patrolBlocked = 0;
                     SetChangeTurn();
                 }
             }
             else
             { 
-                if (_patrolStage == 0 && GetCanMove(_tileNumX, _tileNumY - 1))
-                {
-                    StartCoroutine(PositionCoroutine(_rb, new Vector2(0, -1)));
-                    _patrolStage = 3;
-                }
-                else if (_patrolStage == 3 && GetCanMove(_tileNumX - 1, _tileNumY))
-                {
-                    StartCoroutine(PositionCoroutine(_rb, new Vector2(-1, 0)));
-                    _patrolStage = 2;
-                }
-                else if (_patrolStage == 2 && GetCanMove(_tileNumX, _tileNumY + 1))
-                {
-                    StartCoroutine(PositionCoroutine(_rb, new Vector2(0, 1)));
-                    _patrolStage = 1;
-                }
-                else if (_patrolStage == 1 && GetCanMove(_tileNumX + 1, _tileNumY))
+                if (_patrolStage == 0 && GetCanMove(_tileNumX + 1, _tileNumY))
                 {
                     StartCoroutine(PositionCoroutine(_rb, new Vector2(1, 0)));
+                    _patrolStage = 3;
+                }
+                else if (_patrolStage == 3 && GetCanMove(_tileNumX, _tileNumY - 1))
+                {
+                    StartCoroutine(PositionCoroutine(_rb, new Vector2(0, -1)));
+                    _patrolStage = 2;
+                }
+                else if (_patrolStage == 2 && GetCanMove(_tileNumX - 1, _tileNumY))
+                {
+                    StartCoroutine(PositionCoroutine(_rb, new Vector2(-1, 0)));
+                    _patrolStage = 1;
+                }
+                else if (_patrolStage == 1 && GetCanMove(_tileNumX, _tileNumY + 1))
+                {
+                    StartCoroutine(PositionCoroutine(_rb, new Vector2(0, 1)));
                     _patrolStage = 0;
                 }
                 else if (_patrolStage == 0 && GetCanMove(_tileNumX - 1, _tileNumY))
@@ -640,16 +663,41 @@ public abstract class Enemy : Sprites
                     _patrolStage = 0;
                     _patrolDrch = false;
                 }
+                else if (GetCanMove(_tileNumX - 1, _tileNumY) && _patrolBlocked == 0)
+                {
+                    StartCoroutine(PositionCoroutine(_rb, new Vector2(-1, 0)));
+                    _patrolStage = 0;
+                    _patrolBlocked = 1;
+                }
+                else if (GetCanMove(_tileNumX + 1, _tileNumY) && _patrolBlocked == 1)
+                {
+                    StartCoroutine(PositionCoroutine(_rb, new Vector2(1, 0)));
+                    _patrolStage = 0;
+                    _patrolBlocked = 0;
+                }
+                else if (GetCanMove(_tileNumX, _tileNumY - 1) && _patrolBlocked == 0)
+                {
+                    StartCoroutine(PositionCoroutine(_rb, new Vector2(0, -1)));
+                    _patrolStage = 0;
+                    _patrolBlocked = 1;
+                }
+                else if (GetCanMove(_tileNumX, _tileNumY + 1) && _patrolBlocked == 1)
+                {
+                    StartCoroutine(PositionCoroutine(_rb, new Vector2(0, 1)));
+                    _patrolStage = 0;
+                    _patrolBlocked = 0;
+                }
                 else
                 {
                     Debug.Log("Error patrol");
+                    _patrolStage = 0;
                     SetChangeTurn();
                 }
             }
-
             if (!_patrol)
             {
                 _patrolStage = 0;
+                _patrolBlocked = 0;
             }
         }
     }

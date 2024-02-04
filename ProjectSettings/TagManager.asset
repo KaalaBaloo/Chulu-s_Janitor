@@ -12,6 +12,7 @@ TagManager:
   - Music
   - FxTemporaire
   - UI
+  - Button
   layers:
   - Default
   - TransparentFX

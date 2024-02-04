@@ -272,7 +272,7 @@ public class GridController : MonoBehaviour
     {
         try
         {
-            if (_gridInteractive[num_x, num_y] == 2)
+            if (_gridInteractive[num_x, num_y] == 2 || (_gridBase[num_x, num_y] != 0 && _gridBase[num_x, num_y] != 1))
             {
                 return false;
             }
