@@ -27,12 +27,15 @@ public class MainCharacter : Sprites
     [SerializeField] AudioClip _limpiar;
     [SerializeField] AudioClip _enjuagar;
 
+    [SerializeField] GameObject _pause;
+
     protected override void Awake()
     {
         base.Awake();
         _rb = GetComponent<Rigidbody2D>();
         _animator = _sprite.GetComponent<Animator>();
         _audio = GetComponent<AudioSource>();
+        _pause.SetActive(false);
     }
 
     void Start()
@@ -43,7 +46,10 @@ public class MainCharacter : Sprites
 
     void Update()
     {
-        Movement();
+        if(_pause.activeSelf == false)
+        {
+            Movement();
+        }
         Control();
     }
 
@@ -88,12 +94,8 @@ public class MainCharacter : Sprites
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            SceneManager.LoadScene("Main");
-        }
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            _gridController.GameOver();
+            Cursor.visible = true;
+            _pause.SetActive(true);
         }
     }
 

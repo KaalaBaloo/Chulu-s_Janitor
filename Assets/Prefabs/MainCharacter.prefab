@@ -882,6 +882,7 @@ MonoBehaviour:
   _VFXWash: {fileID: 100000, guid: 18204b98237ccb540808f2cd2d78c2c8, type: 3}
   _limpiar: {fileID: 8300000, guid: a27f16e25ae1f584da5f4c17c406b3fc, type: 3}
   _enjuagar: {fileID: 8300000, guid: 2a515929dffc26846b3a3a1c260adc43, type: 3}
+  _pause: {fileID: 0}
 --- !u!82 &6542441722601150388
 AudioSource:
   m_ObjectHideFlags: 0
