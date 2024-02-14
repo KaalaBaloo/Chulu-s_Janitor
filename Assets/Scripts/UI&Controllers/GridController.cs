@@ -12,9 +12,8 @@ public class GridController : MonoBehaviour
     [SerializeField] int _tilesX = 3;
     [SerializeField] int _tilesY = 3;
     [SerializeField] GameObject _border;
-    [SerializeField] GameObject _BloodLeft;
     TMP_Text _textBloodLeft;
-    [SerializeField] GameObject _fadeBlack;
+    GameObject _fadeBlack;
     [SerializeField] int _turn = 2; 
     //0 --> Player
     //1 --> Enemies
@@ -59,7 +58,8 @@ public class GridController : MonoBehaviour
        SetBordersGrid();
        _turn = 2;
 
-        _textBloodLeft = _BloodLeft.GetComponent<TMP_Text>();
+        _textBloodLeft = GameObject.FindWithTag("_textBlood").GetComponent<TMP_Text>();
+        _fadeBlack = GameObject.FindWithTag("_blackFade");
     }
 
     private void Start()

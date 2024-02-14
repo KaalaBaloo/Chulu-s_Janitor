@@ -5,11 +5,12 @@ using System.Collections.Generic;
 
 public class LevelSelector : MonoBehaviour
 {
-    [SerializeField] GameObject _fadeBlack;
+    GameObject _fadeBlack;
     AudioSource _audio;
 
     private void Start()
     {
+        _fadeBlack = GameObject.FindWithTag("_blackFade");
         StartCoroutine(FadefromBlack());
         _audio = GetComponent<AudioSource>();
     }

@@ -6,8 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    [SerializeField] GameObject _fadeBlack;
-    [SerializeField] GameObject _pause;
+    GameObject _fadeBlack;
+    GameObject _pause;
+
+    private void Start()
+    {
+        _fadeBlack = GameObject.FindWithTag("_blackFade");
+        _pause = GameObject.FindWithTag("_pause");
+    }
 
     public void Continue()
     {

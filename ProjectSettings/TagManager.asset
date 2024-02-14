@@ -13,6 +13,9 @@ TagManager:
   - FxTemporaire
   - UI
   - Button
+  - _textBlood
+  - _pause
+  - _blackFade
   layers:
   - Default
   - TransparentFX

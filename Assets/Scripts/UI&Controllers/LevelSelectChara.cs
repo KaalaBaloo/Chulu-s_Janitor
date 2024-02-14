@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelSelectChara : MonoBehaviour
 {
-    [SerializeField] GameObject _fadeBlack;
+    GameObject _fadeBlack;
     AudioSource _audio;
     [SerializeField] GameObject[] _levels;
     int _level = 0;
@@ -24,6 +24,7 @@ public class LevelSelectChara : MonoBehaviour
         transform.position = new Vector3(_levels[0].transform.position.x, _levels[0].transform.position.y, 0);
         _animator = _sprite.GetComponent<Animator>();
         _textTittle = _text.GetComponent<TMP_Text>();
+        _fadeBlack = GameObject.FindWithTag("_blackFade");
     }
 
 

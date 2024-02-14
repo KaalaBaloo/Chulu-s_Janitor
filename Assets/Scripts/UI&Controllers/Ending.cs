@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Ending : MonoBehaviour
 {
     float t = 0;
-    [SerializeField] GameObject _fadeBlack;
+    GameObject _fadeBlack;
     [SerializeField] GameObject _credits;
     [SerializeField] GameObject _thanks;
     [SerializeField] float _creditsVel = 0.05f;
@@ -15,6 +15,7 @@ public class Ending : MonoBehaviour
 
     void Start()
     {
+        _fadeBlack = GameObject.FindWithTag("_blackFade");
         Cursor.visible = false;
         StartCoroutine(FadefromBlack());
     }

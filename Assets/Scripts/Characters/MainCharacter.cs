@@ -27,11 +27,12 @@ public class MainCharacter : Sprites
     [SerializeField] AudioClip _limpiar;
     [SerializeField] AudioClip _enjuagar;
 
-    [SerializeField] GameObject _pause;
+    GameObject _pause;
 
     protected override void Awake()
     {
         base.Awake();
+        _pause = GameObject.FindWithTag("_pause");
         _rb = GetComponent<Rigidbody2D>();
         _animator = _sprite.GetComponent<Animator>();
         _audio = GetComponent<AudioSource>();
