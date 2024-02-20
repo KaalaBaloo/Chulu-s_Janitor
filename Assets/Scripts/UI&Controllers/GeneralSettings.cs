@@ -6,10 +6,12 @@ using UnityEngine.UI;
 public class GeneralSettings : MonoBehaviour
 {
     static public bool MUTED = false;
-    static public float MUSICVOLUME = 100;
-    static public float SFXVOLUME = 100;
+    static public float MUSICVOLUME = 50;
+    static public float SFXVOLUME = 50;
     Slider _sliderMusic;
     Slider _sliderSfx;
+    GameObject _pause;
+    GameObject _settings;
 
     void Start()
     {
@@ -17,6 +19,8 @@ public class GeneralSettings : MonoBehaviour
         _sliderMusic.value = MUSICVOLUME;
         _sliderSfx = GameObject.FindWithTag("_sfx").GetComponent<Slider>();
         _sliderSfx.value = SFXVOLUME;
+        _pause = GameObject.FindWithTag("_pause");
+        _settings = GameObject.FindWithTag("_settings");
     }
 
     public void Mute()

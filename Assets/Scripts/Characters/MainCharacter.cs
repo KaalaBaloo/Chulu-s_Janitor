@@ -27,17 +27,18 @@ public class MainCharacter : Sprites
     [SerializeField] AudioClip _limpiar;
     [SerializeField] AudioClip _enjuagar;
 
-    GameObject _pause;
+    GameObject _UI;
+    UIController _uiController;
 
     protected override void Awake()
     {
         base.Awake();
-        _pause = GameObject.FindWithTag("_pause");
         _rb = GetComponent<Rigidbody2D>();
         _animator = _sprite.GetComponent<Animator>();
         _audio = GetComponent<AudioSource>();
         _audio.volume = GeneralSettings.SFXVOLUME / 100;
-        _pause.SetActive(false);
+        _UI = GameObject.FindWithTag("_ui");
+        _uiController = _UI.GetComponent<UIController>();
     }
 
     void Start()
@@ -48,11 +49,10 @@ public class MainCharacter : Sprites
 
     void Update()
     {
-        if(_pause.activeSelf == false)
+        if(!_uiController.GetPaused())
         {
             Movement();
         }
-        Control();
     }
 
     public int GetSuciedad()
@@ -92,16 +92,6 @@ public class MainCharacter : Sprites
         {
             _gridController.ChangeTurn(2);
             StartCoroutine(CleanCoroutine());
-        }
-    }
-
-    //Salir / Reiniciar
-    private void Control()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Cursor.visible = true;
-            _pause.SetActive(true);
         }
     }
 

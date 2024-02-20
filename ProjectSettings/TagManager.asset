@@ -19,6 +19,7 @@ TagManager:
   - _music
   - _sfx
   - _settings
+  - _ui
   layers:
   - Default
   - TransparentFX

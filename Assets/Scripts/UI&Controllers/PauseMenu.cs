@@ -17,12 +17,6 @@ public class PauseMenu : MonoBehaviour
         _settings = GameObject.FindWithTag("_settings");
     }
 
-    public void Continue()
-    {
-        Cursor.visible = false;
-        _pause.SetActive(false);
-    }
-
     public void Restart()
     {
         StartCoroutine(FadetoBlack(SceneManager.GetActiveScene().name));      
