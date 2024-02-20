@@ -21,6 +21,7 @@ public class LevelSelectChara : MonoBehaviour
     {
         StartCoroutine(FadefromBlack());
         _audio = GetComponent<AudioSource>();
+        _audio.volume = GeneralSettings.SFXVOLUME / 100;
         transform.position = new Vector3(_levels[0].transform.position.x, _levels[0].transform.position.y, 0);
         _animator = _sprite.GetComponent<Animator>();
         _textTittle = _text.GetComponent<TMP_Text>();
@@ -57,7 +58,11 @@ public class LevelSelectChara : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Space))
         {
             _animator.SetTrigger("Clean");
-            _audio.Play();
+            _audio.volume = GeneralSettings.SFXVOLUME / 100;
+            if (!GeneralSettings.MUTED)
+            {
+                _audio.Play();
+            }
             StartCoroutine(FadetoBlack((_level + 1).ToString()));
         }
     }

@@ -24,6 +24,7 @@ public class DeepOnes : Enemy
         _gridController.CreateEnemy();
         _characterLastTurn = _character.transform.position;
         _audio = GetComponent<AudioSource>();
+        _audio.volume = GeneralSettings.SFXVOLUME / 100;
         _animator = _sprite.GetComponent<Animator>();
         _srMarca = _marca.GetComponent<SpriteRenderer>();
         _srMarca.enabled = false;
@@ -195,7 +196,11 @@ public class DeepOnes : Enemy
             if (_gridController.GetGridTile(Mathf.RoundToInt(_marca.transform.position.x), Mathf.RoundToInt(_marca.transform.position.y)) != 3)
             {
                 _gridController.SetGrid(0, _tileNumX, _tileNumY);
-                _audio.Play();
+                _audio.volume = GeneralSettings.SFXVOLUME / 100;
+                if (!GeneralSettings.MUTED)
+                {
+                    _audio.Play();
+                }
                 _animator.SetTrigger("jump");
                 StartCoroutine(PositionCoroutine(_rb, _marca.transform.position));
                 _tileNumX += _xMarca;

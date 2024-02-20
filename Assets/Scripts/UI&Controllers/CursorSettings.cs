@@ -14,6 +14,7 @@ public class CursorSettings : MonoBehaviour
     {
         Cursor.visible = true;
         _audio = GetComponent<AudioSource>();
+        _audio.volume = GeneralSettings.SFXVOLUME / 100;
     }
 
     private void Update()
@@ -21,11 +22,16 @@ public class CursorSettings : MonoBehaviour
         if (Input.GetKey(KeyCode.Mouse0))
         {
             Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
-            _audio.Play();
+            _audio.volume = GeneralSettings.SFXVOLUME / 100;
+            if (!GeneralSettings.MUTED)
+            {
+                _audio.Play();
+            }
         }
         else
         {
             Cursor.SetCursor(null, Vector2.zero, cursorMode);
         }
     }
+
 }

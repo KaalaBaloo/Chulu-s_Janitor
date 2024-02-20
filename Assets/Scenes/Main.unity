@@ -271,7 +271,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11b3098bb3f3a0c48a9137e623c19357, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fadeBlack: {fileID: 1090438627}
 --- !u!82 &294893880
 AudioSource:
   m_ObjectHideFlags: 0
@@ -531,11 +530,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af5e9f871e930f24db6e0071eff16c0b, type: 3}
---- !u!1 &1090438627 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1807860835866347810, guid: 03e8bfd0cb0d61e4c8d1a8fbe6a2d544, type: 3}
-  m_PrefabInstance: {fileID: 1692579161}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1687341124
 GameObject:
   m_ObjectHideFlags: 0

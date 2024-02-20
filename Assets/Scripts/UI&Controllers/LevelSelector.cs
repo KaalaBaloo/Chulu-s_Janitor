@@ -13,112 +13,197 @@ public class LevelSelector : MonoBehaviour
         _fadeBlack = GameObject.FindWithTag("_blackFade");
         StartCoroutine(FadefromBlack());
         _audio = GetComponent<AudioSource>();
+        _audio.volume = GeneralSettings.SFXVOLUME / 100;
     }
 
     public void Levels()
     {
-        _audio.Play();
+        _audio.volume = GeneralSettings.SFXVOLUME / 100;
+        if (!GeneralSettings.MUTED)
+        {
+            _audio.Play();
+        }
         StartCoroutine(FadetoBlack("SelectorNiveles"));
     }
 
     public void Level1()
     {
-        _audio.Play();
+        _audio.volume = GeneralSettings.SFXVOLUME / 100;
+        if (!GeneralSettings.MUTED)
+        {
+            _audio.Play();
+        }
         StartCoroutine(FadetoBlack("1"));
     }
     public void Level2()
     {
-        _audio.Play();
+        _audio.volume = GeneralSettings.SFXVOLUME / 100;
+        if (!GeneralSettings.MUTED)
+        {
+            _audio.Play();
+        }
         StartCoroutine(FadetoBlack("2"));
     }
     public void Level3()
     {
-        _audio.Play();
+        _audio.volume = GeneralSettings.SFXVOLUME / 100;
+        if (!GeneralSettings.MUTED)
+        {
+            _audio.Play();
+        }
         StartCoroutine(FadetoBlack("3"));
     }
     public void Level4()
     {
-        _audio.Play();
+        _audio.volume = GeneralSettings.SFXVOLUME / 100;
+        if (!GeneralSettings.MUTED)
+        {
+            _audio.Play();
+        }
         StartCoroutine(FadetoBlack("4"));
     }
     public void Level5()
     {
-        _audio.Play();
+        _audio.volume = GeneralSettings.SFXVOLUME / 100;
+        if (!GeneralSettings.MUTED)
+        {
+            _audio.Play();
+        }
         StartCoroutine(FadetoBlack("5"));
     }
     public void Level6()
     {
-        _audio.Play();
+        _audio.volume = GeneralSettings.SFXVOLUME / 100;
+        if (!GeneralSettings.MUTED)
+        {
+            _audio.Play();
+        }
         StartCoroutine(FadetoBlack("6"));
     }
     public void Level7()
     {
-        _audio.Play();
+        _audio.volume = GeneralSettings.SFXVOLUME / 100;
+        if (!GeneralSettings.MUTED)
+        {
+            _audio.Play();
+        }
         StartCoroutine(FadetoBlack("7")); 
     }
     public void Level8()
     {
-        _audio.Play();
+        _audio.volume = GeneralSettings.SFXVOLUME / 100;
+        if (!GeneralSettings.MUTED)
+        {
+            _audio.Play();
+        }
         StartCoroutine(FadetoBlack("8"));
     }
     public void Level9()
     {
-        _audio.Play();
+        _audio.volume = GeneralSettings.SFXVOLUME / 100;
+        if (!GeneralSettings.MUTED)
+        {
+            _audio.Play();
+        }
         StartCoroutine(FadetoBlack("9"));
     }
     public void Level10()
     {
-        _audio.Play();
+        _audio.volume = GeneralSettings.SFXVOLUME / 100;
+        if (!GeneralSettings.MUTED)
+        {
+            _audio.Play();
+        }
         StartCoroutine(FadetoBlack("10"));
     }
     public void Level11()
     {
-        _audio.Play();
+        _audio.volume = GeneralSettings.SFXVOLUME / 100;
+        if (!GeneralSettings.MUTED)
+        {
+            _audio.Play();
+        }
         StartCoroutine(FadetoBlack("11"));
     }
     public void Level12()
     {
-        _audio.Play();
+        _audio.volume = GeneralSettings.SFXVOLUME / 100;
+        if (!GeneralSettings.MUTED)
+        {
+            _audio.Play();
+        }
         StartCoroutine(FadetoBlack("12"));
     }
     public void Level13()
     {
-        _audio.Play();
+        _audio.volume = GeneralSettings.SFXVOLUME / 100;
+        if (!GeneralSettings.MUTED)
+        {
+            _audio.Play();
+        }
         StartCoroutine(FadetoBlack("13"));
     }
     public void Level14()
     {
-        _audio.Play();
+        _audio.volume = GeneralSettings.SFXVOLUME / 100;
+        if (!GeneralSettings.MUTED)
+        {
+            _audio.Play();
+        }
         StartCoroutine(FadetoBlack("14"));
     }
     public void Level15()
     {
-        _audio.Play();
+        _audio.volume = GeneralSettings.SFXVOLUME / 100;
+        if (!GeneralSettings.MUTED)
+        {
+            _audio.Play();
+        }
         StartCoroutine(FadetoBlack("15"));
     }
     public void Level16()
     {
-        _audio.Play();
+        _audio.volume = GeneralSettings.SFXVOLUME / 100;
+        if (!GeneralSettings.MUTED)
+        {
+            _audio.Play();
+        }
         StartCoroutine(FadetoBlack("16"));
     }
     public void Level17()
     {
-        _audio.Play();
+        _audio.volume = GeneralSettings.SFXVOLUME / 100;
+        if (!GeneralSettings.MUTED)
+        {
+            _audio.Play();
+        }
         StartCoroutine(FadetoBlack("17"));
     }
     public void Level18()
     {
-        _audio.Play();
+        _audio.volume = GeneralSettings.SFXVOLUME / 100;
+        if (!GeneralSettings.MUTED)
+        {
+            _audio.Play();
+        }
         StartCoroutine(FadetoBlack("18"));
     }
     public void Level19()
     {
-        _audio.Play();
+        _audio.volume = GeneralSettings.SFXVOLUME / 100;
+        if (!GeneralSettings.MUTED)
+        {
+            _audio.Play();
+        }
         StartCoroutine(FadetoBlack("19"));
     }
     public void Level20()
     {
-        _audio.Play();
+        _audio.volume = GeneralSettings.SFXVOLUME / 100;
+        if (!GeneralSettings.MUTED)
+        {
+            _audio.Play();
+        }
         StartCoroutine(FadetoBlack("20"));
     }
 

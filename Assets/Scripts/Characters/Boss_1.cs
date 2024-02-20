@@ -32,9 +32,13 @@ public class Boss_1 : Enemy
         _gridController.CreateEnemy();
         _characterLastTurn = _character.transform.position;
         _audio = GetComponent<AudioSource>();
+        _audio.volume = GeneralSettings.SFXVOLUME / 100;
         _audioExt1 = _ext1.GetComponent<AudioSource>();
+        _audioExt1.volume = GeneralSettings.SFXVOLUME / 100;
         _audioExt2 = _ext2.GetComponent<AudioSource>();
+        _audioExt2.volume = GeneralSettings.SFXVOLUME / 100;
         _audioExt3 = _ext3.GetComponent<AudioSource>();
+        _audioExt3.volume = GeneralSettings.SFXVOLUME / 100;
     }
 
     private void Update()
@@ -46,10 +50,18 @@ public class Boss_1 : Enemy
 
         if (_gridController.GetEnd() && !_endStart)
         {
-            _audioExt1.Play();
+            _audioExt1.volume = GeneralSettings.SFXVOLUME / 100;
+            if (!GeneralSettings.MUTED)
+            {
+                _audioExt1.Play();
+            }
             _endStart = true;
             Instantiate(_VFXDying, transform.position, Quaternion.identity);
-            _audioExt2.Play();
+            _audioExt2.volume = GeneralSettings.SFXVOLUME / 100;
+            if (!GeneralSettings.MUTED)
+            {
+                _audioExt2.Play();
+            }
             StartCoroutine(EndCoroutine());
         }
 
@@ -121,7 +133,11 @@ public class Boss_1 : Enemy
         _tileNumX = Mathf.RoundToInt(x);
         _tileNumY = Mathf.RoundToInt(y);
         _audio.clip = _tp;
-        _audio.Play();
+        _audio.volume = GeneralSettings.SFXVOLUME / 100;
+        if (!GeneralSettings.MUTED)
+        {
+            _audio.Play();
+        }
         transform.position = new Vector3(x,y,0);
         _gridController.SetGrid(_spriteNumber, _tileNumX, _tileNumY);
         Instantiate(_VFXTP, transform.position, Quaternion.identity);
@@ -142,6 +158,4 @@ public class Boss_1 : Enemy
         Destroy(this.gameObject);
         yield return 0;
     }
-
-
 }

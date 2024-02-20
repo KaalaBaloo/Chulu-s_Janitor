@@ -16,6 +16,9 @@ TagManager:
   - _textBlood
   - _pause
   - _blackFade
+  - _music
+  - _sfx
+  - _settings
   layers:
   - Default
   - TransparentFX

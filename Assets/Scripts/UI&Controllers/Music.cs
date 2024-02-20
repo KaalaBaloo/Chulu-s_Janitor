@@ -7,12 +7,21 @@ public class Music : MonoBehaviour
 {
     public List<string> sceneNames;
     public string instanceName;
+    AudioSource _music;
 
     private void Start()
     {
         DontDestroyOnLoad(this.gameObject);
 
         SceneManager.sceneLoaded += OnSceneLoaded;
+
+        _music = GetComponent<AudioSource>();
+        _music.volume = GeneralSettings.MUSICVOLUME / 100;
+        if (GeneralSettings.MUTED)
+        {
+            _music.volume = 0;
+            _music.Stop();
+        }
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -38,7 +47,6 @@ public class Music : MonoBehaviour
             }
         }
     }
-
     void CheckIfSceneInList()
     {
         string currentScene = SceneManager.GetActiveScene().name;
@@ -47,6 +55,17 @@ public class Music : MonoBehaviour
         {
             SceneManager.sceneLoaded -= OnSceneLoaded;
             DestroyImmediate(this.gameObject);
+        } 
+    }
+
+    private void Update()
+    {
+        _music.volume = GeneralSettings.MUSICVOLUME / 100;
+        if (GeneralSettings.MUTED)
+        {
+            _music.volume = 0;
+            _music.Stop();
         }
     }
+
 }

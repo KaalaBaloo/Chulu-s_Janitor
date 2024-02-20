@@ -21,6 +21,7 @@ public class BossVFX : Sprites
     private void Start()
     {
         _audio = GetComponent<AudioSource>();
+        _audio.volume = GeneralSettings.SFXVOLUME / 100;
     }
 
     // Update is called once per frame
@@ -29,7 +30,11 @@ public class BossVFX : Sprites
         if (_gridController.GetRitual() && !effects)
         {
             effects = true;
-            _audio.Play();
+            _audio.volume = GeneralSettings.SFXVOLUME / 100;
+            if (!GeneralSettings.MUTED)
+            {
+                _audio.Play();
+            }
             Instantiate(_VFX1, new Vector3(6, 4, 0), Quaternion.identity);
             Instantiate(_VFX2, new Vector3(6, 4, 0), Quaternion.identity);
             Instantiate(_VFX3, new Vector3(6, 4, 0), Quaternion.identity);

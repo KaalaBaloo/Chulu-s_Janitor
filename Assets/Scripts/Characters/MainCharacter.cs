@@ -36,6 +36,7 @@ public class MainCharacter : Sprites
         _rb = GetComponent<Rigidbody2D>();
         _animator = _sprite.GetComponent<Animator>();
         _audio = GetComponent<AudioSource>();
+        _audio.volume = GeneralSettings.SFXVOLUME / 100;
         _pause.SetActive(false);
     }
 
@@ -67,21 +68,25 @@ public class MainCharacter : Sprites
         {
             _gridController.ChangeTurn(2);
             StartCoroutine(PositionCoroutine(_rb, new Vector2(0, 1))); //Up
+            _animator.SetTrigger("Slide");
         }
         if ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) && _gridController.CanMove(_tileNumX - 1, _tileNumY) && _gridController.GetTurn() == 0)
         {
             _gridController.ChangeTurn(2);
             StartCoroutine(PositionCoroutine(_rb, new Vector2(-1 , 0))); //Left
+            _animator.SetTrigger("Slide");
         }
         if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && _gridController.CanMove(_tileNumX, _tileNumY - 1) && _gridController.GetTurn() == 0)  
         {
             _gridController.ChangeTurn(2);
             StartCoroutine(PositionCoroutine(_rb, new Vector2(0, -1))); //Down
+            _animator.SetTrigger("Slide");
         }
         if ((Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) && _gridController.CanMove(_tileNumX + 1, _tileNumY) && _gridController.GetTurn() == 0)
         {
             _gridController.ChangeTurn(2);
             StartCoroutine(PositionCoroutine(_rb, new Vector2(1, 0))); //Right
+            _animator.SetTrigger("Slide");
         }
         if (Input.GetKeyDown(KeyCode.Space) && _gridController.GetTurn() == 0)
         {
@@ -236,8 +241,7 @@ public class MainCharacter : Sprites
         if (_gridController.CanClean(_tileNumX, _tileNumY) == 1 && _suciedad < 3) // Suciedad Normal
         {
             _gridController.SetInteractive(0, _tileNumX, _tileNumY);
-            _audio.clip = _limpiar;
-            _audio.Play();
+            AudioPlay(_limpiar);
             Instantiate(_VFXClean, transform.position, Quaternion.identity);
             _gridController.DirtCleaned();
             _destroyDirt = true;
@@ -246,8 +250,7 @@ public class MainCharacter : Sprites
         else if (_gridController.CanClean(_tileNumX, _tileNumY) == 2 && _suciedad < 3) // Mancha grande
         {
             _gridController.SetInteractive(1, _tileNumX, _tileNumY);
-            _audio.clip = _limpiar;
-            _audio.Play();
+            AudioPlay(_limpiar);
             Instantiate(_VFXClean, transform.position, Quaternion.identity);
             Instantiate(_sangre, transform.position, Quaternion.identity);
             _destroyDirt = true;
@@ -255,16 +258,14 @@ public class MainCharacter : Sprites
         }
         else if (_gridController.CanClean(_tileNumX, _tileNumY) == 3) // Cubo
         {
-            _audio.clip = _enjuagar;
-            _audio.Play();
+            AudioPlay(_enjuagar);
             Instantiate(_VFXWash, transform.position, Quaternion.identity);
             _suciedad = 0;
         }
         else if (_gridController.CanClean(_tileNumX, _tileNumY) == 4 && _suciedad < 3) // Sangre ritual
         {
             _gridController.SetInteractive(0, _tileNumX, _tileNumY);
-            _audio.clip = _limpiar;
-            _audio.Play();
+            AudioPlay(_limpiar);
             Instantiate(_VFXClean, transform.position, Quaternion.identity);
             _gridController.DirtCleaned();
             if (_tileNumX == 3 & _tileNumY == 5)
@@ -294,14 +295,12 @@ public class MainCharacter : Sprites
         {
             if (_suciedad < 3) // Nada
             {
-                _audio.clip = _limpiar;
-                _audio.Play();
+                AudioPlay(_limpiar);
                 Instantiate(_VFXNone, transform.position, Quaternion.identity);
             }
             else // Fregona sucia
             {
-                _audio.clip = _limpiar;
-                _audio.Play();
+                AudioPlay(_limpiar);
                 Instantiate(_VFXDirty, transform.position, Quaternion.identity);
             }
         }
@@ -314,4 +313,13 @@ public class MainCharacter : Sprites
         yield return 0;
     }
 
+    void AudioPlay(AudioClip name)
+    {
+        _audio.volume = GeneralSettings.SFXVOLUME / 100;
+        if (!GeneralSettings.MUTED)
+        {
+            _audio.clip = name;
+            _audio.Play();
+        }
+    }
 }

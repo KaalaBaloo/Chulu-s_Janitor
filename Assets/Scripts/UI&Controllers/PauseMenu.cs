@@ -8,11 +8,13 @@ public class PauseMenu : MonoBehaviour
 {
     GameObject _fadeBlack;
     GameObject _pause;
+    GameObject _settings;
 
     private void Start()
     {
         _fadeBlack = GameObject.FindWithTag("_blackFade");
         _pause = GameObject.FindWithTag("_pause");
+        _settings = GameObject.FindWithTag("_settings");
     }
 
     public void Continue()

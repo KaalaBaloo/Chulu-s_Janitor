@@ -70,6 +70,7 @@ public class GridController : MonoBehaviour
         _textBloodLeft.text = _dirtToClean.ToString();
         Cursor.visible = false;
         _audio = GetComponent<AudioSource>();
+        _audio.volume = GeneralSettings.SFXVOLUME / 100;
     }
 
     void Update()
@@ -84,24 +85,21 @@ public class GridController : MonoBehaviour
         {
             GAMEOVER = true;
             Debug.Log("Win");
-            _audio.clip = _win;
-            _audio.Play();
+            AudioPlay(_win);
             StartCoroutine(ChangeScene("SelectorNiveles"));
         }
         else if (_dirtToClean <= 0 && SceneManager.GetActiveScene().name == "20" && !GAMEOVER)
         {
             GAMEOVER = true;
             Debug.Log("Win");
-            _audio.clip = _win;
-            _audio.Play();
+            AudioPlay(_win);
             StartCoroutine(RitualAnimation());
         }
         else if (_dirtToClean <= 0 && SceneManager.GetActiveScene().name == "20_Battle" && !GAMEOVER)
         {
             GAMEOVER = true;
             Debug.Log("Win");
-            _audio.clip = _win;
-            _audio.Play();
+            AudioPlay(_win);
             StartCoroutine(EndAnimation());
         }
         if (_enemies == _enemiesCount && _turn == 1)
@@ -461,8 +459,7 @@ public class GridController : MonoBehaviour
     public void GameOver()
     {
         Debug.Log("GameOver");
-        _audio.clip = _gameOver;
-        _audio.Play();
+        AudioPlay(_gameOver);
         StartCoroutine(ChangeScene(SceneManager.GetActiveScene().name));
     }
 
@@ -506,6 +503,16 @@ public class GridController : MonoBehaviour
             color = new Color(color.r, color.g, color.b, fadeAmount);
             _fadeBlack.GetComponent<SpriteRenderer>().color = color;
             yield return null;
+        }
+    }
+
+    void AudioPlay(AudioClip name)
+    {
+        _audio.volume = GeneralSettings.SFXVOLUME / 100;
+        if(!GeneralSettings.MUTED)
+        {
+            _audio.clip = name;
+            _audio.Play();
         }
     }
 
