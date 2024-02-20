@@ -15,12 +15,16 @@ public class Music : MonoBehaviour
 
         SceneManager.sceneLoaded += OnSceneLoaded;
 
-        _music = GetComponent<AudioSource>();
-        _music.volume = GeneralSettings.MUSICVOLUME / 100;
+        _music = GetComponent<AudioSource>();    
         if (GeneralSettings.MUTED)
         {
             _music.volume = 0;
-            _music.Stop();
+            _music.mute = true;
+        }
+        else
+        {
+            _music.mute = false;
+            _music.volume = GeneralSettings.MUSICVOLUME / 100;
         }
     }
 
@@ -60,11 +64,15 @@ public class Music : MonoBehaviour
 
     private void Update()
     {
-        _music.volume = GeneralSettings.MUSICVOLUME / 100;
         if (GeneralSettings.MUTED)
         {
             _music.volume = 0;
-            _music.Stop();
+            _music.mute = true;
+        }
+        else
+        {
+            _music.mute = false;
+            _music.volume = GeneralSettings.MUSICVOLUME / 100;
         }
     }
 
