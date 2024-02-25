@@ -19,13 +19,13 @@ public class LevelSelectChara : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(FadefromBlack());
         _audio = GetComponent<AudioSource>();
         _audio.volume = GeneralSettings.SFXVOLUME / 100;
         transform.position = new Vector3(_levels[0].transform.position.x, _levels[0].transform.position.y, 0);
         _animator = _sprite.GetComponent<Animator>();
         _textTittle = _text.GetComponent<TMP_Text>();
         _fadeBlack = GameObject.FindWithTag("_blackFade");
+        StartCoroutine(FadefromBlack());
     }
 
 
