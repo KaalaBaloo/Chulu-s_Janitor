@@ -24,6 +24,8 @@ public class Boss_1 : Enemy
     [SerializeField] GameObject _ext3;
     [SerializeField] AudioClip _tp;
 
+    [SerializeField] bool _phase2 = false;
+
     protected override void Start()
     {
         _spriteNumber = 3;
@@ -65,6 +67,11 @@ public class Boss_1 : Enemy
             StartCoroutine(EndCoroutine());
         }
 
+        if(!_phase2 && _gridController.GetDirt() <= 3)
+        {
+            _phase2 = true;
+        }
+
     }
 
     protected override void Attack()
@@ -89,22 +96,50 @@ public class Boss_1 : Enemy
             }
             else
             {
-                _random = Random.Range(1, 5);
-                if (_random == 1)
+                if (!_phase2)
                 {
-                    StartCoroutine(TPCoroutine());
-                }
-                else
-                {
-                    if (_blockedView)
+                    _random = Random.Range(1, 5);
+                    if (_random == 1)
                     {
-                        Debug.Log("PFBV");
-                        PathFindingBlockView(_character.transform.position);
+                        StartCoroutine(TPCoroutine());
                     }
                     else
                     {
-                        Debug.Log("PF");
-                        PathFinding(_character.transform.position);
+                        if (_blockedView)
+                        {
+                            Debug.Log("PFBV");
+                            PathFindingBlockView(_character.transform.position);
+                        }
+                        else
+                        {
+                            Debug.Log("PF");
+                            PathFinding(_character.transform.position);
+                        }
+                    }
+                }
+                else
+                {
+                    _random = Random.Range(1, 5);
+                    if (_random == 1)
+                    {
+                        StartCoroutine(TPCoroutine());
+                    }
+                    else if (_random == 2)
+                    {
+                        StartCoroutine(ChangeCoroutine());
+                    }
+                    else
+                    {
+                        if (_blockedView)
+                        {
+                            Debug.Log("PFBV");
+                            PathFindingBlockView(_character.transform.position);
+                        }
+                        else
+                        {
+                            Debug.Log("PF");
+                            PathFinding(_character.transform.position);
+                        }
                     }
                 }
             }
@@ -140,6 +175,27 @@ public class Boss_1 : Enemy
         }
         transform.position = new Vector3(x,y,0);
         _gridController.SetGrid(_spriteNumber, _tileNumX, _tileNumY);
+        Instantiate(_VFXTP, transform.position, Quaternion.identity);
+        SetChangeTurn();
+        yield return 0;
+    }
+
+    virtual protected IEnumerator ChangeCoroutine()
+    {
+        int x = _tileNumX;
+        int y = _tileNumY;
+        Instantiate(_VFXTP, transform.position, Quaternion.identity);
+        transform.position = _character.transform.position;
+        _character.Teleport(x, y);
+        _tileNumX = Mathf.RoundToInt(transform.position.x);
+        _tileNumY = Mathf.RoundToInt(transform.position.y);
+        _gridController.SetGrid(_spriteNumber, _tileNumX, _tileNumY);
+        _audio.clip = _tp;
+        _audio.volume = GeneralSettings.SFXVOLUME / 100;
+        if (!GeneralSettings.MUTED)
+        {
+            _audio.Play();
+        }
         Instantiate(_VFXTP, transform.position, Quaternion.identity);
         SetChangeTurn();
         yield return 0;

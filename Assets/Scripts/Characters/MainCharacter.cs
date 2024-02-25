@@ -312,4 +312,12 @@ public class MainCharacter : Sprites
             _audio.Play();
         }
     }
+
+    public void Teleport(int x, int y)
+    {
+        transform.position = new Vector3(x, y, 0);
+        _tileNumX = x;
+        _tileNumY = y;
+        _gridController.SetGrid(_spriteNumber, _tileNumX, _tileNumY);
+    }
 }

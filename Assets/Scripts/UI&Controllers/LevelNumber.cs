@@ -11,6 +11,13 @@ public class LevelNumber : MonoBehaviour
     void Start()
     {
         _textLevelNumber = GetComponent<TMP_Text>();
-        _textLevelNumber.text = (SceneManager.GetActiveScene().name).ToString();
+        if (SceneManager.GetActiveScene().name != "20_Battle")
+        {
+            _textLevelNumber.text = (SceneManager.GetActiveScene().name).ToString();
+        }
+        else
+        {
+            _textLevelNumber.text = "20";
+        }
     }
 }
