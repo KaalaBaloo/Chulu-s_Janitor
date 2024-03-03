@@ -22,6 +22,8 @@ TagManager:
   - _ui
   - _resolution
   - _language
+  - _muted
+  - _fullscreen
   layers:
   - Default
   - TransparentFX
