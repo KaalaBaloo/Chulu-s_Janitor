@@ -3,10 +3,12 @@ using TMPro;
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using System.Threading;
 
-public class GridController : MonoBehaviour
+public class GridController : MonoBehaviour, IDataPersistence
 {
     static public bool GAMEOVER = false;
+    static public int LEVELS_UNLOCKED = 1;
 
     [SerializeField] int _dirtToClean = 0;
     [SerializeField] int _tilesX = 3;
@@ -516,4 +518,13 @@ public class GridController : MonoBehaviour
         }
     }
 
+    public void LoadData(GameData data)
+    {
+        LEVELS_UNLOCKED = data.levelsUnlocked;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.levelsUnlocked = LEVELS_UNLOCKED;
+    }
 }
