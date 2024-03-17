@@ -3,17 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class ComicDefault : MonoBehaviour
 {
     [SerializeField] Image _image;
     GameObject _fadeBlack;
     [SerializeField] Sprite[] _sprites;
-    int _spriteIndex = 0;
+    [SerializeField] int _spriteIndex = 0;
     [SerializeField] int[] _changeAuto;
-    int _changeIndex = 0;
-    bool _autoPlay = true;
+    [SerializeField] int _changeIndex = 0;
+    [SerializeField] bool _autoPlay = true;
     [SerializeField] string _nextScene;
+    [SerializeField] GameObject _dialogues;
+    [SerializeField] TMP_Text _text;
+    [SerializeField] string[] _dialoguesTexts;
+    [SerializeField] Image _dialogueImage;
+    [SerializeField] Sprite[] _dialogueImages;
+    int _dialogueIndex = 0;
 
     void Start()
     {
@@ -21,31 +28,42 @@ public class ComicDefault : MonoBehaviour
         _image.sprite = _sprites[_spriteIndex];
         _fadeBlack = GameObject.FindWithTag("_blackFade");
         StartCoroutine(FadefromBlack());
+        _text.text = _dialoguesTexts[_dialogueIndex];
+        _dialogueImage.sprite = _dialogueImages[_dialogueIndex];
+        _dialogues.SetActive(false);
     }
 
     void Update()
     {
         if (!_autoPlay && Input.GetKeyDown(KeyCode.Mouse0))
         {
-            _spriteIndex++;
-            StartCoroutine(FadetoBlack());
+            _text.text = _dialoguesTexts[_dialogueIndex];
+            _dialogueImage.sprite = _dialogueImages[_dialogueIndex];
+            _dialogueIndex++;
+            StartCoroutine(ComicPlay());
         }
     }
 
     protected IEnumerator ComicPlay()
     {
         float t = 0;
-        while (t < 2)
+        while (t < 1)
         {
             t += Time.deltaTime;
             yield return null;
         }
         _spriteIndex++;
-        if (_spriteIndex == _changeAuto[_changeIndex])
+        if(_changeAuto.Length >= _changeIndex + 1)
         {
-            _changeIndex++;
-            _autoPlay = false;
+            if (_spriteIndex == _changeAuto[_changeIndex])
+            {
+                _changeIndex++;
+                _autoPlay = false;
+            }
+            
         }
+        else if (_changeAuto.Length < _changeIndex)
+            _autoPlay = false;
         else
             _autoPlay = true;
         StartCoroutine(FadetoBlack());
@@ -64,7 +82,9 @@ public class ComicDefault : MonoBehaviour
             _fadeBlack.GetComponent<SpriteRenderer>().color = color;
             yield return null;
         }
-        _image.sprite = _sprites[_spriteIndex];
+        if (_spriteIndex < _sprites.Length)
+            _image.sprite = _sprites[_spriteIndex];
+        _dialogues.SetActive(false);
         while (_fadeBlack.GetComponent<SpriteRenderer>().color.a > 0)
         {
             fadeAmount = color.a - (fadeSpeed * Time.deltaTime);
@@ -73,10 +93,12 @@ public class ComicDefault : MonoBehaviour
             yield return null;
         }
 
-        if (_spriteIndex - 1 < _sprites.Length && _autoPlay)
+        if (_spriteIndex < _sprites.Length && _autoPlay)
             StartCoroutine(ComicPlay());
-        else
+        else if (_spriteIndex >= _sprites.Length && _autoPlay)
             StartCoroutine(FadetoBlackScene(_nextScene));
+        else
+            _dialogues.SetActive(true);
 
         yield return null;
     }
