@@ -24,6 +24,7 @@ TagManager:
   - _language
   - _muted
   - _fullscreen
+  - CanvasLevels
   layers:
   - Default
   - TransparentFX

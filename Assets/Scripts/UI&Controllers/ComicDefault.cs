@@ -15,12 +15,19 @@ public class ComicDefault : MonoBehaviour
     [SerializeField] int _changeIndex = 0;
     [SerializeField] bool _autoPlay = true;
     [SerializeField] string _nextScene;
-    [SerializeField] GameObject _dialogues;
+
+
+    [SerializeField] GameObject _dialogueSquare;
+    [SerializeField] GameObject _dialogueText;
+    [SerializeField] GameObject _dialogueSprite;
     [SerializeField] TMP_Text _text;
     [SerializeField] string[] _dialoguesTexts;
     [SerializeField] Image _dialogueImage;
     [SerializeField] Sprite[] _dialogueImages;
     int _dialogueIndex = 0;
+
+    [SerializeField] int[] _fadesBlack;
+    [SerializeField] int _fadesIndex = 0;
 
     void Start()
     {
@@ -30,7 +37,9 @@ public class ComicDefault : MonoBehaviour
         StartCoroutine(FadefromBlack());
         _text.text = _dialoguesTexts[_dialogueIndex];
         _dialogueImage.sprite = _dialogueImages[_dialogueIndex];
-        _dialogues.SetActive(false);
+        _dialogueSquare.SetActive(false);
+        _dialogueText.SetActive(false);
+        _dialogueSprite.SetActive(false);
     }
 
     void Update()
@@ -47,7 +56,9 @@ public class ComicDefault : MonoBehaviour
     protected IEnumerator ComicPlay()
     {
         float t = 0;
-        while (t < 1)
+        int v = 2;
+
+        while (t < 0.2f)
         {
             t += Time.deltaTime;
             yield return null;
@@ -59,14 +70,74 @@ public class ComicDefault : MonoBehaviour
             {
                 _changeIndex++;
                 _autoPlay = false;
+                v = 5;
             }
             
         }
         else if (_changeAuto.Length < _changeIndex)
+        {
             _autoPlay = false;
+            v = 5;
+        }
         else
-            _autoPlay = true;
-        StartCoroutine(FadetoBlack());
+        {
+            _autoPlay = true;  
+        }
+
+        if(_autoPlay)
+        {
+            while (t < 1f)
+            {
+                t += Time.deltaTime;
+                yield return null;
+            }
+        }
+
+        if (_fadesBlack.Length >= _fadesIndex + 1)
+        {
+            if (_fadesBlack[_fadesIndex] == _spriteIndex)
+            {
+                _fadesIndex++;
+                StartCoroutine(FadetoBlack(v));
+            }
+            else
+                StartCoroutine(ChangeImage());
+        }
+        else
+            StartCoroutine(ChangeImage());
+
+        yield return null;
+    }
+
+    protected IEnumerator ChangeImage()
+    {
+        float t = 0;
+
+        if (_spriteIndex < _sprites.Length)
+            _image.sprite = _sprites[_spriteIndex];
+        if (_dialogueIndex < _dialogueImages.Length && !_autoPlay)
+        {
+            _text.text = _dialoguesTexts[_dialogueIndex];
+            _dialogueImage.sprite = _dialogueImages[_dialogueIndex];
+            DialogueEnabled(true);
+        }
+        else
+            DialogueEnabled(false);
+
+        if (_autoPlay)
+        {
+            while (t < 1f)
+            {
+                t += Time.deltaTime;
+                yield return null;
+            }
+        }
+
+        if (_spriteIndex < _sprites.Length && _autoPlay)
+            StartCoroutine(ComicPlay());
+        else if (_spriteIndex >= _sprites.Length && _autoPlay)
+            StartCoroutine(FadetoBlackScene(_nextScene));
+
         yield return null;
     }
 
@@ -84,7 +155,14 @@ public class ComicDefault : MonoBehaviour
         }
         if (_spriteIndex < _sprites.Length)
             _image.sprite = _sprites[_spriteIndex];
-        _dialogues.SetActive(false);
+        if (_dialogueIndex < _dialogueImages.Length && !_autoPlay)
+        {
+            _text.text = _dialoguesTexts[_dialogueIndex];
+            _dialogueImage.sprite = _dialogueImages[_dialogueIndex];
+            DialogueEnabled(true);
+        }
+        else
+            DialogueEnabled(false);
         while (_fadeBlack.GetComponent<SpriteRenderer>().color.a > 0)
         {
             fadeAmount = color.a - (fadeSpeed * Time.deltaTime);
@@ -97,8 +175,6 @@ public class ComicDefault : MonoBehaviour
             StartCoroutine(ComicPlay());
         else if (_spriteIndex >= _sprites.Length && _autoPlay)
             StartCoroutine(FadetoBlackScene(_nextScene));
-        else
-            _dialogues.SetActive(true);
 
         yield return null;
     }
@@ -135,4 +211,35 @@ public class ComicDefault : MonoBehaviour
 
         StartCoroutine(ComicPlay());
     }
+
+    void DialogueEnabled(bool isTrue)
+    {
+        if (!isTrue)
+            StartCoroutine(FadeTextBox());
+        else
+        {
+           _dialogueSquare.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1);
+            _dialogueSquare.SetActive(true);
+        }
+        _dialogueText.SetActive(isTrue);
+        _dialogueSprite.SetActive(isTrue);
+    }
+
+    protected IEnumerator FadeTextBox(int fadeSpeed = 2)
+    {
+        Color color = _dialogueSquare.GetComponent<SpriteRenderer>().color;
+        float fadeAmount;
+
+        while (_dialogueSquare.GetComponent<SpriteRenderer>().color.a > 0)
+        {
+            fadeAmount = color.a - (fadeSpeed * Time.deltaTime);
+            color = new Color(color.r, color.g, color.b, fadeAmount);
+            _dialogueSquare.GetComponent<SpriteRenderer>().color = color;
+            yield return null;
+        }
+
+        _dialogueSquare.SetActive(false);
+        yield return null;
+    }
+
 }
