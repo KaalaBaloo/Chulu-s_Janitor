@@ -26,6 +26,7 @@ TagManager:
   - _fullscreen
   - CanvasLevels
   - _dialogue
+  - _save
   layers:
   - Default
   - TransparentFX

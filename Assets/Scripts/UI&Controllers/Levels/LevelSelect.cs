@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelSelect : MonoBehaviour
+public class LevelSelect : MonoBehaviour, IDataPersistence
 {
     GameObject _fadeBlack;
     AudioSource _audio;
@@ -34,6 +34,8 @@ public class LevelSelect : MonoBehaviour
             else
                 _levels[i].GetComponent<SpriteRenderer>().color = Color.red;
         }
+
+        Debug.Log(GridController.LEVELS_UNLOCKED);
     }
 
 
@@ -111,6 +113,16 @@ public class LevelSelect : MonoBehaviour
             _fadeBlack.GetComponent<SpriteRenderer>().color = color;
             yield return null;
         }
+    }
+
+    public void LoadData(GameData data)
+    {
+        GridController.LEVELS_UNLOCKED = data._levelsUnlocked;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data._levelsUnlocked = GridController.LEVELS_UNLOCKED;
     }
 
 }

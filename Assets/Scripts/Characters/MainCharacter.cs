@@ -49,10 +49,21 @@ public class MainCharacter : Sprites
 
     void Update()
     {
-        if(!_uiController.GetPaused() && !_dialogues.activeSelf)
+        if (_dialogues != null)
         {
-            Movement();
+            if (!_uiController.GetPaused() && !_dialogues.activeSelf)
+            {
+                Movement();
+            }
         }
+        else
+        {
+            if (!_uiController.GetPaused())
+            {
+                Movement();
+            }
+        }
+       
     }
 
     public int GetSuciedad()

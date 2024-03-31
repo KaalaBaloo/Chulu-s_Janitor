@@ -16,6 +16,7 @@ public class GeneralSettings : MonoBehaviour, IDataPersistence
     static public int LANGUAGE;
     int _language;
     //0_Spanish - 1_English
+
     Slider _sliderMusic;
     Slider _sliderSfx;
     TMP_Dropdown _dropdownResolution;

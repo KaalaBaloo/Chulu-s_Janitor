@@ -6,6 +6,7 @@ public class UIController : MonoBehaviour
 {
     GameObject _pause;
     GameObject _settings;
+    GameObject _dialogues;
 
     void Start()
     {
@@ -13,11 +14,13 @@ public class UIController : MonoBehaviour
         _pause.SetActive(false);
         _settings = GameObject.FindWithTag("_settings");
         _settings.SetActive(false);
+        _dialogues = GameObject.FindGameObjectWithTag("_dialogue");
+
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !_dialogues.activeSelf)
         {
             Cursor.visible = true;
             _pause.SetActive(true);

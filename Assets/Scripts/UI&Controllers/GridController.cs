@@ -85,16 +85,30 @@ public class GridController : MonoBehaviour, IDataPersistence
         }
         if (_dirtToClean <= 0 && SceneManager.GetActiveScene().name != "20" && SceneManager.GetActiveScene().name != "20_Battle" && !GAMEOVER)
         {
+            int level;
+
             GAMEOVER = true;
             Debug.Log("Win");
             AudioPlay(_win);
-            StartCoroutine(ChangeScene("SelectorNiveles"));
+
+            int.TryParse(SceneManager.GetActiveScene().name, out level);
+            if (level > LEVELS_UNLOCKED)
+                LEVELS_UNLOCKED++;
+
+            StartCoroutine(ChangeScene("LevelSelector"));
         }
         else if (_dirtToClean <= 0 && SceneManager.GetActiveScene().name == "20" && !GAMEOVER)
         {
+            int level;
+
             GAMEOVER = true;
             Debug.Log("Win");
             AudioPlay(_win);
+
+            int.TryParse(SceneManager.GetActiveScene().name, out level);
+            if (level > LEVELS_UNLOCKED)
+                LEVELS_UNLOCKED++;
+
             StartCoroutine(RitualAnimation());
         }
         else if (_dirtToClean <= 0 && SceneManager.GetActiveScene().name == "20_Battle" && !GAMEOVER)
@@ -416,7 +430,6 @@ public class GridController : MonoBehaviour, IDataPersistence
         }
     }
 
-
     public void CreateEnemy()
     {
         _enemies++;
@@ -500,11 +513,11 @@ public class GridController : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
-        LEVELS_UNLOCKED = data.levelsUnlocked;
+        LEVELS_UNLOCKED = data._levelsUnlocked;
     }
 
     public void SaveData(ref GameData data)
     {
-        data.levelsUnlocked = LEVELS_UNLOCKED;
+        data._levelsUnlocked = LEVELS_UNLOCKED;
     }
 }

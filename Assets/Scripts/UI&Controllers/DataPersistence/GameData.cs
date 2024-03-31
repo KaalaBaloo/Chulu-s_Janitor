@@ -6,7 +6,7 @@ using UnityEngine;
 public class GameData
 {
     //Save Points
-    public int levelsUnlocked;
+    public int _levelsUnlocked;
 
     //General Settings
     public bool _muted;
@@ -16,8 +16,7 @@ public class GameData
 
     public GameData() 
     { 
-        this.levelsUnlocked = 0;
-
+        _levelsUnlocked = 0;
         _muted = false;
         _fullscreen = true;
         _musicVolume = 50;

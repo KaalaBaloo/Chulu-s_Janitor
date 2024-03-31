@@ -16,16 +16,6 @@ public class Music : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
 
         _music = GetComponent<AudioSource>();    
-        if (GeneralSettings.MUTED)
-        {
-            _music.volume = 0;
-            _music.mute = true;
-        }
-        else
-        {
-            _music.mute = false;
-            _music.volume = GeneralSettings.MUSICVOLUME / 100;
-        }
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -66,7 +56,6 @@ public class Music : MonoBehaviour
     {
         if (GeneralSettings.MUTED)
         {
-            _music.volume = 0;
             _music.mute = true;
         }
         else
