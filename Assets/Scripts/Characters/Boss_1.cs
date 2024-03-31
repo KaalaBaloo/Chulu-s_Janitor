@@ -119,7 +119,7 @@ public class Boss_1 : Enemy
                 }
                 else
                 {
-                    _random = Random.Range(1, 5);
+                    _random = Random.Range(1, 10);
                     if (_random == 1)
                     {
                         StartCoroutine(TPCoroutine());
@@ -210,7 +210,7 @@ public class Boss_1 : Enemy
         }
         Instantiate(_VFXDead, transform.position, Quaternion.identity);
         Instantiate(_spriteChulu, transform.position, Quaternion.identity);
-        _audioExt3.Play(46100);
+        _audioExt3.PlayDelayed(46100);
         Destroy(this.gameObject);
         yield return 0;
     }

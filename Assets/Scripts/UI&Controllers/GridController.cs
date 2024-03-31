@@ -128,60 +128,40 @@ public class GridController : MonoBehaviour, IDataPersistence
     protected IEnumerator EndAnimation()
     {
         Transform _camara = GameObject.FindWithTag("MainCamera").transform;
-        Transform _ui = GameObject.FindWithTag("UI").transform;
         float t = 0;
-        bool drch = true, up = true;
-        while (t < 8)
+        bool left = true;
+
+        while (t < 2)
         {
             if (t > 1)
                 _endOn = true;
-            if (t > 2 && t < 5)
-            {
-                if (drch)
-                {
-                    _camara.position += new Vector3(0.1f, 0, 0) * Time.deltaTime;
-                    _ui.position += new Vector3(0.1f, 0, 0) * Time.deltaTime;
-                }
-                else
-                {
-                    _camara.position += new Vector3(-0.1f, 0, 0) * Time.deltaTime;
-                    _ui.position += new Vector3(-0.1f, 0, 0) * Time.deltaTime;
-                }
-                if (_camara.position.x > 7.5)
-                {
-                    drch = false;
-                }
-                if (_camara.position.x < 3.5)
-                {
-                    drch = true;
-                }
-                if (up)
-                {
-                    _camara.position += new Vector3(0, 0.1f, 0) * Time.deltaTime;
-                    _ui.position += new Vector3(0, 0.1f, 0) * Time.deltaTime;
-                }
-                else
-                {
-                    _camara.position += new Vector3(0, -0.1f, 0) * Time.deltaTime;
-                    _ui.position += new Vector3(0, -0.1f, 0) * Time.deltaTime;
-                }
-                if (_camara.position.y > 4.5f)
-                {
-                    up = false;
-                }
-                if (_camara.position.y < 2.5f)
-                {
-                    up = true;
-                }
-            }
-            else
-            {
-                _camara.position = new Vector3(5.5f, 3.5f, -10);
-                _ui.position = new Vector3(5.5f, 3.5f, 0);
-            }
             t += Time.deltaTime;
             yield return null;
         }
+
+        while (t < 5)
+        {
+            if (left)
+                _camara.transform.position -= new Vector3( 10, 0, 0) * Time.deltaTime;
+            else
+                _camara.transform.position += new Vector3( 10, 0, 0) * Time.deltaTime;
+
+            if (_camara.transform.position.x <= 5f)
+                left = false;
+            else if (_camara.transform.position.x >= 6f)
+                left = true;
+
+            t += Time.deltaTime;
+            yield return null;
+        }
+
+        while (t < 8)
+        {
+            _camara.position = new Vector3(5.5f, 3.5f, -10);
+            t += Time.deltaTime;
+            yield return null;
+        }
+
         StartCoroutine(FadetoBlack("End"));
         yield return null;
     }

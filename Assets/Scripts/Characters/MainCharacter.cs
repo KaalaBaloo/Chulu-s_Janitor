@@ -27,7 +27,6 @@ public class MainCharacter : Sprites
     [SerializeField] AudioClip _limpiar;
     [SerializeField] AudioClip _enjuagar;
 
-    GameObject _UI;
     UIController _uiController;
 
     protected override void Awake()
@@ -37,8 +36,7 @@ public class MainCharacter : Sprites
         _animator = _sprite.GetComponent<Animator>();
         _audio = GetComponent<AudioSource>();
         _audio.volume = GeneralSettings.SFXVOLUME / 100;
-        _UI = GameObject.FindWithTag("_ui");
-        _uiController = _UI.GetComponent<UIController>();
+        _uiController = GameObject.FindWithTag("_ui").GetComponent<UIController>();
     }
 
     void Start()
