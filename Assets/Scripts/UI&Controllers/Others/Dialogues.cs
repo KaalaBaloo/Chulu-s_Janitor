@@ -22,7 +22,7 @@ public class Dialogues : MonoBehaviour
     {
         _UI = GameObject.FindGameObjectWithTag("CanvasLevels");
         _UI.SetActive(false);
-       _dialogueIndex = 0;
+        _dialogueIndex = 0;
         _text.text = _dialogues[_dialogueIndex];
         _dialogueImage.sprite = _sprites[_dialogueSprite[_dialogueIndex]];
     }
@@ -30,7 +30,7 @@ public class Dialogues : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Space))
         {
             ChangeDialogue();
         }

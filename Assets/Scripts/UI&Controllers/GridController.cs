@@ -8,7 +8,7 @@ using System.Threading;
 public class GridController : MonoBehaviour, IDataPersistence
 {
     static public bool GAMEOVER = false;
-    static public int LEVELS_UNLOCKED = 1;
+    static public int LEVELS_UNLOCKED = 0;
 
     [SerializeField] int _dirtToClean = 0;
     [SerializeField] int _tilesX = 3;

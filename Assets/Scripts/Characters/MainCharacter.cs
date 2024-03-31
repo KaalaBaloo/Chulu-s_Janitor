@@ -28,6 +28,7 @@ public class MainCharacter : Sprites
     [SerializeField] AudioClip _enjuagar;
 
     UIController _uiController;
+    GameObject _dialogues;
 
     protected override void Awake()
     {
@@ -37,6 +38,7 @@ public class MainCharacter : Sprites
         _audio = GetComponent<AudioSource>();
         _audio.volume = GeneralSettings.SFXVOLUME / 100;
         _uiController = GameObject.FindWithTag("_ui").GetComponent<UIController>();
+        _dialogues = GameObject.FindGameObjectWithTag("_dialogue");
     }
 
     void Start()
@@ -47,7 +49,7 @@ public class MainCharacter : Sprites
 
     void Update()
     {
-        if(!_uiController.GetPaused())
+        if(!_uiController.GetPaused() && !_dialogues.activeSelf)
         {
             Movement();
         }

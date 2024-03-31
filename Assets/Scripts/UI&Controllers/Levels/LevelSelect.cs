@@ -26,30 +26,38 @@ public class LevelSelect : MonoBehaviour
         _textTittle = _text.GetComponent<TMP_Text>();
         _fadeBlack = GameObject.FindWithTag("_blackFade");
         StartCoroutine(FadefromBlack());
+
+        for (int i = 0; i < _levels.Length; i++)
+        {
+            if (i <= GridController.LEVELS_UNLOCKED)
+                _levels[i].GetComponent<SpriteRenderer>().color = Color.white;
+            else
+                _levels[i].GetComponent<SpriteRenderer>().color = Color.red;
+        }
     }
 
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W) && (_level + 1) < _levels.Length)
+        if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && (_level + 1) < _levels.Length)
         {
             _level += 1;
             transform.position = new Vector3(_levels[_level].transform.position.x, _levels[_level].transform.position.y, 0);
             _textTittle.text = _tittles[_level];
         }
-        else if (Input.GetKeyDown(KeyCode.A) && (_level - 1) >= 0)
+        else if ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) && (_level - 1) >= 0)
         {
             _level -= 1;
             transform.position = new Vector3(_levels[_level].transform.position.x, _levels[_level].transform.position.y, 0);
             _textTittle.text = _tittles[_level];
         }
-        else if (Input.GetKeyDown(KeyCode.S) && (_level - 1) >= 0)
+        else if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && (_level - 1) >= 0)
         {
             _level -= 1;
             transform.position = new Vector3(_levels[_level].transform.position.x, _levels[_level].transform.position.y, 0);
             _textTittle.text = _tittles[_level];
         }
-        else if (Input.GetKeyDown(KeyCode.D) && (_level + 1) < _levels.Length)
+        else if ((Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) && (_level + 1) < _levels.Length)
         {
             _level += 1;
             transform.position = new Vector3(_levels[_level].transform.position.x, _levels[_level].transform.position.y, 0);
@@ -57,13 +65,20 @@ public class LevelSelect : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Space))
         {
-            _animator.SetTrigger("Clean");
-            _audio.volume = GeneralSettings.SFXVOLUME / 100;
-            if (!GeneralSettings.MUTED)
+            if (_level <= GridController.LEVELS_UNLOCKED)
             {
-                _audio.Play();
+                _animator.SetTrigger("Clean");
+                _audio.volume = GeneralSettings.SFXVOLUME / 100;
+                if (!GeneralSettings.MUTED)
+                {
+                    _audio.Play();
+                }
+                StartCoroutine(FadetoBlack((_level + 1).ToString()));
             }
-            StartCoroutine(FadetoBlack((_level + 1).ToString()));
+            else
+            {
+                Debug.Log("Block");
+            }  
         }
     }
 
