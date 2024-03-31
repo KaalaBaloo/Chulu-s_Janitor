@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Music : MonoBehaviour
+public class Music : MonoBehaviour, IDataPersistence
 {
     public List<string> sceneNames;
     public string instanceName;
@@ -64,5 +64,24 @@ public class Music : MonoBehaviour
             _music.volume = GeneralSettings.MUSICVOLUME / 100;
         }
     }
+
+    public void LoadData(GameData data)
+    {
+        GridController.LEVELS_UNLOCKED = data._levelsUnlocked;
+        GeneralSettings.MUSICVOLUME = data._musicVolume;
+        GeneralSettings.SFXVOLUME = data._sfxVolume;
+        GeneralSettings.FULLSCREEN = data._fullscreen;
+        GeneralSettings.MUTED = data._muted;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data._levelsUnlocked = GridController.LEVELS_UNLOCKED;
+        data._musicVolume = GeneralSettings.MUSICVOLUME;
+        data._sfxVolume = GeneralSettings.SFXVOLUME;
+        data._fullscreen = GeneralSettings.FULLSCREEN;
+        data._muted = GeneralSettings.MUTED;
+    }
+
 
 }

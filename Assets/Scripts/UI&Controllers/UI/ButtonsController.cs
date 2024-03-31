@@ -15,6 +15,9 @@ public class ButtonsController : MonoBehaviour
         _fadeBlack = GameObject.FindWithTag("_blackFade");
         _pause = GameObject.FindWithTag("_pause");
         _settings = GameObject.FindWithTag("_settings");
+
+        if (SceneManager.GetActiveScene().name == "Main")
+            StartCoroutine(FadefromBlack());
     }
 
     public void Restart()
@@ -52,7 +55,23 @@ public class ButtonsController : MonoBehaviour
             yield return null;
         }
 
+        GameObject.FindGameObjectWithTag("_save").GetComponent<DataPersistenceManager>().SaveGame();
         SceneManager.LoadScene(scene);
         yield return null;
     }
+
+    protected IEnumerator FadefromBlack(int fadeSpeed = 8)
+    {
+        Color color = _fadeBlack.GetComponent<SpriteRenderer>().color;
+        float fadeAmount;
+
+        while (_fadeBlack.GetComponent<SpriteRenderer>().color.a > 0)
+        {
+            fadeAmount = color.a - (fadeSpeed * Time.deltaTime);
+            color = new Color(color.r, color.g, color.b, fadeAmount);
+            _fadeBlack.GetComponent<SpriteRenderer>().color = color;
+            yield return null;
+        }
+    }
+
 }

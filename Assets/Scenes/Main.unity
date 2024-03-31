@@ -484,6 +484,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MenuMusic
       objectReference: {fileID: 0}
+    - target: {fileID: 1900947194252255908, guid: af5e9f871e930f24db6e0071eff16c0b, type: 3}
+      propertyPath: sceneNames.Array.data[1]
+      value: LevelSelector
+      objectReference: {fileID: 0}
     - target: {fileID: 1900947194252255909, guid: af5e9f871e930f24db6e0071eff16c0b, type: 3}
       propertyPath: m_RootOrder
       value: 6

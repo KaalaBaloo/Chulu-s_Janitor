@@ -29,8 +29,8 @@ public class DataPersistenceManager : MonoBehaviour
     private void Start()
     {
         Debug.Log(Application.persistentDataPath);
-        this._dataPersistenceObjects = FindAllDataPersistenceObjects();
         this._dataHandler = new FileDataHandler(Application.persistentDataPath, _fileName);
+        this._dataPersistenceObjects = FindAllDataPersistenceObjects();
         LoadGame();
     }
 
@@ -73,7 +73,7 @@ public class DataPersistenceManager : MonoBehaviour
     void OnApplicationQuit()
     {
         SaveGame();
-    }    
+    }
 
     List<IDataPersistence> FindAllDataPersistenceObjects()
     {

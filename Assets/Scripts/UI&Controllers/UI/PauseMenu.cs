@@ -40,6 +40,7 @@ public class PauseMenu : MonoBehaviour
             yield return null;
         }
 
+        GameObject.FindGameObjectWithTag("_save").GetComponent<DataPersistenceManager>().SaveGame();
         SceneManager.LoadScene(scene);
         yield return null;
     }

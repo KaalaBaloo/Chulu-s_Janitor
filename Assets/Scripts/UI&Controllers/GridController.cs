@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using System.Threading;
 
 public class GridController : MonoBehaviour, IDataPersistence
 {
@@ -465,7 +466,7 @@ public class GridController : MonoBehaviour, IDataPersistence
             t += Time.deltaTime;
             yield return null;
         }
-        DataPersistenceManager.instance.SaveGame();
+        GameObject.FindGameObjectWithTag("_save").GetComponent<DataPersistenceManager>().SaveGame();
         StartCoroutine(FadetoBlack(scene));
         yield return null;
     }
@@ -514,10 +515,18 @@ public class GridController : MonoBehaviour, IDataPersistence
     public void LoadData(GameData data)
     {
         LEVELS_UNLOCKED = data._levelsUnlocked;
+        GeneralSettings.MUSICVOLUME = data._musicVolume;
+        GeneralSettings.SFXVOLUME = data._sfxVolume;
+        GeneralSettings.FULLSCREEN = data._fullscreen;
+        GeneralSettings.MUTED = data._muted;
     }
 
     public void SaveData(ref GameData data)
     {
         data._levelsUnlocked = LEVELS_UNLOCKED;
+        data._musicVolume = GeneralSettings.MUSICVOLUME;
+        data._sfxVolume = GeneralSettings.SFXVOLUME;
+        data._fullscreen = GeneralSettings.FULLSCREEN;
+        data._muted = GeneralSettings.MUTED;
     }
 }
