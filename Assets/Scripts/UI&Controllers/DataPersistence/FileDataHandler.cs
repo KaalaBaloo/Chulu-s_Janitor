@@ -19,6 +19,7 @@ public class FileDataHandler
     {
         //Use Path.Combine for different OS
         string fullPath = Path.Combine(_dataDirPath, _dataFileName);
+        Debug.Log("Loading data");
 
         GameData loadedData = null;
         if(File.Exists(fullPath))
@@ -51,6 +52,7 @@ public class FileDataHandler
     {
         //Use Path.Combine for different OS
         string fullPath = Path.Combine(_dataDirPath, _dataFileName);
+        Debug.Log("Saving data");
 
         try
         {

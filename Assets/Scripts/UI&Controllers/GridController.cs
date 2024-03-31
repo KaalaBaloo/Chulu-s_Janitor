@@ -3,7 +3,6 @@ using TMPro;
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
-using System.Threading;
 
 public class GridController : MonoBehaviour, IDataPersistence
 {
@@ -466,6 +465,7 @@ public class GridController : MonoBehaviour, IDataPersistence
             t += Time.deltaTime;
             yield return null;
         }
+        DataPersistenceManager.instance.SaveGame();
         StartCoroutine(FadetoBlack(scene));
         yield return null;
     }

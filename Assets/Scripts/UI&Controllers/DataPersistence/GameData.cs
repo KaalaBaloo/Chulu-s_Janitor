@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class GameData
 {
-    //Save Points
+    //Levels Played
     public int _levelsUnlocked;
 
     //General Settings
