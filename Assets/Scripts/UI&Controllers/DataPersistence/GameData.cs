@@ -13,6 +13,7 @@ public class GameData
     public bool _fullscreen;
     public float _musicVolume;
     public float _sfxVolume;
+    public int _resolution;
 
     public GameData() 
     { 
@@ -21,6 +22,7 @@ public class GameData
         _fullscreen = true;
         _musicVolume = 50;
         _sfxVolume = 50;
+        _resolution = 5;
     }
 
 }

@@ -11,8 +11,8 @@ public class GeneralSettings : MonoBehaviour, IDataPersistence
     static public float MUSICVOLUME;
     static public float SFXVOLUME;
     Resolution[] resolutions;
-    int _resolution;
-    //0_Low - 1_Medium - 2_High - 3_VeryHigh - 4_Ultra 
+    int _resolution = 5;
+    //0_VeryLow - 1_Low - 2_Medium - 3_High - 4_VeryHigh - 5_Ultra
     static public int LANGUAGE;
     int _language;
     //0_Spanish - 1_English
@@ -88,11 +88,27 @@ public class GeneralSettings : MonoBehaviour, IDataPersistence
         }
     }
 
+    bool GetFullScreen()
+    {
+        if (!FULLSCREEN)
+        {
+            return !Screen.fullScreen;
+        }
+        else
+        {
+            return Screen.fullScreen;
+        }
+    }
+
     public void SetResolution()
     {
-        Resolution resolution = resolutions[_dropdownResolution.value];
-        Screen.SetResolution(resolution.width,
-                  resolution.height, Screen.fullScreen);
+        int finalResolution = Mathf.RoundToInt(resolutions.Length/6 * _dropdownResolution.value);
+        Debug.Log(resolutions.Length);
+        Debug.Log(finalResolution);
+
+        Screen.SetResolution(resolutions[finalResolution].width, resolutions[finalResolution].height, GetFullScreen());
+
+        Debug.Log(Screen.currentResolution);
     }
 
     public void SetLanguage()
@@ -106,6 +122,7 @@ public class GeneralSettings : MonoBehaviour, IDataPersistence
         SFXVOLUME = data._sfxVolume;
         FULLSCREEN = data._fullscreen;
         MUTED = data._muted;
+        this._resolution = data._resolution;
     }
     
     public void SaveData(ref GameData data) 
@@ -114,6 +131,7 @@ public class GeneralSettings : MonoBehaviour, IDataPersistence
        data._sfxVolume = SFXVOLUME;
        data._fullscreen = FULLSCREEN;
        data._muted = MUTED;
+       data._resolution = this._resolution;
     }
 
 }
