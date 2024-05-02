@@ -3267,6 +3267,14 @@ PrefabInstance:
       propertyPath: _dialogueSprite.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2372108851078016149, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 519420031}
+    - target: {fileID: 2372108852685474336, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 519420031}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
 --- !u!1 &2025338254
