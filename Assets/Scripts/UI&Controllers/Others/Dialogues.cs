@@ -21,10 +21,19 @@ public class Dialogues : MonoBehaviour
     void Start()
     {
         _UI = GameObject.FindGameObjectWithTag("CanvasLevels");
-        _UI.SetActive(false);
-        _dialogueIndex = 0;
-        _text.text = _dialogues[_dialogueIndex];
-        _dialogueImage.sprite = _sprites[_dialogueSprite[_dialogueIndex]];
+        if(_dialogues.Length != 0)
+        {
+            _UI.SetActive(false);
+            _dialogueIndex = 0;
+            _text.text = _dialogues[_dialogueIndex];
+            _dialogueImage.sprite = _sprites[_dialogueSprite[_dialogueIndex]];
+        }
+        else
+        {
+            _UI.SetActive(true);
+            _dialogueTotal.SetActive(false);
+        }
+
     }
 
     // Update is called once per frame

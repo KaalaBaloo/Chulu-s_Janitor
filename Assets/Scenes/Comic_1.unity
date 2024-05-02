@@ -675,10 +675,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _image: {fileID: 780458562}
   _sprites:
-  - {fileID: 21300000, guid: 3157752687aeea1468bf06be3299df45, type: 3}
+  - {fileID: 21300000, guid: e6e4c4e6dad16af4d92bbf66aceda0c3, type: 3}
   - {fileID: 21300000, guid: 93d14b658c36c204eac5aa131da8b5ec, type: 3}
   - {fileID: 21300000, guid: 93d14b658c36c204eac5aa131da8b5ec, type: 3}
-  - {fileID: 21300000, guid: 3157752687aeea1468bf06be3299df45, type: 3}
+  - {fileID: 21300000, guid: 93d14b658c36c204eac5aa131da8b5ec, type: 3}
+  - {fileID: 21300000, guid: 93d14b658c36c204eac5aa131da8b5ec, type: 3}
+  - {fileID: 21300000, guid: e6e4c4e6dad16af4d92bbf66aceda0c3, type: 3}
   - {fileID: 21300000, guid: ea222ecdd681a2943a53329e2eabe71f, type: 3}
   - {fileID: 21300000, guid: 912ddeaa1793da4429f5525972b791ae, type: 3}
   - {fileID: 21300000, guid: fc530d4b593e6974f9161a69dd375952, type: 3}
@@ -689,7 +691,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 507fc44687af4ef419ec64304dc2c9d1, type: 3}
   - {fileID: 21300000, guid: 4769e433674289743bd12ec0db2440bd, type: 3}
   _spriteIndex: 0
-  _changeAuto: 0100000002000000
+  _changeAuto: 0100000004000000
   _changeIndex: 0
   _autoPlay: 1
   _nextScene: LevelSelector
@@ -698,13 +700,19 @@ MonoBehaviour:
   _dialogueSprite: {fileID: 1980618456}
   _text: {fileID: 800779714}
   _dialoguesTexts:
-  - Holaaaaaaa
-  - Byeeeeeee
+  - "Venga va\u2026 Que a la und\xE9cima va la vencida\u2026"
+  - "\xA1Ey, peque\xF1o! Escucha, yo s\xE9 que tu vida es una mierda. Sin amigos,
+    te van a desahuciar del piso y tu gato se muere de hambre\u2026"
+  - "Pero tu tranquilo, podemos arreglarlo. Solo necesito un peque\xF1o favor a cambio,
+    no hace falta que le des muchas vueltas. Yo me encargo."
+  - "\xA1Venga despierta, que el trabajo no espera!"
   _dialogueImage: {fileID: 1980618458}
   _dialogueImages:
-  - {fileID: 21300000, guid: a2061b3fe565dab45bb188006d6272ab, type: 3}
-  - {fileID: 21300000, guid: 4787f2f533a784b4c9af88d499c95baf, type: 3}
-  _fadesBlack: 010000000300000004000000
+  - {fileID: 21300000, guid: cec79dfa14f186741ab855d5a05540d7, type: 3}
+  - {fileID: 21300000, guid: 37b8db03b9f1a8149b1b0c2a9a6471ef, type: 3}
+  - {fileID: 21300000, guid: 69974a110a0701546b3fff8c795d3ad0, type: 3}
+  - {fileID: 21300000, guid: 37b8db03b9f1a8149b1b0c2a9a6471ef, type: 3}
+  _fadesBlack: 010000000500000006000000
   _fadesIndex: 0
 --- !u!4 &1829200334
 Transform:

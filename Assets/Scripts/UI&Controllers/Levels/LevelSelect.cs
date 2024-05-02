@@ -21,7 +21,7 @@ public class LevelSelect : MonoBehaviour
     {
         _audio = GetComponent<AudioSource>();
         _audio.volume = GeneralSettings.SFXVOLUME / 100;
-        transform.position = new Vector3(_levels[0].transform.position.x, _levels[0].transform.position.y, 0);
+        transform.position = new Vector3(_levels[0].transform.position.x - 0.12f, _levels[0].transform.position.y + 0.28f, 0);
         _animator = _sprite.GetComponent<Animator>();
         _textTittle = _text.GetComponent<TMP_Text>();
         _fadeBlack = GameObject.FindWithTag("_blackFade");
@@ -30,9 +30,7 @@ public class LevelSelect : MonoBehaviour
         for (int i = 0; i < _levels.Length; i++)
         {
             if (i <= GridController.LEVELS_UNLOCKED)
-                _levels[i].GetComponent<SpriteRenderer>().color = Color.white;
-            else
-                _levels[i].GetComponent<SpriteRenderer>().color = Color.red;
+                _levels[i].GetComponent<LS_Buttons>().Available();
         }
 
         Debug.Log(GridController.LEVELS_UNLOCKED);
@@ -44,25 +42,25 @@ public class LevelSelect : MonoBehaviour
         if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && (_level + 1) < _levels.Length)
         {
             _level += 1;
-            transform.position = new Vector3(_levels[_level].transform.position.x, _levels[_level].transform.position.y, 0);
+            transform.position = new Vector3(_levels[_level].transform.position.x - 0.12f, _levels[_level].transform.position.y + 0.28f, 0);
             _textTittle.text = _tittles[_level];
         }
         else if ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) && (_level - 1) >= 0)
         {
             _level -= 1;
-            transform.position = new Vector3(_levels[_level].transform.position.x, _levels[_level].transform.position.y, 0);
+            transform.position = new Vector3(_levels[_level].transform.position.x - 0.12f, _levels[_level].transform.position.y + 0.28f, 0);
             _textTittle.text = _tittles[_level];
         }
         else if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && (_level - 1) >= 0)
         {
             _level -= 1;
-            transform.position = new Vector3(_levels[_level].transform.position.x, _levels[_level].transform.position.y, 0);
+            transform.position = new Vector3(_levels[_level].transform.position.x - 0.12f, _levels[_level].transform.position.y + 0.28f, 0);
             _textTittle.text = _tittles[_level];
         }
         else if ((Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) && (_level + 1) < _levels.Length)
         {
             _level += 1;
-            transform.position = new Vector3(_levels[_level].transform.position.x, _levels[_level].transform.position.y, 0);
+            transform.position = new Vector3(_levels[_level].transform.position.x - 0.12f, _levels[_level].transform.position.y + 0.28f, 0);
             _textTittle.text = _tittles[_level];
         }
         else if (Input.GetKeyDown(KeyCode.Space))
