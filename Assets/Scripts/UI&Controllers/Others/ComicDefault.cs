@@ -297,8 +297,8 @@ public class ComicDefault : MonoBehaviour
         _dialogueImage.sprite = _dialogueImages[10];
         GameObject effect = Instantiate(_VFXDead, new Vector3(0,0,0), Quaternion.identity);
         effect.transform.localScale = new Vector3(5, 5, 0);
-        GameObject effect = Instantiate(_VFXDead, new Vector3(0, 0, 0), Quaternion.identity);
-        effect.transform.localScale = new Vector3(5, 5, 0);
+        GameObject effect2 = Instantiate(_VFXDead, new Vector3(0, 0, 0), Quaternion.identity);
+        effect2.transform.localScale = new Vector3(5, 5, 0);
         yield return null;
     }
 
