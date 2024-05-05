@@ -23,11 +23,18 @@ public class ComicDefault : MonoBehaviour
     [SerializeField] TMP_Text _text;
     [SerializeField] string[] _dialoguesTexts;
     [SerializeField] Image _dialogueImage;
+    [SerializeField] Image _dialogueImageSmall;
     [SerializeField] Sprite[] _dialogueImages;
     int _dialogueIndex = 0;
 
     [SerializeField] int[] _fadesBlack;
     [SerializeField] int _fadesIndex = 0;
+
+    [SerializeField] int[] _smallSprite;
+    [SerializeField] int _smallIndex = 0;
+
+    [SerializeField] int[] _camShake;
+    [SerializeField] int _camShakeIndex = 0;
 
     void Start()
     {
@@ -115,6 +122,21 @@ public class ComicDefault : MonoBehaviour
 
         if (_spriteIndex < _sprites.Length)
             _image.sprite = _sprites[_spriteIndex];
+
+        if (_smallIndex < _smallSprite.Length && _smallSprite[_smallIndex] == _spriteIndex)
+        {
+            _dialogueImageSmall.enabled = true;
+            _smallIndex++;
+        }
+        else
+            _dialogueImageSmall.enabled = false;
+
+        if (_camShakeIndex < _camShake.Length && _camShake[_camShakeIndex] == _spriteIndex)
+        {
+            StartCoroutine(CamShake());
+            _camShakeIndex++;
+        }
+
         if (_dialogueIndex < _dialogueImages.Length && !_autoPlay)
         {
             _text.text = _dialoguesTexts[_dialogueIndex];
@@ -239,6 +261,44 @@ public class ComicDefault : MonoBehaviour
         }
 
         _dialogueSquare.SetActive(false);
+        yield return null;
+    }
+
+    protected IEnumerator CamShake()
+    {
+        Transform _camara = GameObject.FindWithTag("MainCamera").transform;
+        float t = 0;
+        bool left = true;
+
+        while (t < 2)
+        {
+            t += Time.deltaTime;
+            yield return null;
+        }
+
+        while (t < 5)
+        {
+            if (left)
+                _camara.transform.position -= new Vector3(10, 0, 0) * Time.deltaTime;
+            else
+                _camara.transform.position += new Vector3(10, 0, 0) * Time.deltaTime;
+
+            if (_camara.transform.position.x <= 5f)
+                left = false;
+            else if (_camara.transform.position.x >= 6f)
+                left = true;
+
+            t += Time.deltaTime;
+            yield return null;
+        }
+
+        while (t < 8)
+        {
+            _camara.position = new Vector3(5.5f, 3.5f, -10);
+            t += Time.deltaTime;
+            yield return null;
+        }
+
         yield return null;
     }
 
