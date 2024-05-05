@@ -31,10 +31,14 @@ public class ComicDefault : MonoBehaviour
     [SerializeField] int _fadesIndex = 0;
 
     [SerializeField] int[] _smallSprite;
+    [SerializeField] Sprite[] _dialogueImagesSmall;
     [SerializeField] int _smallIndex = 0;
 
     [SerializeField] int[] _camShake;
     [SerializeField] int _camShakeIndex = 0;
+
+    [SerializeField] GameObject _VFXDead;
+    [SerializeField] AudioSource _audioChulu;
 
     void Start()
     {
@@ -100,6 +104,12 @@ public class ComicDefault : MonoBehaviour
             }
         }
 
+        if (_camShakeIndex < _camShake.Length && _camShake[_camShakeIndex] == _spriteIndex)
+        {
+            StartCoroutine(CamShake());
+            _camShakeIndex++;
+        }
+
         if (_fadesBlack.Length >= _fadesIndex + 1)
         {
             if (_fadesBlack[_fadesIndex] == _spriteIndex)
@@ -123,20 +133,6 @@ public class ComicDefault : MonoBehaviour
         if (_spriteIndex < _sprites.Length)
             _image.sprite = _sprites[_spriteIndex];
 
-        if (_smallIndex < _smallSprite.Length && _smallSprite[_smallIndex] == _spriteIndex)
-        {
-            _dialogueImageSmall.enabled = true;
-            _smallIndex++;
-        }
-        else
-            _dialogueImageSmall.enabled = false;
-
-        if (_camShakeIndex < _camShake.Length && _camShake[_camShakeIndex] == _spriteIndex)
-        {
-            StartCoroutine(CamShake());
-            _camShakeIndex++;
-        }
-
         if (_dialogueIndex < _dialogueImages.Length && !_autoPlay)
         {
             _text.text = _dialoguesTexts[_dialogueIndex];
@@ -145,6 +141,15 @@ public class ComicDefault : MonoBehaviour
         }
         else
             DialogueEnabled(false);
+
+        if (_smallIndex < _smallSprite.Length && _smallSprite[_smallIndex] == _spriteIndex)
+        {
+            _dialogueImageSmall.enabled = true;
+            _dialogueImageSmall.sprite = _dialogueImagesSmall[_smallIndex];
+            _smallIndex++;
+        }
+        else
+            _dialogueImageSmall.enabled = false;
 
         if (_autoPlay)
         {
@@ -185,6 +190,16 @@ public class ComicDefault : MonoBehaviour
         }
         else
             DialogueEnabled(false);
+
+        if (_smallIndex < _smallSprite.Length && _smallSprite[_smallIndex] == _spriteIndex)
+        {
+            _dialogueImageSmall.enabled = true;
+            _dialogueImageSmall.sprite = _dialogueImagesSmall[_smallIndex];
+            _smallIndex++;
+        }
+        else
+            _dialogueImageSmall.enabled = false;
+
         while (_fadeBlack.GetComponent<SpriteRenderer>().color.a > 0)
         {
             fadeAmount = color.a - (fadeSpeed * Time.deltaTime);
@@ -192,6 +207,7 @@ public class ComicDefault : MonoBehaviour
             _fadeBlack.GetComponent<SpriteRenderer>().color = color;
             yield return null;
         }
+
 
         if (_spriteIndex < _sprites.Length && _autoPlay)
             StartCoroutine(ComicPlay());
@@ -266,39 +282,23 @@ public class ComicDefault : MonoBehaviour
 
     protected IEnumerator CamShake()
     {
-        Transform _camara = GameObject.FindWithTag("MainCamera").transform;
         float t = 0;
-        bool left = true;
+        Vector3 _initialPosition = _dialogueImage.transform.position;
 
-        while (t < 2)
+        while (t < 1.2f)
         {
+            _dialogueImage.transform.position = new Vector3(Mathf.Sin(Time.time * 20) * 10, 0, 0);
             t += Time.deltaTime;
             yield return null;
         }
 
-        while (t < 5)
-        {
-            if (left)
-                _camara.transform.position -= new Vector3(10, 0, 0) * Time.deltaTime;
-            else
-                _camara.transform.position += new Vector3(10, 0, 0) * Time.deltaTime;
-
-            if (_camara.transform.position.x <= 5f)
-                left = false;
-            else if (_camara.transform.position.x >= 6f)
-                left = true;
-
-            t += Time.deltaTime;
-            yield return null;
-        }
-
-        while (t < 8)
-        {
-            _camara.position = new Vector3(5.5f, 3.5f, -10);
-            t += Time.deltaTime;
-            yield return null;
-        }
-
+        _dialogueImage.transform.position = _initialPosition;
+        _audioChulu.Play();
+        _dialogueImage.sprite = _dialogueImages[10];
+        GameObject effect = Instantiate(_VFXDead, new Vector3(0,0,0), Quaternion.identity);
+        effect.transform.localScale = new Vector3(5, 5, 0);
+        GameObject effect = Instantiate(_VFXDead, new Vector3(0, 0, 0), Quaternion.identity);
+        effect.transform.localScale = new Vector3(5, 5, 0);
         yield return null;
     }
 
