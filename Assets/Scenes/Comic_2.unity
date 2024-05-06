@@ -902,7 +902,7 @@ MonoBehaviour:
   _changeAuto: 00000000
   _changeIndex: 0
   _autoPlay: 0
-  _nextScene: LevelSelector
+  _nextScene: End
   _dialogueSquare: {fileID: 2097936211}
   _dialogueText: {fileID: 800779711}
   _dialogueSprite: {fileID: 1980618456}

@@ -58,8 +58,8 @@ public class ComicDefault : MonoBehaviour
         if (!_autoPlay && Input.GetKeyDown(KeyCode.Mouse0))
         {
             _text.text = _dialoguesTexts[_dialogueIndex];
-            _dialogueIndex++;
             _dialogueImage.sprite = _dialogueImages[_dialogueIndex];
+            _dialogueIndex++;
             StartCoroutine(ComicPlay());
         }
     }
