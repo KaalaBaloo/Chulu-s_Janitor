@@ -40,6 +40,8 @@ public class ComicDefault : MonoBehaviour
     [SerializeField] GameObject _VFXDead;
     [SerializeField] AudioSource _audioChulu;
 
+    [SerializeField] Color[] _textColors;
+
     void Start()
     {
         _spriteIndex = 0;
@@ -47,6 +49,7 @@ public class ComicDefault : MonoBehaviour
         _fadeBlack = GameObject.FindWithTag("_blackFade");
         StartCoroutine(FadefromBlack());
         _text.text = _dialoguesTexts[_dialogueIndex];
+        _text.color = _textColors[_dialogueIndex];
         _dialogueImage.sprite = _dialogueImages[_dialogueIndex];
         _dialogueSquare.SetActive(false);
         _dialogueText.SetActive(false);
@@ -58,6 +61,7 @@ public class ComicDefault : MonoBehaviour
         if (!_autoPlay && Input.GetKeyDown(KeyCode.Mouse0))
         {
             _text.text = _dialoguesTexts[_dialogueIndex];
+            _text.color = _textColors[_dialogueIndex];
             _dialogueImage.sprite = _dialogueImages[_dialogueIndex];
             _dialogueIndex++;
             StartCoroutine(ComicPlay());
@@ -136,6 +140,7 @@ public class ComicDefault : MonoBehaviour
         if (_dialogueIndex < _dialogueImages.Length && !_autoPlay)
         {
             _text.text = _dialoguesTexts[_dialogueIndex];
+            _text.color = _textColors[_dialogueIndex];
             _dialogueImage.sprite = _dialogueImages[_dialogueIndex];
             DialogueEnabled(true);
         }
@@ -185,6 +190,7 @@ public class ComicDefault : MonoBehaviour
         if (_dialogueIndex < _dialogueImages.Length && !_autoPlay)
         {
             _text.text = _dialoguesTexts[_dialogueIndex];
+            _text.color = _textColors[_dialogueIndex];
             _dialogueImage.sprite = _dialogueImages[_dialogueIndex];
             DialogueEnabled(true);
         }
@@ -300,6 +306,7 @@ public class ComicDefault : MonoBehaviour
         GameObject effect2 = Instantiate(_VFXDead, new Vector3(0, 0, 0), Quaternion.identity);
         effect2.transform.localScale = new Vector3(5, 5, 0);
         _text.text = _dialoguesTexts[_dialogueIndex];
+        _text.color = _textColors[_dialogueIndex];
         _dialogueIndex++;
         StartCoroutine(ComicPlay());
         yield return null;
