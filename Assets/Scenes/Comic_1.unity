@@ -799,6 +799,11 @@ MonoBehaviour:
   _camShakeIndex: 0
   _VFXDead: {fileID: 1965343156803978, guid: aa8d6482d70a23445b4b2a928ed1b845, type: 3}
   _audioChulu: {fileID: 8822368918484958846}
+  _textColors:
+  - {r: 0.30980393, g: 0.23921569, b: 0.043137256, a: 1}
+  - {r: 0.30980393, g: 0.23921569, b: 0.043137256, a: 1}
+  - {r: 0.30980393, g: 0.23921569, b: 0.043137256, a: 1}
+  - {r: 0.30980393, g: 0.23921569, b: 0.043137256, a: 1}
 --- !u!4 &1829200334
 Transform:
   m_ObjectHideFlags: 0
