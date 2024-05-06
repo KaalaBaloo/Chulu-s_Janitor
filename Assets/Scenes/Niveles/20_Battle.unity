@@ -2178,6 +2178,43 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 2372108851076928512, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
+      propertyPath: _sprites.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2372108851076928512, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
+      propertyPath: _sprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 3ca8db14ca49df24ca13223ab4fcbffa, type: 3}
+    - target: {fileID: 2372108851076928512, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
+      propertyPath: _sprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 3c9a45f816d88204abc5acd7a794c75a, type: 3}
+    - target: {fileID: 2372108851076928512, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
+      propertyPath: _dialogues.Array.data[0]
+      value: Finalmente se me libera de mi profundo letargo
+      objectReference: {fileID: 0}
+    - target: {fileID: 2372108851076928512, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
+      propertyPath: _dialogues.Array.data[1]
+      value: "Como recompensa de haberme liberado, tu alma ser\xE1 la primera de
+        la cual me alimente"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2372108851076928512, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
+      propertyPath: _dialogues.Array.data[2]
+      value: "\u2026"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2372108851076928512, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
+      propertyPath: _dialogues.Array.data[3]
+      value: "\xBFMe est\xE1s escuchando?"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2372108851076928512, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
+      propertyPath: _dialogueSprite.Array.data[1]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2372108851076928512, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
+      propertyPath: _dialogueSprite.Array.data[2]
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2372108851078016149, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
       propertyPath: m_Camera
       value: 
