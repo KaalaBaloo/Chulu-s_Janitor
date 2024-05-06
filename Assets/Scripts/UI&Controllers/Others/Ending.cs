@@ -32,7 +32,7 @@ public class Ending : MonoBehaviour
                 StartCoroutine(Thanks());
             }
         }
-        StartCoroutine(FadetoBlack("Main"));
+        StartCoroutine(FadetoBlack("MenuBotones"));
         yield return 0;
     }
 

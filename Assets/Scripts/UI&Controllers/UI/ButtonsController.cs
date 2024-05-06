@@ -16,7 +16,9 @@ public class ButtonsController : MonoBehaviour
         _pause = GameObject.FindWithTag("_pause");
         _settings = GameObject.FindWithTag("_settings");
 
-        if (SceneManager.GetActiveScene().name == "Main")
+        _settings.SetActive(false);
+
+        if (SceneManager.GetActiveScene().name == "Main" || SceneManager.GetActiveScene().name == "MenuBotones")
             StartCoroutine(FadefromBlack());
     }
 
@@ -40,6 +42,19 @@ public class ButtonsController : MonoBehaviour
         {
             StartCoroutine(FadetoBlack("LevelSelector"));
         }
+    }
+
+    public void Settings()
+    {
+        if(!_settings.activeSelf)
+            _settings.SetActive(true);
+        else
+            _settings.SetActive(false);
+    }
+
+    public void Credits()
+    {
+        StartCoroutine(FadetoBlack("End"));
     }
 
     protected IEnumerator FadetoBlack(string scene, int fadeSpeed = 5)

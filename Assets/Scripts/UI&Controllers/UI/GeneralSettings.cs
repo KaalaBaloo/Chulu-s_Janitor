@@ -36,8 +36,8 @@ public class GeneralSettings : MonoBehaviour, IDataPersistence
         _dropdownResolution = GameObject.FindWithTag("_resolution").GetComponent<TMP_Dropdown>();
         resolutions = Screen.resolutions;
         _dropdownResolution.value = _resolution;
-        _dropdownLanguage = GameObject.FindWithTag("_language").GetComponent<TMP_Dropdown>();
-        _dropdownLanguage.value = _language;
+        //_dropdownLanguage = GameObject.FindWithTag("_language").GetComponent<TMP_Dropdown>();
+        //_dropdownLanguage.value = _language;
     }
 
     private void Update()
