@@ -80,4 +80,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Comic_1.unity
     guid: 4aaee3f3b5db6744aa7d9ff766a7ab5b
+  - enabled: 1
+    path: Assets/Scenes/Comic_2.unity
+    guid: 173f440b02e13b14bb4405cc95d45244
   m_configObjects: {}

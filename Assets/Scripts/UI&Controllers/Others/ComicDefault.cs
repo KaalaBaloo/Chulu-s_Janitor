@@ -299,6 +299,9 @@ public class ComicDefault : MonoBehaviour
         effect.transform.localScale = new Vector3(5, 5, 0);
         GameObject effect2 = Instantiate(_VFXDead, new Vector3(0, 0, 0), Quaternion.identity);
         effect2.transform.localScale = new Vector3(5, 5, 0);
+        _text.text = _dialoguesTexts[_dialogueIndex];
+        _dialogueIndex++;
+        StartCoroutine(ComicPlay());
         yield return null;
     }
 
