@@ -377,6 +377,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2791594519369781208, guid: 013749883ed1f4543b0f69dd7296e778, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2791594519369781209, guid: 013749883ed1f4543b0f69dd7296e778, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -688,6 +692,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2791594519369781208, guid: 013749883ed1f4543b0f69dd7296e778, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2791594519369781209, guid: 013749883ed1f4543b0f69dd7296e778, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1393,6 +1401,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2791594519369781208, guid: 013749883ed1f4543b0f69dd7296e778, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2791594519369781209, guid: 013749883ed1f4543b0f69dd7296e778, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1535,6 +1547,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8880675861981057312, guid: ae4a7e444b2540d4abfc8852c0b99850, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8880675861981057313, guid: ae4a7e444b2540d4abfc8852c0b99850, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8880675861981057326, guid: ae4a7e444b2540d4abfc8852c0b99850, type: 3}
@@ -2598,7 +2614,7 @@ MonoBehaviour:
   _patrolStage: 0
   _random: 0
   _VFXTP: {fileID: 6845490215296752022, guid: 8d2fac14728698f4e91045d5b01fbb78, type: 3}
-  _VFXDying: {fileID: 1545806602296978, guid: 9e4577abe56a95f4a91d29a0473cd30c, type: 3}
+  _VFXDying: {fileID: 100000, guid: 7b56cd9b663f23f429e131a54ec87db0, type: 3}
   _VFXDead: {fileID: 1965343156803978, guid: aa8d6482d70a23445b4b2a928ed1b845, type: 3}
   _spriteChulu: {fileID: 2443002799451057374, guid: b30a1f6520ce9884fbaa5e9c748fe3ee, type: 3}
   _ext1: {fileID: 1558949776}

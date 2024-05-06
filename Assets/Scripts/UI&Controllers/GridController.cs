@@ -169,14 +169,7 @@ public class GridController : MonoBehaviour, IDataPersistence
             yield return null;
         }
 
-        while (t < 8)
-        {
-            _camara.position = new Vector3(5.5f, 3.5f, -10);
-            t += Time.deltaTime;
-            yield return null;
-        }
-
-        StartCoroutine(FadetoBlack("End"));
+        StartCoroutine(FadetoBlack("Comic_2"));
         yield return null;
     }
 

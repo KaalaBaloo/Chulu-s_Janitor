@@ -64,7 +64,6 @@ public class Boss_1 : Enemy
             {
                 _audioExt2.Play();
             }
-            StartCoroutine(EndCoroutine());
         }
 
         if(!_phase2 && _gridController.GetDirt() <= 3)
