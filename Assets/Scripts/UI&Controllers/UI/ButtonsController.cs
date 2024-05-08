@@ -16,10 +16,11 @@ public class ButtonsController : MonoBehaviour
         _pause = GameObject.FindWithTag("_pause");
         _settings = GameObject.FindWithTag("_settings");
 
-        _settings.SetActive(false);
-
         if (SceneManager.GetActiveScene().name == "Main")
+        {
+            _settings.SetActive(false);
             StartCoroutine(FadefromBlack());
+        }
     }
 
     private void Update()
