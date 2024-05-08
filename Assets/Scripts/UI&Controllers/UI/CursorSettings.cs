@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CursorSettings : MonoBehaviour
 {
@@ -12,7 +13,8 @@ public class CursorSettings : MonoBehaviour
 
     private void Start()
     {
-        Cursor.visible = true;
+        if (SceneManager.GetActiveScene().name == "Main")
+            Cursor.visible = true;
         _audio = GetComponent<AudioSource>();
         _audio.volume = GeneralSettings.SFXVOLUME / 100;
     }
