@@ -22,6 +22,12 @@ public class ButtonsController : MonoBehaviour
             StartCoroutine(FadefromBlack());
     }
 
+    private void Update()
+    {
+        if (SceneManager.GetActiveScene().name == "Main" && Input.GetKeyDown(KeyCode.Escape))
+            Application.Quit();
+    }
+
     public void Restart()
     {
         StartCoroutine(FadetoBlack(SceneManager.GetActiveScene().name));      
