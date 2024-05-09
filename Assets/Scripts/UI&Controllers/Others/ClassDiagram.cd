@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Enemy" Collapsed="true">
+    <Position X="7.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAQABABCAAAEAABAAAYAQAAIAQQAgAAKAASAAAAEE=</HashCode>
+      <FileName>Assets\Scripts\Abstract\Enemy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sprites" Collapsed="true">
+    <Position X="15.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAQAAAAAAAAAAAAAAAAAAAAASAABAAAAAGAAEA=</HashCode>
+      <FileName>Assets\Scripts\Abstract\Sprites.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="aMigo" Collapsed="true">
+    <Position X="2.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAIAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Characters\aMigo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Boss_1" Collapsed="true">
+    <Position X="5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>COQAASEAAGAAAAgACAAAAAAAApAAAAgAAAUIAYIAAAE=</HashCode>
+      <FileName>Assets\Scripts\Characters\Boss_1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DeepOnes" Collapsed="true">
+    <Position X="7.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QwQBAAAAAiACAAAAAAAAAAAACAAAAAAAIAEAAAIAAEA=</HashCode>
+      <FileName>Assets\Scripts\Characters\DeepOnes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MainCharacter" Collapsed="true">
+    <Position X="25.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>UgUAgAAAACHAAIASBCAIAQIAAAAkIAAoYCEABIIgyEA=</HashCode>
+      <FileName>Assets\Scripts\Characters\MainCharacter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MirrorOfC" Collapsed="true">
+    <Position X="9.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CgQAAAAAACAkAAAAAIAAIAAAAIAAAAgAQAAAAAAAAAI=</HashCode>
+      <FileName>Assets\Scripts\Characters\MirrorOfC.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpawnOfC" Collapsed="true">
+    <Position X="11.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAgAAAAAAAAAAAAAAAAAIAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Characters\SpawnOfC.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bucket" Collapsed="true">
+    <Position X="0.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Objects\Bucket.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dirt" Collapsed="true">
+    <Position X="14" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Objects\Dirt.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MoreDirt" Collapsed="true">
+    <Position X="16.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Objects\MoreDirt.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RitualBlood" Collapsed="true">
+    <Position X="18.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Objects\RitualBlood.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RitualPent" Collapsed="true">
+    <Position X="20.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Objects\RitualPent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spikes" Collapsed="true">
+    <Position X="23" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAACAACAAAEAAAAAAAAAAgAQAAAAAIAEAAAAAQEA=</HashCode>
+      <FileName>Assets\Scripts\Objects\Spikes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wall" Collapsed="true">
+    <Position X="27.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Objects\Wall.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DataPersistenceManager" Collapsed="true">
+    <Position X="10" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAABAAACAQAAQAAAAAAAAIBABAAAAAQAAAIAAAAEE=</HashCode>
+      <FileName>Assets\Scripts\UI&amp;Controllers\DataPersistence\DataPersistenceManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FileDataHandler" Collapsed="true">
+    <Position X="4.75" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgIAAABAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI&amp;Controllers\DataPersistence\FileDataHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameData" Collapsed="true">
+    <Position X="6.5" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAEAAAAAAAgIACAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI&amp;Controllers\DataPersistence\GameData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GridController" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EgQAkCBBCSAwaSCIAQABEFUwIIDAgIgACgKgBEIyimA=</HashCode>
+      <FileName>Assets\Scripts\UI&amp;Controllers\GridController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="LevelNumber" Collapsed="true">
+    <Position X="13.5" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI&amp;Controllers\Levels\LevelNumber.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LevelSelect" Collapsed="true">
+    <Position X="15.25" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAQAAAAAACAAAAACAAAAAVAAAAAAAAAIIAEAAAIQIAA=</HashCode>
+      <FileName>Assets\Scripts\UI&amp;Controllers\Levels\LevelSelect.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LevelSelector" Collapsed="true">
+    <Position X="3" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACDgnwEAAAAAAFAAAAAAAAABAAAAAAIQAAA=</HashCode>
+      <FileName>Assets\Scripts\UI&amp;Controllers\Levels\LevelSelector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LS_Buttons" Collapsed="true">
+    <Position X="17" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAACAAAAAAAAAAAABAAAAAEAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI&amp;Controllers\Levels\LS_Buttons.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BossVFX" Collapsed="true">
+    <Position X="29.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IBQAAAABACgAAAACAQAAAAAEAAAAAAhAAAQAAAIAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI&amp;Controllers\Others\BossVFX.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ComicDefault" Collapsed="true">
+    <Position X="6.5" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYABABYCGAUmgBBAAEJAFIAAAAAQCDoAAFAADAQAAA=</HashCode>
+      <FileName>Assets\Scripts\UI&amp;Controllers\Others\ComicDefault.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dialogues" Collapsed="true">
+    <Position X="11.75" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYBAABAACAAAAAAAAAAAAAAAAAEBABIAABAAIAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI&amp;Controllers\Others\Dialogues.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ending" Collapsed="true">
+    <Position X="15.25" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAACABAACAAAAAIFAAAAAAAAAAAgQAIAAQAAA=</HashCode>
+      <FileName>Assets\Scripts\UI&amp;Controllers\Others\Ending.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Music" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAQAAACAAAAAAAQABAAAAAAEEAAAAAAARA=</HashCode>
+      <FileName>Assets\Scripts\UI&amp;Controllers\Others\Music.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CursorSettings" Collapsed="true">
+    <Position X="8.25" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAACAAACAAAAAAEAAAAAAAAAIAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI&amp;Controllers\UI\CursorSettings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GeneralSettings" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8.25" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAQAQAEAACAwgAAACAADAAAQAAAIAAIAJMIITEAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI&amp;Controllers\UI\GeneralSettings.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="HUD_Blood" Collapsed="true">
+    <Position X="11.75" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQACAAAACAAAAAAAAAACAAgAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI&amp;Controllers\UI\HUD_Blood.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChatController" Collapsed="true">
+    <Position X="4.75" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAQAAAAAAAAAAAICEAAAAAACAA=</HashCode>
+      <FileName>Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DropdownSample" Collapsed="true">
+    <Position X="13.5" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABAAAQAAAAAAIIAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnvMapAnimator" Collapsed="true">
+    <Position X="3" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAACAAAAAAAAAgAAAAAAQAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="IDataPersistence" Collapsed="true">
+    <Position X="19.75" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI&amp;Controllers\DataPersistence\IDataPersistence.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
