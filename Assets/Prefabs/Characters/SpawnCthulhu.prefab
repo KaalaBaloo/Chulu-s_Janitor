@@ -165,7 +165,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &7768489068499340804
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -211,6 +211,7 @@ MonoBehaviour:
   _blockedView: 1
   _damage: 1
   _enemyNumber: 0
+  _patrolStage: 0
   _VFXSeen: {fileID: 100000, guid: 3156817f64ec68948ad6bb26569b9ef5, type: 3}
 --- !u!1 &8893186985789397268
 GameObject:

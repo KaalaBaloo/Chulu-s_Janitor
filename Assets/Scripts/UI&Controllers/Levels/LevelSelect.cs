@@ -33,6 +33,10 @@ public class LevelSelect : MonoBehaviour
                 _levels[i].GetComponent<LS_Buttons>().Available();
         }
 
+        _level = GridController.LEVELS_UNLOCKED;
+        transform.position = new Vector3(_levels[_level].transform.position.x - 0.12f, _levels[_level].transform.position.y + 0.28f, 0);
+        _textTittle.text = _tittles[_level];
+
         Debug.Log(GridController.LEVELS_UNLOCKED);
     }
 

@@ -25326,7 +25326,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &8842285987508604750
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -25372,6 +25372,7 @@ MonoBehaviour:
   _blockedView: 0
   _damage: 1
   _enemyNumber: 0
+  _patrolStage: 0
   _cargando: 0
   _leftRay: {fileID: 1984135851244148570}
   _rightRay: {fileID: 1984135850783804885}
