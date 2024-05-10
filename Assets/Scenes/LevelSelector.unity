@@ -2657,8 +2657,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 1  -  El Comienzo
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 6290e49b70970f14aa221df3c91f2d2a, type: 2}
-  m_sharedMaterial: {fileID: -6851626215054244074, guid: 6290e49b70970f14aa221df3c91f2d2a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3cbe523aa9970b34d8f30f33c1578f42, type: 2}
+  m_sharedMaterial: {fileID: -6513408104499570478, guid: 3cbe523aa9970b34d8f30f33c1578f42, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2682,8 +2682,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.4
-  m_fontSizeBase: 0.4
+  m_fontSize: 0.5
+  m_fontSizeBase: 0.5
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

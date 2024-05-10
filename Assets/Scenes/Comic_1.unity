@@ -1128,27 +1128,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneNames:
-  - 1
-  - 2
-  - 3
-  - 4
-  - 5
-  - 6
-  - 7
-  - 8
-  - 9
-  - 10
-  - 11
-  - 12
-  - 13
-  - 14
-  - 15
-  - 16
-  - 17
-  - 18
-  - 19
-  - 20
-  instanceName: GameMusic
+  - Comic_1
+  instanceName: ComicMusic
 --- !u!82 &8822368918484958846
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1159,7 +1140,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 31f1f0d325bd3d345a4092edf4e651b0, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 638f7e3651b4acc41a8f44c3ac1dd14f, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.1
   m_Pitch: 0.75

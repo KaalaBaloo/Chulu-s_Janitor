@@ -258,11 +258,13 @@ public class ComicDefault : MonoBehaviour
 
     void DialogueEnabled(bool isTrue)
     {
+        Color color = _dialogueSquare.GetComponent<SpriteRenderer>().color;
+
         if (!isTrue)
             StartCoroutine(FadeTextBox());
         else
         {
-           _dialogueSquare.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1);
+           _dialogueSquare.GetComponent<SpriteRenderer>().color = color;
             _dialogueSquare.SetActive(true);
         }
         _dialogueText.SetActive(isTrue);
