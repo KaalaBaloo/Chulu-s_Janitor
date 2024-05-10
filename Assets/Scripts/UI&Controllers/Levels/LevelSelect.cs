@@ -80,6 +80,11 @@ public class LevelSelect : MonoBehaviour
                 Debug.Log("Block");
             }  
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            StartCoroutine(FadetoBlack("Main"));
+        }
     }
 
     protected IEnumerator FadetoBlack(string scene, int fadeSpeed = 5)

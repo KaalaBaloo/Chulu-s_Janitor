@@ -20,19 +20,19 @@ public class UIController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !_dialogues.activeSelf && !_settings.activeSelf)
+        if (Input.GetKeyDown(KeyCode.Escape) && !_dialogues.activeSelf && !_pause.activeSelf && !_settings.activeSelf)
         {
             Cursor.visible = true;
             _pause.SetActive(true);
         }
-        else if (Input.GetKeyDown(KeyCode.Escape) && !_dialogues.activeSelf && _settings.activeSelf)
-        {
-            Back();
-        }
-        else if (Input.GetKeyDown(KeyCode.Escape) && !_dialogues.activeSelf && _pause.activeSelf)
+        else if (Input.GetKeyDown(KeyCode.Escape) && !_dialogues.activeSelf && _pause.activeSelf && !_settings.activeSelf)
         {
             Continue();
         }
+        else if (Input.GetKeyDown(KeyCode.Escape) && !_dialogues.activeSelf && _settings.activeSelf)
+        {
+            Back();
+        }  
     }
 
     public void Continue()
