@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Enemy">
+    <Position X="7" Y="6.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>QAAAQABABCAAAEAABAAAYAQAAIAQQAgAAKAASAAAAEE=</HashCode>
+      <FileName>Assets\Scripts\Abstract\Enemy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sprites">
+    <Position X="10.5" Y="2.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAQAAAAAAAAAAAAAAAAAAAAASAABAAAAAGAAEA=</HashCode>
+      <FileName>Assets\Scripts\Abstract\Sprites.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="aMigo">
+    <Position X="2.5" Y="13.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAIAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Characters\aMigo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Boss_1">
+    <Position X="4.75" Y="13.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>COQAASEAAGAAAAgACAAAAAAAApAAAAgAAAUIAYIAAAE=</HashCode>
+      <FileName>Assets\Scripts\Characters\Boss_1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DeepOnes">
+    <Position X="7" Y="13.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>QwQBAAAAAiACAAAAAAAAAAAACAAAAAAAIAEAAAIAAEA=</HashCode>
+      <FileName>Assets\Scripts\Characters\DeepOnes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MainCharacter">
+    <Position X="20.5" Y="6.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>UgUAgAAAACHAAIASBCAIAQIAAAAkIAAoYCEABIIgyEA=</HashCode>
+      <FileName>Assets\Scripts\Characters\MainCharacter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MirrorOfC">
+    <Position X="9.25" Y="13.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>CgQAAAAAACAkAAAAAIAAIAAAAIAAAAgAQAAAAAAAAAI=</HashCode>
+      <FileName>Assets\Scripts\Characters\MirrorOfC.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpawnOfC">
+    <Position X="11.5" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAgAAAAAAAAAAAAAAAAAIAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Characters\SpawnOfC.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bucket">
+    <Position X="4.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Objects\Bucket.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dirt">
+    <Position X="9.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Objects\Dirt.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MoreDirt">
+    <Position X="11.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Objects\MoreDirt.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RitualBlood">
+    <Position X="13.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Objects\RitualBlood.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RitualPent">
+    <Position X="16" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Objects\RitualPent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spikes">
+    <Position X="18.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAACAACAAAEAAAAAAAAAAgAQAAAAAIAEAAAAAQEA=</HashCode>
+      <FileName>Assets\Scripts\Objects\Spikes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wall">
+    <Position X="22.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Objects\Wall.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DataPersistenceManager">
+    <Position X="40.5" Y="10.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAQAABAAACAQAAQAAAAAAAAIBABAAAAAQAAAIAAAAEE=</HashCode>
+      <FileName>Assets\Scripts\UI&amp;Controllers\DataPersistence\DataPersistenceManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FileDataHandler">
+    <Position X="42.25" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgIAAABAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI&amp;Controllers\DataPersistence\FileDataHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameData">
+    <Position X="44" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAEAAAAAAAgIACAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI&amp;Controllers\DataPersistence\GameData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GridController" BaseTypeListCollapsed="true">
+    <Position X="29.75" Y="6" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>EgQAkCBBCSAwaSCIAQABEFUwIIDAgIgACgKgBEIyimA=</HashCode>
+      <FileName>Assets\Scripts\UI&amp;Controllers\GridController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="LevelNumber">
+    <Position X="35" Y="6" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI&amp;Controllers\Levels\LevelNumber.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LevelSelect">
+    <Position X="33.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAQAAAAAACAAAAACAAAAAVAAAAAAAAAIIAEAAAIQIAA=</HashCode>
+      <FileName>Assets\Scripts\UI&amp;Controllers\Levels\LevelSelect.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LevelSelector">
+    <Position X="31.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACDgnwEAAAAAAFAAAAAAAAABAAAAAAIQAAA=</HashCode>
+      <FileName>Assets\Scripts\UI&amp;Controllers\Levels\LevelSelector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LS_Buttons">
+    <Position X="42" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAACAAAAAAAAAAAABAAAAAEAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI&amp;Controllers\Levels\LS_Buttons.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BossVFX">
+    <Position X="25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IBQAAAABACgAAAACAQAAAAAEAAAAAAhAAAQAAAIAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI&amp;Controllers\Others\BossVFX.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ComicDefault">
+    <Position X="33.5" Y="10.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAYABABYCGAUmgBBAAEJAFIAAAAAQCDoAAFAADAQAAA=</HashCode>
+      <FileName>Assets\Scripts\UI&amp;Controllers\Others\ComicDefault.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dialogues">
+    <Position X="35.25" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYBAABAACAAAAAAAAAAAAAAAAAEBABIAABAAIAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI&amp;Controllers\Others\Dialogues.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ending">
+    <Position X="37" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAACABAACAAAAAIFAAAAAAAAAAAgQAIAAQAAA=</HashCode>
+      <FileName>Assets\Scripts\UI&amp;Controllers\Others\Ending.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Music" BaseTypeListCollapsed="true">
+    <Position X="38.5" Y="6" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAQAAACAAAAAAAQABAAAAAAEEAAAAAAARA=</HashCode>
+      <FileName>Assets\Scripts\UI&amp;Controllers\Others\Music.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CursorSettings">
+    <Position X="40.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAACAAACAAAAAAEAAAAAAAAAIAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI&amp;Controllers\UI\CursorSettings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GeneralSettings" BaseTypeListCollapsed="true">
+    <Position X="45.75" Y="10.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>CAQAQAEAACAwgAAACAADAAAQAAAIAAIAJMIITEAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI&amp;Controllers\UI\GeneralSettings.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="HUD_Blood">
+    <Position X="36.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQACAAAACAAAAAAAAAACAAgAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI&amp;Controllers\UI\HUD_Blood.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="IDataPersistence">
+    <Position X="38.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI&amp;Controllers\DataPersistence\IDataPersistence.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
