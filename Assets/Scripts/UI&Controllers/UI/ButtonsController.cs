@@ -39,6 +39,11 @@ public class ButtonsController : MonoBehaviour
         StartCoroutine(FadetoBlack("LevelSelector"));
     }
 
+    public void Comic()
+    {
+        StartCoroutine(FadetoBlack("Comic_1"));
+    }
+
     public void LevelSelector()
     {
         if(GridController.LEVELS_UNLOCKED == 0)
