@@ -543,6 +543,35 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2372108851076928512, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
+      propertyPath: _dialogues.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2372108851076928512, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
+      propertyPath: _dialogues.Array.data[0]
+      value: Lamento decirte esto tan solo llegas pero ya nos vamos
+      objectReference: {fileID: 0}
+    - target: {fileID: 2372108851076928512, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
+      propertyPath: _dialogues.Array.data[1]
+      value: El ritual fue un fracaso y no hemos conseguido traer de vuelta al gran
+        maestro
+      objectReference: {fileID: 0}
+    - target: {fileID: 2372108851076928512, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
+      propertyPath: _dialogues.Array.data[2]
+      value: Me voy a casa, te puedes ir cuando termines de limpiar la sala
+      objectReference: {fileID: 0}
+    - target: {fileID: 2372108851076928512, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
+      propertyPath: _dialogueSprite.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2372108851076928512, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
+      propertyPath: _dialogueSprite.Array.data[1]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2372108851076928512, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
+      propertyPath: _dialogueSprite.Array.data[2]
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2372108851078016149, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
       propertyPath: m_Camera
       value: 
@@ -1346,6 +1375,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 84650511264549084, guid: 1c7b394099ca94a45a391b120d9ddb58, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2846150791910419099, guid: 1c7b394099ca94a45a391b120d9ddb58, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2846150791910419099, guid: 1c7b394099ca94a45a391b120d9ddb58, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2846150791910419099, guid: 1c7b394099ca94a45a391b120d9ddb58, type: 3}
+      propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3841107965277227615, guid: 1c7b394099ca94a45a391b120d9ddb58, type: 3}
