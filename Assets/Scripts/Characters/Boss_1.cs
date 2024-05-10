@@ -118,12 +118,12 @@ public class Boss_1 : Enemy
                 }
                 else
                 {
-                    _random = Random.Range(1, 10);
-                    if (_random == 1)
+                    _random = Random.Range(1, 20);
+                    if (_random == 1 || _random == 2 || _random == 3)
                     {
                         StartCoroutine(TPCoroutine());
                     }
-                    else if (_random == 2)
+                    else if (_random == 4 || _random == 5 || _random == 6)
                     {
                         StartCoroutine(ChangeCoroutine());
                     }

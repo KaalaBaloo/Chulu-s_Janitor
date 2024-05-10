@@ -58,7 +58,7 @@ public class ComicDefault : MonoBehaviour
 
     void Update()
     {
-        if (!_autoPlay && Input.GetKeyDown(KeyCode.Mouse0))
+        if (!_autoPlay && (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Space)) && _spriteIndex < _sprites.Length)
         {
             _text.text = _dialoguesTexts[_dialogueIndex];
             _text.color = _textColors[_dialogueIndex];
@@ -66,6 +66,8 @@ public class ComicDefault : MonoBehaviour
             _dialogueIndex++;
             StartCoroutine(ComicPlay());
         }
+        else if (!_autoPlay && (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Space)) && _spriteIndex >= _sprites.Length)
+            StartCoroutine(FadetoBlackScene(_nextScene));
     }
 
     protected IEnumerator ComicPlay()
