@@ -20,7 +20,7 @@ public class GameData
         _levelsUnlocked = 0;
         _muted = false;
         _fullscreen = true;
-        _musicVolume = 50;
+        _musicVolume = 30;
         _sfxVolume = 50;
         _resolution = 5;
     }

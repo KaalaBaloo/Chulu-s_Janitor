@@ -66,7 +66,7 @@ public class GeneralSettings : MonoBehaviour, IDataPersistence
 
     public void MusicVolume()
     {
-        MUSICVOLUME = _sliderMusic.value;
+        MUSICVOLUME = _sliderMusic.value/2;
     }
 
     public void SfxVolume()
