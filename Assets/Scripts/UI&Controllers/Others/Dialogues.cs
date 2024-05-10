@@ -17,6 +17,8 @@ public class Dialogues : MonoBehaviour
     [SerializeField] int[] _dialogueSprite;
     int _dialogueIndex = 0;
 
+    bool _dialoguesExist = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,8 +32,7 @@ public class Dialogues : MonoBehaviour
         }
         else
         {
-            _UI.SetActive(true);
-            _dialogueTotal.SetActive(false);
+            _dialoguesExist = false;
         }
 
     }
@@ -58,6 +59,12 @@ public class Dialogues : MonoBehaviour
             _UI.SetActive(true);
             _dialogueTotal.SetActive(false);
         }
+    }
+
+    public void OffDialogues()
+    {
+        if (!_dialoguesExist)
+            _dialogueTotal.SetActive(false);
     }
 
 }

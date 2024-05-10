@@ -15,7 +15,7 @@ public class UIController : MonoBehaviour
         _settings = GameObject.FindWithTag("_settings");
         _settings.SetActive(false);
         _dialogues = GameObject.FindGameObjectWithTag("_dialogue");
-
+        GameObject.FindGameObjectWithTag("_dialogueScript").GetComponent<Dialogues>().OffDialogues();
     }
 
     void Update()

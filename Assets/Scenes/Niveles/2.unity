@@ -1227,6 +1227,18 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2846150791910419099, guid: 1c7b394099ca94a45a391b120d9ddb58, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2846150791910419099, guid: 1c7b394099ca94a45a391b120d9ddb58, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2846150791910419099, guid: 1c7b394099ca94a45a391b120d9ddb58, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3841107965277227615, guid: 1c7b394099ca94a45a391b120d9ddb58, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3861,6 +3873,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dialogue
       objectReference: {fileID: 0}
+    - target: {fileID: 2372108850800425596, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
+      propertyPath: m_TagString
+      value: _dialogue
+      objectReference: {fileID: 0}
     - target: {fileID: 2372108850800425597, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
       propertyPath: m_RootOrder
       value: 16
@@ -3913,6 +3929,10 @@ PrefabInstance:
       propertyPath: _dialogueSprite.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2372108851076928514, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
+      propertyPath: m_TagString
+      value: _dialogueScript
+      objectReference: {fileID: 0}
     - target: {fileID: 2372108851078016149, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
       propertyPath: m_Camera
       value: 
@@ -3921,6 +3941,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 5868439135466868258, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
 --- !u!1 &1316974720

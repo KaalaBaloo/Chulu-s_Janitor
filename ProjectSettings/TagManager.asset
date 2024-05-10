@@ -27,6 +27,7 @@ TagManager:
   - CanvasLevels
   - _dialogue
   - _save
+  - _dialogueScript
   layers:
   - Default
   - TransparentFX
