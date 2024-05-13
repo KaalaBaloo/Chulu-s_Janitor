@@ -42,6 +42,8 @@ public class ComicDefault : MonoBehaviour
 
     [SerializeField] Color[] _textColors;
 
+    bool _clickComic = false;
+
     void Start()
     {
         _spriteIndex = 0;
@@ -68,6 +70,10 @@ public class ComicDefault : MonoBehaviour
         }
         else if (!_autoPlay && (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Space)) && _spriteIndex >= _sprites.Length)
             StartCoroutine(FadetoBlackScene(_nextScene));
+        else if (_autoPlay && (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Space)) && _spriteIndex < _sprites.Length)
+        {
+            _clickComic = true;
+        }
     }
 
     protected IEnumerator ComicPlay()
@@ -87,25 +93,32 @@ public class ComicDefault : MonoBehaviour
             {
                 _changeIndex++;
                 _autoPlay = false;
-                v = 5;
+                v = 4;
             }
             
         }
         else if (_changeAuto.Length < _changeIndex)
         {
             _autoPlay = false;
-            v = 5;
+            v = 4;
         }
         else
         {
             _autoPlay = true;  
         }
 
-        if(_autoPlay)
+        if(_autoPlay && !_clickComic)
         {
-            while (t < 1f)
+            while (t < 2f)
             {
                 t += Time.deltaTime;
+
+                if(_clickComic)
+                {
+                    _clickComic = false;
+                    break;
+                }
+
                 yield return null;
             }
         }
@@ -134,8 +147,6 @@ public class ComicDefault : MonoBehaviour
 
     protected IEnumerator ChangeImage()
     {
-        float t = 0;
-
         if (_spriteIndex < _sprites.Length)
             _image.sprite = _sprites[_spriteIndex];
 
@@ -158,14 +169,8 @@ public class ComicDefault : MonoBehaviour
         else
             _dialogueImageSmall.enabled = false;
 
-        if (_autoPlay)
-        {
-            while (t < 1f)
-            {
-                t += Time.deltaTime;
-                yield return null;
-            }
-        }
+        if (_clickComic)
+            _clickComic = false;
 
         if (_spriteIndex < _sprites.Length && _autoPlay)
             StartCoroutine(ComicPlay());
@@ -179,6 +184,9 @@ public class ComicDefault : MonoBehaviour
     {
         Color color = _fadeBlack.GetComponent<SpriteRenderer>().color;
         float fadeAmount;
+
+        if (_clickComic)
+            fadeSpeed = 8;
 
         while (_fadeBlack.GetComponent<SpriteRenderer>().color.a < 1)
         {
@@ -216,6 +224,8 @@ public class ComicDefault : MonoBehaviour
             yield return null;
         }
 
+        if (_clickComic)
+            _clickComic = false;
 
         if (_spriteIndex < _sprites.Length && _autoPlay)
             StartCoroutine(ComicPlay());
@@ -227,8 +237,15 @@ public class ComicDefault : MonoBehaviour
 
     protected IEnumerator FadetoBlackScene(string scene, int fadeSpeed = 5)
     {
+        float t = 0;
         Color color = _fadeBlack.GetComponent<SpriteRenderer>().color;
         float fadeAmount;
+
+        while (t < 1)
+        {
+            t += Time.deltaTime;
+            yield return null;
+        }
 
         while (_fadeBlack.GetComponent<SpriteRenderer>().color.a < 1)
         {

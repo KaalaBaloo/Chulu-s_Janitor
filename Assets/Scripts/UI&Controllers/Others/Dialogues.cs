@@ -29,6 +29,7 @@ public class Dialogues : MonoBehaviour
             _dialogueIndex = 0;
             _text.text = _dialogues[_dialogueIndex];
             _dialogueImage.sprite = _sprites[_dialogueSprite[_dialogueIndex]];
+            _dialogueIndex++;
         }
         else
         {
