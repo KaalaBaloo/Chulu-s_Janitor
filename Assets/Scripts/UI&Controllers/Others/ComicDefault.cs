@@ -180,7 +180,7 @@ public class ComicDefault : MonoBehaviour
         yield return null;
     }
 
-    protected IEnumerator FadetoBlack(int fadeSpeed = 2)
+    protected IEnumerator FadetoBlack(int fadeSpeed = 4)
     {
         Color color = _fadeBlack.GetComponent<SpriteRenderer>().color;
         float fadeAmount;
@@ -263,12 +263,19 @@ public class ComicDefault : MonoBehaviour
     {
         Color color = _fadeBlack.GetComponent<SpriteRenderer>().color;
         float fadeAmount;
+        float t = 0;
 
         while (_fadeBlack.GetComponent<SpriteRenderer>().color.a > 0)
         {
             fadeAmount = color.a - (fadeSpeed * Time.deltaTime);
             color = new Color(color.r, color.g, color.b, fadeAmount);
             _fadeBlack.GetComponent<SpriteRenderer>().color = color;
+            yield return null;
+        }
+
+        while(t<1.5f)
+        {
+            t += Time.deltaTime;
             yield return null;
         }
 
