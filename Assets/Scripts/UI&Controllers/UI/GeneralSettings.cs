@@ -99,23 +99,11 @@ public class GeneralSettings : MonoBehaviour, IDataPersistence
         }
     }
 
-    bool GetFullScreen()
-    {
-        if (!FULLSCREEN)
-        {
-            return !Screen.fullScreen;
-        }
-        else
-        {
-            return Screen.fullScreen;
-        }
-    }
-
     public void SetResolution()
     {
         int finalResolution = Mathf.RoundToInt(resolutions.Length/6 * _dropdownResolution.value);
 
-        Screen.SetResolution(resolutions[finalResolution].width, resolutions[finalResolution].height, GetFullScreen());
+        Screen.SetResolution(resolutions[finalResolution].width, resolutions[finalResolution].height, FULLSCREEN);
     }
 
     public void SetLanguage()
