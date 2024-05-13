@@ -29,11 +29,13 @@ public class GeneralSettings : MonoBehaviour, IDataPersistence
         _toggleMuted.isOn = MUTED;
         _toggleFullscreen = GameObject.FindWithTag("_fullscreen").GetComponent<Toggle>();
         _toggleFullscreen.isOn = FULLSCREEN;
+        Fullscreen();
         _sliderMusic = GameObject.FindWithTag("_music").GetComponent<Slider>();
         _sliderMusic.value = MUSICVOLUME;
         _sliderSfx = GameObject.FindWithTag("_sfx").GetComponent<Slider>();
         _sliderSfx.value = SFXVOLUME;
         _dropdownResolution = GameObject.FindWithTag("_resolution").GetComponent<TMP_Dropdown>();
+        SetResolution();
         resolutions = Screen.resolutions;
         _dropdownResolution.value = _resolution;
         //_dropdownLanguage = GameObject.FindWithTag("_language").GetComponent<TMP_Dropdown>();
