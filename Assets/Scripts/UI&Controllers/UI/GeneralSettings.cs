@@ -45,6 +45,7 @@ public class GeneralSettings : MonoBehaviour, IDataPersistence
         else
             Screen.fullScreen = false;
         SetResolution();
+
         if (SceneManager.GetActiveScene().name == "Main")
         {
             GameObject.FindWithTag("_settings").SetActive(false);
