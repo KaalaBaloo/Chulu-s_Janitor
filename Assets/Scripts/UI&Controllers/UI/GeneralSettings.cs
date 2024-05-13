@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GeneralSettings : MonoBehaviour, IDataPersistence
 {
@@ -29,17 +30,25 @@ public class GeneralSettings : MonoBehaviour, IDataPersistence
         _toggleMuted.isOn = MUTED;
         _toggleFullscreen = GameObject.FindWithTag("_fullscreen").GetComponent<Toggle>();
         _toggleFullscreen.isOn = FULLSCREEN;
-        Fullscreen();
         _sliderMusic = GameObject.FindWithTag("_music").GetComponent<Slider>();
         _sliderMusic.value = MUSICVOLUME;
         _sliderSfx = GameObject.FindWithTag("_sfx").GetComponent<Slider>();
         _sliderSfx.value = SFXVOLUME;
         _dropdownResolution = GameObject.FindWithTag("_resolution").GetComponent<TMP_Dropdown>();
-        SetResolution();
         resolutions = Screen.resolutions;
         _dropdownResolution.value = _resolution;
         //_dropdownLanguage = GameObject.FindWithTag("_language").GetComponent<TMP_Dropdown>();
         //_dropdownLanguage.value = _language;
+
+        if (FULLSCREEN)
+            Screen.fullScreen = true;
+        else
+            Screen.fullScreen = false;
+        SetResolution();
+        if (SceneManager.GetActiveScene().name == "Main")
+        {
+            GameObject.FindWithTag("_settings").SetActive(false);
+        }
     }
 
     private void Update()
@@ -105,12 +114,8 @@ public class GeneralSettings : MonoBehaviour, IDataPersistence
     public void SetResolution()
     {
         int finalResolution = Mathf.RoundToInt(resolutions.Length/6 * _dropdownResolution.value);
-        Debug.Log(resolutions.Length);
-        Debug.Log(finalResolution);
 
         Screen.SetResolution(resolutions[finalResolution].width, resolutions[finalResolution].height, GetFullScreen());
-
-        Debug.Log(Screen.currentResolution);
     }
 
     public void SetLanguage()

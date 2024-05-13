@@ -18,7 +18,6 @@ public class ButtonsController : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name == "Main")
         {
-            _settings.SetActive(false);
             StartCoroutine(FadefromBlack());
         }
     }
