@@ -7,16 +7,16 @@ using UnityEngine.SceneManagement;
 
 public class GeneralSettings : MonoBehaviour, IDataPersistence
 {
-    static public bool MUTED;
-    static public bool FULLSCREEN;
-    static public float MUSICVOLUME;
-    static public float SFXVOLUME;
-    Resolution[] resolutions;
-    int _resolution = 5;
+    static public bool MUTED = false;
+    static public bool FULLSCREEN = true;
+    static public float MUSICVOLUME = 0.3f;
+    static public float SFXVOLUME = 0.5f;
+    static public int RESOLUTION = 5;
     //0_VeryLow - 1_Low - 2_Medium - 3_High - 4_VeryHigh - 5_Ultra
-    static public int LANGUAGE;
-    int _language;
-    //0_Spanish - 1_English
+    static public int LANGUAGE = 0;
+    //0_English - 1_Spanish
+
+    Resolution[] resolutions;
     Slider _sliderMusic;
     Slider _sliderSfx;
     TMP_Dropdown _dropdownResolution;
@@ -36,9 +36,9 @@ public class GeneralSettings : MonoBehaviour, IDataPersistence
         _sliderSfx.value = SFXVOLUME;
         _dropdownResolution = GameObject.FindWithTag("_resolution").GetComponent<TMP_Dropdown>();
         resolutions = Screen.resolutions;
-        _dropdownResolution.value = _resolution;
-        //_dropdownLanguage = GameObject.FindWithTag("_language").GetComponent<TMP_Dropdown>();
-        //_dropdownLanguage.value = _language;
+        _dropdownResolution.value = RESOLUTION;
+        //_dropdownLanguage = GameObject.FindWithTag("LANGUAGE").GetComponent<TMP_Dropdown>();
+        //_dropdownLanguage.value = LANGUAGE;
 
         if (FULLSCREEN)
             Screen.fullScreen = true;
@@ -118,7 +118,7 @@ public class GeneralSettings : MonoBehaviour, IDataPersistence
         SFXVOLUME = data._sfxVolume;
         FULLSCREEN = data._fullscreen;
         MUTED = data._muted;
-        this._resolution = data._resolution;
+        RESOLUTION = data._resolution;
     }
     
     public void SaveData(ref GameData data) 
@@ -127,7 +127,7 @@ public class GeneralSettings : MonoBehaviour, IDataPersistence
        data._sfxVolume = SFXVOLUME;
        data._fullscreen = FULLSCREEN;
        data._muted = MUTED;
-       data._resolution = this._resolution;
+       data._resolution = RESOLUTION;
     }
 
 }

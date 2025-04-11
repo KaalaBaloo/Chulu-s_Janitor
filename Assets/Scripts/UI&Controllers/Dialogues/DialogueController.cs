@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Dialogues : MonoBehaviour
+public class DialogueController : MonoBehaviour
 {
     [SerializeField] TMP_Text _text;
     [SerializeField] Image _dialogueImage;
@@ -13,7 +13,7 @@ public class Dialogues : MonoBehaviour
 
     [SerializeField] Sprite[] _sprites;
 
-    [SerializeField] string[] _dialogues;
+    string[] _dialogues;
     [SerializeField] int[] _dialogueSprite;
     int _dialogueIndex = 0;
 
