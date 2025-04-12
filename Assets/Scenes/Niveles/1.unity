@@ -1766,7 +1766,7 @@ Transform:
   - {fileID: 1028212953}
   - {fileID: 1436731471}
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &622797556
 GameObject:
@@ -5550,110 +5550,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1001 &2372108851684118102
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2372108850800425596, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
-      propertyPath: m_Name
-      value: Dialogue
-      objectReference: {fileID: 0}
-    - target: {fileID: 2372108850800425597, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
-      propertyPath: m_RootOrder
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 2372108850800425597, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 5.208182
-      objectReference: {fileID: 0}
-    - target: {fileID: 2372108850800425597, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.5988321
-      objectReference: {fileID: 0}
-    - target: {fileID: 2372108850800425597, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 76.88301
-      objectReference: {fileID: 0}
-    - target: {fileID: 2372108850800425597, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2372108850800425597, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2372108850800425597, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2372108850800425597, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2372108850800425597, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2372108850800425597, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2372108850800425597, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2372108851076928512, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
-      propertyPath: _dialogues.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2372108851076928512, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
-      propertyPath: _dialogues.Array.data[0]
-      value: "Tu eres el nuevo conserje, \xBFno?"
-      objectReference: {fileID: 0}
-    - target: {fileID: 2372108851076928512, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
-      propertyPath: _dialogues.Array.data[1]
-      value: "Tu trabajo es sencillo, pero como el \xFAltimo cay\xF3 en la primera
-        trampa me toca explicartelo "
-      objectReference: {fileID: 0}
-    - target: {fileID: 2372108851076928512, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
-      propertyPath: _dialogues.Array.data[2]
-      value: "El sitio est\xE1 sucio. Esto de los rituales mancha mucho y a nadie
-        le gusta limpiar. As\xED que te toca el fregado, haber le\xEDdo el contrato."
-      objectReference: {fileID: 0}
-    - target: {fileID: 2372108851076928512, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
-      propertyPath: _dialogues.Array.data[3]
-      value: "Abajo a la izquierda ves las manchas que te quedan por fregar y en
-        medio lo limpia que est\xE1 la fregona."
-      objectReference: {fileID: 0}
-    - target: {fileID: 2372108851076928512, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
-      propertyPath: _dialogues.Array.data[4]
-      value: "Te deseo suerte suerte\u2026 Supongo\u2026"
-      objectReference: {fileID: 0}
-    - target: {fileID: 2372108851076928512, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
-      propertyPath: _dialogueSprite.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2372108851076928512, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
-      propertyPath: _dialogueSprite.Array.data[1]
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2372108851076928512, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
-      propertyPath: _dialogueSprite.Array.data[4]
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2372108851078016149, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 519420031}
-    - target: {fileID: 2372108852685474336, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 519420031}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 7cb4b5c9f0510364487e29712c46d322, type: 3}
 --- !u!4 &2667753728067410470
 Transform:
   m_ObjectHideFlags: 0
@@ -5789,6 +5685,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainCharacter
       objectReference: {fileID: 0}
+    - target: {fileID: 3882904568610438799, guid: a24d3d6718fd61e419d7d49db3dfcabd, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a24d3d6718fd61e419d7d49db3dfcabd, type: 3}
 --- !u!1001 &4338390060554551134
@@ -5841,6 +5741,10 @@ PrefabInstance:
     - target: {fileID: 3874657556376604391, guid: 1c7b394099ca94a45a391b120d9ddb58, type: 3}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3876808090265260689, guid: 1c7b394099ca94a45a391b120d9ddb58, type: 3}
+      propertyPath: m_TagString
+      value: _canvasLevel
       objectReference: {fileID: 0}
     - target: {fileID: 4338390061017409946, guid: 1c7b394099ca94a45a391b120d9ddb58, type: 3}
       propertyPath: m_Camera

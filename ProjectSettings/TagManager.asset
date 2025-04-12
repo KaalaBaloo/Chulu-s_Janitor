@@ -24,10 +24,12 @@ TagManager:
   - _language
   - _muted
   - _fullscreen
-  - CanvasLevels
   - _dialogue
   - _save
   - _dialogueScript
+  - _canvasLevel
+  - _dialogueText
+  - _dialogueImage
   layers:
   - Default
   - TransparentFX

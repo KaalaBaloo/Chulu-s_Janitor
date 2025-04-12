@@ -42,14 +42,14 @@ public class Spanish : DialogueText
         {
             new List<Dialogue> // Scene 1
             {
-                new Dialogue("El viaje comienza aquí...", new int[] { 0 }),
-                new Dialogue("¿Dónde estoy?", new int[] { 1 })
+                new Dialogue("El viaje comienza aquí...", "Nyar_02"),
+                new Dialogue("¿Dónde estoy?", "Nyar_02")
             },
             new List<Dialogue> // Scene 2
             {
-                new Dialogue("Un lugar misterioso...", new int[] { 0 }),
-                new Dialogue("Necesito encontrar una salida.", new int[] { 1 }),
-                new Dialogue("La aventura te espera.", new int[] { 0 })
+                new Dialogue("Un lugar misterioso...", "Nyar_02"),
+                new Dialogue("Necesito encontrar una salida.", "Nyar_02"),
+                new Dialogue("La aventura te espera.", "Nyar_02")
             }
         };
     }

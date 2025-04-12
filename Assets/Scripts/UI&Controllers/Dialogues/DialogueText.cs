@@ -11,12 +11,12 @@ public abstract class DialogueText
     public struct Dialogue
     {
         public string Text;
-        public int[] Sprite;
+        public string SpriteKey;
 
-        public Dialogue(string text, int[] sprite)
+        public Dialogue(string text, string sprite)
         {
-            Text = text;
-            Sprite = sprite;
+            this.Text = text;
+            this.SpriteKey = sprite;
         }
     }
 

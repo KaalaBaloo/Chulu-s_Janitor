@@ -6,36 +6,50 @@ using UnityEngine.UI;
 
 public class DialogueController : MonoBehaviour
 {
-    [SerializeField] TMP_Text _text;
-    [SerializeField] Image _dialogueImage;
-    [SerializeField] GameObject _dialogueTotal;
-    GameObject _UI;
+    [SerializeField] int _dialogueScene;
 
-    [SerializeField] Sprite[] _sprites;
+    private TMP_Text _text;
+    private Image _dialogueImage;
+    private GameObject _dialogueTotal;
+    private GameObject _UI;
 
-    string[] _dialogues;
-    [SerializeField] int[] _dialogueSprite;
-    int _dialogueIndex = 0;
+    private bool _dialoguesExist = true;
+    private int _dialogueIndex = 0;
+    private string[] _dialogues;
+    private Sprite[] _sprites;
 
-    bool _dialoguesExist = true;
-
-    // Start is called before the first frame update
     void Start()
     {
-        _UI = GameObject.FindGameObjectWithTag("CanvasLevels");
-        if(_dialogues.Length != 0)
+        FindElements();
+
+        if (_dialogues.Length != 0)
         {
             _UI.SetActive(false);
-            _dialogueIndex = 0;
-            _text.text = _dialogues[_dialogueIndex];
-            _dialogueImage.sprite = _sprites[_dialogueSprite[_dialogueIndex]];
-            _dialogueIndex++;
+            _dialogues = DialogueManager.Instance.GetDialogueTexts(_dialogueScene);
+            _sprites = DialogueManager.Instance.GetDialogueSprites(_dialogueScene);
+            StartDialogue();
         }
         else
         {
             _dialoguesExist = false;
         }
 
+    }
+
+    private void FindElements()
+    {
+        _text = GameObject.FindGameObjectWithTag("_dialogueText").GetComponent<TMP_Text>();
+        _dialogueImage = GameObject.FindGameObjectWithTag("_dialogueImage").GetComponent<Image>();
+        _dialogueTotal = GameObject.FindGameObjectWithTag("_dialogue");
+        _UI = GameObject.FindGameObjectWithTag("_canvasLevel");
+    }
+
+    private void StartDialogue()
+    {
+        _dialogueIndex = 0;
+        _text.text = _dialogues[_dialogueIndex];
+        _dialogueImage.sprite = _sprites[_dialogueIndex];
+        _dialogueIndex++;
     }
 
     // Update is called once per frame
@@ -52,7 +66,7 @@ public class DialogueController : MonoBehaviour
         if (_dialogueIndex < _dialogues.Length)
         {
             _text.text = _dialogues[_dialogueIndex];
-            _dialogueImage.sprite = _sprites[_dialogueSprite[_dialogueIndex]];
+            _dialogueImage.sprite = _sprites[_dialogueIndex];
             _dialogueIndex++;
         }
         else
