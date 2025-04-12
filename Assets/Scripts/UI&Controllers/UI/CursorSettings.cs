@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,31 +6,41 @@ public class CursorSettings : MonoBehaviour
     public Texture2D cursorTexture;
     public CursorMode cursorMode = CursorMode.Auto;
     public Vector2 hotSpot = Vector2.zero;
-    AudioSource _audio;
+
+    private AudioSource _audio;
+    private bool _cursorVisible;
 
     private void Start()
     {
-        if (SceneManager.GetActiveScene().name == "Main")
-            Cursor.visible = true;
+        _cursorVisible = SceneManager.GetActiveScene().name == "Main";
+        Cursor.visible = _cursorVisible;
+
         _audio = GetComponent<AudioSource>();
-        _audio.volume = GeneralSettings.SFXVOLUME / 100;
+        UpdateVolume();
     }
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Mouse0))
+        UpdateVolume();
+
+        if (Input.GetMouseButtonDown(0))
         {
             Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
-            _audio.volume = GeneralSettings.SFXVOLUME / 100;
-            if (!GeneralSettings.MUTED)
+
+            if (_cursorVisible && !GeneralSettings.MUTED)
             {
-                _audio.Play();
+                _audio.PlayOneShot(_audio.clip);
             }
         }
-        else
+
+        if (Input.GetMouseButtonUp(0))
         {
             Cursor.SetCursor(null, Vector2.zero, cursorMode);
         }
     }
 
+    private void UpdateVolume()
+    {
+        _audio.volume = GeneralSettings.SFXVOLUME / 100f;
+    }
 }

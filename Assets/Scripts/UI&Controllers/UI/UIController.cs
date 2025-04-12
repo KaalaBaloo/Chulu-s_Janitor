@@ -11,28 +11,34 @@ public class UIController : MonoBehaviour
     void Start()
     {
         _pause = GameObject.FindWithTag("_pause");
-        _pause.SetActive(false);
+        if (_pause != null) _pause.SetActive(false);
+
         _settings = GameObject.FindWithTag("_settings");
-        _settings.SetActive(false);
-        _dialogues = GameObject.FindGameObjectWithTag("_dialogue");
-        GameObject.FindGameObjectWithTag("_dialogueScript").GetComponent<DialogueController>().OffDialogues();
+        if (_settings != null) _settings.SetActive(false);
+
+        _dialogues = GameObject.FindWithTag("_dialogue");
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !_dialogues.activeSelf && !_pause.activeSelf && !_settings.activeSelf)
+        bool escapePressed = Input.GetKeyDown(KeyCode.Escape);
+        bool dialoguesActive = _dialogues != null && _dialogues.activeSelf;
+        bool pauseActive = _pause != null && _pause.activeSelf;
+        bool settingsActive = _settings != null && _settings.activeSelf;
+
+        if (escapePressed && !dialoguesActive && !pauseActive && !settingsActive)
         {
             Cursor.visible = true;
-            _pause.SetActive(true);
+            if (_pause != null) _pause.SetActive(true);
         }
-        else if (Input.GetKeyDown(KeyCode.Escape) && !_dialogues.activeSelf && _pause.activeSelf && !_settings.activeSelf)
+        else if (escapePressed && !dialoguesActive && pauseActive && !settingsActive)
         {
             Continue();
         }
-        else if (Input.GetKeyDown(KeyCode.Escape) && !_dialogues.activeSelf && _settings.activeSelf)
+        else if (escapePressed && !dialoguesActive && settingsActive)
         {
             Back();
-        }  
+        }
     }
 
     public void Continue()

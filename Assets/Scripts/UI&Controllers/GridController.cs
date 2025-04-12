@@ -507,19 +507,19 @@ public class GridController : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
-        LEVELS_UNLOCKED = data._levelsUnlocked;
-        GeneralSettings.MUSICVOLUME = data._musicVolume;
-        GeneralSettings.SFXVOLUME = data._sfxVolume;
-        GeneralSettings.FULLSCREEN = data._fullscreen;
-        GeneralSettings.MUTED = data._muted;
+        LEVELS_UNLOCKED = data.LevelsUnlocked;
+        GeneralSettings.MUSICVOLUME = data.MusicVolume;
+        GeneralSettings.SFXVOLUME = data.SfxVolume;
+        GeneralSettings.FULLSCREEN = data.Fullscreen;
+        GeneralSettings.MUTED = data.Muted;
     }
 
     public void SaveData(ref GameData data)
     {
-        data._levelsUnlocked = LEVELS_UNLOCKED;
-        data._musicVolume = GeneralSettings.MUSICVOLUME;
-        data._sfxVolume = GeneralSettings.SFXVOLUME;
-        data._fullscreen = GeneralSettings.FULLSCREEN;
-        data._muted = GeneralSettings.MUTED;
+        data.LevelsUnlocked = LEVELS_UNLOCKED;
+        data.MusicVolume = GeneralSettings.MUSICVOLUME;
+        data.SfxVolume = GeneralSettings.SFXVOLUME;
+        data.Fullscreen = GeneralSettings.FULLSCREEN;
+        data.Muted = GeneralSettings.MUTED;
     }
 }

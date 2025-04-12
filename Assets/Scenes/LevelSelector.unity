@@ -3569,6 +3569,8 @@ MonoBehaviour:
   - {fileID: 1959047382}
   _sprite: {fileID: 4044013212659137491}
   _text: {fileID: 1800943069}
+  unlockedClip: {fileID: 8300000, guid: c3821f5049d0ef04183d94eaff67385d, type: 3}
+  lockedClip: {fileID: 8300000, guid: 9f4c5cc2ba8a2c447a46f80bae0f0761, type: 3}
   _tittles:
   - "1  -  CAPITALISMO AH\xCD VOY"
   - "2  -  \xA1AUCH! MIS PIECECITOS\u2026"

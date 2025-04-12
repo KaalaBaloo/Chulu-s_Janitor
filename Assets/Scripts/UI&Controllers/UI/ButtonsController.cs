@@ -1,14 +1,13 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ButtonsController : MonoBehaviour
 {
-    GameObject _fadeBlack;
-    GameObject _pause;
-    GameObject _settings;
+    private GameObject _fadeBlack;
+    private GameObject _pause;
+    private GameObject _settings;
+    private SpriteRenderer _fadeBlackRenderer;
 
     private void Start()
     {
@@ -16,88 +15,81 @@ public class ButtonsController : MonoBehaviour
         _pause = GameObject.FindWithTag("_pause");
         _settings = GameObject.FindWithTag("_settings");
 
+        _fadeBlackRenderer = _fadeBlack.GetComponent<SpriteRenderer>();
+
         if (SceneManager.GetActiveScene().name == "Main")
         {
-            StartCoroutine(FadefromBlack());
+            StartCoroutine(FadeFromBlack());
         }
     }
 
     private void Update()
     {
         if (SceneManager.GetActiveScene().name == "Main" && Input.GetKeyDown(KeyCode.Escape))
+        {
             Application.Quit();
+        }
     }
 
     public void Restart()
     {
-        StartCoroutine(FadetoBlack(SceneManager.GetActiveScene().name));      
+        StartCoroutine(FadeToBlack(SceneManager.GetActiveScene().name));
     }
 
     public void Menu()
     {
-        StartCoroutine(FadetoBlack("LevelSelector"));
+        StartCoroutine(FadeToBlack("LevelSelector"));
     }
 
     public void Comic()
     {
-        StartCoroutine(FadetoBlack("Comic_1"));
+        StartCoroutine(FadeToBlack("Comic_1"));
     }
 
     public void LevelSelector()
     {
-        if(GridController.LEVELS_UNLOCKED == 0)
-        {
-            StartCoroutine(FadetoBlack("Comic_1"));
-        }
-        else
-        {
-            StartCoroutine(FadetoBlack("LevelSelector"));
-        }
+        string sceneToLoad = GridController.LEVELS_UNLOCKED == 0 ? "Comic_1" : "LevelSelector";
+        StartCoroutine(FadeToBlack(sceneToLoad));
     }
 
-    public void Settings()
+    public void ToggleSettings()
     {
-        if(!_settings.activeSelf)
-            _settings.SetActive(true);
-        else
-            _settings.SetActive(false);
+        _settings.SetActive(!_settings.activeSelf);
     }
 
     public void Credits()
     {
-        StartCoroutine(FadetoBlack("End"));
+        StartCoroutine(FadeToBlack("End"));
     }
 
-    protected IEnumerator FadetoBlack(string scene, int fadeSpeed = 5)
+    private IEnumerator FadeToBlack(string scene, int fadeSpeed = 5)
     {
-        Color color = _fadeBlack.GetComponent<SpriteRenderer>().color;
-        float fadeAmount;
-
-        while (_fadeBlack.GetComponent<SpriteRenderer>().color.a < 1)
-        {
-            fadeAmount = color.a + (fadeSpeed * Time.deltaTime);
-            color = new Color(color.r, color.g, color.b, fadeAmount);
-            _fadeBlack.GetComponent<SpriteRenderer>().color = color;
-            yield return null;
-        }
-
-        GameObject.FindGameObjectWithTag("_save").GetComponent<DataPersistenceManager>().SaveGame();
+        yield return Fade(fadeSpeed, fadeToBlack: true);
+        SaveGame();
         SceneManager.LoadScene(scene);
-        yield return null;
     }
 
-    protected IEnumerator FadefromBlack(int fadeSpeed = 8)
+    private IEnumerator FadeFromBlack(int fadeSpeed = 8)
     {
-        Color color = _fadeBlack.GetComponent<SpriteRenderer>().color;
+        yield return Fade(fadeSpeed, fadeToBlack: false);
+    }
+
+    private IEnumerator Fade(int fadeSpeed, bool fadeToBlack)
+    {
+        Color color = _fadeBlackRenderer.color;
         float fadeAmount;
 
-        while (_fadeBlack.GetComponent<SpriteRenderer>().color.a > 0)
+        while ((fadeToBlack && color.a < 1) || (!fadeToBlack && color.a > 0))
         {
-            fadeAmount = color.a - (fadeSpeed * Time.deltaTime);
+            fadeAmount = fadeToBlack ? color.a + (fadeSpeed * Time.deltaTime) : color.a - (fadeSpeed * Time.deltaTime);
             color = new Color(color.r, color.g, color.b, fadeAmount);
-            _fadeBlack.GetComponent<SpriteRenderer>().color = color;
+            _fadeBlackRenderer.color = color;
             yield return null;
         }
     }
 
+    private void SaveGame()
+    {
+        GameObject.FindGameObjectWithTag("_save").GetComponent<DataPersistenceManager>().SaveGame();
+    }
 }

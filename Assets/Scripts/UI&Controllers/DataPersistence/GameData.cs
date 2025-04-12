@@ -6,23 +6,25 @@ using UnityEngine;
 public class GameData
 {
     //Save Points
-    public int _levelsUnlocked;
+    public int LevelsUnlocked;
 
     //General Settings
-    public bool _muted;
-    public bool _fullscreen;
-    public float _musicVolume;
-    public float _sfxVolume;
-    public int _resolution;
+    public bool Muted;
+    public bool Fullscreen;
+    public float MusicVolume;
+    public float SfxVolume;
+    public int Resolution;
+    public int Language;
 
     public GameData() 
     { 
-        _levelsUnlocked = 0;
-        _muted = false;
-        _fullscreen = true;
-        _musicVolume = 30;
-        _sfxVolume = 50;
-        _resolution = 5;
+        LevelsUnlocked = 0;
+        Muted = false;
+        Fullscreen = true;
+        MusicVolume = 30;
+        SfxVolume = 50;
+        Resolution = 5;
+        Language = 0;
     }
 
 }

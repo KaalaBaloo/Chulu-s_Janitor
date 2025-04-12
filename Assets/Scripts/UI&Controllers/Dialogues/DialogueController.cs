@@ -13,7 +13,6 @@ public class DialogueController : MonoBehaviour
     private GameObject _dialogueTotal;
     private GameObject _UI;
 
-    private bool _dialoguesExist = true;
     private int _dialogueIndex = 0;
     private string[] _dialogues;
     private Sprite[] _sprites;
@@ -29,11 +28,6 @@ public class DialogueController : MonoBehaviour
             _sprites = DialogueManager.Instance.GetDialogueSprites(_dialogueScene);
             StartDialogue();
         }
-        else
-        {
-            _dialoguesExist = false;
-        }
-
     }
 
     private void FindElements()
@@ -52,7 +46,6 @@ public class DialogueController : MonoBehaviour
         _dialogueIndex++;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Space))
@@ -74,12 +67,6 @@ public class DialogueController : MonoBehaviour
             _UI.SetActive(true);
             _dialogueTotal.SetActive(false);
         }
-    }
-
-    public void OffDialogues()
-    {
-        if (!_dialoguesExist)
-            _dialogueTotal.SetActive(false);
     }
 
 }
