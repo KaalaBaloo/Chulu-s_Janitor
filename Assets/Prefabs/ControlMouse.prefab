@@ -52,7 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorTexture: {fileID: 2800000, guid: a3c635cf901b91f498d4a2bc3355b4cf, type: 3}
   cursorMode: 0
-  hotSpot: {x: 0, y: 0}
+  hotSpot: {x: -0.5, y: 0}
 --- !u!82 &2753980507760442283
 AudioSource:
   m_ObjectHideFlags: 0

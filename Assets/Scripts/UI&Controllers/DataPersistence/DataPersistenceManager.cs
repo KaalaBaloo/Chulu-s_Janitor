@@ -19,12 +19,15 @@ public class DataPersistenceManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null)
+        if (instance != null && instance != this)
         {
-            Debug.Log("Found more than one Persistence Manage in the scene");
+            Destroy(this.gameObject);
+            return;
         }
-        instance = null;
+        instance = this;
+        DontDestroyOnLoad(this.gameObject);
     }
+
 
     private void Start()
     {
@@ -60,13 +63,18 @@ public class DataPersistenceManager : MonoBehaviour
 
     public void SaveGame()
     {
-        //Pass data to other scripts to update
         foreach (IDataPersistence dataPersistenceObj in _dataPersistenceObjects)
         {
-            dataPersistenceObj.SaveData(ref _gameData);
+            try
+            {
+                dataPersistenceObj.SaveData(ref _gameData);
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError($"Save failed in {dataPersistenceObj}: {e.Message}");
+            }
         }
 
-        //Save data using Data Handler
         _dataHandler.Save(_gameData);
     }
 

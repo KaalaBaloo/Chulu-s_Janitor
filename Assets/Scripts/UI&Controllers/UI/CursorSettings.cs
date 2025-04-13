@@ -12,7 +12,10 @@ public class CursorSettings : MonoBehaviour
 
     private void Start()
     {
-        _cursorVisible = SceneManager.GetActiveScene().name == "Main";
+        if(SceneManager.GetActiveScene().name == "Main" || SceneManager.GetActiveScene().name == "LevelSelector")
+            _cursorVisible = true;
+        else
+            _cursorVisible = false;
         Cursor.visible = _cursorVisible;
 
         _audio = GetComponent<AudioSource>();

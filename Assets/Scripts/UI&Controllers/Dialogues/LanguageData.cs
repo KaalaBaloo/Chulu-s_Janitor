@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class DialogueText
+public abstract class LanguageData
 {
-    protected string[] uiTexts;
-    protected string[] levelNames;
-    protected string[] credits;
+    public List<string[]> uiTexts;
+    public string[] levelNames;
+    public string[] credits;
 
     public struct Dialogue
     {

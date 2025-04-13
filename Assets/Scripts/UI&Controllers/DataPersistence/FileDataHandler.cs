@@ -52,6 +52,12 @@ public class FileDataHandler
         //Use Path.Combine for different OS
         string fullPath = Path.Combine(_dataDirPath, _dataFileName);
 
+        if (data == null)
+        {
+            Debug.LogWarning("Attempted to save null GameData!");
+            return;
+        }
+
         try
         {
             //Create directory path if not exist

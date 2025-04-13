@@ -3,40 +3,40 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Spanish : LanguageData
+public class English : LanguageData
 {
-    public Spanish()
+    public English()
     {
         this.uiTexts = new List<string[]>
         {
             new string[]
             {
-                "Jugar",
-                "Ajustes",
-                "Cómic",
-                "Créditos",
-                "Salir",
+                "Play",
+                "Settings",
+                "Comic",
+                "Credits",
+                "Exit",
             },
             new string[]
             {
-                "¿Quieres salir?",
-                "Si",
+                "Wanna exit?",
+                "Yes",
                 "No",
             },
             new string[]
             {
-                "Ajustes",
-                "Pantalla Completa",
-                "Silenciar",
-                "Música",
-                "Efectos de Sonido",
-                "Baja Resolución",
-                "Media Resolución",
-                "Alta Resolución",
-                "Ultra Resolución",
-                "Inglés",
-                "Español",
-                "Volver",
+                "Settings",
+                "Fullscreen",
+                "Silence",
+                "Music",
+                "Sound Effects",
+                "Low Resolution",
+                "Medium Resolution",
+                "High Resolution",
+                "Ultra Resolution",
+                "English",
+                "Spanish",
+                "Back",
             }
         };
 

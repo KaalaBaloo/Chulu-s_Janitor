@@ -10,7 +10,7 @@ public class HUD_Blood : MonoBehaviour
     int _lastBlood = 0;
 
 
-    void Start()
+    void Awake()
     {
         _player = GameObject.FindWithTag("MainCharacter");
         _mainCharacter = _player.GetComponent<MainCharacter>();

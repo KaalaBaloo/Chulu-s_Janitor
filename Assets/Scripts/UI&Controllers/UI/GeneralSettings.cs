@@ -11,26 +11,37 @@ public class GeneralSettings : MonoBehaviour, IDataPersistence
     public static bool FULLSCREEN = true;
     public static float MUSICVOLUME = 0.3f;
     public static float SFXVOLUME = 0.5f;
-    public static int RESOLUTION = 5;
+    public static int RESOLUTION = 0;
     public static int LANGUAGE = 0;
 
     private List<Resolution> presetResolutions = new List<Resolution>();
     private Resolution[] resolutions;
+
     private Slider sliderMusic;
     private Slider sliderSfx;
     private TMP_Dropdown dropdownResolution;
     private TMP_Dropdown dropdownLanguage;
     private Toggle toggleMuted;
     private Toggle toggleFullscreen;
+    private GameObject _settings;
+
+    private LanguageManager _languageManager;
+
+    private void Awake()
+    {
+        _languageManager = GameObject.FindWithTag("_languageManager").GetComponent<LanguageManager>();
+    }
 
     void Start()
     {
         CacheUIReferences();
         ApplySettingsToUI();
+        SetTranslatedTexts();
+
         if (SceneManager.GetActiveScene().name == "Main")
         {
-            GameObject settingsPanel = GameObject.FindWithTag("_settings");
-            if (settingsPanel != null) settingsPanel.SetActive(false);
+            _settings = GameObject.FindWithTag("_settings");
+            if (_settings != null) _settings.SetActive(false);
         }
 
         Screen.fullScreen = FULLSCREEN;
@@ -65,15 +76,67 @@ public class GeneralSettings : MonoBehaviour, IDataPersistence
     {
         if (toggleMuted != null) toggleMuted.isOn = MUTED;
         if (toggleFullscreen != null) toggleFullscreen.isOn = FULLSCREEN;
-        if (sliderMusic != null) sliderMusic.value = MUSICVOLUME * 2;
+        if (sliderMusic != null) sliderMusic.value = MUSICVOLUME * 2f;
         if (sliderSfx != null) sliderSfx.value = SFXVOLUME;
         if (dropdownResolution != null) dropdownResolution.value = RESOLUTION;
         if (dropdownLanguage != null) dropdownLanguage.value = LANGUAGE;
     }
 
+    private void SetTranslatedTexts()
+    {
+        string[] texts = GetTranslatedTexts();
+
+        GameObject.FindWithTag("_settingsTag").GetComponent<TextMeshProUGUI>().text = texts[0];
+        toggleFullscreen.GetComponentInChildren<Text>().text = texts[1];
+        toggleMuted.GetComponentInChildren<Text>().text = texts[2];
+        sliderMusic.GetComponentInChildren<TextMeshProUGUI>().text = texts[3];
+        sliderSfx.GetComponentInChildren<TextMeshProUGUI>().text = texts[4];
+
+        SetResolutionTexts(texts);
+        SetLanguageTexts(texts);
+        //Add button
+    }
+
+    private string[] GetTranslatedTexts()
+    {
+        string[] texts = _languageManager.GetSettingsTexts();
+        if (texts == null || texts.Length == 0)
+        {
+            Debug.LogWarning("No language texts available.");
+        }
+        return texts;
+    }
+
+    private void SetResolutionTexts(string[] texts)
+    {
+        List<string> resolutionsText = new List<string>();
+        for (int i = 5; i < 9; i++) resolutionsText.Add(texts[i]);
+
+        if (dropdownResolution != null)
+        {
+            dropdownResolution.ClearOptions();
+            dropdownResolution.AddOptions(resolutionsText);
+            dropdownResolution.value = Mathf.Clamp(RESOLUTION, 0, resolutionsText.Count - 1);
+            dropdownResolution.RefreshShownValue();
+        }
+    }
+
+    private void SetLanguageTexts(string[] texts)
+    {
+        List<string> languageText = new List<string>();
+        for (int i = 9; i < 11; i++) languageText.Add(texts[i]);
+
+        if (dropdownLanguage != null)
+        {
+            dropdownLanguage.ClearOptions();
+            dropdownLanguage.AddOptions(languageText);
+            dropdownLanguage.value = Mathf.Clamp(LANGUAGE, 0, languageText.Count - 1);
+            dropdownLanguage.RefreshShownValue();
+        }
+    }
+
     private void InitializeResolutions()
     {
-        resolutions = Screen.resolutions;
         presetResolutions.Clear();
 
         if (resolutions == null || resolutions.Length == 0)
@@ -120,14 +183,7 @@ public class GeneralSettings : MonoBehaviour, IDataPersistence
             }
         }
 
-        if (dropdownResolution != null)
-        {
-            dropdownResolution.ClearOptions();
-            List<string> options = new List<string> { "Low Resolution", "Medium Resolution", "High Resolution", "Ultra Resolution" };
-            dropdownResolution.AddOptions(options);
-            dropdownResolution.value = Mathf.Clamp(RESOLUTION, 0, 3);
-            dropdownResolution.RefreshShownValue();
-        }
+        SetResolutionTexts(GetTranslatedTexts());
     }
 
     void Update()
@@ -138,12 +194,16 @@ public class GeneralSettings : MonoBehaviour, IDataPersistence
         }
     }
 
-    public void Mute() => MUTED = !MUTED;
+    public void Mute()
+    {
+        if (toggleMuted != null)
+            MUTED = toggleMuted.isOn;
+    }
 
     public void MusicVolume()
     {
         if (sliderMusic != null)
-            MUSICVOLUME = sliderMusic.value / 2;
+            MUSICVOLUME = sliderMusic.value / 2f;
     }
 
     public void SfxVolume()
@@ -154,25 +214,28 @@ public class GeneralSettings : MonoBehaviour, IDataPersistence
 
     public void Fullscreen()
     {
-        FULLSCREEN = !FULLSCREEN;
-        Screen.fullScreen = FULLSCREEN;
+        if (toggleFullscreen != null)
+        {
+            FULLSCREEN = toggleFullscreen.isOn;
+            Screen.fullScreen = FULLSCREEN;
+        }
     }
 
     public void SetResolution()
     {
-        if (dropdownResolution == null || presetResolutions.Count < 4)
-            return;
-
-        int index = Mathf.Clamp(dropdownResolution.value, 0, presetResolutions.Count - 1);
-        Resolution res = presetResolutions[index];
-
-        Screen.SetResolution(res.width, res.height, FULLSCREEN);
+        if (dropdownResolution != null && presetResolutions.Count >= 4)
+        {
+            RESOLUTION = dropdownResolution.value;
+            Resolution res = presetResolutions[RESOLUTION];
+            Screen.SetResolution(res.width, res.height, FULLSCREEN);
+        }
     }
 
     public void SetLanguage()
     {
         if (dropdownLanguage != null)
             LANGUAGE = dropdownLanguage.value;
+        SetLanguageTexts(GetTranslatedTexts());
     }
 
     public void LoadData(GameData data)
@@ -200,5 +263,11 @@ public class GeneralSettings : MonoBehaviour, IDataPersistence
         data.Muted = MUTED;
         data.Resolution = RESOLUTION;
         data.Language = LANGUAGE;
+    }
+
+    public void ToggleSettings()
+    {
+        if (_settings != null)
+            _settings.SetActive(!_settings.activeSelf);
     }
 }

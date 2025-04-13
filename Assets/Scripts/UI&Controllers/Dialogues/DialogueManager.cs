@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-using static DialogueText;
+using static LanguageData;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -36,7 +36,6 @@ public class DialogueManager : MonoBehaviour
 
         if (loadedSprites == null || loadedSprites.Length == 0)
         {
-            Debug.LogError("No sprites loaded! Check path: Resources/Sprites/HUD&UI/Conversaciones");
             return;
         }
     }

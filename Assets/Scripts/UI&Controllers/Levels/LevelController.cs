@@ -41,38 +41,28 @@ public class LevelController : MonoBehaviour
 
     private void Update()
     {
-        if (MoveInput(out int direction))
+        for (int i = 0; i < _levels.Length; i++)
         {
-            ChangeLevel(direction);
-        }
-        else if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
-        {
-            TryLoadLevel();
-        }
-        else if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            StartCoroutine(FadeToBlack("Main"));
-        }
-    }
+            GameObject level = _levels[i];
+            Vector3 screenPos = Camera.main.WorldToScreenPoint(level.transform.position);
+            Rect rect = new Rect(screenPos.x - 50, screenPos.y - 50, 100, 100); // Approx area
 
-    private bool MoveInput(out int direction)
-    {
-        direction = 0;
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) ||
-            Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            direction = 1;
-            return (_level + 1) < _levels.Length;
-        }
+            if (rect.Contains(Input.mousePosition))
+            {
+                if (_level != i)
+                {
+                    _level = i;
+                    UpdateSelectorPosition();
+                }
 
-        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow) ||
-            Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            direction = -1;
-            return (_level - 1) >= 0;
-        }
+                if (Input.GetMouseButtonDown(0))
+                {
+                    TryLoadLevel();
+                }
 
-        return false;
+                break;
+            }
+        }
     }
 
     private void ChangeLevel(int direction)

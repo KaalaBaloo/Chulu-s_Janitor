@@ -54,14 +54,14 @@ public class GridController : MonoBehaviour, IDataPersistence
     private void Awake()
     {
         _gridBase = new int[_tilesX, _tilesY];
-        _gridInteractive = new int[_tilesX, _tilesY];
+       _gridInteractive = new int[_tilesX, _tilesY];
 
-        InitializeGrids();
+       InitializeGrids();
        SetBordersGrid();
        _turn = 2;
 
-        _textBloodLeft = GameObject.FindWithTag("_textBlood").GetComponent<TMP_Text>();
-        _fadeBlack = GameObject.FindWithTag("_blackFade");
+       _textBloodLeft = GameObject.FindWithTag("_textBlood").GetComponent<TMP_Text>();
+       _fadeBlack = GameObject.FindWithTag("_blackFade");
     }
 
     private void Start()
