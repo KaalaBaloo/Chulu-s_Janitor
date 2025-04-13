@@ -5,18 +5,18 @@ using UnityEngine.SceneManagement;
 public class ButtonsController : MonoBehaviour
 {
     private GameObject _fadeBlack;
-    private GameObject _pause;
     private GameObject _settings;
     private SpriteRenderer _fadeBlackRenderer;
 
-    private void Start()
+    private void Awake()
     {
         _fadeBlack = GameObject.FindWithTag("_blackFade");
-        _pause = GameObject.FindWithTag("_pause");
         _settings = GameObject.FindWithTag("_settings");
-
         _fadeBlackRenderer = _fadeBlack.GetComponent<SpriteRenderer>();
+    }
 
+    private void Start()
+    {
         if (SceneManager.GetActiveScene().name == "Main")
         {
             StartCoroutine(FadeFromBlack());
