@@ -1837,7 +1837,7 @@ GameObject:
   - component: {fileID: 981318349499128788}
   m_Layer: 5
   m_Name: Text (TMP)
-  m_TagString: Untagged
+  m_TagString: _backButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2124,7 +2124,7 @@ GameObject:
   - component: {fileID: 2151880851687458335}
   m_Layer: 5
   m_Name: Text
-  m_TagString: Untagged
+  m_TagString: _settingsTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4461,8 +4461,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 274.88934, y: -4.4428086}
-  m_SizeDelta: {x: 135.4166, y: 48.600967}
+  m_AnchoredPosition: {x: 395.69604, y: -0.47711}
+  m_SizeDelta: {x: 377.01083, y: 56.532}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1493609578604900243
 CanvasRenderer:

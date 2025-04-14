@@ -23,27 +23,19 @@ public class ButtonsController : MonoBehaviour
 
     private void Start()
     {
-        if (SceneManager.GetActiveScene().name == "Main")
-        {
-            StartCoroutine(FadeFromBlack());
-        }
+        if (SceneManager.GetActiveScene().name == "Main") StartCoroutine(FadeFromBlack());
     }
 
     private void Update()
     {
-        if (SceneManager.GetActiveScene().name == "Main" && Input.GetKeyDown(KeyCode.Escape))
-        {
-            Application.Quit();
-        }
-
         if(_language != GeneralSettings.LANGUAGE)
         {
             _language = GeneralSettings.LANGUAGE;
-            SetLanguage();
+            if (SceneManager.GetActiveScene().name == "Main") SetMainLanguage();
         }
     }
 
-    private void SetLanguage()
+    private void SetMainLanguage()
     {
         string[] texts = GetTranslatedTexts();
         Button[] mainButtons = GameObject.FindWithTag("_mainButtons").GetComponentsInChildren<Button>();
@@ -98,6 +90,11 @@ public class ButtonsController : MonoBehaviour
     public void Credits()
     {
         StartCoroutine(FadeToBlack("End"));
+    }
+
+    public void Exit()
+    {
+        Application.Quit();
     }
 
     private IEnumerator FadeToBlack(string scene, int fadeSpeed = 5)

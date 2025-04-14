@@ -8,10 +8,10 @@ public class Ending : MonoBehaviour
     float t = 0;
     GameObject _fadeBlack;
     [SerializeField] GameObject _credits;
-    [SerializeField] GameObject _thanks;
+    //[SerializeField] GameObject _thanks;
     [SerializeField] float _creditsVel = 0.05f;
 
-    bool _thanksActive = false;
+    //bool _thanksActive = false;
 
     void Start()
     {
@@ -27,10 +27,10 @@ public class Ending : MonoBehaviour
             _credits.transform.position += new Vector3(0, _creditsVel, 0) * Time.deltaTime;
             t += Time.deltaTime;
             yield return null;
-            if(t > 20 && !_thanksActive)
-            {
-                StartCoroutine(Thanks());
-            }
+            //if(t > 20 && !_thanksActive)
+            //{
+            //    StartCoroutine(Thanks());
+            //}
         }
         StartCoroutine(FadetoBlack("Main"));
         yield return 0;
@@ -68,19 +68,19 @@ public class Ending : MonoBehaviour
         StartCoroutine(EndingCoroutine());
     }
 
-    protected IEnumerator Thanks(int fadeSpeed = 1)
-    {
-        Color color = _thanks.GetComponent<SpriteRenderer>().color;
-        float fadeAmount;
+    //protected IEnumerator Thanks(int fadeSpeed = 1)
+    //{
+    //    Color color = _thanks.GetComponent<SpriteRenderer>().color;
+    //    float fadeAmount;
 
-        while (_thanks.GetComponent<SpriteRenderer>().color.a < 1)
-        {
-            fadeAmount = color.a + (fadeSpeed * Time.deltaTime);
-            color = new Color(color.r, color.g, color.b, fadeAmount);
-            _thanks.GetComponent<SpriteRenderer>().color = color;
-            yield return null;
-        }
-        yield return null;
-    }
+    //    while (_thanks.GetComponent<SpriteRenderer>().color.a < 1)
+    //    {
+    //        fadeAmount = color.a + (fadeSpeed * Time.deltaTime);
+    //        color = new Color(color.r, color.g, color.b, fadeAmount);
+    //        _thanks.GetComponent<SpriteRenderer>().color = color;
+    //        yield return null;
+    //    }
+    //    yield return null;
+    //}
 
 }

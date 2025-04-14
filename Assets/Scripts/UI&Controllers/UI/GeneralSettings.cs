@@ -31,22 +31,17 @@ public class GeneralSettings : MonoBehaviour, IDataPersistence
     private void Awake()
     {
         _languageManager = new LanguageManager();
-    }
-
-    void Start()
-    {
         CacheUIReferences();
         ApplySettingsToUI();
         SetTranslatedTexts();
 
-        if (SceneManager.GetActiveScene().name == "Main")
-        {
-            _settings = GameObject.FindWithTag("_settings");
-            if (_settings != null) _settings.SetActive(false);
-        }
-
         Screen.fullScreen = FULLSCREEN;
         SetResolution();
+    }
+
+    void Start()
+    {
+        if (_settings != null) _settings.SetActive(false);
     }
 
     private void CacheUIReferences()
@@ -57,6 +52,7 @@ public class GeneralSettings : MonoBehaviour, IDataPersistence
         sliderSfx = FindUI<Slider>("_sfx");
         dropdownResolution = FindUI<TMP_Dropdown>("_resolution");
         dropdownLanguage = FindUI<TMP_Dropdown>("_language");
+        _settings = GameObject.FindWithTag("_settings");
 
         resolutions = Screen.resolutions;
         InitializeResolutions();
@@ -191,6 +187,8 @@ public class GeneralSettings : MonoBehaviour, IDataPersistence
         {
             Debug.Log($"Muted: {MUTED}, Music: {MUSICVOLUME}, SFX: {SFXVOLUME}, Fullscreen: {FULLSCREEN}, Lang: {LANGUAGE}");
         }
+        if(_settings != null && Cursor.visible == false)
+            Cursor.visible = true;
     }
 
     public void Mute()
@@ -232,14 +230,17 @@ public class GeneralSettings : MonoBehaviour, IDataPersistence
 
     public void SetLanguage()
     {
-        if (isSettingLanguage) return;
+        if(_settings != null)
+        {
+            if (isSettingLanguage) return;
 
-        isSettingLanguage = true;
+            isSettingLanguage = true;
 
-        LANGUAGE = dropdownLanguage.value;
-        SetTranslatedTexts();
+            LANGUAGE = dropdownLanguage.value;
+            SetTranslatedTexts();
 
-        isSettingLanguage = false;
+            isSettingLanguage = false;
+        }
     }
 
     public void LoadData(GameData data)
@@ -272,6 +273,7 @@ public class GeneralSettings : MonoBehaviour, IDataPersistence
     public void ToggleSettings()
     {
         if (_settings != null)
-            _settings.SetActive(!_settings.activeSelf);
+            _settings.SetActive(false);
+        Cursor.visible = false;
     }
 }

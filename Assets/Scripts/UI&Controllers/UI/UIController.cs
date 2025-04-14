@@ -6,38 +6,40 @@ public class UIController : MonoBehaviour
 {
     GameObject _pause;
     GameObject _settings;
-    GameObject _dialogues;
 
-    void Start()
+    private void Awake()
     {
-        _pause = GameObject.FindWithTag("_pause");
-        if (_pause != null) _pause.SetActive(false);
-
         _settings = GameObject.FindWithTag("_settings");
-        if (_settings != null) _settings.SetActive(false);
+        _pause = GameObject.FindWithTag("_pause");
+    }
 
-        _dialogues = GameObject.FindWithTag("_dialogue");
+    private void Start()
+    {
+        if (_pause != null) _pause.SetActive(false);
     }
 
     void Update()
     {
         bool escapePressed = Input.GetKeyDown(KeyCode.Escape);
-        bool dialoguesActive = _dialogues != null && _dialogues.activeSelf;
         bool pauseActive = _pause != null && _pause.activeSelf;
         bool settingsActive = _settings != null && _settings.activeSelf;
 
-        if (escapePressed && !dialoguesActive && !pauseActive && !settingsActive)
+        if (escapePressed && !pauseActive && !settingsActive)
         {
             Cursor.visible = true;
             if (_pause != null) _pause.SetActive(true);
         }
-        else if (escapePressed && !dialoguesActive && pauseActive && !settingsActive)
+        else if (escapePressed && pauseActive && !settingsActive)
         {
             Continue();
         }
-        else if (escapePressed && !dialoguesActive && settingsActive)
+        else if (escapePressed && settingsActive)
         {
             Back();
+        }
+        else if (escapePressed)
+        {
+            Cursor.visible = false;
         }
     }
 
