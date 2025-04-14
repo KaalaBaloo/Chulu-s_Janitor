@@ -26,10 +26,11 @@ public class GeneralSettings : MonoBehaviour, IDataPersistence
     private GameObject _settings;
 
     private LanguageManager _languageManager;
+    private bool isSettingLanguage = false;
 
     private void Awake()
     {
-        _languageManager = GameObject.FindWithTag("_languageManager").GetComponent<LanguageManager>();
+        _languageManager = new LanguageManager();
     }
 
     void Start()
@@ -91,10 +92,10 @@ public class GeneralSettings : MonoBehaviour, IDataPersistence
         toggleMuted.GetComponentInChildren<Text>().text = texts[2];
         sliderMusic.GetComponentInChildren<TextMeshProUGUI>().text = texts[3];
         sliderSfx.GetComponentInChildren<TextMeshProUGUI>().text = texts[4];
+        GameObject.FindWithTag("_backButton").GetComponent<TextMeshProUGUI>().text = texts[11];
 
         SetResolutionTexts(texts);
         SetLanguageTexts(texts);
-        //Add button
     }
 
     private string[] GetTranslatedTexts()
@@ -182,8 +183,6 @@ public class GeneralSettings : MonoBehaviour, IDataPersistence
                 presetResolutions[i] = highest;
             }
         }
-
-        SetResolutionTexts(GetTranslatedTexts());
     }
 
     void Update()
@@ -233,9 +232,14 @@ public class GeneralSettings : MonoBehaviour, IDataPersistence
 
     public void SetLanguage()
     {
-        if (dropdownLanguage != null)
-            LANGUAGE = dropdownLanguage.value;
-        SetLanguageTexts(GetTranslatedTexts());
+        if (isSettingLanguage) return;
+
+        isSettingLanguage = true;
+
+        LANGUAGE = dropdownLanguage.value;
+        SetTranslatedTexts();
+
+        isSettingLanguage = false;
     }
 
     public void LoadData(GameData data)

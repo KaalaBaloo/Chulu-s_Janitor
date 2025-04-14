@@ -1,5 +1,7 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class ButtonsController : MonoBehaviour
@@ -7,12 +9,16 @@ public class ButtonsController : MonoBehaviour
     private GameObject _fadeBlack;
     private GameObject _settings;
     private SpriteRenderer _fadeBlackRenderer;
+    private LanguageManager _languageManager;
+    private int _language;
 
     private void Awake()
     {
         _fadeBlack = GameObject.FindWithTag("_blackFade");
         _settings = GameObject.FindWithTag("_settings");
         _fadeBlackRenderer = _fadeBlack.GetComponent<SpriteRenderer>();
+        _languageManager = new LanguageManager();
+        _language = GeneralSettings.LANGUAGE;
     }
 
     private void Start()
@@ -29,6 +35,38 @@ public class ButtonsController : MonoBehaviour
         {
             Application.Quit();
         }
+
+        if(_language != GeneralSettings.LANGUAGE)
+        {
+            _language = GeneralSettings.LANGUAGE;
+            SetLanguage();
+        }
+    }
+
+    private void SetLanguage()
+    {
+        string[] texts = GetTranslatedTexts();
+        Button[] mainButtons = GameObject.FindWithTag("_mainButtons").GetComponentsInChildren<Button>();
+
+        for (int i = 0; i < mainButtons.Length && i < texts.Length; i++)
+        {
+            TextMeshProUGUI textComponent = mainButtons[i].GetComponentInChildren<TextMeshProUGUI>();
+            if (textComponent != null)
+            {
+                textComponent.text = texts[i];
+            }
+        }
+    }
+
+
+    private string[] GetTranslatedTexts()
+    {
+        string[] texts = _languageManager.GetMainMenuTexts();
+        if (texts == null || texts.Length == 0)
+        {
+            Debug.LogWarning("No language texts available.");
+        }
+        return texts;
     }
 
     public void Restart()

@@ -2,23 +2,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using static LanguageData;
 
-public class LanguageManager : MonoBehaviour
+public class LanguageManager
 {
-
     public static LanguageManager Instance { get; private set; }
-
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-
-        Debug.Log("LanguageManager initialized.");
-    }
 
     public string[] GetMainMenuTexts()
     {
@@ -63,7 +49,4 @@ public class LanguageManager : MonoBehaviour
                 return null;
         }
     }
-
-
-
 }

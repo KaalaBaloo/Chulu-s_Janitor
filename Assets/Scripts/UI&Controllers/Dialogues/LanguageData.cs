@@ -20,7 +20,7 @@ public abstract class LanguageData
         }
     }
 
-    protected List<List<Dialogue>> dialogues = new List<List<Dialogue>>();
+    protected List<List<Dialogue>> dialogues;
     public virtual List<Dialogue> GetDialogues(int dialogue)
     {
         return this.dialogues[dialogue];

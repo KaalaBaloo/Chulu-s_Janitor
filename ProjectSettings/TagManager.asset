@@ -34,6 +34,8 @@ TagManager:
   - Undefined
   - _settingsTag
   - _languageManager
+  - _backButton
+  - _mainButtons
   layers:
   - Default
   - TransparentFX

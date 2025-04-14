@@ -871,7 +871,7 @@ MonoBehaviour:
   m_Placeholder: {fileID: 0}
   m_ItemText: {fileID: 5002798840334808791}
   m_ItemImage: {fileID: 0}
-  m_Value: 4
+  m_Value: 2
   m_Options:
     m_Options:
     - m_Text: English
