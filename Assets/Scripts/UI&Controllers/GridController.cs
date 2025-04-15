@@ -32,6 +32,9 @@ public class GridController : MonoBehaviour, IDataPersistence
     [SerializeField] AudioClip _win;
     [SerializeField] AudioClip _gameOver;
 
+    [SerializeField] GameObject _winVFX;
+    [SerializeField] GameObject _gameOverVFX;
+
     int[,] _gridBase;
     int[,] _gridInteractive;
 
@@ -85,30 +88,12 @@ public class GridController : MonoBehaviour, IDataPersistence
         }
         if (_dirtToClean <= 0 && SceneManager.GetActiveScene().name != "20" && SceneManager.GetActiveScene().name != "20_Battle" && !GAMEOVER)
         {
-            int level;
-
-            GAMEOVER = true;
-            Debug.Log("Win");
-            AudioPlay(_win);
-
-            int.TryParse(SceneManager.GetActiveScene().name, out level);
-            if (level > LEVELS_UNLOCKED)
-                LEVELS_UNLOCKED++;
-
+            Win();
             StartCoroutine(ChangeScene("LevelSelector"));
         }
         else if (_dirtToClean <= 0 && SceneManager.GetActiveScene().name == "20" && !GAMEOVER)
         {
-            int level;
-
-            GAMEOVER = true;
-            Debug.Log("Win");
-            AudioPlay(_win);
-
-            int.TryParse(SceneManager.GetActiveScene().name, out level);
-            if (level > LEVELS_UNLOCKED)
-                LEVELS_UNLOCKED++;
-
+            Win();
             StartCoroutine(RitualAnimation());
         }
         else if (_dirtToClean <= 0 && SceneManager.GetActiveScene().name == "20_Battle" && !GAMEOVER)
@@ -116,6 +101,8 @@ public class GridController : MonoBehaviour, IDataPersistence
             GAMEOVER = true;
             Debug.Log("Win");
             AudioPlay(_win);
+            Instantiate(_gameOverVFX, new Vector3(0, 0, 0), Quaternion.identity);
+
             StartCoroutine(EndAnimation());
         }
         if (_enemies == _enemiesCount && _turn == 1)
@@ -123,6 +110,20 @@ public class GridController : MonoBehaviour, IDataPersistence
             _enemiesCount = 0;
             _turn = 0;
         }
+    }
+
+    private void Win()
+    {
+        int level;
+
+        GAMEOVER = true;
+        Debug.Log("Win");
+        AudioPlay(_win);
+        Instantiate(_winVFX, new Vector3(0, 0, 0), Quaternion.identity);
+
+        int.TryParse(SceneManager.GetActiveScene().name, out level);
+        if (level > LEVELS_UNLOCKED)
+            LEVELS_UNLOCKED++;
     }
 
     protected IEnumerator RitualAnimation()

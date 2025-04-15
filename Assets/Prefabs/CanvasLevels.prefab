@@ -724,7 +724,7 @@ GameObject:
   - component: {fileID: 5603362184769808265}
   m_Layer: 5
   m_Name: HUD
-  m_TagString: CanvasLevels
+  m_TagString: _canvasLevel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

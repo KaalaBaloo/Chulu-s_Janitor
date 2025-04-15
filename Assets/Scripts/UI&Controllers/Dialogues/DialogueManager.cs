@@ -2,32 +2,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using static LanguageData;
 
-public class DialogueManager : MonoBehaviour
+public class DialogueManager
 {
     public static DialogueManager Instance { get; private set; }
 
-    [SerializeField] private Sprite[,] _dialogueImages; // assign this in Awake or load manually
+    [SerializeField] private Sprite[,] _dialogueImages;
 
     private Dictionary<string, Sprite> _dialogueImageDict;
-
-    private void Awake()
-    {
-        LoadDictionary();
-
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-    }
 
     private void LoadDictionary()
     {
         _dialogueImageDict = new Dictionary<string, Sprite>();
         Sprite[] loadedSprites = Resources.LoadAll<Sprite>("Sprites/HUD&UI/Conversaciones");
+        Debug.Log($"Loaded {loadedSprites.Length} sprites from Sprites/HUD&UI/Conversaciones");
 
         foreach (Sprite sprite in loadedSprites)
         {
@@ -45,7 +32,8 @@ public class DialogueManager : MonoBehaviour
         switch (GeneralSettings.LANGUAGE)
         {
             case 0: // English
-                return null; // new English().GetDialogues(dialogue) etc.
+                English english = new English();
+                return GetTexts(english.GetDialogues(dialogue));
             case 1: // Spanish
                 Spanish spanish = new Spanish();
                 return GetTexts(spanish.GetDialogues(dialogue));
@@ -66,10 +54,12 @@ public class DialogueManager : MonoBehaviour
 
     public Sprite[] GetDialogueSprites(int dialogue)
     {
+        LoadDictionary();
         switch (GeneralSettings.LANGUAGE)
         {
             case 0: // English
-                return null; // new English().GetDialogues(dialogue) etc.
+                English english = new English();
+                return GetSprites(english.GetDialogues(dialogue));
             case 1: // Spanish
                 Spanish spanish = new Spanish();
                 return GetSprites(spanish.GetDialogues(dialogue));
@@ -80,6 +70,7 @@ public class DialogueManager : MonoBehaviour
 
     private Sprite[] GetSprites(List<Dialogue> dialogues)
     {
+        LoadDictionary();
         Sprite[] sprites = new Sprite[dialogues.Count];
 
         for (int i = 0; i < dialogues.Count; i++)
@@ -90,10 +81,6 @@ public class DialogueManager : MonoBehaviour
             {
                 sprites[i] = sprite;
             }
-            else
-            {
-                Debug.LogWarning($"Sprite not found for key: {spriteKey}");
-            }
         }
 
         return sprites;
@@ -101,15 +88,10 @@ public class DialogueManager : MonoBehaviour
 
     public Sprite GetSprite(string key)
     {
+        LoadDictionary();
         if (_dialogueImageDict.TryGetValue(key, out Sprite sprite))
             return sprite;
 
-        Debug.LogWarning($"Sprite not found for key: {key}");
-
-        if (_dialogueImageDict.TryGetValue("MissingSprite", out Sprite fallback))
-            return fallback;
-
-        Debug.LogError("MissingSprite fallback not found in dictionary.");
         return null;
     }
 

@@ -274,6 +274,7 @@ public class GeneralSettings : MonoBehaviour, IDataPersistence
     {
         if (_settings != null)
             _settings.SetActive(false);
-        Cursor.visible = false;
+        if (SceneManager.GetActiveScene().name != "Main")
+            Cursor.visible = false;
     }
 }

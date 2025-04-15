@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class DialogueController : MonoBehaviour
 {
+    static bool _dialoguePlayed = false;
+
     [SerializeField] int _dialogueScene;
 
     private TMP_Text _text;
@@ -17,17 +19,19 @@ public class DialogueController : MonoBehaviour
     private string[] _dialogues;
     private Sprite[] _sprites;
 
-    void Start()
+    private DialogueManager _dialogueManager;
+
+    private void Awake()
     {
         FindElements();
+    }
 
-        if (_dialogues.Length != 0)
-        {
-            _UI.SetActive(false);
-            _dialogues = DialogueManager.Instance.GetDialogueTexts(_dialogueScene);
-            _sprites = DialogueManager.Instance.GetDialogueSprites(_dialogueScene);
+    void Start()
+    {
+        if (!_dialoguePlayed)
             StartDialogue();
-        }
+        else
+            _dialogueTotal.SetActive(false);
     }
 
     private void FindElements()
@@ -36,14 +40,21 @@ public class DialogueController : MonoBehaviour
         _dialogueImage = GameObject.FindGameObjectWithTag("_dialogueImage").GetComponent<Image>();
         _dialogueTotal = GameObject.FindGameObjectWithTag("_dialogue");
         _UI = GameObject.FindGameObjectWithTag("_canvasLevel");
+        _dialogueManager = new DialogueManager();
+        Debug.Log(_dialogueManager);
+        _dialogues = _dialogueManager.GetDialogueTexts(_dialogueScene);
+        _sprites = _dialogueManager.GetDialogueSprites(_dialogueScene);
     }
 
     private void StartDialogue()
     {
+        _UI.SetActive(false);
+        _dialoguePlayed = true;
         _dialogueIndex = 0;
         _text.text = _dialogues[_dialogueIndex];
         _dialogueImage.sprite = _sprites[_dialogueIndex];
         _dialogueIndex++;
+        Cursor.visible = true;
     }
 
     void Update()
@@ -51,6 +62,11 @@ public class DialogueController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Space))
         {
             ChangeDialogue();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Close();
         }
     }
 
@@ -64,9 +80,15 @@ public class DialogueController : MonoBehaviour
         }
         else
         {
-            _UI.SetActive(true);
-            _dialogueTotal.SetActive(false);
+            Close();
         }
+    }
+
+    public void Close()
+    {
+        _dialogueTotal.SetActive(false);
+        _UI.SetActive(true);
+        Cursor.visible = false;
     }
 
 }

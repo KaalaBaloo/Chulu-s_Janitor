@@ -10,23 +10,28 @@ public class LevelController : MonoBehaviour
     [SerializeField] private GameObject _text;
     [SerializeField] private AudioClip unlockedClip;
     [SerializeField] private AudioClip lockedClip;
-    [SerializeField] private string[] _tittles;
+    [SerializeField] private AudioClip hoverClip;
 
     private GameObject _fadeBlack;
     private AudioSource _audio;
     private Animator _animator;
     private TMP_Text _textTittle;
+    private string[] _titles;
 
     private int _level = 0;
 
-    private void Start()
+    private void Awake()
     {
         _audio = GetComponent<AudioSource>();
         _audio.volume = GeneralSettings.SFXVOLUME / 100f;
         _animator = _sprite.GetComponent<Animator>();
         _textTittle = _text.GetComponent<TMP_Text>();
         _fadeBlack = GameObject.FindWithTag("_blackFade");
+    }
 
+    private void Start()
+    {
+        _titles = new LanguageManager().GetLevelNames();
         StartCoroutine(FadeFromBlack());
 
         for (int i = 0; i < _levels.Length; i++)
@@ -63,6 +68,15 @@ public class LevelController : MonoBehaviour
                 break;
             }
         }
+
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (_fadeBlack != null)
+            {
+                _fadeBlack.SetActive(true);
+                StartCoroutine(FadeToBlack("Main"));
+            }
+        }
     }
 
     private void ChangeLevel(int direction)
@@ -75,7 +89,8 @@ public class LevelController : MonoBehaviour
     {
         Vector3 offset = new Vector3(-0.12f, 0.28f, 0f);
         transform.position = _levels[_level].transform.position + offset;
-        _textTittle.text = _tittles[_level];
+        _textTittle.text = _titles[_level];
+        PlaySound(hoverClip);
     }
 
     private void TryLoadLevel()

@@ -49,4 +49,19 @@ public class LanguageManager
                 return null;
         }
     }
+
+    public string[] GetLevelNames()
+    {
+        switch (GeneralSettings.LANGUAGE)
+        {
+            case 0: // English
+                English english = new English();
+                return english.levelNames;
+            case 1: // Spanish
+                Spanish spanish = new Spanish();
+                return spanish.levelNames;
+            default:
+                return null;
+        }
+    }
 }

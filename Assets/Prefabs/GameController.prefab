@@ -49,8 +49,6 @@ MonoBehaviour:
   _tilesX: 12
   _tilesY: 8
   _border: {fileID: 1586780029606412139, guid: a7b87a32eedf439479550fbf62f43855, type: 3}
-  _BloodLeft: {fileID: 0}
-  _fadeBlack: {fileID: 0}
   _turn: 2
   _enemies: 0
   _enemiesCount: 0
@@ -58,6 +56,8 @@ MonoBehaviour:
   _endOn: 0
   _win: {fileID: 8300000, guid: 5ee8b7080459344408d2343f2abc9675, type: 3}
   _gameOver: {fileID: 8300000, guid: cac40b5699a86c544912cd539eb482c0, type: 3}
+  _winVFX: {fileID: 1247311384876784, guid: 14458e9a301bba24d918dff897b2dbb5, type: 3}
+  _gameOverVFX: {fileID: 100006, guid: bb4f3cf97af3eb848ad78f5fb70a913d, type: 3}
 --- !u!82 &8032962452764720615
 AudioSource:
   m_ObjectHideFlags: 0

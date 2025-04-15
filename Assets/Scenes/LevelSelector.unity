@@ -3570,28 +3570,8 @@ MonoBehaviour:
   _sprite: {fileID: 4044013212659137491}
   _text: {fileID: 1800943069}
   unlockedClip: {fileID: 8300000, guid: c3821f5049d0ef04183d94eaff67385d, type: 3}
-  lockedClip: {fileID: 8300000, guid: 9f4c5cc2ba8a2c447a46f80bae0f0761, type: 3}
-  _tittles:
-  - "1  -  CAPITALISMO AH\xCD VOY"
-  - "2  -  \xA1AUCH! MIS PIECECITOS\u2026"
-  - "3 - \xBFQU\xC9 ES ESO?"
-  - 4  -  NO ME APUNTES CON ESOS PINCHOS
-  - "5  -  \xBFAHORA SON DOS?"
-  - "6  -  \xA1QUITA BICHO!"
-  - "7  -  \xBFOTRA VEZ T\xDA?"
-  - "8  -  AH \xBFQU\xC9 SE ENSUCIA?"
-  - "9  -  AH\xCD SE FUERON MIS PALITOS DE PESCADO"
-  - 10  -  EN MENUDO FREGADO ME HE METIDO
-  - "11  -  \xBFY CU\xC1NDO SE COBRA?"
-  - 12  - FRIEGO DE LADO A LADO
-  - 13  -  SOCORRO, NECESITO ESPACIO PERSONAL
-  - 14  -  ME SIENTO 007
-  - "15  -  \xBFFOL\xCDCULO ERES T\xDA?"
-  - "16  -  ESE YA NO ES FOL\xCDCULO\u2026"
-  - 17  -  NO ME PAGAN LO SUFICIENTE
-  - 18  -  OFERTA UNO POR DOS
-  - 19  -  YO CURRANDO Y EL RESTO DE FIESTA
-  - "20 - \u2026"
+  lockedClip: {fileID: 8300000, guid: 973814c636a294b48917c7ae97d9d6c0, type: 3}
+  hoverClip: {fileID: 8300000, guid: 7b097c408664479418dede74afc7205d, type: 3}
 --- !u!82 &4044013212160283336
 AudioSource:
   m_ObjectHideFlags: 0
