@@ -36,6 +36,7 @@ TagManager:
   - _languageManager
   - _backButton
   - _mainButtons
+  - _comic
   layers:
   - Default
   - TransparentFX

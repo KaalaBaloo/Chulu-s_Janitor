@@ -24,6 +24,10 @@ public class DialogueController : MonoBehaviour
     private void Awake()
     {
         FindElements();
+
+        _dialogueManager = new DialogueManager();
+        _dialogues = _dialogueManager.GetDialogueTexts(_dialogueScene);
+        _sprites = _dialogueManager.GetDialogueSprites(_dialogueScene);
     }
 
     void Start()
@@ -40,10 +44,6 @@ public class DialogueController : MonoBehaviour
         _dialogueImage = GameObject.FindGameObjectWithTag("_dialogueImage").GetComponent<Image>();
         _dialogueTotal = GameObject.FindGameObjectWithTag("_dialogue");
         _UI = GameObject.FindGameObjectWithTag("_canvasLevel");
-        _dialogueManager = new DialogueManager();
-        Debug.Log(_dialogueManager);
-        _dialogues = _dialogueManager.GetDialogueTexts(_dialogueScene);
-        _sprites = _dialogueManager.GetDialogueSprites(_dialogueScene);
     }
 
     private void StartDialogue()

@@ -148,7 +148,7 @@ public class English : LanguageData
                 new Dialogue("I shall defeat the foolish sleeper and finally rule over the entire universe!", "Cthulhu_01"),
                 new Dialogue("Bold words for someone losing to a mortal with a mop.", "Nyar_02"),
                 new Dialogue("No! You’re not supposed to Be hEre…", "Cthulhu_01"),
-                new Dialogue("Chu!", "Nyar_02"),
+                new Dialogue("Chu!", "Chulu_01"),
                 new Dialogue("Who would’ve thought, you were the chosen one after all…", "Nyar_02"),
                 new Dialogue("...", "Nyar_02"),
                 new Dialogue("Well… if we’re being honest, it’s all thanks to me. After all, I was the one who picked you *and* landed the final blow… Yep, all me.", "Nyar_01"),

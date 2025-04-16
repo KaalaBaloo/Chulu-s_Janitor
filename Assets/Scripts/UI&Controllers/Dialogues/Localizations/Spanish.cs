@@ -148,7 +148,7 @@ public class Spanish : LanguageData
                 new Dialogue("¡Venceré al estúpido durmiente y finalmente reinaré en todo el universo!", "Cthulhu_01"),
                 new Dialogue("El orgullo que hay que tener para decir palabras tan grandes mientras pierdes contra un mortal con una fregona", "Nyar_02"),
                 new Dialogue("¡No! Se supone que tu no tendrías que eSTaR AqUí…", "Cthulhu_01"),
-                new Dialogue("Chu!", "Nyar_02"),
+                new Dialogue("Chu!", "Chulu_01"),
                 new Dialogue("Quién lo diría, al final si eras el indicado…", "Nyar_02"),
                 new Dialogue("…", "Nyar_02"),
                 new Dialogue("Bueno… si se ve fríamente todo es todo gracias a mi. Al fin y al cabo fui yo quien te escogió y el que dio la estocada final… Si, todo gracias a mi", "Nyar_01"),
