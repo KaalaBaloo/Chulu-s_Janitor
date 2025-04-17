@@ -7,6 +7,7 @@ public class ButtonEffects : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     [SerializeField] private AudioClip selectionSound;
     [SerializeField] private Color selectedColor = Color.magenta;
     [SerializeField] private float scaleMultiplier = 1.2f;
+    [SerializeField] private Camera cameraToUse;
 
     private TextMeshProUGUI buttonText;
     private Vector3 originalScale;
@@ -35,15 +36,16 @@ public class ButtonEffects : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         }
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    public void OnPointerEnter(PointerEventData eventData) // Cambiar esto a envés de OnPointerEnter, que el audio
     {
         if (buttonText != null)
             buttonText.color = selectedColor;
 
+
         transform.localScale = originalScale * scaleMultiplier;
 
-        if (audioSource != null && selectionSound != null)
-            audioSource.PlayOneShot(selectionSound);
+        //if (audioSource != null && selectionSound != null)
+        //    audioSource.PlayOneShot(selectionSound);
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -52,5 +54,15 @@ public class ButtonEffects : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             buttonText.color = Color.white;
 
         transform.localScale = originalScale;
+    }
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        Vector3 mousePosition = new Vector3(eventData.position.x, eventData.position.y, 0);
+
+        var linkTaggedText = TMP_TextUtilities.FindIntersectingLink(buttonText, mousePosition, cameraToUse);
+
+        if (linkTaggedText != -1)
+
+            audioSource.PlayOneShot(selectionSound);
     }
 }
