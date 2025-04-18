@@ -23,7 +23,8 @@ public class ButtonsController : MonoBehaviour
 
     private void Start()
     {
-        if (SceneManager.GetActiveScene().name == "Main") StartCoroutine(FadeFromBlack());
+        if (SceneManager.GetActiveScene().name == "Main") 
+            StartCoroutine(FadeFromBlack());
     }
 
     private void Update()
@@ -31,13 +32,14 @@ public class ButtonsController : MonoBehaviour
         if(_language != GeneralSettings.LANGUAGE)
         {
             _language = GeneralSettings.LANGUAGE;
-            if (SceneManager.GetActiveScene().name == "Main") SetMainLanguage();
+            if (SceneManager.GetActiveScene().name == "Main") 
+                SetMainLanguage();
         }
     }
 
     private void SetMainLanguage()
     {
-        string[] texts = GetTranslatedTexts();
+        string[] texts = GetMainTranslatedTexts();
         Button[] mainButtons = GameObject.FindWithTag("_mainButtons").GetComponentsInChildren<Button>();
 
         for (int i = 0; i < mainButtons.Length && i < texts.Length; i++)
@@ -50,10 +52,43 @@ public class ButtonsController : MonoBehaviour
         }
     }
 
-
-    private string[] GetTranslatedTexts()
+    private string[] GetMainTranslatedTexts()
     {
         string[] texts = _languageManager.GetMainMenuTexts();
+        if (texts == null || texts.Length == 0)
+        {
+            Debug.LogWarning("No language texts available.");
+        }
+        return texts;
+    }
+
+    private void OnEnable()
+    {
+        if (GameObject.FindWithTag("_pause") != null)
+            SetPauseLanguage();
+    }
+
+    private void SetPauseLanguage()
+    {
+        string[] texts = GetPauseTranslatedTexts();
+        Button[] pauseButtons = GameObject.FindWithTag("_pause").GetComponentsInChildren<Button>();
+
+        GameObject.FindWithTag("_pauseTag").GetComponent<TextMeshProUGUI>().text = texts[0];
+
+        for (int i = 0; i < pauseButtons.Length && i < texts.Length; i++)
+        {
+            TextMeshProUGUI textComponent = pauseButtons[i].GetComponentInChildren<TextMeshProUGUI>();
+            if (textComponent != null)
+            {
+                textComponent.text = texts[i + 1];
+            }
+        }
+    }
+
+
+    private string[] GetPauseTranslatedTexts()
+    {
+        string[] texts = _languageManager.GetPauseTexts();
         if (texts == null || texts.Length == 0)
         {
             Debug.LogWarning("No language texts available.");

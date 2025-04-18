@@ -20,6 +20,22 @@ public class LanguageManager
                 return null;
         }
     }
+
+    public string[] GetPauseMenuTexts()
+    {
+        switch (GeneralSettings.LANGUAGE)
+        {
+            case 0: // English
+                English english = new English();
+                return english.uiTexts[0];
+            case 1: // Spanish
+                Spanish spanish = new Spanish();
+                return spanish.uiTexts[0];
+            default:
+                return null;
+        }
+    }
+
     public string[] GetExitTexts()
     {
         switch (GeneralSettings.LANGUAGE)
@@ -35,7 +51,7 @@ public class LanguageManager
         }
     }
 
-    public string[] GetSettingsTexts()
+    public string[] GetPauseTexts()
     {
         switch (GeneralSettings.LANGUAGE)
         {
@@ -45,6 +61,21 @@ public class LanguageManager
             case 1: // Spanish
                 Spanish spanish = new Spanish();
                 return spanish.uiTexts[2];
+            default:
+                return null;
+        }
+    }
+
+    public string[] GetSettingsTexts()
+    {
+        switch (GeneralSettings.LANGUAGE)
+        {
+            case 0: // English
+                English english = new English();
+                return english.uiTexts[3];
+            case 1: // Spanish
+                Spanish spanish = new Spanish();
+                return spanish.uiTexts[3];
             default:
                 return null;
         }

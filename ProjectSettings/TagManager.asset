@@ -37,6 +37,7 @@ TagManager:
   - _backButton
   - _mainButtons
   - _comic
+  - _pauseTag
   layers:
   - Default
   - TransparentFX
