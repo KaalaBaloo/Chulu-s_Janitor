@@ -1,7 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
+using Unity.Burst.Intrinsics;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
+using UnityEngine.UI;
 
 public class Spanish : LanguageData
 {
@@ -77,11 +81,25 @@ public class Spanish : LanguageData
 
         this.credits = new string[]
         {
-            "Desarrollador: Juan Pérez",
-            "Artista: Ana Gómez",
-            "Música: Carlos López",
-            "Agradecimientos especiales a todos los que apoyaron este proyecto."
+            @"Desarrollado por: Grusel Games
+
+
+            Andrea Salas: 
+            Directora de Arte y Artista Conceptual
+
+
+            Daniel Gonzalez: 
+            Animador 2D y Artista
+
+
+            Carlos Diaz: 
+            2D Artista y Diseñador Gráfico
+
+
+            Myriam Collada: 
+            Programadora y Diseñadora de Niveles"
         };
+
 
         this.dialogues = new List<List<Dialogue>>
         {
