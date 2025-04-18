@@ -17,12 +17,23 @@ public class English : LanguageData
                 "Credits",
                 "Exit",
             },
+
             new string[]
             {
                 "Wanna exit?",
                 "Yes",
                 "No",
             },
+
+            new string[]
+            {
+                "Pause",
+                "Resume",
+                "Restart",
+                "Settings",
+                "Exit",
+            },
+
             new string[]
             {
                 "Settings",

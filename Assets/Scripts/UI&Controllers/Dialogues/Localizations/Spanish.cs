@@ -17,12 +17,23 @@ public class Spanish : LanguageData
                 "Créditos",
                 "Salir",
             },
+
             new string[]
             {
                 "¿Quieres salir?",
                 "Si",
                 "No",
             },
+
+            new string[]
+            {
+                "Pausa",
+                "Reanudar",
+                "Reiniciar",
+                "Ajustes",
+                "Salir",
+            },
+
             new string[]
             {
                 "Ajustes",
