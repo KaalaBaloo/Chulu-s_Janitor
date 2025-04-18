@@ -77,10 +77,23 @@ public class English : LanguageData
 
         this.credits = new string[]
         {
-            "Desarrollador: Juan Pérez",
-            "Artista: Ana Gómez",
-            "Música: Carlos López",
-            "Agradecimientos especiales a todos los que apoyaron este proyecto."
+            @"Developed by: Grusel Games
+
+
+            Andrea Salas: 
+            Art Director & Concept Artist
+
+
+            Daniel Gonzalez: 
+            2D Animator & Artist
+
+
+            Carlos Diaz: 2D 
+            Artist & Graphic Designer
+
+
+            Myriam Collada: 
+            Programmer & Level Designer"
         };
 
         this.dialogues = new List<List<Dialogue>>

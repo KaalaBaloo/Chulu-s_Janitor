@@ -95,4 +95,19 @@ public class LanguageManager
                 return null;
         }
     }
+
+    public string[] GetCreditsTexts()
+    {
+        switch (GeneralSettings.LANGUAGE)
+        {
+            case 0: // English
+                English english = new English();
+                return english.credits;
+            case 1: // Spanish
+                Spanish spanish = new Spanish();
+                return spanish.credits;
+            default:
+                return null;
+        }
+    }
 }
