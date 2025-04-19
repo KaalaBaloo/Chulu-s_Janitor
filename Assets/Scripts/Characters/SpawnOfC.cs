@@ -8,6 +8,18 @@ public class SpawnOfC : Enemy
     bool _seen = false;
     [SerializeField] GameObject _VFXSeen;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        GetReferences();
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+        _move = SoundManager.Instance.GetCharacterSFX("Cultist", "move");
+    }
+
     private void Update()
     {
         if(!GridController.GAMEOVER)

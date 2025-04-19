@@ -12,6 +12,11 @@ public class MirrorOfC : Enemy
     [SerializeField] GameObject _downRay;
     [SerializeField] LayerMask mascara;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        GetReferences();
+    }
     protected override void Start()
     {
         _spriteNumber = 3;
@@ -19,6 +24,9 @@ public class MirrorOfC : Enemy
         transform.position = new Vector2(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y));
         _gridController.CreateEnemy();
         _characterLastTurn = _character.transform.position;
+
+        _move = new SoundManager().GetCharacterSFX("Mirror", "move");
+
         RayCast();
     }
 

@@ -5,6 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class aMigo : Enemy
 {
+    protected override void Awake()
+    {
+        base.Awake();
+        GetReferences();
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+        _move = new SoundManager().GetCharacterSFX("Amigo", "move");
+    }
 
     private void Update()
     {
@@ -48,56 +59,40 @@ public class aMigo : Enemy
 
     protected override void Attack()
     {
-        Debug.Log("Push");
         if (_character.transform.position.x > transform.position.x && GetCanMove(_tileNumX + 2, _tileNumY))
         {
-            Debug.Log("1");
-            _character.Push(1, 0);
-            StartCoroutine(PositionCoroutine(_rb, new Vector2(1, 0)));
+            Push(1, 0);
         }
         else if (_character.transform.position.x < transform.position.x && GetCanMove(_tileNumX - 2, _tileNumY))
         {
-            Debug.Log("2");
-            _character.Push(-1, 0);
-            StartCoroutine(PositionCoroutine(_rb, new Vector2(-1, 0)));
+            Push(-1, 0);
         }
         else if (_character.transform.position.y < transform.position.y && GetCanMove(_tileNumX, _tileNumY - 2))
         {
-            Debug.Log("3");
-            _character.Push(0, -1);
-            StartCoroutine(PositionCoroutine(_rb, new Vector2(0, -1)));
+            Push(0, -1);
 
         }
         else if (_character.transform.position.y > transform.position.y && GetCanMove(_tileNumX, _tileNumY + 2))
         {
-            Debug.Log("4");
-            _character.Push(0, 1);
-            StartCoroutine(PositionCoroutine(_rb, new Vector2(0, 1)));
+            Push(0, 1);
         }
         else if (_character.transform.position.x > transform.position.x && !GetCanMove(_tileNumX + 2, _tileNumY))
         {
             if (GetCanMove(_tileNumX - 1, _tileNumY))
             {
-                Debug.Log("2");
-                _character.Push(-1, 0);
-                StartCoroutine(PositionCoroutine(_rb, new Vector2(-1, 0)));
+                Push(-1, 0);
             }
             else if (GetCanMove(_tileNumX, _tileNumY - 2) && GetCanMove(_tileNumX + 1, _tileNumY - 1))
             {
-                Debug.Log("3");
-                _character.Push(0, -1);
-                StartCoroutine(PositionCoroutine(_rb, new Vector2(0, -1)));
+                Push(0, -1);
 
             }
             else if (GetCanMove(_tileNumX, _tileNumY + 2) && GetCanMove(_tileNumX + 1, _tileNumY + 1))
             {
-                Debug.Log("4");
-                _character.Push(0, 1);
-                StartCoroutine(PositionCoroutine(_rb, new Vector2(0, 1)));
+                Push(0, 1);
             }
             else 
             {
-                Debug.Log("5");
                 SetChangeTurn();
             }
         }
@@ -105,26 +100,19 @@ public class aMigo : Enemy
         {
             if (GetCanMove(_tileNumX + 1, _tileNumY))
             {
-                Debug.Log("1");
-                _character.Push(1, 0);
-                StartCoroutine(PositionCoroutine(_rb, new Vector2(1, 0)));
+                Push(1, 0);
             }
             else if (GetCanMove(_tileNumX, _tileNumY - 2) && GetCanMove(_tileNumX - 1, _tileNumY - 1))
             {
-                Debug.Log("3");
-                _character.Push(0, -1);
-                StartCoroutine(PositionCoroutine(_rb, new Vector2(0, -1)));
+                Push(0, -1);
 
             }
             else if (GetCanMove(_tileNumX, _tileNumY + 2) && GetCanMove(_tileNumX - 1, _tileNumY + 1))
             {
-                Debug.Log("4");
-                _character.Push(0, 1);
-                StartCoroutine(PositionCoroutine(_rb, new Vector2(0, 1)));
+                Push(0, 1);
             }
             else
             {
-                Debug.Log("5");
                 SetChangeTurn();
             }
         }
@@ -132,25 +120,18 @@ public class aMigo : Enemy
         {
             if (GetCanMove(_tileNumX, _tileNumY + 1))
             {
-                Debug.Log("4");
-                _character.Push(0, 1);
-                StartCoroutine(PositionCoroutine(_rb, new Vector2(0, 1)));
+                Push(0, 1);
             }
             else if (GetCanMove(_tileNumX - 1, _tileNumY) && GetCanMove(_tileNumX - 1, _tileNumY - 1))
             {
-                Debug.Log("1");
-                _character.Push(-1, 0);
-                StartCoroutine(PositionCoroutine(_rb, new Vector2(-1, 0)));
+                Push(-1, 0);
             }
             else if (GetCanMove(_tileNumX + 1, _tileNumY) && GetCanMove(_tileNumX + 1, _tileNumY - 1))
             {
-                Debug.Log("2");
-                _character.Push(1, 0);
-                StartCoroutine(PositionCoroutine(_rb, new Vector2(1, 0)));
+                Push(1, 0);
             }
             else
             {
-                Debug.Log("5");
                 SetChangeTurn();
             }
         }
@@ -158,32 +139,31 @@ public class aMigo : Enemy
         {
             if (GetCanMove(_tileNumX, _tileNumY - 1))
             {
-                Debug.Log("4");
-                _character.Push(0, -1);
-                StartCoroutine(PositionCoroutine(_rb, new Vector2(0, -1)));
+                Push(0, -1);
             }
             else if (GetCanMove(_tileNumX + 1, _tileNumY) && GetCanMove(_tileNumX + 1, _tileNumY + 1))
             {
-                Debug.Log("1");
-                _character.Push(1, 0);
-                StartCoroutine(PositionCoroutine(_rb, new Vector2(1, 0)));
+                Push(1, 0);
             }
             else if (GetCanMove(_tileNumX - 1, _tileNumY) && GetCanMove(_tileNumX - 1, _tileNumY + 1))
             {
-                Debug.Log("2");
-                _character.Push(-1, 0);
-                StartCoroutine(PositionCoroutine(_rb, new Vector2(-1, 0)));
+                Push(-1, 0);
             }
             else
             {
-                Debug.Log("5");
                 SetChangeTurn();
             }
         }
         else
         {
-            Debug.Log("5");
             SetChangeTurn();
         }
+    }
+
+    private void Push(int x, int y)
+    {
+        _audioSource.PlayOneShot(new SoundManager().GetCharacterSFX("Amigo", "attack"));
+        _character.Push(x, y);
+        StartCoroutine(PositionCoroutine(_rb, new Vector2(x, y)));
     }
 }

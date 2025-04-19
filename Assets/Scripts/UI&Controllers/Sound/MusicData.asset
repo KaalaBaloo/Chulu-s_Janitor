@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19d15c16857f9b34ea7fe2f431c1c469, type: 3}
+  m_Name: MusicData
+  m_EditorClassIdentifier: 
+  menuMusic: {fileID: 8300000, guid: 2fa531358361ef7499a33ada6b14a976, type: 3}
+  creditsMusic: {fileID: 8300000, guid: 25ee2cb2e712af84c935735bbc6623ee, type: 3}
+  comicsMusic:
+  - {fileID: 8300000, guid: 638f7e3651b4acc41a8f44c3ac1dd14f, type: 3}
+  - {fileID: 8300000, guid: 3355b49e98c7d6349bd3cc30ccd8c92f, type: 3}
+  levelMusic:
+  - {fileID: 8300000, guid: 31f1f0d325bd3d345a4092edf4e651b0, type: 3}
+  dialoguesMusic:
+  - {fileID: 8300000, guid: 37a154200e4350e4f8b301f900b6ee81, type: 3}
+  - {fileID: 8300000, guid: 5a4b2dec8f8d92845b413194f92fde9f, type: 3}
+  - {fileID: 8300000, guid: 15a985a815e5fac4b966194cc99bfffc, type: 3}
+  bossMusic: {fileID: 8300000, guid: 2784185175a36184b97a4c84eecf58b2, type: 3}

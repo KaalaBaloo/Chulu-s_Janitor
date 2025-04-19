@@ -16,6 +16,17 @@ public class DeepOnes : Enemy
     AudioSource _audio;
     SpriteRenderer _srMarca;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        GetReferences();
+
+        _audio = GetComponent<AudioSource>();
+        _audio.volume = GeneralSettings.SFXVOLUME / 100;
+        _animator = _sprite.GetComponent<Animator>();
+        _srMarca = _marca.GetComponent<SpriteRenderer>();
+    }
+
     protected override void Start()
     {
         _spriteNumber = 3;
@@ -23,11 +34,9 @@ public class DeepOnes : Enemy
         transform.position = new Vector2(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y));
         _gridController.CreateEnemy();
         _characterLastTurn = _character.transform.position;
-        _audio = GetComponent<AudioSource>();
-        _audio.volume = GeneralSettings.SFXVOLUME / 100;
-        _animator = _sprite.GetComponent<Animator>();
-        _srMarca = _marca.GetComponent<SpriteRenderer>();
         _srMarca.enabled = false;
+
+        _move = new SoundManager().GetCharacterSFX("Deep", "move");
     }
 
     private void Update()

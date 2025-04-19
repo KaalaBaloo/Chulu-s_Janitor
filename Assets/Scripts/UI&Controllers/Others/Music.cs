@@ -1,67 +1,95 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Music : MonoBehaviour, IDataPersistence
 {
-    public List<string> sceneNames;
-    public string instanceName;
-    AudioSource _music;
+    public static Music Instance;
+
+    private AudioSource _music;
+    private AudioClip _clip;
+
+    private DialogueController _dialogue;
+
+    private void Awake()
+    {
+        // Singleton logic
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+
+        _music = GetComponent<AudioSource>();
+
+        if (SoundManager.Instance != null)
+        {
+            PlayLevelMusic();
+        }
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void PlayLevelMusic()
+    {
+        _clip = SoundManager.Instance.GetLevelMusic(SceneManager.GetActiveScene().name);
+        _music.clip = _clip;
+        _music.Play();
+    }
 
     private void Start()
     {
-        DontDestroyOnLoad(this.gameObject);
+        _dialogue = FindObjectOfType<DialogueController>();
 
-        SceneManager.sceneLoaded += OnSceneLoaded;
-
-        _music = GetComponent<AudioSource>();    
-    }
-
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        CheckForDuplicateInstances();
-
-        CheckIfSceneInList();
-    }
-
-    void CheckForDuplicateInstances()
-    {
-        Music[] collection = FindObjectsOfType<Music>();
-
-        foreach (Music obj in collection)
+        if (_clip != null && !_music.isPlaying && _dialogue == null)
         {
-            if (obj != this)
-            {
-                if (obj.instanceName == instanceName)
-                {
-                    Debug.Log("Duplicate object in loaded scene, deleting now...");
-                    DestroyImmediate(obj.gameObject);
-                }
-            }
+            PlayLevelMusic();
+        }
+        else if (_dialogue != null)
+        {
+            _music.Stop();
+            _music.clip = SoundManager.Instance.GetDialogueMusic(GetDialogueMusic());
+            _music.Play();
         }
     }
-    void CheckIfSceneInList()
-    {
-        string currentScene = SceneManager.GetActiveScene().name;
 
-        if (!sceneNames.Contains(currentScene))
-        {
-            SceneManager.sceneLoaded -= OnSceneLoaded;
-            DestroyImmediate(this.gameObject);
-        } 
+    private int GetDialogueMusic()
+    {
+        if (SceneManager.GetActiveScene().name == "20_Battle")
+            return 2;
+        else
+            return 1;
     }
 
     private void Update()
     {
-        if (GeneralSettings.MUTED)
+        if (_dialogue != null)
         {
-            _music.mute = true;
+            if (!_dialogue.isActiveAndEnabled && _music.clip != _clip)
+                PlayLevelMusic();
         }
-        else
+
+        _music.mute = GeneralSettings.MUTED;
+        if (!GeneralSettings.MUTED)
         {
-            _music.mute = false;
-            _music.volume = GeneralSettings.MUSICVOLUME / 100;
+            _music.volume = GeneralSettings.MUSICVOLUME / 100f;
+        }
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        string currentScene = scene.name;
+
+        _clip = SoundManager.Instance?.GetLevelMusic(currentScene);
+        if (_clip != null && _clip != _music.clip)
+        {
+            _music.clip = _clip;
+            _music.Play();
         }
     }
 
@@ -82,6 +110,4 @@ public class Music : MonoBehaviour, IDataPersistence
         data.Fullscreen = GeneralSettings.FULLSCREEN;
         data.Muted = GeneralSettings.MUTED;
     }
-
-
 }

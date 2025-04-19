@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: cd798c675977c1048bb13200fcd20b47
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - musicData: {fileID: 11400000, guid: e76d57877dc37aa44a37deb4edc8a1bb, type: 2}
+  - sfxData: {fileID: 11400000, guid: 53927eaedccee1d43b97e5b4d75ca9e7, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

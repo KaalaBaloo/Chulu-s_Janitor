@@ -99,9 +99,8 @@ public class GridController : MonoBehaviour, IDataPersistence
         else if (_dirtToClean <= 0 && SceneManager.GetActiveScene().name == "20_Battle" && !GAMEOVER)
         {
             GAMEOVER = true;
-            Debug.Log("Win");
             AudioPlay(_win);
-            Instantiate(_gameOverVFX, new Vector3(0, 0, 0), Quaternion.identity);
+            Instantiate(_gameOverVFX, new Vector3(5, 4, 0), Quaternion.identity);
 
             StartCoroutine(EndAnimation());
         }
@@ -119,7 +118,7 @@ public class GridController : MonoBehaviour, IDataPersistence
         GAMEOVER = true;
         Debug.Log("Win");
         AudioPlay(_win);
-        Instantiate(_winVFX, new Vector3(0, 0, 0), Quaternion.identity);
+        Instantiate(_winVFX, new Vector3(5, 4, 0), Quaternion.identity);
 
         int.TryParse(SceneManager.GetActiveScene().name, out level);
         if (level > LEVELS_UNLOCKED)
