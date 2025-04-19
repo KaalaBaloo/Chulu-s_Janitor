@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UIElements;
 
-public class Boss_1 : Enemy
+public class Boss : Enemy
 {
     [SerializeField] int _random = 0;
     bool _endStart = false;
@@ -16,15 +16,31 @@ public class Boss_1 : Enemy
     [SerializeField] GameObject _spriteChulu;
 
     AudioSource _audio;
-    AudioSource _audioExt1;
-    AudioSource _audioExt2;
-    AudioSource _audioExt3;
+    AudioSource _audioTransform;
+    AudioSource _audioRumble;
+    AudioSource _audioChulu;
     [SerializeField] GameObject _ext1;
     [SerializeField] GameObject _ext2;
     [SerializeField] GameObject _ext3;
     [SerializeField] AudioClip _tp;
 
     [SerializeField] bool _phase2 = false;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        GetReferences();
+
+
+        _audio = GetComponent<AudioSource>();
+        _audio.volume = GeneralSettings.SFXVOLUME / 100;
+        _audioTransform = _ext1.GetComponent<AudioSource>();
+        _audioTransform.volume = GeneralSettings.SFXVOLUME / 100;
+        _audioRumble = _ext2.GetComponent<AudioSource>();
+        _audioRumble.volume = GeneralSettings.SFXVOLUME / 100;
+        _audioChulu = _ext3.GetComponent<AudioSource>();
+        _audioChulu.volume = GeneralSettings.SFXVOLUME / 100;
+    }
 
     protected override void Start()
     {
@@ -33,14 +49,12 @@ public class Boss_1 : Enemy
         transform.position = new Vector2(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y));
         _gridController.CreateEnemy();
         _characterLastTurn = _character.transform.position;
-        _audio = GetComponent<AudioSource>();
-        _audio.volume = GeneralSettings.SFXVOLUME / 100;
-        _audioExt1 = _ext1.GetComponent<AudioSource>();
-        _audioExt1.volume = GeneralSettings.SFXVOLUME / 100;
-        _audioExt2 = _ext2.GetComponent<AudioSource>();
-        _audioExt2.volume = GeneralSettings.SFXVOLUME / 100;
-        _audioExt3 = _ext3.GetComponent<AudioSource>();
-        _audioExt3.volume = GeneralSettings.SFXVOLUME / 100;
+
+        _move = SoundManager.Instance.GetCharacterSFX("Boss", "move");
+        _tp = SoundManager.Instance.GetCharacterSFX("Boss", "teleport");
+        _audioTransform.clip = SoundManager.Instance.GetCharacterSFX("Boss", "transform");
+        _audioRumble.clip = SoundManager.Instance.GetCharacterSFX("Boss", "rumble");
+        _audioChulu.clip = SoundManager.Instance.GetCharacterSFX("Chulu", "main");
     }
 
     private void Update()
@@ -52,17 +66,17 @@ public class Boss_1 : Enemy
 
         if (_gridController.GetEnd() && !_endStart)
         {
-            _audioExt1.volume = GeneralSettings.SFXVOLUME / 100;
+            _audioTransform.volume = GeneralSettings.SFXVOLUME / 100;
             if (!GeneralSettings.MUTED)
             {
-                _audioExt1.Play();
+                _audioTransform.Play();
             }
             _endStart = true;
             Instantiate(_VFXDying, transform.position, Quaternion.identity);
-            _audioExt2.volume = GeneralSettings.SFXVOLUME / 100;
+            _audioRumble.volume = GeneralSettings.SFXVOLUME / 100;
             if (!GeneralSettings.MUTED)
             {
-                _audioExt2.Play();
+                _audioRumble.Play();
             }
         }
 
@@ -209,7 +223,7 @@ public class Boss_1 : Enemy
         }
         Instantiate(_VFXDead, transform.position, Quaternion.identity);
         Instantiate(_spriteChulu, transform.position, Quaternion.identity);
-        _audioExt3.PlayDelayed(46100);
+        _audioChulu.PlayDelayed(46100);
         Destroy(this.gameObject);
         yield return 0;
     }

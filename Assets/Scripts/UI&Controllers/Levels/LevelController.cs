@@ -8,9 +8,9 @@ public class LevelController : MonoBehaviour
     [SerializeField] private GameObject[] _levels;
     [SerializeField] private GameObject _sprite;
     [SerializeField] private GameObject _text;
-    [SerializeField] private AudioClip unlockedClip;
-    [SerializeField] private AudioClip lockedClip;
-    [SerializeField] private AudioClip hoverClip;
+    private AudioClip unlockedClip;
+    private AudioClip lockedClip;
+    private AudioClip hoverClip;
 
     private GameObject _fadeBlack;
     private AudioSource _audio;
@@ -27,6 +27,10 @@ public class LevelController : MonoBehaviour
         _animator = _sprite.GetComponent<Animator>();
         _textTittle = _text.GetComponent<TMP_Text>();
         _fadeBlack = GameObject.FindWithTag("_blackFade");
+
+        unlockedClip = SoundManager.Instance.GetUIAudio("levelOpen");
+        lockedClip = SoundManager.Instance.GetUIAudio("levelClose");
+        hoverClip = SoundManager.Instance.GetUIAudio("buttonHover");
     }
 
     private void Start()

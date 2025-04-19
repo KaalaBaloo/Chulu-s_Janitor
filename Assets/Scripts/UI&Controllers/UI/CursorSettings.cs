@@ -10,15 +10,22 @@ public class CursorSettings : MonoBehaviour
     private AudioSource _audio;
     private bool _cursorVisible;
 
+
+    private void Awake()
+    {
+        _audio = GetComponent<AudioSource>();
+    }
+
     private void Start()
     {
-        if(SceneManager.GetActiveScene().name == "Main" || SceneManager.GetActiveScene().name == "LevelSelector")
+        _audio.clip = SoundManager.Instance.GetUIAudio("mouse");
+
+        if (SceneManager.GetActiveScene().name == "Main" || SceneManager.GetActiveScene().name == "LevelSelector")
             _cursorVisible = true;
         else
             _cursorVisible = false;
         Cursor.visible = _cursorVisible;
 
-        _audio = GetComponent<AudioSource>();
         UpdateVolume();
     }
 

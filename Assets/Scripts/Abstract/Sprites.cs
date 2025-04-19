@@ -22,6 +22,11 @@ public abstract class Sprites : MonoBehaviour
 
     protected virtual void Awake()
     {
+        GetReferences();
+    }
+
+    protected virtual void GetReferences()
+    {
         _gameController = GameObject.FindWithTag("GameController");
         _gridController = _gameController.GetComponent<GridController>();
         _tileNumX = Mathf.RoundToInt(transform.position.x);

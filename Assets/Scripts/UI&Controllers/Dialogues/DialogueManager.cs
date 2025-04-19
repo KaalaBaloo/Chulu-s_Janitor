@@ -14,7 +14,6 @@ public class DialogueManager
     {
         _dialogueImageDict = new Dictionary<string, Sprite>();
         Sprite[] loadedSprites = Resources.LoadAll<Sprite>("Sprites/HUD&UI/Conversaciones");
-        Debug.Log($"Loaded {loadedSprites.Length} sprites from Sprites/HUD&UI/Conversaciones");
 
         foreach (Sprite sprite in loadedSprites)
         {

@@ -123,6 +123,63 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &35962823
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 878021368495642061, guid: 25fa0e353d8db3e439a3a18371e6385e, type: 3}
+      propertyPath: m_Name
+      value: SoundManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5329691863963605639, guid: 25fa0e353d8db3e439a3a18371e6385e, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5329691863963605639, guid: 25fa0e353d8db3e439a3a18371e6385e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.8091077
+      objectReference: {fileID: 0}
+    - target: {fileID: 5329691863963605639, guid: 25fa0e353d8db3e439a3a18371e6385e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.961957
+      objectReference: {fileID: 0}
+    - target: {fileID: 5329691863963605639, guid: 25fa0e353d8db3e439a3a18371e6385e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1475.4589
+      objectReference: {fileID: 0}
+    - target: {fileID: 5329691863963605639, guid: 25fa0e353d8db3e439a3a18371e6385e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5329691863963605639, guid: 25fa0e353d8db3e439a3a18371e6385e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5329691863963605639, guid: 25fa0e353d8db3e439a3a18371e6385e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5329691863963605639, guid: 25fa0e353d8db3e439a3a18371e6385e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5329691863963605639, guid: 25fa0e353d8db3e439a3a18371e6385e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5329691863963605639, guid: 25fa0e353d8db3e439a3a18371e6385e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5329691863963605639, guid: 25fa0e353d8db3e439a3a18371e6385e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 25fa0e353d8db3e439a3a18371e6385e, type: 3}
 --- !u!82 &93124092 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 5790667092511873066, guid: 088c4ff27f884ea4c816db30dc6ccee1, type: 3}

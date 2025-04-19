@@ -50,6 +50,8 @@ public class ComicController : MonoBehaviour
         _dialogueManager = new DialogueManager();
         _dialogues = _dialogueManager.GetDialogueTexts(_dialogueScene);
         _dialogueImages = _dialogueManager.GetDialogueSprites(_dialogueScene);
+
+        _audioChulu.clip = new SoundManager().GetCharacterSFX("Chulu", "main");
     }
 
     private void FindElements()

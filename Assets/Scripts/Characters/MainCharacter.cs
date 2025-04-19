@@ -23,7 +23,7 @@ public class MainCharacter : Sprites
     [SerializeField] GameObject _VFXNone;
     [SerializeField] GameObject _VFXWash;
 
-    AudioSource _audio;
+    AudioSource _audioSource;
     [SerializeField] AudioClip _limpiar;
     [SerializeField] AudioClip _enjuagar;
 
@@ -35,8 +35,8 @@ public class MainCharacter : Sprites
         base.Awake();
         _rb = GetComponent<Rigidbody2D>();
         _animator = _sprite.GetComponent<Animator>();
-        _audio = GetComponent<AudioSource>();
-        _audio.volume = GeneralSettings.SFXVOLUME / 100;
+        _audioSource = GetComponent<AudioSource>();
+        _audioSource.volume = GeneralSettings.SFXVOLUME / 100;
         _uiController = GameObject.FindWithTag("_ui").GetComponent<UIController>();
         _dialogues = GameObject.FindGameObjectWithTag("_dialogue");
     }
@@ -45,6 +45,9 @@ public class MainCharacter : Sprites
     {
         _spriteNumber = 1;
         _gridController.SetGrid(_spriteNumber, _tileNumX, _tileNumY);
+
+        _limpiar = SoundManager.Instance.GetCharacterSFX("Atal", "clean");
+        _enjuagar = SoundManager.Instance.GetCharacterSFX("Atal", "wash");
     }
 
     void Update()
@@ -77,33 +80,33 @@ public class MainCharacter : Sprites
     {
         if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))&& _gridController.CanMove(_tileNumX, _tileNumY + 1) && _gridController.GetTurn() == 0)
         {
-            _gridController.ChangeTurn(2);
-            StartCoroutine(PositionCoroutine(_rb, new Vector2(0, 1))); //Up
-            _animator.SetTrigger("Slide");
+            Move(0, 1); //Up
         }
         if ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) && _gridController.CanMove(_tileNumX - 1, _tileNumY) && _gridController.GetTurn() == 0)
         {
-            _gridController.ChangeTurn(2);
-            StartCoroutine(PositionCoroutine(_rb, new Vector2(-1 , 0))); //Left
-            _animator.SetTrigger("Slide");
+            Move(-1, 0); //Left
         }
         if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && _gridController.CanMove(_tileNumX, _tileNumY - 1) && _gridController.GetTurn() == 0)  
         {
-            _gridController.ChangeTurn(2);
-            StartCoroutine(PositionCoroutine(_rb, new Vector2(0, -1))); //Down
-            _animator.SetTrigger("Slide");
+            Move(0, -1); //Down
         }
         if ((Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) && _gridController.CanMove(_tileNumX + 1, _tileNumY) && _gridController.GetTurn() == 0)
         {
-            _gridController.ChangeTurn(2);
-            StartCoroutine(PositionCoroutine(_rb, new Vector2(1, 0))); //Right
-            _animator.SetTrigger("Slide");
+            Move(1, 0); //Right
         }
         if (Input.GetKeyDown(KeyCode.Space) && _gridController.GetTurn() == 0)
         {
             _gridController.ChangeTurn(2);
             StartCoroutine(CleanCoroutine());
         }
+    }
+
+    private void Move(int x, int y)
+    {
+        _audioSource.PlayOneShot(SoundManager.Instance.GetCharacterSFX("Atal", "move"));
+        _gridController.ChangeTurn(2);
+        StartCoroutine(PositionCoroutine(_rb, new Vector2(x, y)));
+        _animator.SetTrigger("Slide");
     }
 
     //Elimina el sprite de "basura" sobre el que está el personaje
@@ -316,11 +319,11 @@ public class MainCharacter : Sprites
 
     void AudioPlay(AudioClip name)
     {
-        _audio.volume = GeneralSettings.SFXVOLUME / 100;
+        _audioSource.volume = GeneralSettings.SFXVOLUME / 100;
         if (!GeneralSettings.MUTED)
         {
-            _audio.clip = name;
-            _audio.Play();
+            _audioSource.clip = name;
+            _audioSource.Play();
         }
     }
 

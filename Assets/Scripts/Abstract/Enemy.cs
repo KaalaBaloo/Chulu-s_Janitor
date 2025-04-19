@@ -4,22 +4,27 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 public abstract class Enemy : Sprites
 {
-    protected Rigidbody2D _rb;
-    protected MainCharacter _character;
     [SerializeField] protected bool _blockedView = true;
     [SerializeField] protected int _damage = 1;
     [SerializeField] protected int _enemyNumber = 0;
+    [SerializeField] int _patrolStage = 0;
+
     protected bool _patrol = false;
     protected bool _patrolDrch = false;
     protected int _patrolBlocked = 0;
-    [SerializeField] int _patrolStage = 0;
     protected Vector3 _characterLastTurn;
 
-    protected override void Awake()
+    protected Rigidbody2D _rb;
+    protected MainCharacter _character;
+    protected AudioSource _audioSource;
+    protected AudioClip _move;
+
+    protected override void GetReferences()
     {
-        base.Awake();
+        base.GetReferences();
         _rb = GetComponent<Rigidbody2D>();
         _character = GameObject.FindWithTag("MainCharacter").GetComponent<MainCharacter>();
+        _audioSource = GetComponentInChildren<AudioSource>();
     }
 
     protected virtual void Start()
@@ -88,6 +93,7 @@ public abstract class Enemy : Sprites
 
     override protected IEnumerator PositionCoroutine(Rigidbody2D rb, Vector2 position)
     {
+        _audioSource.PlayOneShot(_move);
         _gridController.SetGrid(0, _tileNumX, _tileNumY);
         _tileNumX += Mathf.RoundToInt(position.x);
         _tileNumY += Mathf.RoundToInt(position.y);
