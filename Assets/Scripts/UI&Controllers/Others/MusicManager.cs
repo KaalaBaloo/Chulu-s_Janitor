@@ -4,9 +4,9 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Music : MonoBehaviour, IDataPersistence
+public class MusicManager : MonoBehaviour, IDataPersistence
 {
-    public static Music Instance;
+    public static MusicManager Instance;
 
     private AudioSource _music;
     private AudioClip _clip;
@@ -35,45 +35,15 @@ public class Music : MonoBehaviour, IDataPersistence
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    private void PlayLevelMusic()
+    public void PlayLevelMusic()
     {
         _clip = SoundManager.Instance.GetLevelMusic(SceneManager.GetActiveScene().name);
         _music.clip = _clip;
         _music.Play();
     }
 
-    private void Start()
-    {
-        _dialogue = FindObjectOfType<DialogueController>();
-
-        if (_clip != null && !_music.isPlaying && _dialogue == null)
-        {
-            PlayLevelMusic();
-        }
-        else if (_dialogue != null)
-        {
-            _music.Stop();
-            _music.clip = SoundManager.Instance.GetDialogueMusic(GetDialogueMusic());
-            _music.Play();
-        }
-    }
-
-    private int GetDialogueMusic()
-    {
-        if (SceneManager.GetActiveScene().name == "20_Battle")
-            return 2;
-        else
-            return 1;
-    }
-
     private void Update()
     {
-        if (_dialogue != null)
-        {
-            if (!_dialogue.isActiveAndEnabled && _music.clip != _clip)
-                PlayLevelMusic();
-        }
-
         _music.mute = GeneralSettings.MUTED;
         if (!GeneralSettings.MUTED)
         {
@@ -110,4 +80,35 @@ public class Music : MonoBehaviour, IDataPersistence
         data.Fullscreen = GeneralSettings.FULLSCREEN;
         data.Muted = GeneralSettings.MUTED;
     }
+
+    public bool isNyarPlaying()
+    {
+        if (_music.clip == SoundManager.Instance.GetDialogueMusic(0))
+            return true;
+        else
+            return false;
+    }
+
+    public void PlayNyarTheme()
+    {
+        _music.Stop();
+        _music.clip = SoundManager.Instance.GetDialogueMusic(0);
+        _music.Play();
+    }
+
+    public void PlayDialogueMusic()
+    {
+        _music.Stop();
+        _music.clip = SoundManager.Instance.GetDialogueMusic(GetDialogueMusic());
+        _music.Play();
+    }
+
+    private int GetDialogueMusic()
+    {
+        if (SceneManager.GetActiveScene().name == "20_Battle")
+            return 2;
+        else
+            return 1;
+    }
+
 }

@@ -14,11 +14,12 @@ public class aMigo : Enemy
     protected override void Start()
     {
         base.Start();
-        _move = new SoundManager().GetCharacterSFX("Amigo", "move");
+        _move = SoundManager.Instance.GetCharacterSFX("Amigo", "move");
     }
 
     private void Update()
     {
+        _audioSource.volume = GeneralSettings.SFXVOLUME / 100;
         if (!GridController.GAMEOVER)
             MovePathFinding();
 
@@ -162,7 +163,7 @@ public class aMigo : Enemy
 
     private void Push(int x, int y)
     {
-        _audioSource.PlayOneShot(new SoundManager().GetCharacterSFX("Amigo", "attack"));
+        _audioSource.PlayOneShot(SoundManager.Instance.GetCharacterSFX("Amigo", "attack"));
         _character.Push(x, y);
         StartCoroutine(PositionCoroutine(_rb, new Vector2(x, y)));
     }

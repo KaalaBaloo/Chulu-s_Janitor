@@ -458,6 +458,10 @@ PrefabInstance:
       value: LevelSelector
       objectReference: {fileID: 0}
     - target: {fileID: 5790667092065403571, guid: 088c4ff27f884ea4c816db30dc6ccee1, type: 3}
+      propertyPath: _nyarTheme
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5790667092065403571, guid: 088c4ff27f884ea4c816db30dc6ccee1, type: 3}
       propertyPath: _audioChulu
       value: 
       objectReference: {fileID: 93124092}

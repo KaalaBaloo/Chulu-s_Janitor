@@ -36,11 +36,12 @@ public class DeepOnes : Enemy
         _characterLastTurn = _character.transform.position;
         _srMarca.enabled = false;
 
-        _move = new SoundManager().GetCharacterSFX("Deep", "move");
+        _move = SoundManager.Instance.GetCharacterSFX("Deep", "move");
     }
 
     private void Update()
     {
+        _audioSource.volume = GeneralSettings.SFXVOLUME / 100;
         if (!GridController.GAMEOVER)
         {
             if (_cargando)

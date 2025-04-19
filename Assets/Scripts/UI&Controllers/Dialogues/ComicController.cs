@@ -16,6 +16,7 @@ public class ComicController : MonoBehaviour
     [Header("Dialogue Settings")]
     [SerializeField] int _dialogueScene;
     [SerializeField] Color[] _textColors;
+    [SerializeField] int _nyarTheme;
 
     [Header("Other Settings")]
     [SerializeField] string _nextScene;
@@ -50,8 +51,6 @@ public class ComicController : MonoBehaviour
         _dialogueManager = new DialogueManager();
         _dialogues = _dialogueManager.GetDialogueTexts(_dialogueScene);
         _dialogueImages = _dialogueManager.GetDialogueSprites(_dialogueScene);
-
-        _audioChulu.clip = new SoundManager().GetCharacterSFX("Chulu", "main");
     }
 
     private void FindElements()
@@ -67,6 +66,7 @@ public class ComicController : MonoBehaviour
 
     void Start()
     {
+        _audioChulu.clip = SoundManager.Instance.GetCharacterSFX("Chulu", "main");
         _clickDisabled = true;
         _comicIndex = 0;
         _text.text = _dialogues[_dialogueIndex];
@@ -98,6 +98,9 @@ public class ComicController : MonoBehaviour
         {
             Skip();
         }
+
+        if(_dialogueIndex == _nyarTheme && !MusicManager.Instance.isNyarPlaying())
+            MusicManager.Instance.PlayNyarTheme();
 
         if (!_autoPlay && (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Space)) && (_comicIndex < _comicSprites.Length || _dialogueIndex < _dialogues.Length) && !_clickDisabled)
         {

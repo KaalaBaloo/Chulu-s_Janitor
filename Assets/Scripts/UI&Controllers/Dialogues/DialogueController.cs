@@ -36,6 +36,8 @@ public class DialogueController : MonoBehaviour
             StartDialogue();
         else
             _dialogueTotal.SetActive(false);
+
+        MusicManager.Instance.PlayDialogueMusic();
     }
 
     private void FindElements()
@@ -89,6 +91,7 @@ public class DialogueController : MonoBehaviour
         _dialogueTotal.SetActive(false);
         _UI.SetActive(true);
         Cursor.visible = false;
+        MusicManager.Instance.PlayLevelMusic();
     }
 
 }

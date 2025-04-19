@@ -10,6 +10,7 @@ public class Spikes : Sprites
     MainCharacter _character;
     [SerializeField] GameObject _sprite;
     Animator _animator;
+    AudioSource _audioSource;
 
     protected override void Awake()
     {
@@ -18,6 +19,7 @@ public class Spikes : Sprites
         _tileNumX = Mathf.RoundToInt(transform.position.x);
         _tileNumY = Mathf.RoundToInt(transform.position.y);
         _character = GameObject.FindWithTag("MainCharacter").GetComponent<MainCharacter>();
+        _audioSource = GetComponentInChildren<AudioSource>();
     }
 
     private void Start()
@@ -29,6 +31,7 @@ public class Spikes : Sprites
 
     private void Update()
     {
+        _audioSource.volume = GeneralSettings.SFXVOLUME / 100;
         ChangeStatus();
         Damage();
     }
@@ -41,12 +44,20 @@ public class Spikes : Sprites
             {
                 _up = true;
                 _animator.SetTrigger("Up");
+                if (Random.value > 0.6f)
+                {
+                    _audioSource.PlayOneShot(SoundManager.Instance.GetCharacterSFX("Spikes", "out"));
+                }
                 _playerTurn = 0;
             }
             else
             {
                 _up = false;
                 _animator.SetTrigger("Down");
+                if (Random.value > 0.6f)
+                {
+                    _audioSource.PlayOneShot(SoundManager.Instance.GetCharacterSFX("Spikes", "in"));
+                }
                 _playerTurn = 0;
             }
         }

@@ -17,12 +17,13 @@ public class SpawnOfC : Enemy
     protected override void Start()
     {
         base.Start();
-        _move = SoundManager.Instance.GetCharacterSFX("Cultist", "move");
+        _move = SoundManager.Instance.GetCharacterSFX("Cultist", "attack");
     }
 
     private void Update()
     {
-        if(!GridController.GAMEOVER)
+        _audioSource.volume = GeneralSettings.SFXVOLUME / 100;
+        if (!GridController.GAMEOVER)
         {
             MovePathFinding();
         }
@@ -41,7 +42,7 @@ public class SpawnOfC : Enemy
     {
         _character.SubstractLife(_damage);
         StartCoroutine(AttackCoroutine(_rb, new Vector2(Mathf.RoundToInt(_character.transform.position.x) * _characterMovements,
-            Mathf.RoundToInt(_character.transform.position.y) * _characterMovements)));
+        Mathf.RoundToInt(_character.transform.position.y) * _characterMovements)));
     }
 
 }

@@ -42,8 +42,8 @@ public class SFXData : ScriptableObject
     [SerializeField] private AudioClip chuluMain;
 
     [Header("Objects")]
-    [SerializeField] private AudioClip[] tornsIn;
-    [SerializeField] private AudioClip[] tornsOut;
+    [SerializeField] private AudioClip[] spikesIn;
+    [SerializeField] private AudioClip[] spikesOut;
 
     [Header("UI")]
     [SerializeField] private AudioClip mouse;
@@ -81,8 +81,8 @@ public class SFXData : ScriptableObject
 
     public AudioClip ChuluMain => chuluMain;
 
-    public AudioClip[] TornsIn => tornsIn;
-    public AudioClip[] TornsOut => tornsOut;
+    public AudioClip[] SpikesIn => spikesIn;
+    public AudioClip[] SpikesOut => spikesOut;
 
     public AudioClip Mouse => mouse;
     public AudioClip ButtonClick => buttonClick;

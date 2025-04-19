@@ -36,7 +36,6 @@ public class MainCharacter : Sprites
         _rb = GetComponent<Rigidbody2D>();
         _animator = _sprite.GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
-        _audioSource.volume = GeneralSettings.SFXVOLUME / 100;
         _uiController = GameObject.FindWithTag("_ui").GetComponent<UIController>();
         _dialogues = GameObject.FindGameObjectWithTag("_dialogue");
     }
@@ -52,6 +51,7 @@ public class MainCharacter : Sprites
 
     void Update()
     {
+        _audioSource.volume = GeneralSettings.SFXVOLUME / 100;
         if (_dialogues != null)
         {
             if (!_uiController.GetPaused() && !_dialogues.activeSelf)

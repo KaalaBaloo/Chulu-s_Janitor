@@ -93,12 +93,12 @@ public class SoundManager : MonoBehaviour
                 return null;
         }
 
-        if (character == "Torns")
+        if (character == "Spikes")
         {
             if (type == "in")
-                return sfxData.TornsIn[Random.Range(0, sfxData.TornsIn.Length)];
+                return sfxData.SpikesIn[Random.Range(0, sfxData.SpikesIn.Length)];
             else if (type == "out")
-                return sfxData.TornsOut[Random.Range(0, sfxData.TornsOut.Length)];
+                return sfxData.SpikesOut[Random.Range(0, sfxData.SpikesOut.Length)];
             else
                 return null;
         }
@@ -140,9 +140,9 @@ public class SoundManager : MonoBehaviour
             return musicData.MenuMusic;
         else if (currentScene == "End")
             return musicData.CreditsMusic;
-        else if (currentScene == "Comic01")
+        else if (currentScene == "Comic_1")
             return musicData.ComicsMusic[0];
-        else if (currentScene == "Comic02")
+        else if (currentScene == "Comic_2")
             return musicData.ComicsMusic[1];
         else if (currentScene == "20_Battle")
             return musicData.BossMusic;

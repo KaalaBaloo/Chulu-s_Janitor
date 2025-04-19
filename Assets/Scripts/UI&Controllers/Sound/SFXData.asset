@@ -22,7 +22,7 @@ MonoBehaviour:
   win: {fileID: 8300000, guid: 2998ffa884377094b9ad0247faec5291, type: 3}
   lose: {fileID: 8300000, guid: 66bc219661f6c8345b361f600e0b8f9a, type: 3}
   cultistMove: {fileID: 8300000, guid: 48490bd98c66d31449b955b60d8ba3b9, type: 3}
-  cultistAttack: {fileID: 8300000, guid: 1a584a8bdeeefda46be0ff894d268320, type: 3}
+  cultistAttack: {fileID: 8300000, guid: 48490bd98c66d31449b955b60d8ba3b9, type: 3}
   cultistDetected: {fileID: 8300000, guid: 1a584a8bdeeefda46be0ff894d268320, type: 3}
   amigoMove: {fileID: 8300000, guid: 182a795fa7c85904ca0ff459367ff79e, type: 3}
   amigoAttack:
@@ -39,11 +39,11 @@ MonoBehaviour:
   bossTransform: {fileID: 8300000, guid: cb585db97a78e054dbcabaca84403e48, type: 3}
   bossRumble: {fileID: 8300000, guid: ae69aeadab38cfa4cb9a2414f08dc48c, type: 3}
   chuluMain: {fileID: 8300000, guid: 49224a746a792594d9f9244dd7bc23c7, type: 3}
-  tornsIn:
+  spikesIn:
   - {fileID: 8300000, guid: c6a928c5d4915e549a5c2c59af283621, type: 3}
   - {fileID: 8300000, guid: bb58a8330645fce4c984e8b7186da01f, type: 3}
   - {fileID: 8300000, guid: 50c06e0d16403f449829f26cbf80ed26, type: 3}
-  tornsOut:
+  spikesOut:
   - {fileID: 8300000, guid: d65927d221b8ab248ad711f094cec036, type: 3}
   - {fileID: 8300000, guid: 0e37ae61d2003e448854497ca51e6f1b, type: 3}
   - {fileID: 8300000, guid: 13acf0416d000a744a916dce5e8c9046, type: 3}

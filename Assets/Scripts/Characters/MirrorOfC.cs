@@ -25,13 +25,14 @@ public class MirrorOfC : Enemy
         _gridController.CreateEnemy();
         _characterLastTurn = _character.transform.position;
 
-        _move = new SoundManager().GetCharacterSFX("Mirror", "move");
+        _move = SoundManager.Instance.GetCharacterSFX("Mirror", "move");
 
         RayCast();
     }
 
     private void Update()
     {
+        _audioSource.volume = GeneralSettings.SFXVOLUME / 100;
         if (!GridController.GAMEOVER)
         {
             Attack();

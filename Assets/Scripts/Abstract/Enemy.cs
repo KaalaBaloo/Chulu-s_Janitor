@@ -93,7 +93,10 @@ public abstract class Enemy : Sprites
 
     override protected IEnumerator PositionCoroutine(Rigidbody2D rb, Vector2 position)
     {
-        _audioSource.PlayOneShot(_move);
+        if (Random.value > 0.9f)
+        {
+            _audioSource.PlayOneShot(_move);
+        }
         _gridController.SetGrid(0, _tileNumX, _tileNumY);
         _tileNumX += Mathf.RoundToInt(position.x);
         _tileNumY += Mathf.RoundToInt(position.y);

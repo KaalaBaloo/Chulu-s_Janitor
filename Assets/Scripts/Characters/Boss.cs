@@ -59,6 +59,7 @@ public class Boss : Enemy
 
     private void Update()
     {
+        _audioSource.volume = GeneralSettings.SFXVOLUME / 100;
         if (_gridController.GetDirt() != 0)
         {
             MovePathFinding();

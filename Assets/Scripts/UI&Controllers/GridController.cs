@@ -100,7 +100,7 @@ public class GridController : MonoBehaviour, IDataPersistence
         {
             GAMEOVER = true;
             AudioPlay(_win);
-            Instantiate(_gameOverVFX, new Vector3(5, 4, 0), Quaternion.identity);
+            Instantiate(_win, new Vector3(5, 4, 0), Quaternion.identity);
 
             StartCoroutine(EndAnimation());
         }
@@ -116,7 +116,6 @@ public class GridController : MonoBehaviour, IDataPersistence
         int level;
 
         GAMEOVER = true;
-        Debug.Log("Win");
         AudioPlay(_win);
         Instantiate(_winVFX, new Vector3(5, 4, 0), Quaternion.identity);
 
@@ -348,7 +347,6 @@ public class GridController : MonoBehaviour, IDataPersistence
         if (_time >= seconds)
         {
             _loadingScreen = false;
-            Debug.Log("Finished Loading");
             _turn = 0;
         } 
     }
@@ -448,6 +446,7 @@ public class GridController : MonoBehaviour, IDataPersistence
     {
         Debug.Log("GameOver");
         AudioPlay(_gameOver);
+        Instantiate(_gameOverVFX, new Vector3(5, 4, 0), Quaternion.identity);
         StartCoroutine(ChangeScene(SceneManager.GetActiveScene().name));
     }
 
