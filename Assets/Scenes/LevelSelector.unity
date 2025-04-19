@@ -2653,8 +2653,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 1  -  El Comienzo
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3cbe523aa9970b34d8f30f33c1578f42, type: 2}
-  m_sharedMaterial: {fileID: -6513408104499570478, guid: 3cbe523aa9970b34d8f30f33c1578f42, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 74dd4caa44139c949bd6bb176957a465, type: 2}
+  m_sharedMaterial: {fileID: -1932427043432902380, guid: 74dd4caa44139c949bd6bb176957a465, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
