@@ -35,7 +35,10 @@ public class DialogueController : MonoBehaviour
         if (!_dialoguePlayed)
             StartDialogue();
         else
+        {
             _dialogueTotal.SetActive(false);
+            Close();
+        }
 
         MusicManager.Instance.PlayDialogueMusic();
     }
