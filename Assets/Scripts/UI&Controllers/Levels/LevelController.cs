@@ -44,7 +44,7 @@ public class LevelController : MonoBehaviour
                 _levels[i].GetComponent<LS_Buttons>().Available();
         }
 
-        _level = GridController.LEVELS_UNLOCKED;
+        _level = GridController.LEVELS_UNLOCKED - 1;
         UpdateSelectorPosition();
     }
 
