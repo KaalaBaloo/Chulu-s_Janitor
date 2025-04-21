@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class DialogueController : MonoBehaviour
 {
-    static bool _dialoguePlayed = false;
+    static List<bool> _dialoguePlayed = new List<bool>();
 
     [SerializeField] int _dialogueScene;
 
@@ -32,15 +32,32 @@ public class DialogueController : MonoBehaviour
 
     void Start()
     {
-        if (!_dialoguePlayed)
-            StartDialogue();
+        if (_dialogueScene < _dialoguePlayed.Count)
+        {
+            if (_dialoguePlayed[_dialogueScene])
+            {
+                _dialogueTotal.SetActive(false);
+                Close();
+            }
+            else
+            {
+                _dialoguePlayed[_dialogueScene] = true;
+                StartDialogue();
+            }
+        }
         else
         {
-            _dialogueTotal.SetActive(false);
-            Close();
+            while (_dialoguePlayed.Count <= _dialogueScene)
+            {
+                _dialoguePlayed.Add(false);
+            }
+
+            _dialoguePlayed[_dialogueScene] = true;
+            StartDialogue();
         }
 
-        MusicManager.Instance.PlayDialogueMusic();
+        Debug.Log("Dialogue played: " + _dialoguePlayed.Count);
+        Debug.Log("Dialogue index: " + _dialogueScene);
     }
 
     private void FindElements()
@@ -54,12 +71,12 @@ public class DialogueController : MonoBehaviour
     private void StartDialogue()
     {
         _UI.SetActive(false);
-        _dialoguePlayed = true;
         _dialogueIndex = 0;
         _text.text = _dialogues[_dialogueIndex];
         _dialogueImage.sprite = _sprites[_dialogueIndex];
         _dialogueIndex++;
         Cursor.visible = true;
+        MusicManager.Instance.PlayDialogueMusic();
     }
 
     void Update()

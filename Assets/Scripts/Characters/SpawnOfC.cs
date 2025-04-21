@@ -31,6 +31,7 @@ public class SpawnOfC : Enemy
         {
             _seen = true;
             Instantiate(_VFXSeen, transform.position, Quaternion.identity);
+            _audioSource.PlayOneShot(SoundManager.Instance.GetCharacterSFX("Cultist", "detected"));
         }
         else if (_seen && _patrol && _gridController.GetTurn() == 0)
         {

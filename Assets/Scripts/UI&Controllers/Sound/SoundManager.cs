@@ -43,6 +43,8 @@ public class SoundManager : MonoBehaviour
                 return sfxData.CultistMove;
             else if (type == "attack")
                 return sfxData.CultistAttack;
+            else if (type == "detected")
+                return sfxData.CultistDetected;
             else
                 return null;
         }

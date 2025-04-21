@@ -114,7 +114,7 @@ public class Spanish : LanguageData
             {
                 new Dialogue("¡Un aplicante! No pensé que nadie se lo tomaría en serio…", "Cultist_01"),
                 new Dialogue("Y menos que vendrían...", "Cultist_03"),
-                new Dialogue("Tu trabajo es sencillo, pero como el último cayó en una trampa, a otro se lo comieron vivo y el anterior desintegrado en el sitio, me toca explicártelo.", "Cultist_03"),
+                new Dialogue("Tu trabajo es sencillo, pero como el último cayó en una trampa, a otro se lo comieron vivo y el anterior fue desintegrado en el sitio, me toca explicártelo.", "Cultist_03"),
                 new Dialogue("El sitio obviamente está sucio, porque esto de los rituales mancha mucho. Así que te toca el fregado.", "Cultist_02"),
                 new Dialogue("Te deseo suerte suerte… Si mueres por lo menos hazlo en un lugar fácil de limpiar", "Cultist_01")
             },

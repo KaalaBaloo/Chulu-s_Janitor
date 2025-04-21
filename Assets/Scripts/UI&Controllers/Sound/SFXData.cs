@@ -63,6 +63,7 @@ public class SFXData : ScriptableObject
 
     public AudioClip CultistMove => cultistMove;
     public AudioClip CultistAttack => cultistAttack;
+    public AudioClip CultistDetected => cultistDetected;
 
     public AudioClip AmigoMove => amigoMove;
     public AudioClip[] AmigoAttack => amigoAttack;

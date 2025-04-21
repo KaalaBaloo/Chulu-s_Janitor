@@ -334,4 +334,10 @@ public class MainCharacter : Sprites
         _tileNumY = y;
         _gridController.SetGrid(_spriteNumber, _tileNumX, _tileNumY);
     }
+
+    public Vector2 GetPosition()
+    {
+        return new Vector2(_tileNumX, _tileNumY);
+    }
+
 }

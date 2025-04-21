@@ -446,7 +446,7 @@ public class GridController : MonoBehaviour, IDataPersistence
     {
         Debug.Log("GameOver");
         AudioPlay(_gameOver);
-        Instantiate(_gameOverVFX, new Vector3(5, 4, 0), Quaternion.identity);
+        Instantiate(_gameOverVFX, FindObjectOfType<MainCharacter>().GetPosition(), Quaternion.identity);
         StartCoroutine(ChangeScene(SceneManager.GetActiveScene().name));
     }
 
